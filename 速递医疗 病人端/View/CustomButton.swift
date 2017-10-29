@@ -18,12 +18,16 @@ class CustomButton: UIButton {
         self.titleLabel?.textAlignment = .center
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func titleRect(forContentRect contentRect: CGRect) -> CGRect {
-        return labelRect
+        return labelRect!
     }
     
     override func imageRect(forContentRect contentRect: CGRect) -> CGRect {
-        return imageRect
+        return imageRect!
     }
 
 }

@@ -15,7 +15,7 @@ class BaseViewController: UIViewController {
     func setUpNavTitle(title:String) {
         view.backgroundColor = UIColor.white
         //设置导航栏颜色和字体
-        navigationController?.navigationBar.barTintColor = UIColor.APPGreen
+        navigationController?.navigationBar.barTintColor = UIColor.APPColor
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
         label.text = title
         label.backgroundColor = UIColor.clear
