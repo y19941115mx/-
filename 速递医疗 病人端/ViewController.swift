@@ -3,7 +3,7 @@
 //  速递医疗 病人端
 //
 //  Created by admin on 2017/10/29.
-//  Copyright © 2017年 victor. All rights reserved.
+//  Copyright © 2017 victor. All rights reserved.
 //
 
 import UIKit
