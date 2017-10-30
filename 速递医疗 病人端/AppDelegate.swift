@@ -15,7 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // 界面控制
+        let userid =  UserDefaultUtil.getUserDefaultStringValue(key: "userId", defaultValue: "")
+        if userid == "" {
+            // 跳转到登录页面
+            let vc_login = ViewController()
+            window?.rootViewController = vc_login
+        }else {
+            let vc_main = MainViewController()
+            window?.rootViewController = vc_main
+        }
+        
         return true
     }
 

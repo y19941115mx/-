@@ -11,10 +11,14 @@
 		840647321FA62C1B009B21C4 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840647311FA62C1B009B21C4 /* CustomButton.swift */; };
 		840647351FA62D03009B21C4 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840647331FA62D03009B21C4 /* Extension.swift */; };
 		840647361FA62D03009B21C4 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840647341FA62D03009B21C4 /* Util.swift */; };
+		840647721FA6A6E4009B21C4 /* XLSegmentedSlideSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 8406476A1FA6A6E4009B21C4 /* XLSegmentedSlideSwitch.m */; };
+		840647731FA6A6E4009B21C4 /* XLSlideSegmented.m in Sources */ = {isa = PBXBuildFile; fileRef = 8406476C1FA6A6E4009B21C4 /* XLSlideSegmented.m */; };
+		840647741FA6A6E4009B21C4 /* XLSlideSegmentedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8406476E1FA6A6E4009B21C4 /* XLSlideSegmentedItem.m */; };
+		840647751FA6A6E4009B21C4 /* XLSlideSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 840647701FA6A6E4009B21C4 /* XLSlideSwitch.m */; };
+		840647781FA7409B009B21C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 840647771FA7409A009B21C4 /* Assets.xcassets */; };
 		84C983EF1FA611A60058FA7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C983EE1FA611A60058FA7B /* AppDelegate.swift */; };
 		84C983F11FA611A60058FA7B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C983F01FA611A60058FA7B /* ViewController.swift */; };
 		84C983F41FA611A60058FA7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C983F21FA611A60058FA7B /* Main.storyboard */; };
-		84C983F61FA611A60058FA7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84C983F51FA611A60058FA7B /* Assets.xcassets */; };
 		84C983F91FA611A60058FA7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C983F71FA611A60058FA7B /* LaunchScreen.storyboard */; };
 		84C984021FA617F00058FA7B /* ModelBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C984011FA617F00058FA7B /* ModelBean.swift */; };
 		84C984061FA618060058FA7B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C984041FA618060058FA7B /* BaseViewController.swift */; };
@@ -23,16 +27,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1A6FE386D3244A2B5232BE91 /* Pods_________.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_________.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A6FE386D3244A2B5232BE91 /* Pods_________.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_________.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34CAB850216A56570E87C8D2 /* Pods-速递医疗 病人端.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-速递医疗 病人端.debug.xcconfig"; path = "Pods/Target Support Files/Pods-速递医疗 病人端/Pods-速递医疗 病人端.debug.xcconfig"; sourceTree = "<group>"; };
 		840647311FA62C1B009B21C4 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		840647331FA62D03009B21C4 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		840647341FA62D03009B21C4 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		840647691FA6A6E4009B21C4 /* XLSegmentedSlideSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLSegmentedSlideSwitch.h; sourceTree = "<group>"; };
+		8406476A1FA6A6E4009B21C4 /* XLSegmentedSlideSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLSegmentedSlideSwitch.m; sourceTree = "<group>"; };
+		8406476B1FA6A6E4009B21C4 /* XLSlideSegmented.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLSlideSegmented.h; sourceTree = "<group>"; };
+		8406476C1FA6A6E4009B21C4 /* XLSlideSegmented.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLSlideSegmented.m; sourceTree = "<group>"; };
+		8406476D1FA6A6E4009B21C4 /* XLSlideSegmentedItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLSlideSegmentedItem.h; sourceTree = "<group>"; };
+		8406476E1FA6A6E4009B21C4 /* XLSlideSegmentedItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLSlideSegmentedItem.m; sourceTree = "<group>"; };
+		8406476F1FA6A6E4009B21C4 /* XLSlideSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLSlideSwitch.h; sourceTree = "<group>"; };
+		840647701FA6A6E4009B21C4 /* XLSlideSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLSlideSwitch.m; sourceTree = "<group>"; };
+		840647711FA6A6E4009B21C4 /* XLSlideSwitchDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLSlideSwitchDelegate.h; sourceTree = "<group>"; };
+		840647761FA6A7BA009B21C4 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		840647771FA7409A009B21C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84C983EB1FA611A60058FA7B /* 速递医疗 病人端.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "速递医疗 病人端.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84C983EE1FA611A60058FA7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84C983F01FA611A60058FA7B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		84C983F31FA611A60058FA7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		84C983F51FA611A60058FA7B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84C983F81FA611A60058FA7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84C983FA1FA611A60058FA7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84C984011FA617F00058FA7B /* ModelBean.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelBean.swift; sourceTree = "<group>"; };
@@ -54,6 +68,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		840647671FA6A6E4009B21C4 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				840647681FA6A6E4009B21C4 /* XLSlideSwitch */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
+		840647681FA6A6E4009B21C4 /* XLSlideSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				840647691FA6A6E4009B21C4 /* XLSegmentedSlideSwitch.h */,
+				8406476A1FA6A6E4009B21C4 /* XLSegmentedSlideSwitch.m */,
+				8406476B1FA6A6E4009B21C4 /* XLSlideSegmented.h */,
+				8406476C1FA6A6E4009B21C4 /* XLSlideSegmented.m */,
+				8406476D1FA6A6E4009B21C4 /* XLSlideSegmentedItem.h */,
+				8406476E1FA6A6E4009B21C4 /* XLSlideSegmentedItem.m */,
+				8406476F1FA6A6E4009B21C4 /* XLSlideSwitch.h */,
+				840647701FA6A6E4009B21C4 /* XLSlideSwitch.m */,
+				840647711FA6A6E4009B21C4 /* XLSlideSwitchDelegate.h */,
+			);
+			path = XLSlideSwitch;
+			sourceTree = "<group>";
+		};
 		845899C2F3C2D1E167E529FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +121,8 @@
 		84C983ED1FA611A60058FA7B /* 速递医疗 病人端 */ = {
 			isa = PBXGroup;
 			children = (
+				840647771FA7409A009B21C4 /* Assets.xcassets */,
+				840647671FA6A6E4009B21C4 /* Libs */,
 				84C984081FA6180D0058FA7B /* View */,
 				84C984031FA618060058FA7B /* ViewController */,
 				84C984001FA617F00058FA7B /* Model */,
@@ -92,9 +132,9 @@
 				84C9840D1FA618EE0058FA7B /* API.swift */,
 				84C983F01FA611A60058FA7B /* ViewController.swift */,
 				84C983F21FA611A60058FA7B /* Main.storyboard */,
-				84C983F51FA611A60058FA7B /* Assets.xcassets */,
 				84C983F71FA611A60058FA7B /* LaunchScreen.storyboard */,
 				84C983FA1FA611A60058FA7B /* Info.plist */,
+				840647761FA6A7BA009B21C4 /* Bridging-Header.h */,
 			);
 			path = "速递医疗 病人端";
 			sourceTree = "<group>";
@@ -196,7 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84C983F91FA611A60058FA7B /* LaunchScreen.storyboard in Resources */,
-				84C983F61FA611A60058FA7B /* Assets.xcassets in Resources */,
+				840647781FA7409B009B21C4 /* Assets.xcassets in Resources */,
 				84C983F41FA611A60058FA7B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,12 +319,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				84C983F11FA611A60058FA7B /* ViewController.swift in Sources */,
+				840647741FA6A6E4009B21C4 /* XLSlideSegmentedItem.m in Sources */,
 				840647361FA62D03009B21C4 /* Util.swift in Sources */,
 				84C984061FA618060058FA7B /* BaseViewController.swift in Sources */,
 				84C984021FA617F00058FA7B /* ModelBean.swift in Sources */,
+				840647721FA6A6E4009B21C4 /* XLSegmentedSlideSwitch.m in Sources */,
+				840647751FA6A6E4009B21C4 /* XLSlideSwitch.m in Sources */,
 				84C983EF1FA611A60058FA7B /* AppDelegate.swift in Sources */,
 				840647321FA62C1B009B21C4 /* CustomButton.swift in Sources */,
 				84C9840E1FA618EF0058FA7B /* API.swift in Sources */,
+				840647731FA6A6E4009B21C4 /* XLSlideSegmented.m in Sources */,
 				84C984071FA618060058FA7B /* MainViewController.swift in Sources */,
 				840647351FA62D03009B21C4 /* Extension.swift in Sources */,
 			);
@@ -429,6 +473,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ymx.--------";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/admin/Desktop/ios/速递医疗 病人端/速递医疗 病人端/Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -444,6 +489,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ymx.--------";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/admin/Desktop/ios/速递医疗 病人端/速递医疗 病人端/Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

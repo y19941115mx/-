@@ -113,7 +113,6 @@ class ImageUtil{
     class public func setImage(path:String, imageView:UIImageView){
         let url = URL(string:path)
         imageView.kf.setImage(with: url)
-        
     }
     
     // 图片转为Data类型
