@@ -7,6 +7,9 @@ import Kingfisher
 
 let SCREEN_WIDTH = UIScreen.main.bounds.size.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
+let APPLICATION = UIApplication.shared.delegate as! AppDelegate
+let ERRORMSG = "获取服务器数据失败"
+let CATCHMSG = "解析服务器数据失败"
 
 //日志打印
 public func dPrint<N>(message:N,fileName:String = #file,methodName:String = #function,lineNumber:Int = #line){
@@ -16,8 +19,7 @@ public func dPrint<N>(message:N,fileName:String = #file,methodName:String = #fun
 }
 
 struct StaticClass {
-    static let BaseApi = "http://api.tianapi.com"
-    static let APIKey = "10e8c38cd13f83e1367a81093edca690"
+    static let BaseApi = "http://1842719ny8.iok.la:14086/internetmedical/user"
 }
 
 // UserDefault 相关

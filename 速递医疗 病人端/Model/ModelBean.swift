@@ -6,7 +6,7 @@
 import UIKit
 import ObjectMapper
 
-class WeChatModelBean: Mappable {
+class BaseModelBean: Mappable {
     var msg: String?
     var newslist: [newslistRowBean]?
     required init?(map: Map) {

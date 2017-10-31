@@ -9,9 +9,9 @@ extension UIColor {
     static let APPColor = UIColor(red:0.39, green:0.68, blue:0.99, alpha:1)
 }
 
-
+@IBDesignable
 extension UIView{
-     var cornerRadius:CGFloat{
+     @IBInspectable var cornerRadius:CGFloat{
         get{
             return layer.cornerRadius
         }set{
@@ -20,7 +20,7 @@ extension UIView{
         }
         
     }
-     var borderColor:UIColor{
+     @IBInspectable var borderColor:UIColor{
         get{
             return UIColor.init(cgColor: layer.borderColor!)
         }
@@ -28,7 +28,7 @@ extension UIView{
             layer.borderColor = newValue.cgColor
         }
     }
-     var borderWidth: CGFloat{
+     @IBInspectable var borderWidth: CGFloat{
         get{
             return layer.borderWidth
         }set{

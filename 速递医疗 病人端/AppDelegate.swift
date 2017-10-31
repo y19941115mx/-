@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,17 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // 界面控制
-        let userid =  UserDefaultUtil.getUserDefaultStringValue(key: "userId", defaultValue: "")
-        if userid == "" {
-            // 跳转到登录页面
-            let vc_login = ViewController()
-            window?.rootViewController = vc_login
-        }else {
-            let vc_main = MainViewController()
-            window?.rootViewController = vc_main
-        }
-        
+        SVProgressHUD.setDefaultStyle(.custom)
+        SVProgressHUD.setForegroundColor(UIColor.APPColor)
+        SVProgressHUD.setBackgroundColor(UIColor.clear)
+        SVProgressHUD.setDefaultMaskType(.clear) // 不可点击取消
+        SVProgressHUD.setDefaultAnimationType(.flat) // 设置样式 圆圈的转动动作 另一个是菊花
         return true
     }
 

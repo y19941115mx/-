@@ -22,14 +22,39 @@ class BaseViewController: UIViewController {
         label.textColor = UIColor.white
         navigationItem.titleView = label
     }
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+class BaseTextViewController:BaseViewController, UITextFieldDelegate {
+    var tv_source = [UITextField]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
     }
-    */
-
+    
+    func initTextFieldDelegate(tv_source:[UITextField]) {
+        self.tv_source = tv_source
+        if tv_source.count != 0 {
+            for textField in tv_source {
+                textField.delegate = self
+            }
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if tv_source.count != 0 {
+            for textField in tv_source {
+                textField.resignFirstResponder()
+            }
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        textField.endEditing(true)
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
+    
 }
