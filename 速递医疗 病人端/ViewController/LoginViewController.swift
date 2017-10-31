@@ -11,13 +11,13 @@ import SVProgressHUD
 import Moya
 import Toast_Swift
 import ObjectMapper
+import SwiftHash
 
 
 class LoginViewController: BaseTextViewController {
     
     //MARK: - property
     
-    @IBOutlet weak var view_form: UIView!
     
     @IBOutlet weak var tv_phone: UITextField!
     
@@ -25,36 +25,15 @@ class LoginViewController: BaseTextViewController {
     
     @IBOutlet weak var btn_login: UIButton!
     
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateButtonState()
+        // 界面设置
         initTextFieldDelegate(tv_source: [tv_pwd, tv_phone])
+        updateBtnState = updateButtonState
     }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        btn_login.isEnabled = false
-        UIView.animate(withDuration: 0.5, animations: {() -> Void in
-            self.view_form.center.y = self.view_form.center.y - 100
-        })
-    }
-    
-    
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        updateButtonState()
-        UIView.animate(withDuration: 0.5, animations: {() -> Void in
-            self.view_form.center.y = self.view_form.center.y + 100
-        })
-    }
-    
-    
     
     //MARK: - action
-    
     @IBAction func click_login(_ sender: Any) {
         let phoneNum = tv_phone.text!
         let passNum =  tv_pwd.text!
@@ -62,7 +41,7 @@ class LoginViewController: BaseTextViewController {
         SVProgressHUD.show()
         let Provider = MoyaProvider<API>()
         
-        Provider.request(API.login(phoneNum, passNum)) { result in
+        Provider.request(API.login(phoneNum, MD5(passNum))) { result in
             switch result {
             case let .success(response):
                 do {
@@ -80,9 +59,6 @@ class LoginViewController: BaseTextViewController {
             }
         }
     }
-    
-    
-    
     
     //MARK: - navigation
     @IBAction func unwindToLogin (segue: UIStoryboardSegue) {

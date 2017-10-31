@@ -5,6 +5,7 @@
 import UIKit
 
 class BaseViewController: UIViewController {
+    var updateBtnState: () -> Void = {}
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,7 @@ class BaseTextViewController:BaseViewController, UITextFieldDelegate {
         }
     }
     
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if tv_source.count != 0 {
             for textField in tv_source {
@@ -55,6 +57,10 @@ class BaseTextViewController:BaseViewController, UITextFieldDelegate {
         return true
     }
     
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        updateBtnState()
+    }
     
     
 }

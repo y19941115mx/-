@@ -15,7 +15,7 @@ import SwiftHash
 let MsgSeconds = 30 // 设置验证码发送间隔时间
 class RegisterViewController: BaseTextViewController{
     //Mark:property
-    @IBOutlet weak var view_form: UIView!
+    
     @IBOutlet weak var photoTextField: UITextField!
     
     @IBOutlet weak var msgCodeTextField: UITextField!
@@ -34,7 +34,9 @@ class RegisterViewController: BaseTextViewController{
     var remainingSeconds = 0{
         willSet {
             sendMsgButton.setTitle("\(newValue)秒", for:.normal)
+            sendMsgButton.backgroundColor = UIColor.gray
             if newValue <= 0 {
+                sendMsgButton.backgroundColor = UIColor.LightSkyBlue
                 sendMsgButton.setTitle("获取验证码", for: .normal)
                 isCounting = false
             }
@@ -63,27 +65,9 @@ class RegisterViewController: BaseTextViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         initTextFieldDelegate(tv_source: [photoTextField, msgCodeTextField, password, password2])
+        updateBtnState = updateButtonState
         updateButtonState()
     }
-    
-    
-    //MARK: TextField Delegate
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        // Disable the Save button while editing.
-        registerButton.isEnabled = false
-        UIView.animate(withDuration: 0.5, animations: {() -> Void in
-            self.view_form.center.y = self.view_form.center.y - 100
-        })
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        updateButtonState()
-        UIView.animate(withDuration: 0.5, animations: {() -> Void in
-            self.view_form.center.y = self.view_form.center.y + 100
-        })
-    }
-    
     
     //MARK: action register
     
@@ -106,7 +90,15 @@ class RegisterViewController: BaseTextViewController{
                     do {
                         SVProgressHUD.dismiss()
                         let bean = Mapper<BaseAPIBean>().map(JSONObject: try response.mapJSON())
-                        self.view.makeToast("\(bean!.msg!)\n code:\(bean?.code)")
+                        if bean?.code == 100 {
+                            // 注册成功返回登录界面
+                            let vc = self.presentingViewController as! LoginViewController
+                            vc.tv_phone.text = phoneText
+                            self.dismiss(animated: false, completion: nil)
+                        } else {
+                            SVProgressHUD.dismiss()
+                            self.view.makeToast((bean?.msg)!)
+                        }
                     }catch {
                         SVProgressHUD.dismiss()
                         self.view.makeToast(CATCHMSG)
@@ -122,6 +114,9 @@ class RegisterViewController: BaseTextViewController{
     }
     
     @IBAction func sendMsg(_ sender: Any) {
+        for textField in tv_source {
+            textField.resignFirstResponder()
+        }
         let phoneNum = photoTextField.text!
         //开始倒计时
         isCounting = true
@@ -133,7 +128,7 @@ class RegisterViewController: BaseTextViewController{
             case let .success(response):
                 do {
                     let bean = Mapper<BaseAPIBean>().map(JSONObject: try response.mapJSON())
-                    if bean?.code == 200 {
+                    if bean?.code == 100 {
                         // 发送验证码
                         let pvovider2 = MoyaProvider<API>()
                         pvovider2.request(API.getcode(phoneNum)) { result in

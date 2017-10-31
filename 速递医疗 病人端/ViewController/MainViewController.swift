@@ -22,9 +22,8 @@ class MainViewController: UITabBarController {
     
     func setUpTabBar(){
         // 设置tabBar
-    
         
-        
+        viewControllers = []
     }
 
 }
