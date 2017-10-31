@@ -38,6 +38,8 @@ class LoginViewController: BaseTextViewController {
         let phoneNum = tv_phone.text!
         let passNum =  tv_pwd.text!
         
+        // FIXME:  需要做字符串验证
+        
         SVProgressHUD.show()
         let Provider = MoyaProvider<API>()
         
@@ -47,6 +49,8 @@ class LoginViewController: BaseTextViewController {
                 do {
                     SVProgressHUD.dismiss()
                     let bean = Mapper<BaseAPIBean>().map(JSONObject: try response.mapJSON())
+                    // 进入首页 保存数据
+                    
                     self.view.makeToast(bean!.msg!)
                 }catch {
                     SVProgressHUD.dismiss()

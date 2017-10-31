@@ -3,6 +3,7 @@
 
 
 import UIKit
+import MJRefresh
 
 class BaseViewController: UIViewController {
     var updateBtnState: () -> Void = {}
@@ -52,14 +53,42 @@ class BaseTextViewController:BaseViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        textField.endEditing(true)
         textField.resignFirstResponder()
         return true
     }
     
-    
     func textFieldDidEndEditing(_ textField: UITextField) {
         updateBtnState()
+    }
+}
+
+class BaseTableViewController:BaseViewController {
+    var tableView:UITableView?
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // 消除上部分间隔
+        self.navigationController?.navigationBar.isTranslucent = false
+        // 消除下面的表尾
+        tableView?.tableFooterView = UIView()
+    }
+}
+
+class BaseRefreshController:BaseTableViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    func initRefresh(tableView:UITableView, headerAction:@escaping ()->Void, footerAction:@escaping ()->Void) {
+        self.tableView = tableView
+        let header = MJRefreshNormalHeader(refreshingBlock: headerAction)
+        header?.lastUpdatedTimeLabel.isHidden = true
+        header?.stateLabel.isHidden = true;
+        self.tableView?.tableHeaderView = header
+        
+        let footer = MJRefreshAutoNormalFooter(refreshingBlock: footerAction)
+        footer?.isRefreshingTitleHidden = true
+        self.tableView?.tableFooterView = footer
     }
     
     

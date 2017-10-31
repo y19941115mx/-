@@ -64,6 +64,7 @@ class RegisterViewController: BaseTextViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // 初始化界面
         initTextFieldDelegate(tv_source: [photoTextField, msgCodeTextField, password, password2])
         updateBtnState = updateButtonState
         updateButtonState()
@@ -77,6 +78,7 @@ class RegisterViewController: BaseTextViewController{
         let msgCode = msgCodeTextField.text ?? ""
         let passwordText = password.text ?? ""
         let passwordText2 = password2.text ?? ""
+        // FIXME: 需要做字符串验证
         if passwordText != passwordText2 {
             SVProgressHUD.dismiss()
             self.view.makeToast("两次密码输入不一致")
