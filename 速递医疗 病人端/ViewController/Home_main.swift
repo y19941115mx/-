@@ -7,152 +7,183 @@
 //
 
 import UIKit
+import Moya
+import Toast_Swift
+import SVProgressHUD
+import ObjectMapper
 
-class HomeViewController:BaseRefreshController, UITableViewDataSource{
-    
+class Home_main:BaseRefreshController, UITableViewDataSource, UITableViewDelegate{
+
     @IBOutlet weak var infoTableView: UITableView!
-    
-    @IBOutlet weak var sortByPatientBtn: UIButton!
-    
-    @IBOutlet weak var sortByTimeBtn: UIButton!
-    
-    @IBOutlet weak var sortByLocBtn: UIButton!
-    //病情信息
-    var patientData = [PatientMsgBean]()
-    var selectedPage = 0
-    var rows = 20
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //初始化navigationBar,添加按钮事件
-        initView()
 
-        patientData = getTestData()
-        infoTableView.dataSource = self
+    @IBOutlet weak var sortByPatientBtn: UIButton!
+
+    @IBOutlet weak var sortByTimeBtn: UIButton!
+
+    @IBOutlet weak var sortByLocBtn: UIButton!
+    //医生信息
+    var doctorData = [DoctorBean]()
+    var selectedPage = 1
+
+
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        //添加按钮事件
+        initView()
+        // 初始化navigationBar
+        setUpNavTitle(title: "首页")
         // 添加下拉刷新
-        addRefreshView(mSourceView: infoTableView, refreshAction: {
-            self.patientData += getTestData()
-            self.infoTableView.reloadData()
-        }, loadMoreAction: {
-            self.patientData += getTestData()
-            self.infoTableView.reloadData()
-        })
-        infoTableView.tableFooterView = UIView()
+        initRefresh(tableView: infoTableView, headerAction:
+            self.refreshData, footerAction: self.getMoreData)
+        // 获取数据
+        self.header?.beginRefreshing()
+        infoTableView.dataSource = self
+        infoTableView.delegate = self
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return patientData.count
+        return doctorData.count
     }
     //1,2,3,4,5分别是3 个label 1 个 UIimage
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        let id = "reusedCell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: id, for: indexPath)
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
-        let titleLabel = cell.viewWithTag(1) as! UILabel
-        let sexLabel = cell.viewWithTag(2) as! UILabel
-        let timeLabel = cell.viewWithTag(3) as! UILabel
-        let descLabel = cell.viewWithTag(4) as! UILabel
-        let patientImg = cell.viewWithTag(5) as! UIImageView
-        let result = patientData[indexPath.row]
-        titleLabel.text = result.name
-        sexLabel.text = result.sex
-        timeLabel.text = getComparedTimeStr(str: result.time)
-        descLabel.text = result.desc
-        setImage(path: result.avator, imageView: patientImg)
-        return cell
-    }
-    
-    
-    
-    
-    private func initData(){
-        //获取默认数据
-        let id  = getUserDefaultStringValue(key: "id", defaultValue: "")
-        if id == ""{
-            fatalError("userID出错")
+        var cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? HomeMainTableViewCell
+        if cell == nil {
+            cell =  Bundle.main.loadNibNamed("HomeMainTableViewCell", owner: nil, options: nil)?.last as? HomeMainTableViewCell
         }
-        homePage(id: Int(id)!, page: 1,
-        successHandler: {value in
-            let json = JSON(value)
-            let data = json["data"].arrayValue
-            for item in data {
-                let patient = PatientMsgBean(avator:"http://192.168.2.2:8080/picture/1.jpg", desc: item["usersickdesc"].stringValue, sex: item["familymale"].stringValue, time: timestamp2string(timeStamp: item["usersickptime"].int!), name: item["familyname"].stringValue, age: item["familyage"].int!, sickpic: [])
-                self.patientData.append(patient)
+        let modelBean = self.doctorData[indexPath.row]
+        cell?.updateViews(modelBean: modelBean)
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 145
+    }
+
+    private func refreshData(){
+        self.selectedPage = 1
+        //刷新数据
+        let Provider = MoyaProvider<API>()
+        
+        Provider.request(API.getdoctorlist(1, "0", "0")) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    let bean = Mapper<DoctorListBean>().map(JSONObject: try response.mapJSON())
+                    showToast(self.view, bean!.msg!)
+                    if bean?.code == 100 {
+                        self.header?.endRefreshing()
+                        self.doctorData = (bean?.doctorDataList)!
+                        self.infoTableView.reloadData()
+                    }else {
+                        self.header?.endRefreshing()
+                        showToast(self.view, (bean?.msg!)!)
+                    }
+                }catch {
+                    self.header?.endRefreshing()
+                    showToast(self.view,CATCHMSG)
+                }
+            case let .failure(error):
+                self.header?.endRefreshing()
+                dPrint(message: "error:\(error)")
+                showToast(self.view, ERRORMSG)
             }
-            dPrint(message: self.patientData)
-            self.infoTableView.reloadData()
-        },
-        
-        failHandler: { error in
-            dPrint(message: error)
-        })
+        }
+
+    }
+    
+    private func getMoreData(){
+        //获取更多数据
+        let Provider = MoyaProvider<API>()
+    
+        Provider.request(API.getdoctorlist(selectedPage, "0", "0")) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    let bean = Mapper<DoctorListBean>().map(JSONObject: try response.mapJSON())
+                    if bean?.code == 100 {
+                        self.footer?.endRefreshing()
+                        if bean?.doctorDataList?.count == 0{
+                            showToast(self.view, "已经到底了")
+                            return
+                        }
+                        self.footer?.endRefreshing()
+                        showToast(self.view, bean!.msg!)
+                        self.doctorData += (bean?.doctorDataList)!
+                        self.selectedPage += 1
+                        self.infoTableView.reloadData()
+                    
+                    }else {
+                        self.footer?.endRefreshing()
+                        showToast(self.view, (bean?.msg!)!)
+                    }
+                }catch {
+                    self.footer?.endRefreshing()
+                    showToast(self.view, CATCHMSG)
+                }
+            case let .failure(error):
+                self.footer?.endRefreshing()
+                dPrint(message: "error:\(error)")
+                showToast(self.view, ERRORMSG)
+            }
+        }
         
     }
     
+    
+
     private func initView(){
-        setUpNavigation()
-        sortByLocBtn.addTarget(self, action: #selector(HomeViewController.clickBtn(button:)), for: .touchUpInside)
-        sortByTimeBtn.addTarget(self, action: #selector(HomeViewController.clickBtn(button:)), for: .touchUpInside)
-        sortByPatientBtn.addTarget(self, action: #selector(HomeViewController.clickBtn(button:)), for: .touchUpInside)
+        sortByLocBtn.addTarget(self, action: #selector(clickBtn(button:)), for: .touchUpInside)
+        sortByTimeBtn.addTarget(self, action: #selector(clickBtn(button:)), for: .touchUpInside)
+        sortByPatientBtn.addTarget(self, action: #selector(clickBtn(button:)), for: .touchUpInside)
     }
-    
+
     private func cleanButton(){
-        sortByLocBtn.setTitleColor(UIColor.black, for: .normal)
-        sortByTimeBtn.setTitleColor(UIColor.black, for: .normal)
-        sortByPatientBtn.setTitleColor(UIColor.black, for: .normal)
+        sortByLocBtn.setTitleColor(UIColor.darkGray, for: .normal)
+        sortByTimeBtn.setTitleColor(UIColor.darkGray, for: .normal)
+        sortByPatientBtn.setTitleColor(UIColor.darkGray, for: .normal)
     }
-    
-    private func setUpNavigation(){
-        //
-        navigationController?.navigationBar.barTintColor = UIColor(red:0.39, green:0.73, blue:1.00, alpha:1.00)
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
-        label.text = "速递医运"
-        label.backgroundColor = UIColor.clear
-        label.textColor = UIColor.white
-        navigationItem.titleView = label
-    }
-    
-    
-    
+
+
+
+
     //MARK: - action
-    func clickBtn(button:UIButton){
+    @objc func clickBtn(button:UIButton){
         switch button.tag {
         // 推荐病人
         case 10001:
             cleanButton()
-            sortByPatientBtn.setTitleColor(UIColor.AppBlue, for: .normal)
+            sortByPatientBtn.setTitleColor(UIColor.APPColor, for: .normal)
         // 时间
         case 10002:
             cleanButton()
-            sortByTimeBtn.setTitleColor(UIColor.AppBlue, for: .normal)
-            popMenu(vc: self, title: "选择性别", msg: "选择性别", btns: ["男","女"], handler: {value in
-                dPrint(message: value)
-            })
+            sortByTimeBtn.setTitleColor(UIColor.APPColor, for: .normal)
+//            showToast("按照时间排序")
         // 地点
         case 10003:
             cleanButton()
-            sortByLocBtn.setTitleColor(UIColor.AppBlue, for: .normal)
-            
+            sortByLocBtn.setTitleColor(UIColor.APPColor, for: .normal)
+
         default:
-            showToast(vc: self, text: "error")
+            dPrint(message: "error")
         }
-    
+
     }
-    
+
     //MARK: - navigation Methond
-    
+
     @IBAction func unwindToHome(sender: UIStoryboardSegue){
-        
+
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowDetail" {
-            let SelectedIndexPath = infoTableView.indexPathForSelectedRow
-            let patient = patientData[SelectedIndexPath!.row]
-            let vc = segue.destination as! DoctorDetailViewController
-            vc.patientBean = patient
+//            let SelectedIndexPath = infoTableView.indexPathForSelectedRow
+//            let patient = patientData[SelectedIndexPath!.row]
+//            let vc = segue.destination as! DoctorDetailViewController
+//            vc.patientBean = patient
         }
     }
 }
+
 

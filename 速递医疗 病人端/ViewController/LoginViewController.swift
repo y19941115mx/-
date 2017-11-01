@@ -12,6 +12,7 @@ import Moya
 import Toast_Swift
 import ObjectMapper
 import SwiftHash
+import SwiftyJSON
 
 
 class LoginViewController: BaseTextViewController {
@@ -48,10 +49,26 @@ class LoginViewController: BaseTextViewController {
             case let .success(response):
                 do {
                     SVProgressHUD.dismiss()
-                    let bean = Mapper<BaseAPIBean>().map(JSONObject: try response.mapJSON())
-                    // 进入首页 保存数据
-                    
-                    self.view.makeToast(bean!.msg!)
+                    let jsonObj =  try response.mapJSON()
+                    let bean = Mapper<BaseAPIBean>().map(JSONObject: jsonObj)
+                    if bean?.code == 100 {
+                        let json = JSON(jsonObj)
+                        let data = json["data"]
+                        let userId = data["id"].intValue
+                        let type = data["type"].boolValue
+                        let pix = data["pix"].stringValue
+                        let token = data["token"].stringValue
+                        let username = data["username"].stringValue
+                        UserDefaultUtil.setUserDefault(key: "userId", value: String(userId))
+                        UserDefaultUtil.setUserDefault(key: "type", value: type)
+                        UserDefaultUtil.setUserDefault(key: "pix", value: pix)
+                        UserDefaultUtil.setUserDefault(key: "token", value: token)
+                        UserDefaultUtil.setUserDefault(key: "username", value: username)
+                        dPrint(message: data)
+                        self.view.makeToast(bean!.msg!)
+                    } else{
+                        self.view.makeToast(bean!.msg!)
+                    }
                 }catch {
                     SVProgressHUD.dismiss()
                     self.view.makeToast(CATCHMSG)

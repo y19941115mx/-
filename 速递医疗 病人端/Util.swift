@@ -4,6 +4,7 @@
 
 import UIKit
 import Kingfisher
+import Toast_Swift
 
 let SCREEN_WIDTH = UIScreen.main.bounds.size.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
@@ -18,8 +19,16 @@ public func dPrint<N>(message:N,fileName:String = #file,methodName:String = #fun
     #endif
 }
 
+public func showToast(_ view:UIView, _ message:String) {
+    var style = ToastStyle()
+    style.backgroundColor = UIColor.APPColor
+    view.makeToast(message, duration: 2.0, position: .center, style:style)
+}
+
 struct StaticClass {
     static let BaseApi = "http://1842719ny8.iok.la:14086/internetmedical/user"
+    static let RootIP = "http://1842719ny8.iok.la:14086"
+    static let PictureIP = RootIP + "/picture/"
 }
 
 // UserDefault 相关
@@ -115,6 +124,12 @@ class ImageUtil{
     class public func setImage(path:String, imageView:UIImageView){
         let url = URL(string:path)
         imageView.kf.setImage(with: url)
+    }
+    
+    static public func setAvator(path:String, imageView:UIImageView) {
+        let url = URL(string:StaticClass.PictureIP + path)
+//        imageView.kf.setImage(with: url)
+        imageView.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "default"), options: nil, progressBlock: nil, completionHandler: nil)
     }
     
     // 图片转为Data类型

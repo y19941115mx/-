@@ -13,6 +13,7 @@ target '速递医疗 病人端' do
     pod 'SnapKit'
     # json 转换
     pod 'ObjectMapper'
+    pod 'SwiftyJSON'
     # Md5
     pod 'SwiftHash', git: 'https://github.com/onmyway133/SwiftHash'
     # 网络图片加载

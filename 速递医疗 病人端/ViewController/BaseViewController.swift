@@ -68,12 +68,13 @@ class BaseTableViewController:BaseViewController {
         super.viewDidLoad()
         // 消除上部分间隔
         self.navigationController?.navigationBar.isTranslucent = false
-        // 消除下面的表尾
-        tableView?.tableFooterView = UIView()
+        self.tableView?.tableFooterView = UIView()
     }
 }
 
 class BaseRefreshController:BaseTableViewController {
+    var header:MJRefreshStateHeader?
+    var footer:MJRefreshAutoStateFooter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,14 +82,15 @@ class BaseRefreshController:BaseTableViewController {
     
     func initRefresh(tableView:UITableView, headerAction:@escaping ()->Void, footerAction:@escaping ()->Void) {
         self.tableView = tableView
-        let header = MJRefreshNormalHeader(refreshingBlock: headerAction)
+        self.header = MJRefreshNormalHeader(refreshingBlock: headerAction)
         header?.lastUpdatedTimeLabel.isHidden = true
         header?.stateLabel.isHidden = true;
-        self.tableView?.tableHeaderView = header
+        self.tableView?.mj_header = self.header
         
-        let footer = MJRefreshAutoNormalFooter(refreshingBlock: footerAction)
-        footer?.isRefreshingTitleHidden = true
-        self.tableView?.tableFooterView = footer
+        self.footer = MJRefreshAutoNormalFooter(refreshingBlock: footerAction)
+        self.footer?.isRefreshingTitleHidden = true
+        self.footer?.setTitle("加载更多", for: MJRefreshState.idle)
+        self.tableView?.mj_footer = self.footer
     }
     
     

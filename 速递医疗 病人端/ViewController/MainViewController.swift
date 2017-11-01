@@ -12,18 +12,13 @@ class MainViewController: UITabBarController {
         setUpTabBar()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
     // MARK: - Private Method
     
     func setUpTabBar(){
         // 设置tabBar
-        
-        viewControllers = []
+        let vc_home = UIStoryboard.init(name: "Home", bundle: nil).instantiateInitialViewController()!
+        vc_home.tabBarItem = UITabBarItem.init(title: "首页", image:#imageLiteral(resourceName: "index_home") , tag: 0)
+        self.viewControllers = [vc_home]
     }
 
 }

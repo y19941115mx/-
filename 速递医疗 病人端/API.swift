@@ -11,6 +11,7 @@ public enum API {
     case phonetest(String) // 检查手机号码
     case getcode(String) // 发送短信验证码
     case register(String, String, String) // 注册
+    case getdoctorlist(Int, String, String) // 获取首页医生信息
 }
 // 配置请求
 extension API: TargetType {
@@ -25,6 +26,8 @@ extension API: TargetType {
             return "/getcode"
         case .register:
             return "/register"
+        case .getdoctorlist:
+            return "/listdoctors"
         }
     }
     public var method: Moya.Method {
@@ -46,6 +49,8 @@ extension API: TargetType {
             return .requestParameters(parameters: ["userloginphone": phone], encoding: URLEncoding.default)
         case .register(let phone, let pwd, let code):
             return .requestParameters(parameters: ["userloginphone":phone, "userloginpwd": pwd, "code": code], encoding: URLEncoding.default)
+        case .getdoctorlist(let page, let lon, let lat):
+            return .requestParameters(parameters: ["page": page, "userloginlon": lon, "userloginlat":lat], encoding: URLEncoding.default)
         }
     }
     
