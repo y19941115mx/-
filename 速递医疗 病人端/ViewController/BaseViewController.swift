@@ -89,7 +89,7 @@ class BaseRefreshController:BaseTableViewController {
         
         self.footer = MJRefreshAutoNormalFooter(refreshingBlock: footerAction)
         self.footer?.isRefreshingTitleHidden = true
-        self.footer?.setTitle("加载更多", for: MJRefreshState.idle)
+        self.footer?.setTitle("", for: MJRefreshState.idle)
         self.tableView?.mj_footer = self.footer
     }
     

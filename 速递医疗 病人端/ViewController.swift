@@ -13,8 +13,8 @@ class ViewController:BaseViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // 界面控制
-        let userid =  UserDefaultUtil.getUserDefaultStringValue(key: "userId", defaultValue: "")
-        if userid == "" {
+        let userid =  user_default.userId.getStringValue()
+        if (userid == nil)  {
             // 跳转到登录页面
             let vc_login = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()
             APPLICATION.window?.rootViewController = vc_login

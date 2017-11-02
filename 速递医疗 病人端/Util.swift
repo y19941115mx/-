@@ -31,30 +31,28 @@ struct StaticClass {
     static let PictureIP = RootIP + "/picture/"
 }
 
-// UserDefault 相关
+// UserDefault UserDefault相关的枚举值
+enum user_default:String {
+    case userId, type, pix, token, username
+    func getStringValue()->String? {
+        switch self {
+        case .type:
+            return nil
+        default:
+            return UserDefaults.standard.string(forKey: self.rawValue)
+        }
+    }
+    func getBoolValue()->Bool {
+        return UserDefaults.standard.bool(forKey: self.rawValue)
+    }
+}
+
 class UserDefaultUtil: NSObject {
     //UserDefaults 进行本地存储
-    class func setUserDefault(key:String, value:Any){
-        UserDefaults.standard.set(value, forKey: key)
+    class func setUserDefault(key:user_default, value:Any){
+        UserDefaults.standard.set(value, forKey: key.rawValue)
     }
     
-    //UserDefaults 获取string数据
-    
-    class func getUserDefaultStringValue(key:String, defaultValue: String) -> String{
-        
-        let res = UserDefaults.standard.string(forKey: key)
-        if res != nil{
-            return res!
-        }
-        return defaultValue
-    }
-    
-    //UserDefaults 获取Bool数据
-    
-    class func getUserDefaultBoolValue(key:String) -> Bool{
-        let res = UserDefaults.standard.bool(forKey: key)
-        return res
-    }
     //UserDefaults 清空数据
     class func clearUserDefaultValue(key:String){
         UserDefaults.standard.removeObject(forKey: key)

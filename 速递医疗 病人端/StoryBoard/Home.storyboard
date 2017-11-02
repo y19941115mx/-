@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Doctor Detail View Controller-->
+        <!--Home Doctor Detail-->
         <scene sceneID="VeG-8Q-yVu">
             <objects>
-                <viewController storyboardIdentifier="Detail" id="dEe-b0-evy" customClass="DoctorDetailViewController" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Detail" id="dEe-b0-evy" customClass="Home_DoctorDetail" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1Rv-KH-dw8"/>
                         <viewControllerLayoutGuide type="bottom" id="yNy-gr-MvX"/>
@@ -46,12 +46,17 @@
                                             <constraint firstAttribute="height" constant="40" id="Nv3-XK-vPh"/>
                                         </constraints>
                                     </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="touxiang" translatesAutoresizingMaskIntoConstraints="NO" id="GTR-Zb-cas">
-                                        <rect key="frame" x="8" y="48" width="80" height="144"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="touxiang" translatesAutoresizingMaskIntoConstraints="NO" id="GTR-Zb-cas">
+                                        <rect key="frame" x="8" y="60" width="80" height="80"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="144" id="Ol4-Fa-3Lg"/>
+                                            <constraint firstAttribute="height" constant="80" id="Ol4-Fa-3Lg"/>
                                             <constraint firstAttribute="width" constant="80" id="dms-XX-8Lx"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="40"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="王军" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RmQ-3v-oah">
                                         <rect key="frame" x="108" y="60" width="29" height="17"/>
@@ -87,7 +92,7 @@
                                     <constraint firstAttribute="height" constant="200" id="Nch-ab-igu"/>
                                     <constraint firstAttribute="trailing" secondItem="baX-vd-pZ0" secondAttribute="trailing" id="QDa-Hr-qOJ"/>
                                     <constraint firstItem="RmQ-3v-oah" firstAttribute="leading" secondItem="GTR-Zb-cas" secondAttribute="trailing" constant="20" id="XwM-lE-A92"/>
-                                    <constraint firstItem="GTR-Zb-cas" firstAttribute="top" secondItem="baX-vd-pZ0" secondAttribute="bottom" constant="8" id="lBH-YO-WND"/>
+                                    <constraint firstItem="GTR-Zb-cas" firstAttribute="top" secondItem="baX-vd-pZ0" secondAttribute="bottom" constant="20" id="lBH-YO-WND"/>
                                     <constraint firstAttribute="trailing" secondItem="hzd-u6-TPe" secondAttribute="trailing" id="luN-4K-hDH"/>
                                     <constraint firstItem="RmQ-3v-oah" firstAttribute="top" secondItem="baX-vd-pZ0" secondAttribute="bottom" constant="20" id="nqO-53-9ti"/>
                                     <constraint firstItem="ZAQ-iK-WyJ" firstAttribute="top" secondItem="baX-vd-pZ0" secondAttribute="bottom" constant="20" id="vco-Lx-kT3"/>
@@ -101,22 +106,42 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9C-Ew-eOH">
+                                <rect key="frame" x="114" y="304" width="146" height="30"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="146" id="L6q-qt-IVZ"/>
+                                    <constraint firstAttribute="height" constant="30" id="Q2Z-GW-IQJ"/>
+                                </constraints>
+                                <state key="normal" title="选为预选医生">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="IEK-L7-4Y4" firstAttribute="leading" secondItem="csf-cJ-M5O" secondAttribute="leading" constant="15" id="3iW-q6-M74"/>
+                            <constraint firstItem="N9C-Ew-eOH" firstAttribute="centerX" secondItem="csf-cJ-M5O" secondAttribute="centerX" id="TQg-8b-zo5"/>
                             <constraint firstItem="IEK-L7-4Y4" firstAttribute="top" secondItem="1Rv-KH-dw8" secondAttribute="bottom" constant="10" id="agz-Fn-BHo"/>
+                            <constraint firstItem="N9C-Ew-eOH" firstAttribute="top" secondItem="IEK-L7-4Y4" secondAttribute="bottom" constant="30" id="hY2-c8-zXF"/>
                             <constraint firstAttribute="trailing" secondItem="IEK-L7-4Y4" secondAttribute="trailing" constant="15" id="veY-yb-Lof"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
+                        <outlet property="avator" destination="GTR-Zb-cas" id="q2b-Lo-wX9"/>
                         <outlet property="describeLabel" destination="hzd-u6-TPe" id="PB5-Cf-Awm"/>
+                        <outlet property="label_hospital" destination="ZAQ-iK-WyJ" id="g5I-wh-O2l"/>
                         <outlet property="nameLabel" destination="RmQ-3v-oah" id="AsG-DD-7eo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iUl-fK-GCv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-404" y="-2080"/>
+            <point key="canvasLocation" x="-404" y="-2080.2098950524737"/>
         </scene>
         <!--Home main-->
         <scene sceneID="xJl-eg-16W">
@@ -164,13 +189,13 @@
                                     <color key="titleColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zDb-iZ-hvc">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zDb-iZ-hvc">
                                 <rect key="frame" x="0.0" y="99" width="375" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
                                 <color key="separatorColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </tableView>
-                            <button opaque="NO" tag="10003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKt-uQ-6xq">
+                            <button opaque="NO" tag="10004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKt-uQ-6xq">
                                 <rect key="frame" x="282" y="67" width="94" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="iVy-9i-LBm"/>
@@ -209,10 +234,11 @@
                     <navigationItem key="navigationItem" id="GC4-NO-4TS"/>
                     <connections>
                         <outlet property="infoTableView" destination="zDb-iZ-hvc" id="CO9-Zv-q5p"/>
+                        <outlet property="sortByDept" destination="lKt-uQ-6xq" id="p6b-em-6em"/>
                         <outlet property="sortByLocBtn" destination="oIv-Ip-anP" id="WgY-u5-r6K"/>
                         <outlet property="sortByPatientBtn" destination="1G0-OH-ei5" id="O1z-vi-Lui"/>
                         <outlet property="sortByTimeBtn" destination="8jG-YP-R7c" id="gYG-fI-CiZ"/>
-                        <segue destination="dEe-b0-evy" kind="show" identifier="showDetail" id="zxt-18-fYN"/>
+                        <segue destination="dEe-b0-evy" kind="show" identifier="ShowDetail" id="zxt-18-fYN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nt6-uR-Evr" userLabel="First Responder" sceneMemberID="firstResponder"/>

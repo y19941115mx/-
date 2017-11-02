@@ -1,31 +1,34 @@
-////
-////  PatientDetailViewController.swift
-////  DoctorClient
-////
-////  Created by admin on 2017/8/31.
-////  Copyright © 2017年 victor. All rights reserved.
-////
 //
-//import UIKit
+//  PatientDetailViewController.swift
+//  DoctorClient
 //
-//class DoctorDetailViewController: BaseViewController {
-//    var patientaBean:PatientMsgBean?
-//    
-//    @IBOutlet weak var nameLabel: UILabel!
-//    
-//    
-//    @IBOutlet weak var describeLabel: UILabel!
-//    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        if let patient = patientBean{
-//            nameLabel.text = patient.name
-//            describeLabel.text = patient.desc
-//        }
-//        
-//    }
-//    
-//    
+//  Created by admin on 2017/8/31.
+//  Copyright © 2017年 victor. All rights reserved.
 //
-//}
+
+import UIKit
+
+class Home_DoctorDetail: BaseViewController {
+    var doctorBean:DoctorBean?
+    
+    @IBOutlet weak var avator: UIImageView!
+    @IBOutlet weak var label_hospital: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var describeLabel: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if let doctor = doctorBean{
+            nameLabel.text = doctor.name
+            describeLabel.text = doctor.docexpert
+            label_hospital.text = doctor.hospital
+            ImageUtil.setAvator(path: doctor.pix!, imageView: avator)
+        }
+        
+    }
+    
+    
+
+}
 

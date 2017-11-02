@@ -59,12 +59,11 @@ class LoginViewController: BaseTextViewController {
                         let pix = data["pix"].stringValue
                         let token = data["token"].stringValue
                         let username = data["username"].stringValue
-                        UserDefaultUtil.setUserDefault(key: "userId", value: String(userId))
-                        UserDefaultUtil.setUserDefault(key: "type", value: type)
-                        UserDefaultUtil.setUserDefault(key: "pix", value: pix)
-                        UserDefaultUtil.setUserDefault(key: "token", value: token)
-                        UserDefaultUtil.setUserDefault(key: "username", value: username)
-                        dPrint(message: data)
+                        UserDefaultUtil.setUserDefault(key: .userId, value: String(userId))
+                        UserDefaultUtil.setUserDefault(key: .type, value: type)
+                        UserDefaultUtil.setUserDefault(key: .pix, value: pix)
+                        UserDefaultUtil.setUserDefault(key: .token, value: token)
+                        UserDefaultUtil.setUserDefault(key: .username, value: username)
                         self.view.makeToast(bean!.msg!)
                     } else{
                         self.view.makeToast(bean!.msg!)

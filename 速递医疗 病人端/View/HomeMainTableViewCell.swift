@@ -29,7 +29,7 @@ class HomeMainTableViewCell: UITableViewCell {
     public func updateViews(modelBean:DoctorBean) {
         label_desc.text = modelBean.docexpert
         label_name.text = modelBean.name
-        label_distance.text = "9"
+        label_distance.text = "9千米"
         label_hospital.text = modelBean.hospital
         ImageUtil.setAvator(path: modelBean.pix!, imageView: pic)
         
