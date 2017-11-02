@@ -20,4 +20,5 @@ target '速递医疗 病人端' do
     pod 'Kingfisher'
     # 下拉刷新加载
     pod 'MJRefresh'
+    
 end

@@ -61,18 +61,6 @@ class UserDefaultUtil: NSObject {
 
 // Alert 相关
 class AlertUtil: NSObject {
-    //显示toast
-    public func showToast(vc:UIViewController, text:String){
-        let alertController = UIAlertController(title: text,
-                                                message: nil, preferredStyle: .alert)
-        //显示提示框
-        vc.present(alertController, animated: true, completion: nil)
-        //两秒钟后自动消失
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-            vc.presentedViewController?.dismiss(animated: false, completion: nil)
-        }
-        
-    }
     
     /**
      选择弹出框
