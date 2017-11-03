@@ -96,6 +96,18 @@ class OrderBean: Mappable {
     }
 }
 
+class listBean<T>:BaseAPIBean {
+    var dataList: [T]?
+    required init?(map: Map) {
+        super.init(map: map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map: map)
+        dataList <- map["data"]
+    }
+}
+
 class familyListBean:BaseAPIBean {
     var familyDataList: [familyBean]?
     

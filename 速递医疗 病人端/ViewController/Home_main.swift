@@ -10,7 +10,7 @@ import UIKit
 import Toast_Swift
 import SVProgressHUD
 
-class Home_main:BaseRefreshController, UITableViewDataSource, UITableViewDelegate{
+class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITableViewDelegate{
     
     @IBOutlet weak var infoTableView: UITableView!
 

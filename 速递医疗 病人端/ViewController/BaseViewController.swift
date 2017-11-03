@@ -70,10 +70,10 @@ class BaseTextViewController:BaseViewController, UITextFieldDelegate {
 }
 
 // 下拉刷新
-class BaseRefreshController:BaseViewController {
+class BaseRefreshController<T>:BaseViewController {
     var header:MJRefreshStateHeader?
     var footer:MJRefreshAutoStateFooter?
-    var doctorData = [DoctorBean]()
+    var doctorData = [T]()
     var tableView:UITableView?
     var selectedPage = 1
     
@@ -117,11 +117,11 @@ class BaseRefreshController:BaseViewController {
             switch result {
             case let .success(response):
                 do {
-                    let bean = Mapper<DoctorListBean>().map(JSONObject: try response.mapJSON())
+                    let bean = Mapper<listBean<T>>().map(JSONObject: try response.mapJSON())
                     
                     if bean?.code == 100 {
                         self.header?.endRefreshing()
-                        self.doctorData = (bean?.doctorDataList)!
+                        self.doctorData = (bean?.dataList)!
                         if self.doctorData.count == 0{
                             //隐藏tableView,添加刷新按钮
                             self.showRefreshBtn()
@@ -154,15 +154,16 @@ class BaseRefreshController:BaseViewController {
             switch result {
             case let .success(response):
                 do {
-                    let bean = Mapper<DoctorListBean>().map(JSONObject: try response.mapJSON())
+                    let bean = Mapper<
+                    listBean<T>>().map(JSONObject: try response.mapJSON())
                     if bean?.code == 100 {
                         self.footer?.endRefreshing()
-                        if bean?.doctorDataList?.count == 0{
+                        if bean?.dataList?.count == 0{
                             showToast(self.view, "已经到底了")
                             return
                         }
                         self.footer?.endRefreshing()
-                        self.doctorData += (bean?.doctorDataList)!
+                        self.doctorData += (bean?.dataList)!
                         self.selectedPage += 1
                         self.tableView?.reloadData()
                         
