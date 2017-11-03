@@ -15,7 +15,7 @@ import ObjectMapper
 class Mine_order: UIViewController, UICollectionViewDataSource {
     var data = [OrderBean]()
     
-    @IBOutlet weak var collecionView: UICollectionView!
+    @IBOutlet weak var collectionView: BaseCollectionView!
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -37,9 +37,6 @@ class Mine_order: UIViewController, UICollectionViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 添加UICollectionView
-        initUIcolletionView()
-        // 获取数据
         getData()
     }
     
@@ -54,7 +51,7 @@ class Mine_order: UIViewController, UICollectionViewDataSource {
                     let bean = Mapper<OrderListBean>().map(JSONObject: try response.mapJSON())
                     if bean?.code == 100 {
                         self.data = (bean?.OrderDataList)!
-                        self.collecionView?.reloadData()
+                        self.collectionView.reloadData()
                     }else {
                         showToast(self.view, bean!.msg!)
                     }
@@ -71,16 +68,7 @@ class Mine_order: UIViewController, UICollectionViewDataSource {
         
     }
     
-    private func initUIcolletionView() {
-    
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize.init(width: SCREEN_WIDTH - 20, height: 155)
-        flowLayout.scrollDirection = .vertical
-        flowLayout.minimumLineSpacing = 10
-        collecionView.collectionViewLayout = flowLayout
-        collecionView.backgroundColor = UIColor.white
-        collecionView.register(UINib.init(nibName: "MineOrderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
-    }
+   
     /*
      // MARK: - Navigation
      

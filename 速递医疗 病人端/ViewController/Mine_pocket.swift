@@ -11,7 +11,8 @@ import SnapKit
 
 class Mine_pocket: UIViewController, UICollectionViewDataSource {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var collectionView: BaseCollectionView!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
@@ -28,21 +29,10 @@ class Mine_pocket: UIViewController, UICollectionViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        initUIcolletionView()
         // Do any additional setup after loading the view.
     }
     
-    
-    private func initUIcolletionView() {
-        
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize.init(width: SCREEN_WIDTH - 20, height: 200)
-        flowLayout.scrollDirection = .vertical
-        flowLayout.minimumLineSpacing = 10
-        self.collectionView.collectionViewLayout = flowLayout
-        collectionView?.backgroundColor = UIColor.white
-        collectionView?.register(UINib.init(nibName: "MinePocketCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
-    }
+
 
     
 
