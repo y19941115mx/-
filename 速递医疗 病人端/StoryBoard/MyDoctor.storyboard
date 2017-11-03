@@ -32,10 +32,10 @@
             </objects>
             <point key="canvasLocation" x="-99" y="-154"/>
         </scene>
-        <!--Doctor Page View Controller-->
+        <!--View Controller-->
         <scene sceneID="1bZ-CY-aRc">
             <objects>
-                <viewController storyboardIdentifier="tableView" id="N36-Kf-7yQ" customClass="DoctorPageViewController" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tableView" id="N36-Kf-7yQ" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Tac-kn-JK6"/>
                         <viewControllerLayoutGuide type="bottom" id="RfE-P3-AUK"/>
@@ -140,7 +140,7 @@
         <!--我的医生-->
         <scene sceneID="9SX-bj-8qZ">
             <objects>
-                <viewController id="Ett-Cy-CfR" customClass="MyDoctorViewController" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ett-Cy-CfR" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cAe-hH-eeR"/>
                         <viewControllerLayoutGuide type="bottom" id="DXn-At-pwE"/>
@@ -156,10 +156,10 @@
             </objects>
             <point key="canvasLocation" x="709" y="-148"/>
         </scene>
-        <!--Doctor Detail View Controller-->
+        <!--View Controller-->
         <scene sceneID="XuB-TJ-UDu">
             <objects>
-                <viewController storyboardIdentifier="Detail" id="WOL-rD-B51" customClass="DoctorDetailViewController" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Detail" id="WOL-rD-B51" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2SM-Om-hOe"/>
                         <viewControllerLayoutGuide type="bottom" id="s4u-32-Khc"/>

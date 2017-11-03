@@ -12,6 +12,9 @@ public enum API {
     case getcode(String) // 发送短信验证码
     case register(String, String, String) // 注册
     case getdoctorlist(Int, String, String) // 获取首页医生信息
+    case getorder(Int, Int, Int) // 获取订单信息
+    case addfamily(Int, String, String, Int) // 添加亲属
+    case findfamily(Int) // 查询亲属
 }
 // 配置请求
 extension API: TargetType {
@@ -28,6 +31,12 @@ extension API: TargetType {
             return "/register"
         case .getdoctorlist:
             return "/listdoctors"
+        case .getorder:
+            return "/getorder"
+        case .addfamily:
+            return "/addfamily"
+        case .findfamily:
+            return "/findfamily"
         }
     }
     public var method: Moya.Method {
@@ -42,7 +51,7 @@ extension API: TargetType {
         
         switch self {
         case .login(let user, let pwd):
-           return  .requestParameters(parameters: ["userloginphone": user, "userloginpwd": pwd], encoding: URLEncoding.default)
+            return  .requestParameters(parameters: ["userloginphone": user, "userloginpwd": pwd], encoding: URLEncoding.default)
         case .phonetest(let phone):
             return .requestParameters(parameters: ["userloginphone": phone], encoding: URLEncoding.default)
         case .getcode(let phone):
@@ -51,6 +60,18 @@ extension API: TargetType {
             return .requestParameters(parameters: ["userloginphone":phone, "userloginpwd": pwd, "code": code], encoding: URLEncoding.default)
         case .getdoctorlist(let page, let lon, let lat):
             return .requestParameters(parameters: ["page": page, "userloginlon": lon, "userloginlat":lat], encoding: URLEncoding.default)
+        case .addfamily(let id, let name, let sex, let age):
+            return .requestParameters(parameters: ["userloginid": id, "familyname": name, "familymale":sex, "familyage": age], encoding: URLEncoding.default)
+        case .findfamily(let id):
+            return .requestParameters(parameters: ["userloginid": id], encoding: URLEncoding.default)
+        case .getorder(let id, let page, let type):
+            switch type {
+            case 0:
+                return .requestParameters(parameters: ["page": page, "userloginid": id], encoding: URLEncoding.default)
+                
+            default:
+                return .requestParameters(parameters: ["page": page, "userloginid": id, "type":type], encoding: URLEncoding.default)
+            }
         }
     }
     

@@ -9,10 +9,9 @@
 import UIKit
 import Toast_Swift
 import SVProgressHUD
-import CDZPicker
 
 class Home_main:BaseRefreshController, UITableViewDataSource, UITableViewDelegate{
-
+    
     @IBOutlet weak var infoTableView: UITableView!
 
     @IBOutlet weak var sortByPatientBtn: UIButton!
@@ -21,6 +20,12 @@ class Home_main:BaseRefreshController, UITableViewDataSource, UITableViewDelegat
 
     @IBOutlet weak var sortByDept: UIButton!
     @IBOutlet weak var sortByLocBtn: UIButton!
+    
+    
+    let textfield_zero = UITextField.init(frame: CGRect.zero)
+    
+    let picker_dept = UIPickerView()
+    
 
     override func viewDidLoad() {
         
@@ -35,6 +40,9 @@ class Home_main:BaseRefreshController, UITableViewDataSource, UITableViewDelegat
         self.header?.beginRefreshing()
         infoTableView.dataSource = self
         infoTableView.delegate = self
+        self.textfield_zero.isHidden = true
+        // 获取dept数据,关联UIpicker
+        
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
@@ -58,6 +66,8 @@ class Home_main:BaseRefreshController, UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "ShowDetail", sender: self)
     }
+    
+    
     
     
     private func initView(){
@@ -90,7 +100,7 @@ class Home_main:BaseRefreshController, UITableViewDataSource, UITableViewDelegat
         case 10003:
             cleanButton()
             sortByLocBtn.setTitleColor(UIColor.APPColor, for: .normal)
-        // 科室
+        
         case 10004:
             cleanButton()
             sortByDept.setTitleColor(UIColor.APPColor, for: .normal)
@@ -112,6 +122,24 @@ class Home_main:BaseRefreshController, UITableViewDataSource, UITableViewDelegat
             let vc = segue.destination as! Home_DoctorDetail
             vc.doctorBean = doctor
         }
+    }
+        
+    // MARK: - Private Method
+
+    
+    func setInputView(mPicker:UIPickerView, mTextField:UITextField){
+        // 关联textfield 与 pickerView
+        let myToolBar = UIToolbar(frame: CGRect(x: 0, y: view.frame.size.height - 44 - mPicker.frame.size.height , width: view.frame.size.width, height: 44))
+        let finishBtn = UIBarButtonItem(title: "完成", style: .done, target:self, action: #selector(clickBtn(button:)))
+        finishBtn.tag = mPicker.tag
+        myToolBar.setItems([finishBtn], animated: false)
+        
+//        mPicker.delegate = self
+//        mPicker.dataSource = self
+        //样式尺寸
+        mPicker.backgroundColor = UIColor.white
+        mTextField.inputView = mPicker
+        mTextField.inputAccessoryView = myToolBar
     }
 }
 

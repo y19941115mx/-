@@ -45,19 +45,17 @@ enum user_default:String {
     func getBoolValue()->Bool {
         return UserDefaults.standard.bool(forKey: self.rawValue)
     }
-}
-
-class UserDefaultUtil: NSObject {
     //UserDefaults 进行本地存储
-    class func setUserDefault(key:user_default, value:Any){
+    static func setUserDefault(key:user_default, value:Any){
         UserDefaults.standard.set(value, forKey: key.rawValue)
     }
     
     //UserDefaults 清空数据
-    class func clearUserDefaultValue(key:String){
+    static func clearUserDefaultValue(key:String){
         UserDefaults.standard.removeObject(forKey: key)
     }
 }
+
 
 // Alert 相关
 class AlertUtil: NSObject {
@@ -68,28 +66,26 @@ class AlertUtil: NSObject {
      - parameter msg:   消息
      - parameter btns:  弹框项
      */
-    func popMenu(vc:UIViewController, title:String,msg:String,btns:[String], handler:@escaping (_ value: String)->()) {
+    class func popMenu(vc:UIViewController, title:String,msg:String,btns:[String], handler:@escaping (_ value: String)->()) {
         
-        let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert);
+        let alertController = UIAlertController(title: title, message: msg,
+                                                preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
         
-        for i in 0 ..< btns.count {
-            
-            let btn = UIAlertAction(title: btns[i], style: .default) { (UIAlertAction) -> Void in
+        for btn in btns {
+            let action = UIAlertAction(title: btn, style: .default) { (UIAlertAction) -> Void in
                 
                 handler(UIAlertAction.title!)
                 
             }
-            alert.addAction(btn)
+            alertController.addAction(action)
         }
         
-        //    let btn = UIAlertAction(title: "取消", style:.cancel, handler: nil)
-        //
-        //    alert.addAction(btn);
-        
-        vc.present(alert, animated: true,completion: nil);
+        vc.present(alertController, animated: true, completion: nil)
     }
     
-    func popAlert(vc:UIViewController, msg:String, okhandler: @escaping ()->())
+    class func popAlert(vc:UIViewController, msg:String, okhandler: @escaping ()->())
     {
         // 弹出提示框
         let alertController = UIAlertController(title: "提示",
@@ -98,6 +94,32 @@ class AlertUtil: NSObject {
         let okAction = UIAlertAction(title: "确认", style: .default, handler: {
             action in
             okhandler()
+        })
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        vc.present(alertController, animated: true, completion: nil)
+    }
+    // 弹出输入框
+    class func popTextFields(vc:UIViewController, okhandler: @escaping (_ textfields:[UITextField])->()) {
+        let alertController = UIAlertController(title: "输入内容",
+                                                message: "", preferredStyle: .alert)
+        alertController.addTextField {
+            (textField: UITextField!) -> Void in
+            textField.placeholder = "姓名"
+        }
+        alertController.addTextField {
+            (textField: UITextField!) -> Void in
+            textField.placeholder = "性别(男/女)"
+        }
+        alertController.addTextField {
+            (textField: UITextField!) -> Void in
+            textField.placeholder = "年龄"
+            textField.keyboardType = .numberPad
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let okAction = UIAlertAction(title: "确定", style: .default, handler: {
+            action in
+            okhandler(alertController.textFields!)
         })
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
@@ -113,7 +135,7 @@ class ImageUtil{
     }
     
     static public func setAvator(path:String, imageView:UIImageView) {
-        let url = URL(string:StaticClass.PictureIP + path)
+        let url = URL(string: path)
 //        imageView.kf.setImage(with: url)
         imageView.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "default"), options: nil, progressBlock: nil, completionHandler: nil)
     }
@@ -192,3 +214,6 @@ class TimeUTil {
     }
     
 }
+
+
+

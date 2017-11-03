@@ -64,4 +64,72 @@ class DoctorBean:Mappable {
     }
 }
 
+class OrderListBean:BaseAPIBean {
+    var OrderDataList:[OrderBean]?
+    required init?(map: Map) {
+        super.init(map: map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map: map)
+        OrderDataList <- map["data"]
+    }
+}
+
+class OrderBean: Mappable {
+    var userorderappointment: String? // 订单预约医生时间
+    var familyname: String? // 用户姓名
+    var userorderid: Int = 0 //订单Id
+    var usersickdesc: String? // 病情描述
+    var userorderstateid: Int = 0 // 订单状态
+    
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        userorderappointment <- map["userorderappointment"]
+        familyname <- map["familyname"]
+        userorderid <- map["userorderid"]
+        usersickdesc <- map["usersickdesc"]
+        userorderstateid <- map["userorderstateid"]
+    }
+}
+
+class familyListBean:BaseAPIBean {
+    var familyDataList: [familyBean]?
+    
+    required init?(map: Map) {
+        super.init(map: map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map: map)
+        familyDataList <- map["data"]
+    }
+    
+}
+
+class familyBean:Mappable {
+    var familyid: String?
+    var familyname: String?
+    var familymale: String?
+    var familyage: Int = 0
+    var userloginid:Int = 0
+    var familytype:Bool = false
+    
+    required init?(map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        familyid <- map["familyid"]
+        familyname <- map["familyname"]
+        familymale <- map["familymale"]
+        familyage <- map["familyage"]
+        userloginid <- map["userloginid"]
+        familytype <- map["familytype"]
+    }
+    
+}
+
 

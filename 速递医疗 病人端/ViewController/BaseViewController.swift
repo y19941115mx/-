@@ -13,22 +13,25 @@ class BaseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.view.backgroundColor = UIColor.white
+        //设置导航栏颜色和字体
+        navigationController?.navigationBar.barTintColor = UIColor.APPColor
+        navigationController?.navigationBar.tintColor = UIColor.white
     }
     
     
     func setUpNavTitle(title:String) {
-        view.backgroundColor = UIColor.white
-        //设置导航栏颜色和字体
-        navigationController?.navigationBar.barTintColor = UIColor.APPColor
-        navigationController?.navigationBar.tintColor = UIColor.white
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
         label.text = title
         label.backgroundColor = UIColor.clear
         label.textColor = UIColor.white
         navigationItem.titleView = label
     }
+    
+    
 }
+
+// 输入框
 
 class BaseTextViewController:BaseViewController, UITextFieldDelegate {
     var tv_source = [UITextField]()
@@ -66,21 +69,12 @@ class BaseTextViewController:BaseViewController, UITextFieldDelegate {
     }
 }
 
-class BaseTableViewController:BaseViewController {
-    var tableView:UITableView?
-    var doctorData = [DoctorBean]()
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // 消除上部分间隔
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.tableView?.tableFooterView = UIView()
-    }
-}
-
-class BaseRefreshController:BaseTableViewController {
+// 下拉刷新
+class BaseRefreshController:BaseViewController {
     var header:MJRefreshStateHeader?
     var footer:MJRefreshAutoStateFooter?
-    
+    var doctorData = [DoctorBean]()
+    var tableView:UITableView?
     var selectedPage = 1
     
     override func viewDidLoad() {
@@ -140,6 +134,7 @@ class BaseRefreshController:BaseTableViewController {
                     }
                 }catch {
                     self.header?.endRefreshing()
+//                    dPrint(message: bean)
                     showToast(self.view,CATCHMSG)
                 }
             case let .failure(error):
