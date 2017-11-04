@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -275,13 +276,13 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wcg-v7-YZf">
-                                        <rect key="frame" x="334" y="20.333333333333329" width="80" height="44"/>
+                                        <rect key="frame" x="334" y="19.666666666666671" width="80" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="2cm-fZ-XK2"/>
                                             <constraint firstAttribute="width" constant="80" id="cTg-zc-0la"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="保存"/>
+                                        <state key="normal" title="添加"/>
                                         <connections>
                                             <action selector="clickSaveButton" destination="s19-bP-n6r" eventType="touchUpInside" id="PGM-SJ-mYH"/>
                                             <action selector="click_save:" destination="bWV-sk-tJ9" eventType="touchUpInside" id="DVx-vw-Ul4"/>
@@ -310,32 +311,35 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="王二" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q11-Ki-3I3">
-                                                    <rect key="frame" x="14.999999999999996" y="12" width="34.666666666666657" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="王二" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q11-Ki-3I3">
+                                                    <rect key="frame" x="0.0" y="12.999999999999998" width="124.33333333333333" height="19.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmh-s3-VQU">
-                                                    <rect key="frame" x="187" y="12" width="20.333333333333343" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmh-s3-VQU">
+                                                    <rect key="frame" x="248.66666666666666" y="11.999999999999998" width="124.33333333333334" height="19.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="男" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gbo-EV-gAc">
-                                                    <rect key="frame" x="129.66666666666666" y="12" width="17.333333333333343" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="男" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gbo-EV-gAc">
+                                                    <rect key="frame" x="124.33333333333334" y="11.999999999999998" width="124.33333333333334" height="19.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="cmh-s3-VQU" firstAttribute="baseline" secondItem="Gbo-EV-gAc" secondAttribute="baseline" id="4kg-X8-8Lr"/>
+                                                <constraint firstItem="Gbo-EV-gAc" firstAttribute="leading" secondItem="Q11-Ki-3I3" secondAttribute="trailing" id="5yv-Yg-WC1"/>
+                                                <constraint firstItem="Q11-Ki-3I3" firstAttribute="width" secondItem="CC8-LD-fco" secondAttribute="width" multiplier="0.3" id="9du-Vs-YEn"/>
                                                 <constraint firstItem="Q11-Ki-3I3" firstAttribute="centerY" secondItem="CC8-LD-fco" secondAttribute="centerY" id="Hl1-wR-TV9"/>
-                                                <constraint firstItem="cmh-s3-VQU" firstAttribute="leading" secondItem="Gbo-EV-gAc" secondAttribute="trailing" constant="40" id="VYG-xD-zyw"/>
-                                                <constraint firstItem="Gbo-EV-gAc" firstAttribute="baseline" secondItem="Q11-Ki-3I3" secondAttribute="baseline" id="a68-w3-tvL"/>
-                                                <constraint firstItem="Gbo-EV-gAc" firstAttribute="leading" secondItem="Q11-Ki-3I3" secondAttribute="trailing" constant="80" id="bQp-Gn-ZYl"/>
-                                                <constraint firstItem="Q11-Ki-3I3" firstAttribute="leading" secondItem="CC8-LD-fco" secondAttribute="leading" constant="15" id="fkq-Kj-WX0"/>
+                                                <constraint firstItem="cmh-s3-VQU" firstAttribute="top" secondItem="CC8-LD-fco" secondAttribute="top" constant="12" id="NGa-Jb-e0Y"/>
+                                                <constraint firstItem="cmh-s3-VQU" firstAttribute="leading" secondItem="Gbo-EV-gAc" secondAttribute="trailing" id="S7V-Zz-bSW"/>
+                                                <constraint firstItem="cmh-s3-VQU" firstAttribute="width" secondItem="CC8-LD-fco" secondAttribute="width" multiplier="0.3" id="Th0-GE-VGt"/>
+                                                <constraint firstItem="Gbo-EV-gAc" firstAttribute="width" secondItem="CC8-LD-fco" secondAttribute="width" multiplier="0.3" id="UkD-3S-BL6"/>
+                                                <constraint firstItem="Q11-Ki-3I3" firstAttribute="leading" secondItem="CC8-LD-fco" secondAttribute="leading" id="fkq-Kj-WX0"/>
+                                                <constraint firstItem="Gbo-EV-gAc" firstAttribute="top" secondItem="CC8-LD-fco" secondAttribute="top" constant="12" id="hYt-Db-E0H"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -507,7 +511,7 @@
         <!--Mine order-->
         <scene sceneID="i29-yq-Meu">
             <objects>
-                <viewController id="pYy-LT-v90" customClass="Mine_order" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="order" id="pYy-LT-v90" customClass="Mine_order" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jhh-dB-1Uu"/>
                         <viewControllerLayoutGuide type="bottom" id="cVP-Ag-Akn"/>

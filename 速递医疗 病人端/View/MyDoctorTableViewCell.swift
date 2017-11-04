@@ -18,7 +18,10 @@ class MyDoctorTableViewCell: UITableViewCell {
     
     @IBOutlet weak var checkBtn: UIButton!
     
-    @IBOutlet weak var idLabel: UILabel!
+    @IBOutlet weak var label_docType: UILabel!
+    var data:DoctorBean?
+    var vc:UIViewController?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -28,6 +31,21 @@ class MyDoctorTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
+    }
+    
+    func updateView(mData:DoctorBean, vc:UIViewController) {
+        self.vc = vc
+        self.data = mData
+        nameLabel.text = mData.name
+        hospitalLabel.text = mData.hospital
+        label_docType.text = mData.preordertypename
+        checkBtn.addTarget(self, action: #selector(MyDoctorTableViewCell.checkedBtn(button:)), for: .touchUpInside)
+        ImageUtil.setImage(path: mData.pix!, imageView: avator)
+        
+    }
+    
+    @objc func checkedBtn(button:UIButton) {
+        AlertUtil.popAlert(vc: self.vc!, msg: "确定选择该医生,id: \(data?.name!)", okhandler: { dPrint(message: "点击确认") })
     }
 
 }

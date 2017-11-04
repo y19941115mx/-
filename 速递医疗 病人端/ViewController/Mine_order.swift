@@ -14,6 +14,7 @@ import ObjectMapper
 
 class Mine_order: UIViewController, UICollectionViewDataSource {
     var data = [OrderBean]()
+    var type:Int = 0
     
     @IBOutlet weak var collectionView: BaseCollectionView!
     
@@ -43,13 +44,16 @@ class Mine_order: UIViewController, UICollectionViewDataSource {
     private func getData() {
         let Provider = MoyaProvider<API>()
         SVProgressHUD.show()
-        Provider.request(API.getorder(33, 1, 0)) { result in
+        Provider.request(API.getorder(33, 1, type)) { result in
             switch result {
             case let .success(response):
                 do {
                     SVProgressHUD.dismiss()
                     let bean = Mapper<OrderListBean>().map(JSONObject: try response.mapJSON())
                     if bean?.code == 100 {
+                        if bean?.OrderDataList == nil {
+                            bean?.OrderDataList = [OrderBean]()
+                        }
                         self.data = (bean?.OrderDataList)!
                         self.collectionView.reloadData()
                     }else {

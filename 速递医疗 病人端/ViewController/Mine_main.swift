@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Moya
+import ObjectMapper
+import SVProgressHUD
 
-class Mine_main: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class Mine_main: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     @IBOutlet weak var img_photo: UIImageView!
     @IBOutlet weak var infoTable: UITableView!
@@ -45,9 +48,63 @@ class Mine_main: UIViewController, UITableViewDelegate, UITableViewDataSource{
     }
     // 更换头像按钮
     @IBAction func click_photo(_ sender: UIButton) {
-        AlertUtil.popMenu(vc: self, title: "上传图片", msg: "上传图片", btns: ["拍照","从图库选择"], handler: {_ in })
+        AlertUtil.popMenu(vc: self, title: "上传图片", msg: "上传图片", btns: ["拍照","从图库选择"]) {msg in
+            if msg == "拍照" {
+                showToast(self.view, "请检查照相机设备")
+            }else {
+                self.pickImageFromPhotoLib()
+            }
+        }
         
     }
+    
+    
+    func pickImageFromPhotoLib() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    //MARK:- UIImagePickerControllerDelegate
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController){
+        // Dismiss the picker if the user canceled.
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+        }
+        // 显示选中的图片
+        img_photo.image = selectedImage
+        // 上传图片
+        let Provider = MoyaProvider<API>()
+        SVProgressHUD.show()
+        Provider.request(API.updateinfo(ImageUtil.image2Data(image: selectedImage))) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    SVProgressHUD.dismiss()
+                    let bean = Mapper<BaseAPIBean>().map(JSONObject: try response.mapJSON())
+                    showToast(self.view, bean!.msg!)
+                }catch {
+                    SVProgressHUD.dismiss()
+                    showToast(self.view, CATCHMSG)
+                }
+            case let .failure(error):
+                SVProgressHUD.dismiss()
+                dPrint(message: error)
+                showToast(self.view, ERRORMSG)
+            }
+        }
+        
+        // Dismiss the picker.
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
     
     private func updateView() {
         self.label_id.text = user_default.userId.getStringValue()

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qqx-aK-Ggw">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Date main-->
+        <scene sceneID="vCM-01-vUc">
+            <objects>
+                <viewController storyboardIdentifier="Detail" id="Agl-3K-5aW" customClass="Date_main" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Yzv-vI-3SY"/>
+                        <viewControllerLayoutGuide type="bottom" id="dmC-hR-qVs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="E08-VW-tdX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="6zi-M8-JQf"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bdy-sV-4dg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NeJ-61-BtB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="917.60000000000002" y="82.3088455772114"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="b6w-Fm-GP1">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qqx-aK-Ggw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zuN-gM-uTb">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Agl-3K-5aW" kind="relationship" relationship="rootViewController" id="fBe-cE-056"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ghk-ge-7g3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="90" y="82"/>
+        </scene>
+        <!--Date page-->
+        <scene sceneID="Wbi-gx-Jlv">
+            <objects>
+                <viewController storyboardIdentifier="order" id="ruX-vb-aq8" customClass="Date_page" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MLy-dI-RaO"/>
+                        <viewControllerLayoutGuide type="bottom" id="qja-a7-ifu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iGg-WK-KbE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ApU-vU-wUU" customClass="BaseCollectionView" customModule="速递医疗_病人端" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="30" width="375" height="637"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sey-51-lTt">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="ruX-vb-aq8" id="aZc-fs-wnA"/>
+                                    <outlet property="delegate" destination="ruX-vb-aq8" id="T2k-K8-Zpe"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qja-a7-ifu" firstAttribute="top" secondItem="ApU-vU-wUU" secondAttribute="bottom" id="0LD-eq-vdg"/>
+                            <constraint firstItem="ApU-vU-wUU" firstAttribute="leading" secondItem="iGg-WK-KbE" secondAttribute="leading" id="623-Os-Rp7"/>
+                            <constraint firstAttribute="trailing" secondItem="ApU-vU-wUU" secondAttribute="trailing" id="9Xq-4j-5p7"/>
+                            <constraint firstItem="ApU-vU-wUU" firstAttribute="top" secondItem="MLy-dI-RaO" secondAttribute="bottom" constant="10" id="RQH-1n-9JN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gJ8-CC-bmh"/>
+                    </view>
+                    <connections>
+                        <outlet property="mCollectionView" destination="ApU-vU-wUU" id="cPg-cw-ZZC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xNP-hh-3Wu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="89" y="1057"/>
+        </scene>
+    </scenes>
+</document>

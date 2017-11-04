@@ -11,46 +11,55 @@ import Moya
 import ObjectMapper
 import SVProgressHUD
 
-let ident = "reusedCell"
 
-// 我的医生主界面
+import UIKit
 
-class MyDoctor_main: SegmentedSlideViewController {
 
-    private let types = ["预选医生", "抢单医生", "系统推荐", "医生推荐"]
-    private var vcs = [UIViewController]()
+class MyDoctor_main: BaseViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var infoTableView: BaseTableView!
+    var type:Int = 0
+    var data = [DoctorBean]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 设置navigation
         setUpNavTitle(title: "我的医生")
-//         设置分栏
-        let vc1 = UIStoryboard.init(name: "MyDoctor", bundle: nil).instantiateViewController(withIdentifier: "tableView") as! MyDoctor_page
-        vc1.type = 4
-        let vc2 = UIStoryboard.init(name: "MyDoctor", bundle: nil).instantiateViewController(withIdentifier: "tableView") as! MyDoctor_page
-        vc2.type = 2
-        let vc3 = UIStoryboard.init(name: "MyDoctor", bundle: nil).instantiateViewController(withIdentifier: "tableView") as! MyDoctor_page
-        vc3.type = 1
-        let vc4 = UIStoryboard.init(name: "MyDoctor", bundle: nil).instantiateViewController(withIdentifier: "tableView") as! MyDoctor_page
-        vc4.type = 3
-        vcs = [vc1, vc2, vc3, vc4]
-        setUpSlideSwitchWithNavigation(titles: types, vcs: vcs)
+        // 获取数据
+        getData()
         
     }
     
+    // MARK: - Table view data source
     
-    // MARK: - TableViewDataSource
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return data.count
+    }
     
-    private func getDoctorData(_ type:Int) {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! MyDoctorTableViewCell
+        let doctor = data[indexPath.row]
+        cell.updateView(mData: doctor, vc:self)
+        return cell
+    }
+    
+    
+    private func getData() {
         let Provider = MoyaProvider<API>()
-        
-        Provider.request(API.getredoctor(LOGINID!, type)) { result in
+        SVProgressHUD.show()
+        Provider.request(API.getredoctor) { result in
             switch result {
             case let .success(response):
                 do {
                     SVProgressHUD.dismiss()
-                    let bean = Mapper<BaseAPIBean>().map(JSONObject: try response.mapJSON())
-                    showToast(self.view, bean!.msg!)
+                    let bean = Mapper<DoctorListBean>().map(JSONObject: try response.mapJSON())
+                    if bean?.code == 100 {
+                        self.data = (bean?.doctorDataList)!
+                        self.infoTableView.reloadData()
+                    }else {
+                        showToast(self.view, bean!.msg!)
+                    }
+                    
                 }catch {
                     SVProgressHUD.dismiss()
                     self.view.makeToast(CATCHMSG)
@@ -62,6 +71,9 @@ class MyDoctor_main: SegmentedSlideViewController {
             }
         }
     }
- 
-
+    
+    
+    
 }
+
+

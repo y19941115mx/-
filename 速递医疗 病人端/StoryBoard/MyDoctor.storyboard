@@ -24,30 +24,30 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Ett-Cy-CfR" kind="relationship" relationship="rootViewController" id="Fhv-0C-zby"/>
+                        <segue destination="N36-Kf-7yQ" kind="relationship" relationship="rootViewController" id="9I2-Xk-4rY"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wz1-FX-fzQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-99" y="-154"/>
         </scene>
-        <!--My Doctor page-->
+        <!--My Doctor main-->
         <scene sceneID="1bZ-CY-aRc">
             <objects>
-                <viewController storyboardIdentifier="tableView" id="N36-Kf-7yQ" customClass="MyDoctor_page" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tableView" id="N36-Kf-7yQ" customClass="MyDoctor_main" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Tac-kn-JK6"/>
                         <viewControllerLayoutGuide type="bottom" id="RfE-P3-AUK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="HAB-F6-xs6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="s4O-2M-JmZ" customClass="BaseTableView" customModule="速递医疗_病人端" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="10" width="375" height="657"/>
+                                <rect key="frame" x="0.0" y="10" width="375" height="544"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" rowHeight="90" id="49W-X0-drh" customClass="MyDoctorTableViewCell" customModule="速递医疗_病人端" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="reuseIdentifier" rowHeight="90" id="49W-X0-drh" customClass="MyDoctorTableViewCell" customModule="速递医疗_病人端" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="49W-X0-drh" id="fBU-e7-Hgw">
@@ -78,8 +78,8 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQo-4H-W3Z">
-                                                    <rect key="frame" x="100" y="62" width="275" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医生类型" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQo-4H-W3Z">
+                                                    <rect key="frame" x="100" y="62" width="69.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -92,8 +92,8 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="hQo-4H-W3Z" firstAttribute="leading" secondItem="U2W-x3-eCr" secondAttribute="trailing" constant="20" id="3sp-uf-EKB"/>
                                                 <constraint firstItem="ftO-Y4-l1o" firstAttribute="leading" secondItem="U2W-x3-eCr" secondAttribute="trailing" constant="20" id="ILi-tz-eec"/>
-                                                <constraint firstItem="hQo-4H-W3Z" firstAttribute="top" secondItem="ftO-Y4-l1o" secondAttribute="bottom" constant="5" id="JlV-DV-N3H"/>
                                                 <constraint firstItem="U2W-x3-eCr" firstAttribute="top" secondItem="fBU-e7-Hgw" secondAttribute="top" constant="10" id="M1U-q6-sYH"/>
                                                 <constraint firstAttribute="trailing" secondItem="ftO-Y4-l1o" secondAttribute="trailing" id="NTA-dh-uQv"/>
                                                 <constraint firstItem="U2W-x3-eCr" firstAttribute="leading" secondItem="fBU-e7-Hgw" secondAttribute="leading" constant="10" id="Rbg-xy-CV1"/>
@@ -101,15 +101,14 @@
                                                 <constraint firstItem="18D-YF-OpR" firstAttribute="top" secondItem="fBU-e7-Hgw" secondAttribute="top" constant="10" id="c6Z-BZ-f7i"/>
                                                 <constraint firstItem="ftO-Y4-l1o" firstAttribute="top" secondItem="18D-YF-OpR" secondAttribute="bottom" constant="5" id="f97-oc-070"/>
                                                 <constraint firstItem="18D-YF-OpR" firstAttribute="leading" secondItem="U2W-x3-eCr" secondAttribute="trailing" constant="20" id="kvP-bd-QDQ"/>
-                                                <constraint firstAttribute="trailing" secondItem="hQo-4H-W3Z" secondAttribute="trailing" id="mIQ-dC-4YV"/>
-                                                <constraint firstItem="hQo-4H-W3Z" firstAttribute="leading" secondItem="U2W-x3-eCr" secondAttribute="trailing" constant="20" id="wng-1M-e56"/>
+                                                <constraint firstItem="hQo-4H-W3Z" firstAttribute="top" secondItem="ftO-Y4-l1o" secondAttribute="bottom" constant="5" id="zmX-ZW-HZZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="avator" destination="U2W-x3-eCr" id="IA0-zx-pxG"/>
                                             <outlet property="checkBtn" destination="TLz-ee-8Yp" id="BgT-qg-jha"/>
                                             <outlet property="hospitalLabel" destination="ftO-Y4-l1o" id="i7j-TO-T92"/>
-                                            <outlet property="idLabel" destination="hQo-4H-W3Z" id="qgp-xh-KpL"/>
+                                            <outlet property="label_docType" destination="hQo-4H-W3Z" id="l6H-8T-blX"/>
                                             <outlet property="nameLabel" destination="18D-YF-OpR" id="J4s-s0-QYI"/>
                                         </connections>
                                     </tableViewCell>
@@ -128,32 +127,14 @@
                             <constraint firstItem="s4O-2M-JmZ" firstAttribute="leading" secondItem="HAB-F6-xs6" secondAttribute="leading" id="t7K-ac-yiz"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="HSC-JR-qC4"/>
                     <connections>
                         <outlet property="infoTableView" destination="s4O-2M-JmZ" id="opP-kb-wx2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UVL-ot-MZm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-127" y="591"/>
-        </scene>
-        <!--我的医生-->
-        <scene sceneID="9SX-bj-8qZ">
-            <objects>
-                <viewController id="Ett-Cy-CfR" customClass="MyDoctor_main" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="cAe-hH-eeR"/>
-                        <viewControllerLayoutGuide type="bottom" id="DXn-At-pwE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ELx-CD-4Dx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="我的医生" id="fTF-jY-UJn"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ubx-1a-ABY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="709" y="-148"/>
+            <point key="canvasLocation" x="834" y="-154"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="XuB-TJ-UDu">
@@ -304,7 +285,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bgc-je-x2Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="zR3-hB-cW1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="737" y="591"/>
+            <point key="canvasLocation" x="1650" y="-154"/>
         </scene>
     </scenes>
     <resources>

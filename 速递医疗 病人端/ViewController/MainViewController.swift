@@ -22,7 +22,9 @@ class MainViewController: UITabBarController {
         vc_mine.tabBarItem = UITabBarItem.init(title: "我的", image:#imageLiteral(resourceName: "index_mine") , tag: 1)
         let vc_doctor = UIStoryboard.init(name:"MyDoctor", bundle:nil).instantiateInitialViewController()!
         vc_doctor.tabBarItem = UITabBarItem.init(title: "医生", image: #imageLiteral(resourceName: "index_yishen"), tag: 2)
-        self.viewControllers = [vc_home, vc_mine, vc_doctor]
+        let vc_data = UIStoryboard.init(name: "Date", bundle: nil).instantiateInitialViewController()!
+        vc_data.tabBarItem = UITabBarItem.init(title: "日程", image: #imageLiteral(resourceName: "index_dindan"), tag: 3)
+        self.viewControllers = [vc_home,vc_doctor,vc_data, vc_mine]
     }
 
 }

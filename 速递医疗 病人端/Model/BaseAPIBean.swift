@@ -45,6 +45,7 @@ class DoctorBean:Mappable {
     var hospitalLevel:String?
     var docLevel:String?
     var docexpert:String?
+    var preordertypename:String?
     
     required init?(map: Map) {
     }
@@ -61,6 +62,7 @@ class DoctorBean:Mappable {
         hospitalLevel <- map["hosplevel"]
         docLevel <- map["doctitle"]
         docexpert <- map["docexpert"]
+        preordertypename <- map["preordertypename"]
     }
 }
 
