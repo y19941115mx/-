@@ -48,6 +48,7 @@ class Mine_main: UIViewController, UITableViewDelegate, UITableViewDataSource{
         AlertUtil.popMenu(vc: self, title: "上传图片", msg: "上传图片", btns: ["拍照","从图库选择"], handler: {_ in })
         
     }
+    
     private func updateView() {
         self.label_id.text = user_default.userId.getStringValue()
         self.label_name.text = user_default.username.getStringValue()

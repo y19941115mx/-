@@ -8,11 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--医生-->
+        <!--Navigation Controller-->
         <scene sceneID="Cur-TH-mSj">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YxD-nu-glO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="医生" image="index_yishen" id="2Ag-jV-Q4c"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="OhS-7V-6gC">
@@ -32,10 +31,10 @@
             </objects>
             <point key="canvasLocation" x="-99" y="-154"/>
         </scene>
-        <!--View Controller-->
+        <!--My Doctor page-->
         <scene sceneID="1bZ-CY-aRc">
             <objects>
-                <viewController storyboardIdentifier="tableView" id="N36-Kf-7yQ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tableView" id="N36-Kf-7yQ" customClass="MyDoctor_page" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Tac-kn-JK6"/>
                         <viewControllerLayoutGuide type="bottom" id="RfE-P3-AUK"/>
@@ -44,8 +43,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="s4O-2M-JmZ">
-                                <rect key="frame" x="0.0" y="5" width="375" height="662"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="s4O-2M-JmZ" customClass="BaseTableView" customModule="速递医疗_病人端" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="10" width="375" height="657"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" rowHeight="90" id="49W-X0-drh" customClass="MyDoctorTableViewCell" customModule="速递医疗_病人端" customModuleProvider="target">
@@ -125,12 +124,12 @@
                         <constraints>
                             <constraint firstItem="RfE-P3-AUK" firstAttribute="top" secondItem="s4O-2M-JmZ" secondAttribute="bottom" id="2Te-hh-plT"/>
                             <constraint firstAttribute="trailing" secondItem="s4O-2M-JmZ" secondAttribute="trailing" id="WoV-0d-kdn"/>
-                            <constraint firstItem="s4O-2M-JmZ" firstAttribute="top" secondItem="HAB-F6-xs6" secondAttribute="top" constant="5" id="Xcw-hR-Xqz"/>
+                            <constraint firstItem="s4O-2M-JmZ" firstAttribute="top" secondItem="HAB-F6-xs6" secondAttribute="top" constant="10" id="Xcw-hR-Xqz"/>
                             <constraint firstItem="s4O-2M-JmZ" firstAttribute="leading" secondItem="HAB-F6-xs6" secondAttribute="leading" id="t7K-ac-yiz"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="s4O-2M-JmZ" id="3GT-6X-9SE"/>
+                        <outlet property="infoTableView" destination="s4O-2M-JmZ" id="opP-kb-wx2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UVL-ot-MZm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -140,7 +139,7 @@
         <!--我的医生-->
         <scene sceneID="9SX-bj-8qZ">
             <objects>
-                <viewController id="Ett-Cy-CfR" sceneMemberID="viewController">
+                <viewController id="Ett-Cy-CfR" customClass="MyDoctor_main" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cAe-hH-eeR"/>
                         <viewControllerLayoutGuide type="bottom" id="DXn-At-pwE"/>
@@ -305,12 +304,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bgc-je-x2Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="zR3-hB-cW1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="708" y="591"/>
+            <point key="canvasLocation" x="737" y="591"/>
         </scene>
     </scenes>
     <resources>
         <image name="back" width="10" height="15"/>
-        <image name="index_yishen" width="20" height="20"/>
         <image name="touxiang" width="80" height="80"/>
     </resources>
 </document>

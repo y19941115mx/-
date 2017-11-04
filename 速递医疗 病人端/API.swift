@@ -15,6 +15,7 @@ public enum API {
     case getorder(Int, Int, Int) // 获取订单信息
     case addfamily(Int, String, String, Int) // 添加亲属
     case findfamily(Int) // 查询亲属
+    case getredoctor(Int, Int) // 获取我的医生
 }
 // 配置请求
 extension API: TargetType {
@@ -37,6 +38,8 @@ extension API: TargetType {
             return "/addfamily"
         case .findfamily:
             return "/findfamily"
+        case .getredoctor:
+            return "/getredoctor"
         }
     }
     public var method: Moya.Method {
@@ -64,7 +67,7 @@ extension API: TargetType {
             return .requestParameters(parameters: ["userloginid": id, "familyname": name, "familymale":sex, "familyage": age], encoding: URLEncoding.default)
         case .findfamily(let id):
             return .requestParameters(parameters: ["userloginid": id], encoding: URLEncoding.default)
-        case .getorder(let id, let page, let type):
+        case .getorder(let page, let id, let type):
             switch type {
             case 0:
                 return .requestParameters(parameters: ["page": page, "userloginid": id], encoding: URLEncoding.default)
@@ -72,6 +75,8 @@ extension API: TargetType {
             default:
                 return .requestParameters(parameters: ["page": page, "userloginid": id, "type":type], encoding: URLEncoding.default)
             }
+        case .getredoctor(let id, let type):
+            return .requestParameters(parameters: ["userloginid":id, "type":type], encoding: URLEncoding.default)
         }
     }
     

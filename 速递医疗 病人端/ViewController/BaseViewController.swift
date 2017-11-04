@@ -9,7 +9,6 @@ import SnapKit
 import ObjectMapper
 
 class BaseViewController: UIViewController {
-    var updateBtnState: () -> Void = {}
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +34,7 @@ class BaseViewController: UIViewController {
 
 class BaseTextViewController:BaseViewController, UITextFieldDelegate {
     var tv_source = [UITextField]()
+    var updateBtnState: () -> Void = {}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,19 +70,21 @@ class BaseTextViewController:BaseViewController, UITextFieldDelegate {
 }
 
 // 下拉刷新
-class BaseRefreshController<T>:BaseViewController {
+class BaseRefreshController:BaseViewController {
     var header:MJRefreshStateHeader?
     var footer:MJRefreshAutoStateFooter?
-    var doctorData = [T]()
+    var data = [DoctorBean]()
     var tableView:UITableView?
     var selectedPage = 1
+    var ApiMethod:API?
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    func initRefresh(tableView:UITableView) {
+    func initRefresh(tableView:UITableView, ApiMethod:API) {
         self.tableView = tableView
+        self.ApiMethod = ApiMethod
         self.header = MJRefreshNormalHeader(refreshingBlock: self.refreshData)
         header?.lastUpdatedTimeLabel.isHidden = true
         header?.stateLabel.isHidden = true;
@@ -113,16 +115,16 @@ class BaseRefreshController<T>:BaseViewController {
         //刷新数据
         let Provider = MoyaProvider<API>()
         
-        Provider.request(API.getdoctorlist(1, "0", "0")) { result in
+        Provider.request(ApiMethod!) { result in
             switch result {
             case let .success(response):
                 do {
-                    let bean = Mapper<listBean<T>>().map(JSONObject: try response.mapJSON())
+                    let bean = Mapper<DoctorListBean>().map(JSONObject: try response.mapJSON())
                     
                     if bean?.code == 100 {
                         self.header?.endRefreshing()
-                        self.doctorData = (bean?.dataList)!
-                        if self.doctorData.count == 0{
+                        self.data = (bean?.doctorDataList)!
+                        if self.data.count == 0{
                             //隐藏tableView,添加刷新按钮
                             self.showRefreshBtn()
                             return
@@ -150,20 +152,19 @@ class BaseRefreshController<T>:BaseViewController {
         //获取更多数据
         let Provider = MoyaProvider<API>()
         
-        Provider.request(API.getdoctorlist(selectedPage, "0", "0")) { result in
+        Provider.request(self.ApiMethod!) { result in
             switch result {
             case let .success(response):
                 do {
-                    let bean = Mapper<
-                    listBean<T>>().map(JSONObject: try response.mapJSON())
+                    let bean = Mapper<DoctorListBean>().map(JSONObject: try response.mapJSON())
                     if bean?.code == 100 {
                         self.footer?.endRefreshing()
-                        if bean?.dataList?.count == 0{
+                        if bean?.doctorDataList?.count == 0{
                             showToast(self.view, "已经到底了")
                             return
                         }
                         self.footer?.endRefreshing()
-                        self.doctorData += (bean?.dataList)!
+                        self.data += (bean?.doctorDataList)!
                         self.selectedPage += 1
                         self.tableView?.reloadData()
                         
@@ -192,3 +193,34 @@ class BaseRefreshController<T>:BaseViewController {
     
     
 }
+
+class SegmentedSlideViewController: BaseViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    // 初始化分栏
+    func setUpSlideSwitch(titles:[String], vcs:[UIViewController])
+    {
+        let slideSwitch = XLSegmentedSlideSwitch(frame: CGRect(x: 0,  y: 64, width: self.view.bounds.size.width, height: self.view.bounds.size.height - 64), titles: titles, viewControllers: vcs)
+        slideSwitch?.tintColor = UIColor.APPColor
+        slideSwitch?.show(in: self)
+    }
+    
+    func setUpSlideSwitchWithNavigation(titles:[String], vcs:[UIViewController])
+    {
+        let slideSwitch = XLSegmentedSlideSwitch(frame: CGRect(x: 0,  y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height - 64), titles: titles, viewControllers: vcs)
+        slideSwitch?.tintColor = UIColor.APPColor
+        slideSwitch?.show(in: self)
+    }
+    
+    
+}
+

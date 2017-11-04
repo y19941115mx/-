@@ -10,7 +10,7 @@ import UIKit
 import Toast_Swift
 import SVProgressHUD
 
-class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITableViewDelegate{
+class Home_main:BaseRefreshController, UITableViewDataSource, UITableViewDelegate{
     
     @IBOutlet weak var infoTableView: UITableView!
 
@@ -22,11 +22,6 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
     @IBOutlet weak var sortByLocBtn: UIButton!
     
     
-    let textfield_zero = UITextField.init(frame: CGRect.zero)
-    
-    let picker_dept = UIPickerView()
-    
-
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -35,18 +30,17 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
         // 初始化navigationBar
         setUpNavTitle(title: "首页")
         // 添加下拉刷新
-        initRefresh(tableView: infoTableView)
+        initRefresh(tableView: infoTableView, ApiMethod: API.getdoctorlist(selectedPage, "0", "0"))
         // 获取数据
         self.header?.beginRefreshing()
         infoTableView.dataSource = self
         infoTableView.delegate = self
-        self.textfield_zero.isHidden = true
         // 获取dept数据,关联UIpicker
         
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return doctorData.count
+        return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
@@ -54,7 +48,7 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
         if cell == nil {
             cell =  Bundle.main.loadNibNamed("HomeMainTableViewCell", owner: nil, options: nil)?.last as? HomeMainTableViewCell
         }
-        let modelBean = self.doctorData[indexPath.row]
+        let modelBean = self.data[indexPath.row]
         cell?.updateViews(modelBean: modelBean)
         return cell!
     }
@@ -118,7 +112,7 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowDetail" {
             let SelectedIndexPath = infoTableView.indexPathForSelectedRow
-            let doctor = doctorData[SelectedIndexPath!.row]
+            let doctor = data[SelectedIndexPath!.row]
             let vc = segue.destination as! Home_DoctorDetail
             vc.doctorBean = doctor
         }
@@ -126,21 +120,6 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
         
     // MARK: - Private Method
 
-    
-    func setInputView(mPicker:UIPickerView, mTextField:UITextField){
-        // 关联textfield 与 pickerView
-        let myToolBar = UIToolbar(frame: CGRect(x: 0, y: view.frame.size.height - 44 - mPicker.frame.size.height , width: view.frame.size.width, height: 44))
-        let finishBtn = UIBarButtonItem(title: "完成", style: .done, target:self, action: #selector(clickBtn(button:)))
-        finishBtn.tag = mPicker.tag
-        myToolBar.setItems([finishBtn], animated: false)
-        
-//        mPicker.delegate = self
-//        mPicker.dataSource = self
-        //样式尺寸
-        mPicker.backgroundColor = UIColor.white
-        mTextField.inputView = mPicker
-        mTextField.inputAccessoryView = myToolBar
-    }
 }
 
 

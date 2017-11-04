@@ -11,6 +11,7 @@ let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
 let APPLICATION = UIApplication.shared.delegate as! AppDelegate
 let ERRORMSG = "获取服务器数据失败"
 let CATCHMSG = "解析服务器数据失败"
+let LOGINID = Int(user_default.userId.getStringValue()!)
 
 //日志打印
 public func dPrint<N>(message:N,fileName:String = #file,methodName:String = #function,lineNumber:Int = #line){
