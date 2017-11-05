@@ -23,6 +23,8 @@
 		841A27071FAD850800D1A807 /* Date_main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A27061FAD850800D1A807 /* Date_main.swift */; };
 		841A27091FAD86D900D1A807 /* Date.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 841A27081FAD86D900D1A807 /* Date.storyboard */; };
 		841A270B1FAD8F0E00D1A807 /* RefreashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A270A1FAD8F0E00D1A807 /* RefreashViewController.swift */; };
+		843A958A1FAEA66B00434254 /* Publish_main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843A95891FAEA66B00434254 /* Publish_main.swift */; };
+		843A958C1FAEA81D00434254 /* Publish_page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843A958B1FAEA81D00434254 /* Publish_page.swift */; };
 		843C3EB41FA8A6EC0076EB8C /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843C3EB31FA8A6EC0076EB8C /* Home.storyboard */; };
 		843C3EB71FA8A7860076EB8C /* Home_DoctorDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C3EB51FA8A7860076EB8C /* Home_DoctorDetail.swift */; };
 		843C3EB81FA8A7860076EB8C /* Home_main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C3EB61FA8A7860076EB8C /* Home_main.swift */; };
@@ -37,12 +39,15 @@
 		84736B9F1FAC5592001E9AA5 /* MinePocketCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84736B9D1FAC5592001E9AA5 /* MinePocketCollectionViewCell.xib */; };
 		84736BA11FAC564A001E9AA5 /* Mine_pocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84736BA01FAC564A001E9AA5 /* Mine_pocket.swift */; };
 		84736BA31FAC5ADA001E9AA5 /* Mine_family.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84736BA21FAC5ADA001E9AA5 /* Mine_family.swift */; };
+		847DD0D21FAED5DE0077F78A /* PublishCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847DD0D01FAED5DE0077F78A /* PublishCell.swift */; };
+		847DD0D31FAED5DE0077F78A /* PublishCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 847DD0D11FAED5DE0077F78A /* PublishCell.xib */; };
 		848A29891FAAFCAE00123A3F /* Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848A29881FAAFCAE00123A3F /* Mine.storyboard */; };
 		848A298B1FAB092900123A3F /* Mine_main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A298A1FAB092900123A3F /* Mine_main.swift */; };
 		84939BC81FAC8F050062062C /* Mine_info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84939BC71FAC8F050062062C /* Mine_info.swift */; };
 		84939BCC1FACA8540062062C /* BaseCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84939BCB1FACA8540062062C /* BaseCollectionView.swift */; };
 		849BAA5C1FAD534100871EA8 /* Date_page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849BAA5A1FAD534100871EA8 /* Date_page.swift */; };
 		849BAA5D1FAD534100871EA8 /* MyDoctor_main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849BAA5B1FAD534100871EA8 /* MyDoctor_main.swift */; };
+		84AB2F461FAEA22000E4B3EC /* Publish.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84AB2F451FAEA21F00E4B3EC /* Publish.storyboard */; };
 		84C983EF1FA611A60058FA7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C983EE1FA611A60058FA7B /* AppDelegate.swift */; };
 		84C983F11FA611A60058FA7B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C983F01FA611A60058FA7B /* ViewController.swift */; };
 		84C983F41FA611A60058FA7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C983F21FA611A60058FA7B /* Main.storyboard */; };
@@ -79,6 +84,8 @@
 		841A27061FAD850800D1A807 /* Date_main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date_main.swift; sourceTree = "<group>"; };
 		841A27081FAD86D900D1A807 /* Date.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Date.storyboard; sourceTree = "<group>"; };
 		841A270A1FAD8F0E00D1A807 /* RefreashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreashViewController.swift; sourceTree = "<group>"; };
+		843A95891FAEA66B00434254 /* Publish_main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Publish_main.swift; sourceTree = "<group>"; };
+		843A958B1FAEA81D00434254 /* Publish_page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Publish_page.swift; sourceTree = "<group>"; };
 		843C3EB31FA8A6EC0076EB8C /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		843C3EB51FA8A7860076EB8C /* Home_DoctorDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home_DoctorDetail.swift; sourceTree = "<group>"; };
 		843C3EB61FA8A7860076EB8C /* Home_main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home_main.swift; sourceTree = "<group>"; };
@@ -93,12 +100,15 @@
 		84736B9D1FAC5592001E9AA5 /* MinePocketCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MinePocketCollectionViewCell.xib; sourceTree = "<group>"; };
 		84736BA01FAC564A001E9AA5 /* Mine_pocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine_pocket.swift; sourceTree = "<group>"; };
 		84736BA21FAC5ADA001E9AA5 /* Mine_family.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine_family.swift; sourceTree = "<group>"; };
+		847DD0D01FAED5DE0077F78A /* PublishCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishCell.swift; sourceTree = "<group>"; };
+		847DD0D11FAED5DE0077F78A /* PublishCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PublishCell.xib; sourceTree = "<group>"; };
 		848A29881FAAFCAE00123A3F /* Mine.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Mine.storyboard; sourceTree = "<group>"; };
 		848A298A1FAB092900123A3F /* Mine_main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine_main.swift; sourceTree = "<group>"; };
 		84939BC71FAC8F050062062C /* Mine_info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine_info.swift; sourceTree = "<group>"; };
 		84939BCB1FACA8540062062C /* BaseCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionView.swift; sourceTree = "<group>"; };
 		849BAA5A1FAD534100871EA8 /* Date_page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date_page.swift; sourceTree = "<group>"; };
 		849BAA5B1FAD534100871EA8 /* MyDoctor_main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDoctor_main.swift; sourceTree = "<group>"; };
+		84AB2F451FAEA21F00E4B3EC /* Publish.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Publish.storyboard; sourceTree = "<group>"; };
 		84C983EB1FA611A60058FA7B /* 速递医疗 病人端.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "速递医疗 病人端.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84C983EE1FA611A60058FA7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84C983F01FA611A60058FA7B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +166,7 @@
 				8406477A1FA759A4009B21C4 /* Login.storyboard */,
 				843C3EBB1FA946FB0076EB8C /* MyDoctor.storyboard */,
 				843C3EB31FA8A6EC0076EB8C /* Home.storyboard */,
+				84AB2F451FAEA21F00E4B3EC /* Publish.storyboard */,
 				848A29881FAAFCAE00123A3F /* Mine.storyboard */,
 				841A27081FAD86D900D1A807 /* Date.storyboard */,
 			);
@@ -225,10 +236,10 @@
 				849BAA5B1FAD534100871EA8 /* MyDoctor_main.swift */,
 				8406477D1FA770D7009B21C4 /* LoginViewController.swift */,
 				8406477C1FA770D7009B21C4 /* RegisterViewController.swift */,
+				843A958B1FAEA81D00434254 /* Publish_page.swift */,
+				843A95891FAEA66B00434254 /* Publish_main.swift */,
 				843C3EB51FA8A7860076EB8C /* Home_DoctorDetail.swift */,
 				843C3EB61FA8A7860076EB8C /* Home_main.swift */,
-				84C984041FA618060058FA7B /* BaseViewController.swift */,
-				84C984051FA618060058FA7B /* MainViewController.swift */,
 				848A298A1FAB092900123A3F /* Mine_main.swift */,
 				846D885B1FAC106400DE6308 /* Mine_setting.swift */,
 				846D88611FAC26EC00DE6308 /* Mine_order.swift */,
@@ -237,7 +248,9 @@
 				84939BC71FAC8F050062062C /* Mine_info.swift */,
 				849BAA5A1FAD534100871EA8 /* Date_page.swift */,
 				841A27061FAD850800D1A807 /* Date_main.swift */,
+				84C984041FA618060058FA7B /* BaseViewController.swift */,
 				841A270A1FAD8F0E00D1A807 /* RefreashViewController.swift */,
+				84C984051FA618060058FA7B /* MainViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -255,6 +268,8 @@
 				84736B9C1FAC5592001E9AA5 /* MinePocketCollectionViewCell.swift */,
 				84736B9D1FAC5592001E9AA5 /* MinePocketCollectionViewCell.xib */,
 				84939BCB1FACA8540062062C /* BaseCollectionView.swift */,
+				847DD0D01FAED5DE0077F78A /* PublishCell.swift */,
+				847DD0D11FAED5DE0077F78A /* PublishCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -333,11 +348,13 @@
 				8406477B1FA759A4009B21C4 /* Login.storyboard in Resources */,
 				843C3EB41FA8A6EC0076EB8C /* Home.storyboard in Resources */,
 				846D88601FAC223300DE6308 /* MineOrderCollectionViewCell.xib in Resources */,
+				847DD0D31FAED5DE0077F78A /* PublishCell.xib in Resources */,
 				84F0402E1FA9A48C003BCC54 /* HomeMainTableViewCell.xib in Resources */,
 				84C983F91FA611A60058FA7B /* LaunchScreen.storyboard in Resources */,
 				843C3EBC1FA946FB0076EB8C /* MyDoctor.storyboard in Resources */,
 				841A27091FAD86D900D1A807 /* Date.storyboard in Resources */,
 				84C983F41FA611A60058FA7B /* Main.storyboard in Resources */,
+				84AB2F461FAEA22000E4B3EC /* Publish.storyboard in Resources */,
 				84736B9F1FAC5592001E9AA5 /* MinePocketCollectionViewCell.xib in Resources */,
 				843C3EBA1FA8AAC20076EB8C /* Assets.xcassets in Resources */,
 				848A29891FAAFCAE00123A3F /* Mine.storyboard in Resources */,
@@ -433,6 +450,7 @@
 				840647741FA6A6E4009B21C4 /* XLSlideSegmentedItem.m in Sources */,
 				84736BA11FAC564A001E9AA5 /* Mine_pocket.swift in Sources */,
 				849BAA5C1FAD534100871EA8 /* Date_page.swift in Sources */,
+				843A958C1FAEA81D00434254 /* Publish_page.swift in Sources */,
 				846D885F1FAC223300DE6308 /* MineOrderCollectionViewCell.swift in Sources */,
 				840647361FA62D03009B21C4 /* Util.swift in Sources */,
 				8406477F1FA770D8009B21C4 /* LoginViewController.swift in Sources */,
@@ -442,6 +460,8 @@
 				84736B9E1FAC5592001E9AA5 /* MinePocketCollectionViewCell.swift in Sources */,
 				84C984021FA617F00058FA7B /* ModelBean.swift in Sources */,
 				846D885C1FAC106400DE6308 /* Mine_setting.swift in Sources */,
+				843A958A1FAEA66B00434254 /* Publish_main.swift in Sources */,
+				847DD0D21FAED5DE0077F78A /* PublishCell.swift in Sources */,
 				840647721FA6A6E4009B21C4 /* XLSegmentedSlideSwitch.m in Sources */,
 				840647811FA80898009B21C4 /* BaseAPIBean.swift in Sources */,
 				84736BA31FAC5ADA001E9AA5 /* Mine_family.swift in Sources */,

@@ -15,6 +15,11 @@ class BaseCollectionView: UICollectionView {
             setUPView()
         }
     }
+    @IBInspectable var height:Int = 150 {
+        didSet {
+            setUPView()
+        }
+    }
     
     //MARK: Initialization
     required init?(coder aDecoder: NSCoder) {
@@ -28,7 +33,7 @@ class BaseCollectionView: UICollectionView {
     
     private func setUPView() {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize.init(width: SCREEN_WIDTH - 20, height: 200)
+        flowLayout.itemSize = CGSize.init(width: Int(SCREEN_WIDTH - 20), height: height)
         flowLayout.scrollDirection = .vertical
         flowLayout.minimumLineSpacing = 10
         self.collectionViewLayout = flowLayout

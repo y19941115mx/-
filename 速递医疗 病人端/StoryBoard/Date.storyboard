@@ -77,10 +77,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qja-a7-ifu" firstAttribute="top" secondItem="ApU-vU-wUU" secondAttribute="bottom" id="0LD-eq-vdg"/>
                             <constraint firstItem="ApU-vU-wUU" firstAttribute="leading" secondItem="iGg-WK-KbE" secondAttribute="leading" id="623-Os-Rp7"/>
                             <constraint firstAttribute="trailing" secondItem="ApU-vU-wUU" secondAttribute="trailing" id="9Xq-4j-5p7"/>
-                            <constraint firstItem="ApU-vU-wUU" firstAttribute="top" secondItem="MLy-dI-RaO" secondAttribute="bottom" constant="10" id="RQH-1n-9JN"/>
+                            <constraint firstItem="ApU-vU-wUU" firstAttribute="bottom" secondItem="gJ8-CC-bmh" secondAttribute="bottom" id="hVd-Ec-mRm"/>
+                            <constraint firstItem="ApU-vU-wUU" firstAttribute="top" secondItem="gJ8-CC-bmh" secondAttribute="top" constant="10" id="mL0-ko-5Wg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gJ8-CC-bmh"/>
                     </view>

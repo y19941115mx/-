@@ -646,6 +646,9 @@
                                 <cells/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="nibName" value="MinePocketCollectionViewCell"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="height">
+                                        <integer key="value" value="200"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="14o-P7-JDK" id="E94-BX-R22"/>

@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Xu5-bC-0Kp">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--发布-->
+        <scene sceneID="gjE-sX-9vM">
+            <objects>
+                <viewController id="Xu5-bC-0Kp" customClass="Publish_main" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="exz-Og-1TO"/>
+                        <viewControllerLayoutGuide type="bottom" id="6zb-UX-l4x"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="H91-sS-r8F">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yVZ-6d-MB5">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的病情" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TY6-vH-vVj">
+                                        <rect key="frame" x="150.5" y="32" width="74" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mc6-JA-jmT">
+                                        <rect key="frame" x="332" y="26.5" width="33" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title="添加">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.38823529410000002" green="0.68235294120000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="K7b-aI-4Tm"/>
+                                    <constraint firstItem="TY6-vH-vVj" firstAttribute="centerX" secondItem="yVZ-6d-MB5" secondAttribute="centerX" id="QyR-vw-ANK"/>
+                                    <constraint firstAttribute="trailing" secondItem="mc6-JA-jmT" secondAttribute="trailing" constant="10" id="Tjo-Yb-nQo"/>
+                                    <constraint firstItem="TY6-vH-vVj" firstAttribute="top" secondItem="yVZ-6d-MB5" secondAttribute="top" constant="32" id="njB-9p-f4o"/>
+                                    <constraint firstAttribute="bottom" secondItem="TY6-vH-vVj" secondAttribute="bottom" constant="12" id="tvN-fZ-wyp"/>
+                                    <constraint firstItem="mc6-JA-jmT" firstAttribute="baseline" secondItem="TY6-vH-vVj" secondAttribute="baseline" id="vAG-wf-RaG"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="yVZ-6d-MB5" firstAttribute="top" secondItem="H91-sS-r8F" secondAttribute="top" id="HxU-fd-iQV"/>
+                            <constraint firstAttribute="trailing" secondItem="yVZ-6d-MB5" secondAttribute="trailing" id="Vlo-jf-Kps"/>
+                            <constraint firstItem="yVZ-6d-MB5" firstAttribute="leading" secondItem="H91-sS-r8F" secondAttribute="leading" id="yAp-2M-ZaU"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="发布" image="wallet" id="tPZ-f0-gvF"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zYW-F0-y9Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1490" y="549"/>
+        </scene>
+        <!--发布-->
+        <scene sceneID="8wp-6S-0k6">
+            <objects>
+                <viewController id="Q7A-iQ-YXh" customClass="AddPublishViewController" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Chj-mk-7ys"/>
+                        <viewControllerLayoutGuide type="bottom" id="KSo-2U-CXN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TPq-ac-hsV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yFX-0x-iy4">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加病情" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q1U-GQ-aMn">
+                                        <rect key="frame" x="150.5" y="32" width="74" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H0L-JK-3aT">
+                                        <rect key="frame" x="332" y="26.5" width="33" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title="添加">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="saveBtn:" destination="Q7A-iQ-YXh" eventType="touchUpInside" id="aKI-EY-fXB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ES7-Rr-eeE">
+                                        <rect key="frame" x="8" y="30.5" width="47" height="22"/>
+                                        <state key="normal" title="返回" image="back"/>
+                                        <connections>
+                                            <segue destination="Jd2-GK-zjk" kind="unwind" unwindAction="unwindToPublishPageWithSender:" id="qlr-2C-wPl"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.38823529410000002" green="0.68235294120000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Q1U-GQ-aMn" firstAttribute="top" secondItem="yFX-0x-iy4" secondAttribute="top" constant="32" id="48M-UE-6bG"/>
+                                    <constraint firstAttribute="bottom" secondItem="Q1U-GQ-aMn" secondAttribute="bottom" constant="12" id="6AE-et-EZJ"/>
+                                    <constraint firstItem="ES7-Rr-eeE" firstAttribute="baseline" secondItem="Q1U-GQ-aMn" secondAttribute="baseline" id="EOG-6g-r42"/>
+                                    <constraint firstAttribute="height" constant="64" id="TLe-6r-hCb"/>
+                                    <constraint firstAttribute="trailing" secondItem="H0L-JK-3aT" secondAttribute="trailing" constant="10" id="W1g-MT-9uU"/>
+                                    <constraint firstItem="ES7-Rr-eeE" firstAttribute="leading" secondItem="yFX-0x-iy4" secondAttribute="leading" constant="8" id="Zmo-Eo-K1L"/>
+                                    <constraint firstItem="Q1U-GQ-aMn" firstAttribute="centerX" secondItem="yFX-0x-iy4" secondAttribute="centerX" id="c0B-Vt-1RR"/>
+                                    <constraint firstItem="H0L-JK-3aT" firstAttribute="baseline" secondItem="Q1U-GQ-aMn" secondAttribute="baseline" id="tRP-nw-gDm"/>
+                                </constraints>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EED-Uw-CbR">
+                                <rect key="frame" x="0.0" y="64" width="375" height="267"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZTr-rM-WHo">
+                                <rect key="frame" x="0.0" y="332" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="就诊人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e23-1W-vRJ">
+                                        <rect key="frame" x="21" y="14" width="52" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f41-MI-npR">
+                                        <rect key="frame" x="233" y="9" width="72" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="选择就诊人">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addPatient:" destination="Q7A-iQ-YXh" eventType="touchUpInside" id="7V0-nz-8ib"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="q80-9w-mJ4"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eqx-P4-xb3">
+                                <rect key="frame" x="0.0" y="383" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="科室" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQC-1l-c4v">
+                                        <rect key="frame" x="21" y="14" width="35" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="选择科室" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X0x-PR-zWR">
+                                        <rect key="frame" x="92" y="16" width="211" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Ret-0b-ZUq"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="RtL-2W-Jfb"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lTv-No-19S">
+                                <rect key="frame" x="0.0" y="433" width="375" height="185"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="J3n-3G-XYi">
+                                    <size key="itemSize" width="60" height="60"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="reusedCell" id="IQ8-9Q-ohI">
+                                        <rect key="frame" x="10" y="0.0" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UXv-c5-0GE">
+                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Q7A-iQ-YXh" id="hsf-BU-6X6"/>
+                                    <outlet property="delegate" destination="Q7A-iQ-YXh" id="MYA-UI-xl5"/>
+                                </connections>
+                            </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOB-bA-TjW">
+                                <rect key="frame" x="10" y="72" width="300" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="Y2b-kc-K3i"/>
+                                    <constraint firstAttribute="width" constant="300" id="eey-Uz-gdI"/>
+                                </constraints>
+                                <string key="text">请描述一下情况：                                                                                                           1.病状发生的时间、症状、部位、持续时间、有无伴随症状。                                                                       2.患者所需的就诊时间。                                            3.如果就诊过。提供医生诊断治疗经过。                                                                          4.患者：饮食、睡眠、大小便、体重变化情况。                                                                               5. 患者既往病史。                                                            6. 过敏史。   </string>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ZTr-rM-WHo" secondAttribute="trailing" id="6kn-8Z-4r6"/>
+                            <constraint firstItem="lTv-No-19S" firstAttribute="leading" secondItem="TPq-ac-hsV" secondAttribute="leading" id="CFH-EI-7iY"/>
+                            <constraint firstAttribute="trailing" secondItem="lTv-No-19S" secondAttribute="trailing" id="GDp-l7-h5M"/>
+                            <constraint firstItem="yFX-0x-iy4" firstAttribute="top" secondItem="TPq-ac-hsV" secondAttribute="top" id="HIt-uR-RND"/>
+                            <constraint firstItem="ZTr-rM-WHo" firstAttribute="leading" secondItem="TPq-ac-hsV" secondAttribute="leading" id="LWN-K7-sSj"/>
+                            <constraint firstItem="eqx-P4-xb3" firstAttribute="top" secondItem="ZTr-rM-WHo" secondAttribute="bottom" constant="1" id="OuI-YQ-xaj"/>
+                            <constraint firstAttribute="trailing" secondItem="eqx-P4-xb3" secondAttribute="trailing" id="PbV-k3-cU7"/>
+                            <constraint firstItem="yFX-0x-iy4" firstAttribute="leading" secondItem="TPq-ac-hsV" secondAttribute="leading" id="Qh7-OS-JJU"/>
+                            <constraint firstItem="JOB-bA-TjW" firstAttribute="top" secondItem="yFX-0x-iy4" secondAttribute="bottom" constant="8" id="Qi7-GJ-W7D"/>
+                            <constraint firstAttribute="trailing" secondItem="EED-Uw-CbR" secondAttribute="trailing" id="XFk-Q2-NVK"/>
+                            <constraint firstItem="lTv-No-19S" firstAttribute="top" secondItem="eqx-P4-xb3" secondAttribute="bottom" id="aYd-bo-rVU"/>
+                            <constraint firstItem="EED-Uw-CbR" firstAttribute="height" secondItem="TPq-ac-hsV" secondAttribute="height" multiplier="0.4" id="cSY-5M-PvF"/>
+                            <constraint firstItem="KSo-2U-CXN" firstAttribute="top" secondItem="lTv-No-19S" secondAttribute="bottom" id="mN7-3N-JC9"/>
+                            <constraint firstAttribute="trailing" secondItem="yFX-0x-iy4" secondAttribute="trailing" id="p2a-uK-4aw"/>
+                            <constraint firstItem="ZTr-rM-WHo" firstAttribute="top" secondItem="EED-Uw-CbR" secondAttribute="bottom" constant="1" id="qBG-UE-Ag1"/>
+                            <constraint firstItem="JOB-bA-TjW" firstAttribute="leading" secondItem="TPq-ac-hsV" secondAttribute="leading" constant="10" id="uuE-gi-O2m"/>
+                            <constraint firstItem="EED-Uw-CbR" firstAttribute="leading" secondItem="TPq-ac-hsV" secondAttribute="leading" id="wLr-Uh-Si2"/>
+                            <constraint firstItem="eqx-P4-xb3" firstAttribute="leading" secondItem="TPq-ac-hsV" secondAttribute="leading" id="y0v-aF-KOu"/>
+                            <constraint firstItem="EED-Uw-CbR" firstAttribute="top" secondItem="yFX-0x-iy4" secondAttribute="bottom" id="zke-Ox-ieM"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="发布" image="wallet" id="CQI-RR-sKT"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="collectionView" destination="lTv-No-19S" id="Ucg-zj-N5t"/>
+                        <outlet property="departTextField" destination="X0x-PR-zWR" id="dP5-Mr-eqY"/>
+                        <outlet property="placeHolderLabel" destination="JOB-bA-TjW" id="h3j-cf-r17"/>
+                        <outlet property="textView" destination="EED-Uw-CbR" id="iym-EG-gfa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yg0-cH-jh6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Jd2-GK-zjk" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2690" y="548"/>
+        </scene>
+        <!--Publish page-->
+        <scene sceneID="dNw-cw-u3F">
+            <objects>
+                <viewController storyboardIdentifier="tianjia" id="2ls-ci-mYo" customClass="Publish_page" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jCT-kP-a3t"/>
+                        <viewControllerLayoutGuide type="bottom" id="Zzc-3f-sOB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4pZ-Fn-iHJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YIh-AI-WIc" customClass="BaseCollectionView" customModule="速递医疗_病人端" customModuleProvider="target">
+                                <rect key="frame" x="10" y="30" width="355" height="627"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PdB-jq-JPk">
+                                    <size key="itemSize" width="333" height="241"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="nibName" value="PublishCell"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="height">
+                                        <integer key="value" value="240"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="2ls-ci-mYo" id="JhO-AG-57K"/>
+                                    <outlet property="delegate" destination="2ls-ci-mYo" id="DqM-17-Tts"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Zzc-3f-sOB" firstAttribute="top" secondItem="YIh-AI-WIc" secondAttribute="bottom" constant="10" id="4Pe-24-aYp"/>
+                            <constraint firstItem="YIh-AI-WIc" firstAttribute="leading" secondItem="4pZ-Fn-iHJ" secondAttribute="leading" constant="10" id="GI8-jv-w7h"/>
+                            <constraint firstAttribute="trailing" secondItem="YIh-AI-WIc" secondAttribute="trailing" constant="10" id="jEq-FT-bYa"/>
+                            <constraint firstItem="YIh-AI-WIc" firstAttribute="top" secondItem="jCT-kP-a3t" secondAttribute="bottom" constant="10" id="y41-CD-VLE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="infoCollectionView" destination="YIh-AI-WIc" id="lJd-fR-xSl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fog-ML-E88" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1489" y="1269"/>
+        </scene>
+        <!--发布-->
+        <scene sceneID="gyy-rK-K6B">
+            <objects>
+                <viewController id="dOK-1G-a1Q" customClass="EditViewController" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Caw-y7-ueq"/>
+                        <viewControllerLayoutGuide type="bottom" id="dbm-tM-WM8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VBq-RW-53S">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Lp-ic-Y5x">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="编辑病情" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8vV-Iw-Pwa">
+                                        <rect key="frame" x="150.5" y="32" width="74" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQt-UE-3YU">
+                                        <rect key="frame" x="332" y="26.5" width="33" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title="保存">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="YWt-iV-UGk" kind="unwind" unwindAction="unwindToPublishPageWithSender:" id="f2R-d7-n2Y"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y4c-Yg-jch">
+                                        <rect key="frame" x="8" y="30.5" width="47" height="22"/>
+                                        <state key="normal" title="返回" image="button:y4c-Yg-jch:image"/>
+                                        <connections>
+                                            <segue destination="YWt-iV-UGk" kind="unwind" unwindAction="unwindToPublishPageWithSender:" id="SQc-aV-2LN"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.38823529410000002" green="0.68235294120000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="8vV-Iw-Pwa" firstAttribute="top" secondItem="4Lp-ic-Y5x" secondAttribute="top" constant="32" id="OaP-RR-SBp"/>
+                                    <constraint firstAttribute="trailing" secondItem="AQt-UE-3YU" secondAttribute="trailing" constant="10" id="QpE-Bh-6c2"/>
+                                    <constraint firstItem="y4c-Yg-jch" firstAttribute="leading" secondItem="4Lp-ic-Y5x" secondAttribute="leading" constant="8" id="R2c-3x-hj3"/>
+                                    <constraint firstItem="8vV-Iw-Pwa" firstAttribute="centerX" secondItem="4Lp-ic-Y5x" secondAttribute="centerX" id="SWc-qG-Y9e"/>
+                                    <constraint firstItem="y4c-Yg-jch" firstAttribute="baseline" secondItem="8vV-Iw-Pwa" secondAttribute="baseline" id="b1c-4z-gyE"/>
+                                    <constraint firstItem="AQt-UE-3YU" firstAttribute="baseline" secondItem="8vV-Iw-Pwa" secondAttribute="baseline" id="cYz-mw-pvL"/>
+                                    <constraint firstAttribute="height" constant="64" id="xDz-Ca-wJX"/>
+                                    <constraint firstAttribute="bottom" secondItem="8vV-Iw-Pwa" secondAttribute="bottom" constant="12" id="y5n-6w-aEx"/>
+                                </constraints>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lFE-Pk-d1g">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="lFE-Pk-d1g" secondAttribute="bottom" id="4xn-qL-gbh"/>
+                            <constraint firstItem="lFE-Pk-d1g" firstAttribute="leading" secondItem="VBq-RW-53S" secondAttribute="leading" id="F69-FI-GPe"/>
+                            <constraint firstItem="lFE-Pk-d1g" firstAttribute="top" secondItem="4Lp-ic-Y5x" secondAttribute="bottom" id="Wfa-iS-Gn9"/>
+                            <constraint firstItem="4Lp-ic-Y5x" firstAttribute="leading" secondItem="VBq-RW-53S" secondAttribute="leading" id="bxW-ic-V2I"/>
+                            <constraint firstAttribute="trailing" secondItem="lFE-Pk-d1g" secondAttribute="trailing" id="coy-Gy-umL"/>
+                            <constraint firstItem="4Lp-ic-Y5x" firstAttribute="top" secondItem="VBq-RW-53S" secondAttribute="top" id="w87-cj-oad"/>
+                            <constraint firstAttribute="trailing" secondItem="4Lp-ic-Y5x" secondAttribute="trailing" id="wcm-N9-Be4"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="发布" image="tabBarItem:bMV-iZ-amt:image" id="bMV-iZ-amt"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="saveBtn" destination="AQt-UE-3YU" id="GZv-0K-w8T"/>
+                        <outlet property="textView" destination="lFE-Pk-d1g" id="pRc-Zl-uQV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kzu-Vp-izt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="YWt-iV-UGk" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2636" y="1269"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="back" width="10" height="15"/>
+        <image name="button:y4c-Yg-jch:image" width="10" height="15">
+            <mutableData key="keyedArchiveRepresentation">
+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
+YwBuAP0AIABSAEcAQgAgAHAAcgBvAGYAaQBsAEcAZQBuAGUAcgBlAGwAIABSAEcAQgAtAGIAZQBzAGsA
+cgBpAHYAZQBsAHMAZQBQAGUAcgBmAGkAbAAgAFIARwBCACAAZwBlAG4A6AByAGkAYwBDHqUAdQAgAGgA
+7ABuAGgAIABSAEcAQgAgAEMAaAB1AG4AZwBQAGUAcgBmAGkAbAAgAFIARwBCACAARwBlAG4A6QByAGkA
+YwBvBBcEMAQzBDAEOwRMBD0EOAQ5ACAEPwRABD4ERAQwBDkEOwAgAFIARwBCAFAAcgBvAGYAaQBsACAA
+ZwDpAG4A6QByAGkAcQB1AGUAIABSAFYAQgDBAGwAdABhAGwA4QBuAG8AcwAgAFIARwBCACAAcAByAG8A
+ZgBpAGyQGnUoACAAUgBHAEIAIIJyX2ljz4/wAEcAZQBuAGUAcgBpAHMAawAgAFIARwBCAC0AcAByAG8A
+ZgBpAGwATwBiAGUAYwBuAP0AIABSAEcAQgAgAHAAcgBvAGYAaQBsBeQF6AXVBeQF2QXcACAAUgBHAEIA
+IAXbBdwF3AXZAFAAcgBvAGYAaQBsAG8AIABSAEcAQgAgAGcAZQBuAGUAcgBpAGMAbwBQAHIAbwBmAGkA
+bAAgAFIARwBCACAAZwBlAG4AZQByAGkAYwBBAGwAbABnAGUAbQBlAGkAbgBlAHMAIABSAEcAQgAtAFAA
+cgBvAGYAaQBsx3y8GAAgAFIARwBCACDVBLhc0wzHfGZukBoAIABSAEcAQgAgY8+P8GWHTvZOAIIsACAA
+UgBHAEIAIDDXMO0w1TChMKQw6wOTA7UDvQO5A7oDzAAgA8ADwQO/A8YDrwO7ACAAUgBHAEIAUABlAHIA
+ZgBpAGwAIABSAEcAQgAgAGcAZQBuAOkAcgBpAGMAbwBBAGwAZwBlAG0AZQBlAG4AIABSAEcAQgAtAHAA
+cgBvAGYAaQBlAGwOQg4bDiMORA4fDiUOTAAgAFIARwBCACAOFw4xDkgOJw5EDhsARwBlAG4AZQBsACAA
+UgBHAEIAIABQAHIAbwBmAGkAbABpAFkAbABlAGkAbgBlAG4AIABSAEcAQgAtAHAAcgBvAGYAaQBpAGwA
+aQBHAGUAbgBlAHIAaQENAGsAaQAgAFIARwBCACAAcAByAG8AZgBpAGwAVQBuAGkAdwBlAHIAcwBhAGwA
+bgB5ACAAcAByAG8AZgBpAGwAIABSAEcAQgQeBDEESQQ4BDkAIAQ/BEAEPgREBDgEOwRMACAAUgBHAEIG
+RQZEBkEAIAYqBjkGMQZKBkEAIABSAEcAQgAgBicGRAY5BicGRQBHAGUAbgBlAHIAaQBjACAAUgBHAEIA
+IABQAHIAbwBmAGkAbABldGV4dAAAAABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRz
+IHJlc2VydmVkLgBYWVogAAAAAAAA81IAAQAAAAEWz1hZWiAAAAAAAAB0TQAAPe4AAAPQWFlaIAAAAAAA
+AFp1AACscwAAFzRYWVogAAAAAAAAKBoAABWfAAC4NmN1cnYAAAAAAAAAAQHNAABzZjMyAAAAAAABDEIA
+AAXe///zJgAAB5IAAP2R///7ov///aMAAAPcAADAbNIlJicoWiRjbGFzc25hbWVYJGNsYXNzZXNfEBBO
+U0JpdG1hcEltYWdlUmVwoycpKlpOU0ltYWdlUmVwWE5TT2JqZWN00iUmLC1XTlNBcnJheaIsKtIlJi8w
+Xk5TTXV0YWJsZUFycmF5oy8sKtMyMwo0NTZXTlNXaGl0ZVxOU0NvbG9yU3BhY2VEMCAwABADgAzSJSY4
+OVdOU0NvbG9yojgq0iUmOzxXTlNJbWFnZaI7Kl8QD05TS2V5ZWRBcmNoaXZlctE/QFRyb290gAEACAAR
+ABoAIwAtADIANwBGAEwAVwBeAGUAcgB5AIEAgwCFAIoAjACOAJcAnACnAKkAqwCtALIAtQC3ALkAuwC9
+AMIA2QDbAN0L1wvcC+cL8AwDDAcMEgwbDCAMKAwrDDAMPwxDDEoMUgxfDGQMZgxoDG0MdQx4DH0MhQyI
+DJoMnQyiAAAAAAAAAgEAAAAAAAAAQQAAAAAAAAAAAAAAAAAADKQ
+</mutableData>
+        </image>
+        <image name="tabBarItem:bMV-iZ-amt:image" width="20" height="20">
+            <mutableData key="keyedArchiveRepresentation">
+YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
+GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
+c1dOU0NvbG9ygAKADRIgwAAAgAOAC1h7MjAsIDIwfdIVChYYWk5TLm9iamVjdHOhF4AEgArSFQoaHaIb
+HIAFgAaACRAA0iAKISJfEBROU1RJRkZSZXByZXNlbnRhdGlvboAHgAhPEQ7eTU0AKgAABkgAAAAAAAAA
+AAEFCQkCBQkJAgUJCQIFCQkCBQkJAQQHCQEDBgYECA4QGT5ocTWE4e8PJUFGAQMFBwIFCQkCBQgKAAAA
+AAAAAAAAAAAAAAAAAAoZKy8oZKm3K2y2wytps8EqabLCKWixvyhlq7kqa7TDMHbH1y90xdQkXZ6rJFua
+pDJ+1eMqZ669K2mzwSprtcIpabPBDSI5PgAAAAAAAAAAMnvR4CNWkZ0JGCouCRYkJwgUIiUOIjpAH02D
+jTB2ydomX6GuDiU+RAAAAAAEChEUMHfK2hIuTlUJGCgsCRgpLBk9aHEsbLfFAAEEBAAAAAA8kvj/DiQ+
+QwAAAAAIEyEkGkRzeihlqrgeTIGMCRYmKgAAAAAAAAAAAAAAAAAAAAAbRHR9Hk2CjgAAAAAAAAAABhAb
+HituuskBBQgKAAAAADqO8P8vdMTUKGKltTaF4fM7kfb/K224xyJUjpsjVpGdI1iVoiNZlqMjWZajI1iV
+oidiprQ2heD0JFuXpiNYlaEnYaSyNYPd7x1JeYUDCQ8ROYzs/xk+aXEVNFhgFDNWXhQxVFsUNFhfFTZb
+YxU2W2MVNltjFTZbYxU2W2MVNlpkFDVZYRQyVV0VNltjFTZcZBU1WmIUMlVcJ2GksShnrr05je7/Cxwv
+MwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAALHjE1O5D1/zmN7v8MHjQ4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAweNDc5je7/OY3u/wweNDgAAAAAAAAAAAAAAAAAAAAAAAAA
+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
+AARsdHJUUgAAACIAAASQZmlGSQAAACgAAASyaHJIUgAAACgAAATacGxQTAAAACwAAAUCcnVSVQAAACIA
+AAUuYXJFRwAAACYAAAVQZW5VUwAAACYAAAV2AFYBYQBlAG8AYgBlAGMAbgD9ACAAUgBHAEIAIABwAHIA
+bwBmAGkAbABHAGUAbgBlAHIAZQBsACAAUgBHAEIALQBiAGUAcwBrAHIAaQB2AGUAbABzAGUAUABlAHIA
+ZgBpAGwAIABSAEcAQgAgAGcAZQBuAOgAcgBpAGMAQx6lAHUAIABoAOwAbgBoACAAUgBHAEIAIABDAGgA
+dQBuAGcAUABlAHIAZgBpAGwAIABSAEcAQgAgAEcAZQBuAOkAcgBpAGMAbwQXBDAEMwQwBDsETAQ9BDgE
+OQAgBD8EQAQ+BEQEMAQ5BDsAIABSAEcAQgBQAHIAbwBmAGkAbAAgAGcA6QBuAOkAcgBpAHEAdQBlACAA
+UgBWAEIAwQBsAHQAYQBsAOEAbgBvAHMAIABSAEcAQgAgAHAAcgBvAGYAaQBskBp1KAAgAFIARwBCACCC
+cl9pY8+P8ABHAGUAbgBlAHIAaQBzAGsAIABSAEcAQgAtAHAAcgBvAGYAaQBsAE8AYgBlAGMAbgD9ACAA
+UgBHAEIAIABwAHIAbwBmAGkAbAXkBegF1QXkBdkF3AAgAFIARwBCACAF2wXcBdwF2QBQAHIAbwBmAGkA
+bABvACAAUgBHAEIAIABnAGUAbgBlAHIAaQBjAG8AUAByAG8AZgBpAGwAIABSAEcAQgAgAGcAZQBuAGUA
+cgBpAGMAQQBsAGwAZwBlAG0AZQBpAG4AZQBzACAAUgBHAEIALQBQAHIAbwBmAGkAbMd8vBgAIABSAEcA
+QgAg1QS4XNMMx3xmbpAaACAAUgBHAEIAIGPPj/Blh072TgCCLAAgAFIARwBCACAw1zDtMNUwoTCkMOsD
+kwO1A70DuQO6A8wAIAPAA8EDvwPGA68DuwAgAFIARwBCAFAAZQByAGYAaQBsACAAUgBHAEIAIABnAGUA
+bgDpAHIAaQBjAG8AQQBsAGcAZQBtAGUAZQBuACAAUgBHAEIALQBwAHIAbwBmAGkAZQBsDkIOGw4jDkQO
+Hw4lDkwAIABSAEcAQgAgDhcOMQ5IDicORA4bAEcAZQBuAGUAbAAgAFIARwBCACAAUAByAG8AZgBpAGwA
+aQBZAGwAZQBpAG4AZQBuACAAUgBHAEIALQBwAHIAbwBmAGkAaQBsAGkARwBlAG4AZQByAGkBDQBrAGkA
+IABSAEcAQgAgAHAAcgBvAGYAaQBsAFUAbgBpAHcAZQByAHMAYQBsAG4AeQAgAHAAcgBvAGYAaQBsACAA
+UgBHAEIEHgQxBEkEOAQ5ACAEPwRABD4ERAQ4BDsETAAgAFIARwBCBkUGRAZBACAGKgY5BjEGSgZBACAA
+UgBHAEIAIAYnBkQGOQYnBkUARwBlAG4AZQByAGkAYwAgAFIARwBCACAAUAByAG8AZgBpAGwAZXRleHQA
+AAAAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC4AWFlaIAAAAAAA
+APNSAAEAAAABFs9YWVogAAAAAAAAdE0AAD3uAAAD0FhZWiAAAAAAAABadQAArHMAABc0WFlaIAAAAAAA
+ACgaAAAVnwAAuDZjdXJ2AAAAAAAAAAEBzQAAc2YzMgAAAAAAAQxCAAAF3v//8yYAAAeSAAD9kf//+6L/
+//2jAAAD3AAAwGzSJSYnKFokY2xhc3NuYW1lWCRjbGFzc2VzXxAQTlNCaXRtYXBJbWFnZVJlcKMnKSpa
+TlNJbWFnZVJlcFhOU09iamVjdNIlJiwtV05TQXJyYXmiLCrSJSYvMF5OU011dGFibGVBcnJheaMvLCrT
+MjMKNDU2V05TV2hpdGVcTlNDb2xvclNwYWNlRDAgMAAQA4AM0iUmODlXTlNDb2xvcqI4KtIlJjs8V05T
+SW1hZ2WiOypfEA9OU0tleWVkQXJjaGl2ZXLRP0BUcm9vdIABAAgAEQAaACMALQAyADcARgBMAFcAXgBl
+AHIAeQCBAIMAhQCKAIwAjgCXAJwApwCpAKsArQCyALUAtwC5ALsAvQDCANkA2wDdD78PxA/PD9gP6w/v
+D/oQAxAIEBAQExAYECcQKxAyEDoQRxBMEE4QUBBVEF0QYBBlEG0QcBCCEIUQigAAAAAAAAIBAAAAAAAA
+AEEAAAAAAAAAAAAAAAAAABCMA
+</mutableData>
+        </image>
+        <image name="wallet" width="20" height="20"/>
+    </resources>
+</document>

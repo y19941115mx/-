@@ -136,4 +136,65 @@ class familyBean:Mappable {
     
 }
 
+class sickListBean:BaseAPIBean {
+    
+    var sickDataList: [SickBean]?
+    required init?(map: Map) {
+        super.init(map: map)
+    }
+    override func mapping(map: Map) {
+        super.mapping(map: map)
+        sickDataList <- map["data"]
+    }
+    
+}
+
+//"familyid": 43,
+//"usersickstateid": 4,
+//"usersickseconddept": "呼吸内科",
+//"familymale": "男",
+//"userorderid": 22,
+//"familyname": "王二",
+//"usersickpic": "http://oytv6cmyw.bkt.clouddn.com/20171103055123751753.jpeg",
+//"usersicktime": "Oct 16, 2017 5:12:03 PM",
+//"usersickid": 81,
+//"usersickprimarydept": "内科",
+//"usersickdesc": "ghnhtffgtrghtdfb",
+//"familyage": 23
+
+class SickBean:Mappable {
+    var familyid: Int = 0
+    var usersickstateid:Int = 0
+    var usersickseconddept:String?
+    var familymale:String?
+    var userorderid: Int = 0
+    var familyname: String?
+    var usersickpic:String?
+    var usersicktime:String?
+    var usersickid: Int = 0
+    var usersickprimarydept:String?
+    var usersickdesc: String?
+    var familyage: Int = 0
+    
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        familyid <- map["familyid"]
+        usersickstateid <- map["usersickstateid"]
+        usersickseconddept <- map["usersickseconddept"]
+        familymale <- map["familymale"]
+        userorderid <- map["userorderid"]
+        familyname <- map["familyname"]
+        usersickpic <- map["usersickpic"]
+        usersicktime <- map["usersicktime"]
+        usersickid <- map["usersickid"]
+        usersickprimarydept <- map["usersickprimarydept"]
+        usersickdesc <- map["usersickdesc"]
+        familyage <- map["familyage"]
+    }
+    
+}
+
 

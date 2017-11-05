@@ -17,6 +17,7 @@ public enum API {
     case findfamily(Int) // 查询亲属
     case getredoctor // 获取我的医生
     case updateinfo(Data) // 上传图片
+    case getsick(Int) // 获取病情
 }
 // 配置请求
 extension API: TargetType {
@@ -43,6 +44,8 @@ extension API: TargetType {
             return "/getredoctor"
         case .updateinfo:
             return "/updateinfo"
+        case .getsick:
+            return "/getsick"
         }
     }
     public var method: Moya.Method {
@@ -79,12 +82,14 @@ extension API: TargetType {
                 return .requestParameters(parameters: ["page": page, "userloginid": id, "type":type], encoding: URLEncoding.default)
             }
         case .getredoctor:
-            // FIXME: 改回LOGINID
-            return .requestParameters(parameters: ["userloginid":32], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["userloginid":LOGINID!], encoding: URLEncoding.default)
     
         case .updateinfo(let data):
     return .uploadCompositeMultipart([MultipartFormData.init(provider: .data(data), name: "pictureFile", fileName: "photo.jpg", mimeType:"image/png")], urlParameters: ["userloginid": LOGINID!])
+        case .getsick(let type):
+            return .requestParameters(parameters: ["userloginid":LOGINID!, "type":type], encoding: URLEncoding.default)
         }
+        
     }
     
     public var validate: Bool {

@@ -33,7 +33,7 @@ class Date_page: CollectionRefreshController, UICollectionViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initRefresh(collectionView: self.mCollectionView, ApiMethod: API.getorder(selectedPage, 32, type))
+        initRefresh(collectionView: self.mCollectionView, ApiMethod: API.getorder(selectedPage, LOGINID!, type))
         self.header?.beginRefreshing()
     }
     

@@ -24,7 +24,9 @@ class MainViewController: UITabBarController {
         vc_doctor.tabBarItem = UITabBarItem.init(title: "医生", image: #imageLiteral(resourceName: "index_yishen"), tag: 2)
         let vc_data = UIStoryboard.init(name: "Date", bundle: nil).instantiateInitialViewController()!
         vc_data.tabBarItem = UITabBarItem.init(title: "日程", image: #imageLiteral(resourceName: "index_dindan"), tag: 3)
-        self.viewControllers = [vc_home,vc_doctor,vc_data, vc_mine]
+        let vc_publish = UIStoryboard.init(name: "Publish", bundle: nil).instantiateInitialViewController()!
+        vc_publish.tabBarItem = UITabBarItem.init(title: "病情", image: #imageLiteral(resourceName: "index_wdys_"), tag: 4)
+        self.viewControllers = [vc_home,vc_publish,vc_doctor,vc_data, vc_mine]
     }
 
 }

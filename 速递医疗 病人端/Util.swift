@@ -147,7 +147,7 @@ class ImageUtil{
     }
 }
 
-class TimeUTil {
+class StringUTil {
     
     // 将时间戳转换为时间字符串
     class public func timestamp2string(timeStamp:Int) -> String{
@@ -209,9 +209,11 @@ class TimeUTil {
             temp = Int(timeInterval / 60 / 60 / 24 / 30 / 12)
             result = "\(temp)年前"
         }
-        
         return  result!;
-        
+    }
+    
+    class func splitImage(str:String) -> [String] {
+        return str.components(separatedBy: ",")
     }
     
 }

@@ -19,8 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SVProgressHUD.setDefaultStyle(.custom)
         SVProgressHUD.setForegroundColor(UIColor.APPColor)
         SVProgressHUD.setBackgroundColor(UIColor.clear)
-        SVProgressHUD.setDefaultMaskType(.clear) // 不可点击取消
-        SVProgressHUD.setDefaultAnimationType(.flat) // 设置样式 圆圈的转动动作 另一个是菊花
+        SVProgressHUD.setDefaultMaskType(.none) // 不可点击取消
+        SVProgressHUD.setDefaultAnimationType(.native) // 设置样式 圆圈的转动动作 另一个是菊花
         return true
     }
 
