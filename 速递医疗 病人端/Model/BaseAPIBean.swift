@@ -115,7 +115,7 @@ class familyListBean:BaseAPIBean {
 }
 
 class familyBean:Mappable {
-    var familyid: String?
+    var familyid: Int = 0
     var familyname: String?
     var familymale: String?
     var familyage: Int = 0

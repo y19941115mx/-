@@ -28,13 +28,12 @@ class Publish_page: SickCollectionRefreshController, UICollectionViewDataSource,
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reusedCell", for: indexPath) as? PublishCell
-        if cell == nil {
-            cell = Bundle.main.loadNibNamed("PublishCell", owner: nil, options: nil)?.last as? PublishCell
-        }
+        let cell =
+            collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PublishCell
+        
         let sickBean = data[indexPath.row]
-        cell?.updataView(sickBean: sickBean, vc: self)
-        return cell!
+        cell.updataView(sickBean: sickBean, vc: self)
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

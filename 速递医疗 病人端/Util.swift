@@ -5,6 +5,7 @@
 import UIKit
 import Kingfisher
 import Toast_Swift
+import Alamofire
 
 let SCREEN_WIDTH = UIScreen.main.bounds.size.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
@@ -26,10 +27,33 @@ public func showToast(_ view:UIView, _ message:String) {
     view.makeToast(message, duration: 2.0, position: .center, style:style)
 }
 
+// 网络请求
+class NetWorkUtil {
+    class func getRequest(urlString: String, params : [String : Any], success : @escaping (_ response : [String : AnyObject])->(), failture : @escaping (_ error : Error)->()) {
+        Alamofire.request(urlString, method: .get, parameters: params).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    success(value as! [String : AnyObject])
+                case .failure(let error):
+                    failture(error)
+                }
+        }
+        
+    }
+    //获取科室数据
+    class func getDepartMent(success : @escaping (_ response : [String : AnyObject])->(), failture : @escaping (_ error : Error)->()){
+        getRequest(urlString: StaticClass.GetDept, params: [:], success: success, failture:failture)
+    }
+    
+}
+
+
 struct StaticClass {
     static let BaseApi = "http://1842719ny8.iok.la:14086/internetmedical/user"
     static let RootIP = "http://1842719ny8.iok.la:14086"
     static let PictureIP = RootIP + "/picture/"
+    static let GetDept = RootIP + "/internetmedical/doctor/getdept"
 }
 
 // UserDefault UserDefault相关的枚举值
@@ -76,7 +100,6 @@ class AlertUtil: NSObject {
         
         for btn in btns {
             let action = UIAlertAction(title: btn, style: .default) { (UIAlertAction) -> Void in
-                
                 handler(UIAlertAction.title!)
                 
             }

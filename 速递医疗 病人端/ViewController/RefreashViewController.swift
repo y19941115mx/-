@@ -73,7 +73,6 @@ class TableRefreshController:BaseViewController {
                         if self.data.count == 0{
                             //隐藏tableView,添加刷新按钮
                             self.showRefreshBtn()
-                            return
                         }
                         self.tableView?.reloadData()
                     }else {
@@ -182,7 +181,7 @@ class CollectionRefreshController:BaseViewController {
         
     }
     
-    private func refreshData(){
+    func refreshData(){
         self.selectedPage = 1
         //刷新数据
         let Provider = MoyaProvider<API>()
@@ -202,7 +201,6 @@ class CollectionRefreshController:BaseViewController {
                         if self.data.count == 0{
                             //隐藏tableView,添加刷新按钮
                             self.showRefreshBtn()
-                            return
                         }
                         self.collectionView?.reloadData()
                     }else {
@@ -310,7 +308,7 @@ class SickCollectionRefreshController:BaseViewController {
         
     }
     
-    private func refreshData(){
+    func refreshData(){
         self.selectedPage = 1
         //刷新数据
         let Provider = MoyaProvider<API>()
@@ -330,7 +328,6 @@ class SickCollectionRefreshController:BaseViewController {
                         if self.data.count == 0{
                             //隐藏tableView,添加刷新按钮
                             self.showRefreshBtn()
-                            return
                         }
                         self.collectionView?.reloadData()
                     }else {

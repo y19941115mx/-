@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Moya
+import SVProgressHUD
+import ObjectMapper
 
 class PublishCell: UICollectionViewCell, UICollectionViewDataSource {
 
@@ -21,13 +24,13 @@ class PublishCell: UICollectionViewCell, UICollectionViewDataSource {
     
     var imageSource = [String]()
     var data:SickBean?
-    var vc:UIViewController?
+    var vc = SickCollectionRefreshController()
     override func awakeFromNib() {
         super.awakeFromNib()
         self.collectionView.dataSource = self
     }
     
-    func updataView(sickBean:SickBean, vc:UIViewController) {
+    func updataView(sickBean:SickBean, vc:SickCollectionRefreshController) {
         self.data = sickBean
         self.vc = vc
         label_name.text = sickBean.familyname
@@ -39,6 +42,7 @@ class PublishCell: UICollectionViewCell, UICollectionViewDataSource {
         }else{
             // 子collectionView 数据绑定
             imageSource = StringUTil.splitImage(str: sickBean.usersickpic!)
+            collectionView.reloadData()
         }
         btn_publish.addTarget(self, action: #selector(PublishAction(button:)), for: .touchUpInside)
         btn_del.addTarget(self, action: #selector(DelAction(button:)), for: .touchUpInside)
@@ -53,16 +57,62 @@ class PublishCell: UICollectionViewCell, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sonCell", for: indexPath)
         let imageView = cell.viewWithTag(1) as! UIImageView
-        imageView.image = UIImage(named: imageSource[indexPath.row])
+        ImageUtil.setImage(path: imageSource[indexPath.row], imageView: imageView)
         return cell
     }
     
     @objc func PublishAction(button:UIButton) {
-        AlertUtil.popAlert(vc: vc!, msg: "确认发布病情: \(data?.familyname)", okhandler: { dPrint(message: "点击确认") })
+        AlertUtil.popAlert(vc: vc, msg: "确认发布病情", okhandler: {
+            let Provider = MoyaProvider<API>()
+            SVProgressHUD.show()
+            Provider.request(API.publishsick((self.data?.usersickid)!)) { result in
+                switch result {
+                case let .success(response):
+                    do {
+                        SVProgressHUD.dismiss()
+                        let bean = Mapper<BaseAPIBean>().map(JSONObject: try response.mapJSON())
+                        if bean?.code == 100 {
+                            self.vc.refreshData()
+                        }
+                        速递医疗_病人端.showToast((self.vc.view)!, bean!.msg!)
+                    }catch {
+                        SVProgressHUD.dismiss()
+                        速递医疗_病人端.showToast((self.vc.view)!, CATCHMSG)
+                    }
+                case let .failure(error):
+                    SVProgressHUD.dismiss()
+                    dPrint(message: "error:\(error)")
+                    速递医疗_病人端.showToast((self.vc.view)!, ERRORMSG)
+                }
+            }
+        })
     }
     
     @objc func DelAction(button:UIButton) {
-        AlertUtil.popAlert(vc: vc!, msg: "确认删除病情: \(data?.familyname)", okhandler: { dPrint(message: "点击删除") })
+        AlertUtil.popAlert(vc: vc, msg: "确认删除病情") {
+            let Provider = MoyaProvider<API>()
+            SVProgressHUD.show()
+            Provider.request(API.deletesick((self.data?.usersickid)!)) { result in
+                switch result {
+                case let .success(response):
+                    do {
+                        SVProgressHUD.dismiss()
+                        let bean = Mapper<BaseAPIBean>().map(JSONObject: try response.mapJSON())
+                        if bean?.code == 100 {
+                            self.vc.refreshData()
+                        }
+                        速递医疗_病人端.showToast((self.vc.view)!, bean!.msg!)
+                    }catch {
+                        SVProgressHUD.dismiss()
+                        速递医疗_病人端.showToast((self.vc.view)!, CATCHMSG)
+                    }
+                case let .failure(error):
+                    SVProgressHUD.dismiss()
+                    dPrint(message: "error:\(error)")
+                    速递医疗_病人端.showToast((self.vc.view)!, ERRORMSG)
+                }
+            }
+        }
     }
 
 }

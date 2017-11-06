@@ -16,8 +16,11 @@ public enum API {
     case addfamily(Int, String, String, Int) // 添加亲属
     case findfamily(Int) // 查询亲属
     case getredoctor // 获取我的医生
-    case updateinfo(Data) // 上传图片
+    case updateinfo(Data) // 上传头像
     case getsick(Int) // 获取病情
+    case addsick([Data]?, String,String,String, Int) // 增加病情
+    case publishsick(Int) // 发布病情
+    case deletesick(Int) // 删除病情
 }
 // 配置请求
 extension API: TargetType {
@@ -46,6 +49,12 @@ extension API: TargetType {
             return "/updateinfo"
         case .getsick:
             return "/getsick"
+        case .addsick:
+            return "/addsick"
+        case .publishsick:
+            return "/publishsick"
+        case .deletesick:
+            return "/deletesick"
         }
     }
     public var method: Moya.Method {
@@ -88,6 +97,22 @@ extension API: TargetType {
     return .uploadCompositeMultipart([MultipartFormData.init(provider: .data(data), name: "pictureFile", fileName: "photo.jpg", mimeType:"image/png")], urlParameters: ["userloginid": LOGINID!])
         case .getsick(let type):
             return .requestParameters(parameters: ["userloginid":LOGINID!, "type":type], encoding: URLEncoding.default)
+        case .addsick(let datas, let desc, let onedept, let twodept,let familyid):
+            var formDatas = [MultipartFormData]()
+            if datas != nil {
+                formDatas = [MultipartFormData]()
+                for (i, data) in datas!.enumerated() {
+                    let formData = MultipartFormData.init(provider: .data(data), name: "pictureFile", fileName: "test\(i).jpg", mimeType: "image/png")
+                    formDatas.append(formData)
+                }
+                
+            }
+            return .uploadCompositeMultipart(formDatas, urlParameters: ["usersickdesc": desc, "usersickprimarydept":onedept, "usersickseconddept": twodept,"userloginid":LOGINID!, "familyid": familyid])
+        case .publishsick(let sick):
+            return .requestParameters(parameters: ["userloginid":LOGINID!, "usersickid":sick], encoding: URLEncoding.default)
+        case .deletesick(let sick):
+            return .requestParameters(parameters: ["userloginid":LOGINID!, "usersickid":sick], encoding: URLEncoding.default)
+        
         }
         
     }
