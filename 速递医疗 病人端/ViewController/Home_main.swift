@@ -9,8 +9,9 @@
 import UIKit
 import Toast_Swift
 import SVProgressHUD
+import ObjectMapper
 
-class Home_main:TableRefreshController, UITableViewDataSource, UITableViewDelegate{
+class Home_main:BaseTableRefreshController<DoctorBean>, UITableViewDataSource, UITableViewDelegate{
     
     @IBOutlet weak var infoTableView: UITableView!
 
@@ -30,7 +31,44 @@ class Home_main:TableRefreshController, UITableViewDataSource, UITableViewDelega
         // 初始化navigationBar
         setUpNavTitle(title: "首页")
         // 添加下拉刷新
-        initRefresh(tableView: infoTableView, ApiMethod: API.getdoctorlist(selectedPage, "0", "0"))
+//        initRefresh(tableView: infoTableView, ApiMethod: API.getdoctorlist(selectedPage, "0", "0"))
+        initRefresh(scrollView: infoTableView, ApiMethod: API.getdoctorlist(selectedPage, "0", "0"), refreshHandler: {jsonobj in
+            let bean = Mapper<DoctorListBean>().map(JSONObject: jsonobj)
+            if bean?.code == 100 {
+                self.header?.endRefreshing()
+                if bean?.doctorDataList == nil {
+                    bean?.doctorDataList = [DoctorBean]()
+                }
+                self.data = (bean?.doctorDataList)!
+                if self.data.count == 0{
+                    //隐藏tableView,添加刷新按钮
+                    self.showRefreshBtn()
+                }
+                let tableView = self.scrollView as! UITableView
+                tableView.reloadData()
+            }else {
+                self.header?.endRefreshing()
+                showToast(self.view, (bean?.msg!)!)
+            }
+        }, getMoreHandler: {jsonObj in
+            let bean = Mapper<DoctorListBean>().map(JSONObject: jsonObj)
+            if bean?.code == 100 {
+                self.footer?.endRefreshing()
+                if bean?.doctorDataList?.count == 0{
+                    showToast(self.view, "已经到底了")
+                    return
+                }
+                self.footer?.endRefreshing()
+                self.data += (bean?.doctorDataList)!
+                self.selectedPage += 1
+                let tableView = self.scrollView as! UITableView
+                tableView.reloadData()
+                
+            }else {
+                self.footer?.endRefreshing()
+                showToast(self.view, (bean?.msg!)!)
+            }
+        })
         // 获取数据
         self.header?.beginRefreshing()
         infoTableView.dataSource = self

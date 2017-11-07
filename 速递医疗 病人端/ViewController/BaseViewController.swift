@@ -3,7 +3,10 @@
 
 
 import UIKit
-
+import MJRefresh
+import Moya
+import SnapKit
+import ObjectMapper
 
 class BaseViewController: UIViewController {
 
@@ -94,7 +97,109 @@ class SegmentedSlideViewController: BaseViewController {
         slideSwitch?.tintColor = UIColor.APPColor
         slideSwitch?.show(in: self)
     }
+}
+
+// 下拉刷新
+class BaseTableRefreshController<T>:BaseViewController {
+    var header:MJRefreshStateHeader?
+    var footer:MJRefreshAutoStateFooter?
+    var data = [T]()
+    var scrollView:UIScrollView?
+    var selectedPage = 1
+    var refreshHandler:(_ jsonObj:Any)->Void = {_ in}
+    var getMoreHandler:(_ jsonObj:Any)->Void = {_ in}
+    var ApiMethod:API?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    func initRefresh(scrollView:UIScrollView, ApiMethod:API, refreshHandler:@escaping (_ jsonObj:Any)->Void, getMoreHandler:@escaping (_ jsonObj:Any)->Void) {
+        self.ApiMethod = ApiMethod
+        self.refreshHandler = refreshHandler
+        self.getMoreHandler = getMoreHandler
+        self.scrollView = scrollView
+        self.header = MJRefreshNormalHeader(refreshingBlock: self.refreshData)
+        header?.lastUpdatedTimeLabel.isHidden = true
+        header?.stateLabel.isHidden = true;
+//        self.tableView?.mj_header = self.header
+        self.scrollView?.mj_header = self.header
+        self.footer = MJRefreshAutoNormalFooter(refreshingBlock: self.getMoreData)
+        self.footer?.isRefreshingTitleHidden = true
+        self.footer?.setTitle("", for: MJRefreshState.idle)
+        self.scrollView?.mj_footer = self.footer
+    }
+    
+     func showRefreshBtn() {
+        self.scrollView?.isHidden = true
+        let button = UIButton()
+        //label
+        button.setTitle("无内容，点击刷新", for: .normal)
+        button.setTitleColor(UIColor.lightGray, for: .normal)
+        button.addTarget(self, action: #selector(refreshBtn(button:)), for: .touchUpInside)
+        self.view.addSubview(button)
+        button.snp.makeConstraints { make in
+            make.center.equalTo(self.view)
+        }
+        
+    }
+    
+    private func refreshData(){
+        self.selectedPage = 1
+        //刷新数据
+        let Provider = MoyaProvider<API>()
+        
+        Provider.request(ApiMethod!) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    self.header?.endRefreshing()
+                    let jsonObj = try response.mapJSON()
+                    self.refreshHandler(jsonObj)
+                }catch {
+                    showToast(self.view,CATCHMSG)
+                }
+            case let .failure(error):
+                self.header?.endRefreshing()
+                dPrint(message: "error:\(error)")
+                showToast(self.view, ERRORMSG)
+            }
+        }
+        
+    }
+    
+    private func getMoreData(){
+        //获取更多数据
+        let Provider = MoyaProvider<API>()
+        
+        Provider.request(self.ApiMethod!) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    let jsonObj = try response.mapJSON()
+                    self.getMoreHandler(jsonObj)
+                }catch {
+                    self.footer?.endRefreshing()
+                    showToast(self.view, CATCHMSG)
+                }
+            case let .failure(error):
+                self.footer?.endRefreshing()
+                dPrint(message: "error:\(error)")
+                showToast(self.view, ERRORMSG)
+            }
+        }
+        
+    }
+    
+    
+    @objc func refreshBtn(button:UIButton) {
+        // 点击刷新
+        self.scrollView?.isHidden = false
+        button.removeFromSuperview()
+        self.header?.beginRefreshing()
+    }
     
     
 }
+
 

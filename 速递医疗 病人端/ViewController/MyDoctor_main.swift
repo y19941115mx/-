@@ -45,30 +45,12 @@ class MyDoctor_main: BaseViewController, UITableViewDataSource, UITableViewDeleg
     
     
     private func getData() {
-        let Provider = MoyaProvider<API>()
-        SVProgressHUD.show()
-        Provider.request(API.getredoctor) { result in
-            switch result {
-            case let .success(response):
-                do {
-                    SVProgressHUD.dismiss()
-                    let bean = Mapper<DoctorListBean>().map(JSONObject: try response.mapJSON())
-                    if bean?.code == 100 {
-                        self.data = (bean?.doctorDataList)!
-                        self.infoTableView.reloadData()
-                    }else {
-                        showToast(self.view, bean!.msg!)
-                    }
-                    
-                }catch {
-                    SVProgressHUD.dismiss()
-                    self.view.makeToast(CATCHMSG)
-                }
-            case let .failure(error):
-                SVProgressHUD.dismiss()
-                dPrint(message: "error:\(error)")
-                self.view.makeToast(ERRORMSG)
+        NetWorkUtil<DoctorListBean>.init(method: API.getredoctor, vc: self).newRequest { bean in
+            if bean.code == 100 {
+                self.data = (bean.doctorDataList)!
+                self.infoTableView.reloadData()
             }
+            showToast(self.view, bean.msg!)
         }
     }
     

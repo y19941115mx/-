@@ -31,7 +31,15 @@ public func showToast(_ view:UIView, _ message:String) {
 }
 
 // 网络请求
-class NetWorkUtil<T:BaseMappable> {
+class NetWorkUtil<T:BaseAPIBean> {
+    var method:API?
+    var vc:UIViewController = UIViewController()
+    
+    init(method:API, vc:UIViewController) {
+        self.method = method
+        self.vc = vc
+    }
+    
     class func getRequest(urlString: String, params : [String : Any], success : @escaping (_ response : [String : AnyObject])->(), failture : @escaping (_ error : Error)->()) {
         Alamofire.request(urlString, method: .get, parameters: params).validate()
             .responseJSON { (response) in
@@ -44,10 +52,10 @@ class NetWorkUtil<T:BaseMappable> {
         }
     }
     
-    class func newRequest(method:API, vc:UIViewController, handler: @escaping (_ bean:BaseMappable) -> Void) {
+    func newRequest(handler:@escaping (_ bean:T) -> Void) {
         let Provider = MoyaProvider<API>()
         SVProgressHUD.show()
-        Provider.request(method) { result in
+        Provider.request(method!) { result in
             switch result {
             case let .success(response):
                 do {
@@ -55,22 +63,23 @@ class NetWorkUtil<T:BaseMappable> {
                     let bean = Mapper<T>().map(JSONObject: try response.mapJSON())
                     handler(bean!)
                 }catch {
-                    SVProgressHUD.dismiss()
-                    showToast(vc.view, CATCHMSG)
+                    showToast(self.vc.view, CATCHMSG)
                 }
             case let .failure(error):
                 SVProgressHUD.dismiss()
                 dPrint(message: "error:\(error)")
-                showToast(vc.view, ERRORMSG)
+                showToast(self.vc.view, ERRORMSG)
             }
         }
     }
+    
     //获取科室数据
     class func getDepartMent(success : @escaping (_ response : [String : AnyObject])->(), failture : @escaping (_ error : Error)->()){
         getRequest(urlString: StaticClass.GetDept, params: [:], success: success, failture:failture)
     }
-    
 }
+
+
 
 
 struct StaticClass {

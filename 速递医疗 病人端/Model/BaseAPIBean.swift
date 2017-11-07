@@ -21,6 +21,18 @@ class BaseAPIBean:Mappable {
     }
 }
 
+class BaseListBean<T>:BaseAPIBean {
+    var dataList:[T]?
+    required init?(map: Map) {
+        super.init(map: map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map: map)
+        dataList <- map["data"]
+    }
+}
+
 class DoctorListBean:BaseAPIBean {
     var doctorDataList:[DoctorBean]?
     required init?(map: Map) {
