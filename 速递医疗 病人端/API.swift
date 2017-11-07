@@ -98,14 +98,13 @@ extension API: TargetType {
         case .getsick(let type):
             return .requestParameters(parameters: ["userloginid":LOGINID!, "type":type], encoding: URLEncoding.default)
         case .addsick(let datas, let desc, let onedept, let twodept,let familyid):
-            var formDatas = [MultipartFormData]()
+            var formDatas = [MultipartFormData.init(provider: .data(Data.init()), name: "pictureFile")]
             if datas != nil {
                 formDatas = [MultipartFormData]()
                 for (i, data) in datas!.enumerated() {
                     let formData = MultipartFormData.init(provider: .data(data), name: "pictureFile", fileName: "test\(i).jpg", mimeType: "image/png")
                     formDatas.append(formData)
                 }
-                
             }
             return .uploadCompositeMultipart(formDatas, urlParameters: ["usersickdesc": desc, "usersickprimarydept":onedept, "usersickseconddept": twodept,"userloginid":LOGINID!, "familyid": familyid])
         case .publishsick(let sick):
