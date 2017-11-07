@@ -6,6 +6,9 @@ import UIKit
 import Kingfisher
 import Toast_Swift
 import Alamofire
+import Moya
+import SVProgressHUD
+import ObjectMapper
 
 let SCREEN_WIDTH = UIScreen.main.bounds.size.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
@@ -28,7 +31,7 @@ public func showToast(_ view:UIView, _ message:String) {
 }
 
 // 网络请求
-class NetWorkUtil {
+class NetWorkUtil<T:BaseMappable> {
     class func getRequest(urlString: String, params : [String : Any], success : @escaping (_ response : [String : AnyObject])->(), failture : @escaping (_ error : Error)->()) {
         Alamofire.request(urlString, method: .get, parameters: params).validate()
             .responseJSON { (response) in
@@ -39,7 +42,28 @@ class NetWorkUtil {
                     failture(error)
                 }
         }
-        
+    }
+    
+    class func newRequest(method:API, vc:UIViewController, handler: @escaping (_ bean:BaseMappable) -> Void) {
+        let Provider = MoyaProvider<API>()
+        SVProgressHUD.show()
+        Provider.request(method) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    SVProgressHUD.dismiss()
+                    let bean = Mapper<T>().map(JSONObject: try response.mapJSON())
+                    handler(bean!)
+                }catch {
+                    SVProgressHUD.dismiss()
+                    showToast(vc.view, CATCHMSG)
+                }
+            case let .failure(error):
+                SVProgressHUD.dismiss()
+                dPrint(message: "error:\(error)")
+                showToast(vc.view, ERRORMSG)
+            }
+        }
     }
     //获取科室数据
     class func getDepartMent(success : @escaping (_ response : [String : AnyObject])->(), failture : @escaping (_ error : Error)->()){
