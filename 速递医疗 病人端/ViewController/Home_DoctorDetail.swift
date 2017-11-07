@@ -29,6 +29,11 @@ class Home_DoctorDetail: BaseViewController {
     }
     
     
-
+    @IBAction func click_opt(_ sender: UIButton) {
+        NetWorkUtil<BaseAPIBean>.init(method: API.optdoctor((doctorBean?.docId)!), vc: self).newRequest{ bean in
+            showToast(self.view, bean.msg!)
+        }
+    }
+    
 }
 

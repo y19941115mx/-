@@ -24,13 +24,13 @@ class PublishCell: UICollectionViewCell, UICollectionViewDataSource {
     
     var imageSource = [String]()
     var data:SickBean?
-    var vc = SickCollectionRefreshController()
+    var vc = BaseRefreshController<SickBean>()
     override func awakeFromNib() {
         super.awakeFromNib()
         self.collectionView.dataSource = self
     }
     
-    func updataView(sickBean:SickBean, vc:SickCollectionRefreshController) {
+    func updataView(sickBean:SickBean, vc:BaseRefreshController<SickBean>) {
         self.data = sickBean
         self.vc = vc
         label_name.text = sickBean.familyname

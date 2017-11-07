@@ -15,18 +15,33 @@ import SVProgressHUD
 import UIKit
 
 
-class MyDoctor_main: BaseViewController, UITableViewDataSource, UITableViewDelegate {
+class MyDoctor_main: BaseRefreshController<DoctorBean>, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var infoTableView: BaseTableView!
-    var type:Int = 0
-    var data = [DoctorBean]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavTitle(title: "我的医生")
-        // 获取数据
-        getData()
-        
+        // 添加上拉刷新
+        initRefresh(scrollView: infoTableView, ApiMethod: .getredoctor, refreshHandler: {jsonobj in
+            let bean = Mapper<DoctorListBean>().map(JSONObject: jsonobj)
+            if bean?.code == 100 {
+                self.header?.endRefreshing()
+                if bean?.doctorDataList == nil {
+                    bean?.doctorDataList = [DoctorBean]()
+                }
+                self.data = (bean?.doctorDataList)!
+                if self.data.count == 0{
+                    //隐藏tableView,添加刷新按钮
+                    self.showRefreshBtn()
+                }
+                let tableView = self.scrollView as! UITableView
+                tableView.reloadData()
+            }else {
+                self.header?.endRefreshing()
+                showToast(self.view, (bean?.msg!)!)
+            }
+        }, getMoreHandler: getMoreData)
     }
     
     // MARK: - Table view data source
@@ -44,17 +59,40 @@ class MyDoctor_main: BaseViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     
-    private func getData() {
-        NetWorkUtil<DoctorListBean>.init(method: API.getredoctor, vc: self).newRequest { bean in
-            if bean.code == 100 {
-                self.data = (bean.doctorDataList)!
-                self.infoTableView.reloadData()
+    private func getMoreData() {
+        let Provider = MoyaProvider<API>()
+        Provider.request(API.getredoctor) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    let bean = Mapper<DoctorListBean>().map(JSONObject: try response.mapJSON())
+                    if bean?.code == 100 {
+                        self.footer?.endRefreshing()
+                        if bean?.doctorDataList?.count == 0{
+                            showToast(self.view, "已经到底了")
+                            return
+                        }
+                        self.footer?.endRefreshing()
+                        self.data += (bean?.doctorDataList)!
+                        self.selectedPage += 1
+                        let tableView = self.scrollView as! UITableView
+                        tableView.reloadData()
+                        
+                    }else {
+                        self.footer?.endRefreshing()
+                        showToast(self.view, (bean?.msg!)!)
+                    }
+                }catch {
+                    self.footer?.endRefreshing()
+                    showToast(self.view, CATCHMSG)
+                }
+            case let .failure(error):
+                self.footer?.endRefreshing()
+                dPrint(message: "error:\(error)")
+                showToast(self.view, ERRORMSG)
             }
-            showToast(self.view, bean.msg!)
         }
     }
-    
-    
     
 }
 

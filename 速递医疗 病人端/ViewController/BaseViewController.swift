@@ -8,6 +8,8 @@ import Moya
 import SnapKit
 import ObjectMapper
 
+
+// 基本
 class BaseViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -30,7 +32,7 @@ class BaseViewController: UIViewController {
     
 }
 
-// 输入框
+// 多个输入框
 
 class BaseTextViewController:BaseViewController, UITextFieldDelegate {
     var tv_source = [UITextField]()
@@ -100,21 +102,21 @@ class SegmentedSlideViewController: BaseViewController {
 }
 
 // 下拉刷新
-class BaseTableRefreshController<T>:BaseViewController {
+class BaseRefreshController<T>:BaseViewController {
     var header:MJRefreshStateHeader?
     var footer:MJRefreshAutoStateFooter?
     var data = [T]()
     var scrollView:UIScrollView?
     var selectedPage = 1
     var refreshHandler:(_ jsonObj:Any)->Void = {_ in}
-    var getMoreHandler:(_ jsonObj:Any)->Void = {_ in}
+    var getMoreHandler:()->Void = {}
     var ApiMethod:API?
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    func initRefresh(scrollView:UIScrollView, ApiMethod:API, refreshHandler:@escaping (_ jsonObj:Any)->Void, getMoreHandler:@escaping (_ jsonObj:Any)->Void) {
+    func initRefresh(scrollView:UIScrollView, ApiMethod:API, refreshHandler:@escaping (_ jsonObj:Any)->Void, getMoreHandler:@escaping ()->Void) {
         self.ApiMethod = ApiMethod
         self.refreshHandler = refreshHandler
         self.getMoreHandler = getMoreHandler
@@ -122,12 +124,21 @@ class BaseTableRefreshController<T>:BaseViewController {
         self.header = MJRefreshNormalHeader(refreshingBlock: self.refreshData)
         header?.lastUpdatedTimeLabel.isHidden = true
         header?.stateLabel.isHidden = true;
-//        self.tableView?.mj_header = self.header
         self.scrollView?.mj_header = self.header
         self.footer = MJRefreshAutoNormalFooter(refreshingBlock: self.getMoreData)
         self.footer?.isRefreshingTitleHidden = true
         self.footer?.setTitle("", for: MJRefreshState.idle)
         self.scrollView?.mj_footer = self.footer
+    }
+    
+    func initNoFooterRefresh(scrollView:UIScrollView, ApiMethod:API, refreshHandler:@escaping (_ jsonObj:Any)->Void) {
+        self.ApiMethod = ApiMethod
+        self.refreshHandler = refreshHandler
+        self.scrollView = scrollView
+        self.header = MJRefreshNormalHeader(refreshingBlock: self.refreshData)
+        header?.lastUpdatedTimeLabel.isHidden = true
+        header?.stateLabel.isHidden = true;
+        self.scrollView?.mj_header = self.header
     }
     
      func showRefreshBtn() {
@@ -144,7 +155,7 @@ class BaseTableRefreshController<T>:BaseViewController {
         
     }
     
-    private func refreshData(){
+    func refreshData(){
         self.selectedPage = 1
         //刷新数据
         let Provider = MoyaProvider<API>()
@@ -170,25 +181,7 @@ class BaseTableRefreshController<T>:BaseViewController {
     
     private func getMoreData(){
         //获取更多数据
-        let Provider = MoyaProvider<API>()
-        
-        Provider.request(self.ApiMethod!) { result in
-            switch result {
-            case let .success(response):
-                do {
-                    let jsonObj = try response.mapJSON()
-                    self.getMoreHandler(jsonObj)
-                }catch {
-                    self.footer?.endRefreshing()
-                    showToast(self.view, CATCHMSG)
-                }
-            case let .failure(error):
-                self.footer?.endRefreshing()
-                dPrint(message: "error:\(error)")
-                showToast(self.view, ERRORMSG)
-            }
-        }
-        
+        getMoreHandler()
     }
     
     

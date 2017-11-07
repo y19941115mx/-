@@ -27,7 +27,7 @@ public func dPrint<N>(message:N,fileName:String = #file,methodName:String = #fun
 public func showToast(_ view:UIView, _ message:String) {
     var style = ToastStyle()
     style.backgroundColor = UIColor.APPColor
-    view.makeToast(message, duration: 2.0, position: .center, style:style)
+    view.makeToast(message, duration: 2.0, position: .bottom, style:style)
 }
 
 // 网络请求

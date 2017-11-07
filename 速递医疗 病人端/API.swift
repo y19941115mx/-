@@ -21,6 +21,7 @@ public enum API {
     case addsick([Data]?, String,String,String, Int) // 增加病情
     case publishsick(Int) // 发布病情
     case deletesick(Int) // 删除病情
+    case optdoctor(Int) // 预选医生
 }
 // 配置请求
 extension API: TargetType {
@@ -55,6 +56,8 @@ extension API: TargetType {
             return "/publishsick"
         case .deletesick:
             return "/deletesick"
+        case .optdoctor:
+            return "/optdoctor"
         }
     }
     public var method: Moya.Method {
@@ -111,7 +114,8 @@ extension API: TargetType {
             return .requestParameters(parameters: ["userloginid":LOGINID!, "usersickid":sick], encoding: URLEncoding.default)
         case .deletesick(let sick):
             return .requestParameters(parameters: ["userloginid":LOGINID!, "usersickid":sick], encoding: URLEncoding.default)
-        
+        case .optdoctor(let doctorId):
+            return .requestParameters(parameters: ["docloginid":doctorId, "userloginid":LOGINID!], encoding: URLEncoding.default)
         }
         
     }

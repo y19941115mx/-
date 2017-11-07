@@ -10,8 +10,9 @@ import UIKit
 import Toast_Swift
 import SVProgressHUD
 import ObjectMapper
+import Moya
 
-class Home_main:BaseTableRefreshController<DoctorBean>, UITableViewDataSource, UITableViewDelegate{
+class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITableViewDelegate{
     
     @IBOutlet weak var infoTableView: UITableView!
 
@@ -50,25 +51,7 @@ class Home_main:BaseTableRefreshController<DoctorBean>, UITableViewDataSource, U
                 self.header?.endRefreshing()
                 showToast(self.view, (bean?.msg!)!)
             }
-        }, getMoreHandler: {jsonObj in
-            let bean = Mapper<DoctorListBean>().map(JSONObject: jsonObj)
-            if bean?.code == 100 {
-                self.footer?.endRefreshing()
-                if bean?.doctorDataList?.count == 0{
-                    showToast(self.view, "已经到底了")
-                    return
-                }
-                self.footer?.endRefreshing()
-                self.data += (bean?.doctorDataList)!
-                self.selectedPage += 1
-                let tableView = self.scrollView as! UITableView
-                tableView.reloadData()
-                
-            }else {
-                self.footer?.endRefreshing()
-                showToast(self.view, (bean?.msg!)!)
-            }
-        })
+        }, getMoreHandler:getMoreData)
         // 获取数据
         self.header?.beginRefreshing()
         infoTableView.dataSource = self
@@ -157,6 +140,41 @@ class Home_main:BaseTableRefreshController<DoctorBean>, UITableViewDataSource, U
     }
         
     // MARK: - Private Method
+    
+    private func getMoreData() {
+        let Provider = MoyaProvider<API>()
+        Provider.request(API.getdoctorlist(selectedPage, "0", "0")) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    let bean = Mapper<DoctorListBean>().map(JSONObject: try response.mapJSON())
+                    if bean?.code == 100 {
+                        self.footer?.endRefreshing()
+                        if bean?.doctorDataList?.count == 0{
+                            showToast(self.view, "已经到底了")
+                            return
+                        }
+                        self.footer?.endRefreshing()
+                        self.data += (bean?.doctorDataList)!
+                        self.selectedPage += 1
+                        let tableView = self.scrollView as! UITableView
+                        tableView.reloadData()
+                        
+                    }else {
+                        self.footer?.endRefreshing()
+                        showToast(self.view, (bean?.msg!)!)
+                    }
+                }catch {
+                    self.footer?.endRefreshing()
+                    showToast(self.view, CATCHMSG)
+                }
+            case let .failure(error):
+                self.footer?.endRefreshing()
+                dPrint(message: "error:\(error)")
+                showToast(self.view, ERRORMSG)
+            }
+        }
+    }
 
 }
 
