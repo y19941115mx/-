@@ -42,6 +42,8 @@ class MyDoctor_main: BaseRefreshController<DoctorBean>, UITableViewDataSource, U
                 showToast(self.view, (bean?.msg!)!)
             }
         }, getMoreHandler: getMoreData)
+        //刷新数据
+        self.header?.beginRefreshing()
     }
     
     // MARK: - Table view data source
