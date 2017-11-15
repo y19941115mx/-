@@ -11,13 +11,12 @@ import SwiftyJSON
 import Moya
 import ObjectMapper
 import SVProgressHUD
-import STPopup
 
 let maxImageNum = 4
 
 // 添加病情页面
 
-class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var placeHolderLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var departTextField: UITextField!
@@ -26,6 +25,9 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
     var deptPicker = UIPickerView()
     var flagPatient = false
     var dapartPatient = false
+    
+    var departData = [String:[String]]()
+    var proIndex:Int = 0
     // 就诊人信息
     var familyData = [familyBean]()
     // 就诊人ID
@@ -35,23 +37,49 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
     //科室名
     var oneDepart = ""
     var twoDepart = ""
-    var vc_main:STPopupController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         textView.delegate = self
         initData()
-        let vc_popup1 = UIStoryboard.init(name: "PopUP", bundle: nil).instantiateViewController(withIdentifier: "department")
-
-        vc_main = STPopupController.init(rootViewController:vc_popup1 )
         // Do any additional setup after loading the view.
     }
     
     // MARK: - Private Method
-    
+    func setInputView(mPicker:UIPickerView, mTextField:UITextField){
+        // 关联textfield 与 pickerView
+        let myToolBar = UIToolbar(frame: CGRect(x: 0, y: view.frame.size.height - 44 - mPicker.frame.size.height , width: view.frame.size.width, height: 44))
+        let finishBtn = UIBarButtonItem(title: "完成", style: .done, target:self, action: #selector(clickBtn(button:)))
+        finishBtn.tag = mPicker.tag
+        myToolBar.setItems([finishBtn], animated: false)
+        
+        mPicker.delegate = self
+        mPicker.dataSource = self
+        //样式尺寸
+        mPicker.backgroundColor = UIColor.white
+        mTextField.inputView = mPicker
+        mTextField.inputAccessoryView = myToolBar
+    }
     
     func initData() {
         imgResource.append(#imageLiteral(resourceName: "add"))
+         //获取部门数据
+       NetWorkUtil.getDepartMent(success: { response in
+            let json = JSON(response)
+            let data = json["data"].arrayValue
+            for i in 0..<data.count{
+                // 处理数据
+                let one = data[i]["first"].stringValue
+                let two = data[i]["second"].arrayObject as! [String]
+                if one != "" {
+                    self.departData[one] = two
+                    self.deptPicker.reloadAllComponents()
+                }
+            }
+        }, failture:{ error in dPrint(message: error)
+        })
+        // 关联 UIPicker 和 textField
+        setInputView(mPicker:deptPicker, mTextField:departTextField)
         // 获取亲属信息
         let Provider = MoyaProvider<API>()
         Provider.request(API.findfamily(LOGINID!)) { result in
@@ -112,6 +140,62 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
         
     }
     
+    // MARK: - UIPickerView
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 2
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+        //判断当前是第几列
+        if (component == 0) {
+            // 一级科室的数量
+            return departData.keys.count
+        }else{
+            //二级科室的数量
+            let key = Array(departData.keys)[proIndex]
+            return (departData[key]?.count)!
+        }
+        
+    }
+    
+    //MARK: - UIPickerViewDelegate
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
+        
+            if (component == 0) {
+                // 一级科室
+                return Array(departData.keys)[row]
+            }else{
+                //取出选中的二级科室
+                let key = Array(departData.keys)[proIndex]
+                return departData[key]?[row]
+            }
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+        
+            if (component == 0) {
+                //选中第一列
+                proIndex = pickerView.selectedRow(inComponent: 0)
+                self.deptPicker.reloadComponent(1)
+            }
+            //获取选中的一级科室
+            let oneDepart = Array(departData.keys)[row]
+            //获取选中的二级科室
+            let twoDeparts = departData[oneDepart]
+            if  twoDeparts?.count != 0{
+                let row = pickerView.selectedRow(inComponent: 1)
+                self.oneDepart = oneDepart
+                self.twoDepart = (twoDeparts?[row])!
+                departTextField.text = "\(oneDepart) \(twoDeparts?[row] ?? "")"
+            }else{
+                self.oneDepart = oneDepart
+                departTextField.text = oneDepart
+            }
+        
+    }
+    
+    
     // MARK: - UITextViewDelegate
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         textView.resignFirstResponder()
@@ -155,6 +239,12 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
         }
     }
     
+    // MARK: - Action
+    
+    @objc func clickBtn(button:UIButton){
+        // 选择科室
+        departTextField.endEditing(true)
+    }
     
     
     @IBAction func saveBtn(_ sender: UIButton) {
@@ -202,17 +292,7 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
             sender.setTitle(result, for: .normal)
         })
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if oneDepart != "" {
-            departTextField.text = "\(oneDepart) \(twoDepart)"
-        }
-    }
 
    
-    @IBAction func click_depart(_ sender: Any) {
-        vc_main?.present(in: self)
-    }
-    
+
 }

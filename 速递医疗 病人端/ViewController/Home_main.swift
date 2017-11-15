@@ -32,6 +32,7 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
         // 初始化navigationBar
         setUpNavTitle(title: "首页")
         // 添加下拉刷新
+//        initRefresh(tableView: infoTableView, ApiMethod: API.getdoctorlist(selectedPage, "0", "0"))
         initRefresh(scrollView: infoTableView, ApiMethod: API.getdoctorlist(selectedPage, "0", "0"), refreshHandler: {jsonobj in
             let bean = Mapper<DoctorListBean>().map(JSONObject: jsonobj)
             if bean?.code == 100 {
