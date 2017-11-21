@@ -34,69 +34,14 @@ class Date_page: BaseRefreshController<OrderBean>, UICollectionViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initRefresh(scrollView: self.mCollectionView, ApiMethod: API.getorder(selectedPage, LOGINID!, type), refreshHandler: {jsonobj in
-            let bean = Mapper<OrderListBean>().map(JSONObject: jsonobj)
-            if bean?.code == 100 {
-                self.header?.endRefreshing()
-                if bean?.OrderDataList == nil {
-                    bean?.OrderDataList = [OrderBean]()
-                }
-                self.data = (bean?.OrderDataList)!
-                if self.data.count == 0{
-                    //隐藏tableView,添加刷新按钮
-                    self.showRefreshBtn()
-                }
-                let collectionView = self.scrollView as! UICollectionView
-                collectionView.reloadData()
-            }else {
-                self.header?.endRefreshing()
-                showToast(self.view, (bean?.msg!)!)
-            }
-        }, getMoreHandler: getMoreData)
+        initRefresh(scrollView: self.mCollectionView, ApiMethod: API.getorder(selectedPage, LOGINID!, type),getMoreHandler: {
+            self.getMoreMethod = API.getorder(self.selectedPage, LOGINID!, self.type)
+        }, isTableView: false)
         self.header?.beginRefreshing()
     }
     
     // MARK: - Table view data source
 
-    
-
-    
-    private func getMoreData() {
-        let Provider = MoyaProvider<API>()
-        Provider.request(API.getorder(selectedPage, LOGINID!, type)) { result in
-            switch result {
-            case let .success(response):
-                do {
-                    let bean = Mapper<OrderListBean>().map(JSONObject: try response.mapJSON())
-                    if bean?.code == 100 {
-                        self.footer?.endRefreshing()
-                        if bean?.OrderDataList?.count == 0{
-                            showToast(self.view, "已经到底了")
-                            return
-                        }
-                        self.footer?.endRefreshing()
-                        self.data += (bean?.OrderDataList)!
-                        self.selectedPage += 1
-                        let tableView = self.scrollView as! UICollectionView
-                        tableView.reloadData()
-                        
-                    }else {
-                        self.footer?.endRefreshing()
-                        showToast(self.view, (bean?.msg!)!)
-                    }
-                }catch {
-                    self.footer?.endRefreshing()
-                    showToast(self.view, CATCHMSG)
-                }
-            case let .failure(error):
-                self.footer?.endRefreshing()
-                dPrint(message: "error:\(error)")
-                showToast(self.view, ERRORMSG)
-            }
-        }
-    }
-
-    
 
     /*
     // MARK: - Navigation

@@ -18,25 +18,7 @@ class Publish_page: BaseRefreshController<SickBean>, UICollectionViewDataSource,
     @IBOutlet weak var infoCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        initNoFooterRefresh(scrollView: infoCollectionView, ApiMethod: .getsick(type), refreshHandler: {jsonobj in
-            let bean = Mapper<sickListBean>().map(JSONObject: jsonobj)
-            if bean?.code == 100 {
-                self.header?.endRefreshing()
-                if bean?.sickDataList == nil {
-                    bean?.sickDataList = [SickBean]()
-                }
-                self.data = (bean?.sickDataList)!
-                if self.data.count == 0{
-                    //隐藏tableView,添加刷新按钮
-                    self.showRefreshBtn()
-                }
-                let collectionView = self.scrollView as! UICollectionView
-                collectionView.reloadData()
-            }else {
-                self.header?.endRefreshing()
-                showToast(self.view, (bean?.msg!)!)
-            }
-        })
+        initNoFooterRefresh(scrollView: infoCollectionView, ApiMethod: .getsick(type), isTableView:false)
         self.header?.beginRefreshing()
     }
     
