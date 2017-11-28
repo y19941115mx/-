@@ -40,8 +40,7 @@ class Mine_setting: BaseViewController, UITableViewDataSource, UITableViewDelega
 
     
     private func logout() {
-        let Key = user_default.userId.rawValue
-        user_default.clearUserDefaultValue(key: Key)
+        user_default.clearUserDefaultValue()
         let vc_login = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()
         APPLICATION.window?.rootViewController = vc_login
     }
