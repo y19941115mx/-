@@ -93,7 +93,7 @@ class SegmentedSlideViewController: BaseViewController {
         slideSwitch?.show(in: self)
     }
     
-    func setUpSlideSwitchWithNavigation(titles:[String], vcs:[UIViewController])
+    func setUpSlideSwitchNoNavigation(titles:[String], vcs:[UIViewController])
     {
         let slideSwitch = XLSegmentedSlideSwitch(frame: CGRect(x: 0,  y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height - 64), titles: titles, viewControllers: vcs)
         slideSwitch?.tintColor = UIColor.APPColor

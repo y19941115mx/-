@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		69A48EF81A7060F810D582DE /* Pods_________.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6FE386D3244A2B5232BE91 /* Pods_________.framework */; };
+		84031D171FCD52EB0058D437 /* PublishCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84031D161FCD52EB0058D437 /* PublishCell.swift */; };
 		840647321FA62C1B009B21C4 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840647311FA62C1B009B21C4 /* CustomButton.swift */; };
 		840647351FA62D03009B21C4 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840647331FA62D03009B21C4 /* Extension.swift */; };
 		840647361FA62D03009B21C4 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840647341FA62D03009B21C4 /* Util.swift */; };
@@ -38,8 +39,6 @@
 		84736B9F1FAC5592001E9AA5 /* MinePocketCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84736B9D1FAC5592001E9AA5 /* MinePocketCollectionViewCell.xib */; };
 		84736BA11FAC564A001E9AA5 /* Mine_pocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84736BA01FAC564A001E9AA5 /* Mine_pocket.swift */; };
 		84736BA31FAC5ADA001E9AA5 /* Mine_family.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84736BA21FAC5ADA001E9AA5 /* Mine_family.swift */; };
-		847DD0D21FAED5DE0077F78A /* PublishCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847DD0D01FAED5DE0077F78A /* PublishCell.swift */; };
-		847DD0D31FAED5DE0077F78A /* PublishCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 847DD0D11FAED5DE0077F78A /* PublishCell.xib */; };
 		847DD0D51FAEE2B50077F78A /* Publish_add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847DD0D41FAEE2B50077F78A /* Publish_add.swift */; };
 		848A29891FAAFCAE00123A3F /* Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848A29881FAAFCAE00123A3F /* Mine.storyboard */; };
 		848A298B1FAB092900123A3F /* Mine_main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A298A1FAB092900123A3F /* Mine_main.swift */; };
@@ -63,6 +62,7 @@
 /* Begin PBXFileReference section */
 		1A6FE386D3244A2B5232BE91 /* Pods_________.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_________.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		34CAB850216A56570E87C8D2 /* Pods-速递医疗 病人端.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-速递医疗 病人端.debug.xcconfig"; path = "Pods/Target Support Files/Pods-速递医疗 病人端/Pods-速递医疗 病人端.debug.xcconfig"; sourceTree = "<group>"; };
+		84031D161FCD52EB0058D437 /* PublishCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishCell.swift; sourceTree = "<group>"; };
 		840647311FA62C1B009B21C4 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		840647331FA62D03009B21C4 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		840647341FA62D03009B21C4 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -99,8 +99,6 @@
 		84736B9D1FAC5592001E9AA5 /* MinePocketCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MinePocketCollectionViewCell.xib; sourceTree = "<group>"; };
 		84736BA01FAC564A001E9AA5 /* Mine_pocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine_pocket.swift; sourceTree = "<group>"; };
 		84736BA21FAC5ADA001E9AA5 /* Mine_family.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine_family.swift; sourceTree = "<group>"; };
-		847DD0D01FAED5DE0077F78A /* PublishCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishCell.swift; sourceTree = "<group>"; };
-		847DD0D11FAED5DE0077F78A /* PublishCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PublishCell.xib; sourceTree = "<group>"; };
 		847DD0D41FAEE2B50077F78A /* Publish_add.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Publish_add.swift; sourceTree = "<group>"; };
 		848A29881FAAFCAE00123A3F /* Mine.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Mine.storyboard; sourceTree = "<group>"; };
 		848A298A1FAB092900123A3F /* Mine_main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine_main.swift; sourceTree = "<group>"; };
@@ -258,6 +256,7 @@
 		84C984081FA6180D0058FA7B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				84031D161FCD52EB0058D437 /* PublishCell.swift */,
 				840647311FA62C1B009B21C4 /* CustomButton.swift */,
 				84F0402B1FA9A48C003BCC54 /* HomeMainTableViewCell.swift */,
 				84F0402C1FA9A48C003BCC54 /* HomeMainTableViewCell.xib */,
@@ -267,8 +266,6 @@
 				846D885E1FAC223300DE6308 /* MineOrderCollectionViewCell.xib */,
 				84736B9C1FAC5592001E9AA5 /* MinePocketCollectionViewCell.swift */,
 				84736B9D1FAC5592001E9AA5 /* MinePocketCollectionViewCell.xib */,
-				847DD0D01FAED5DE0077F78A /* PublishCell.swift */,
-				847DD0D11FAED5DE0077F78A /* PublishCell.xib */,
 				84939BCB1FACA8540062062C /* BaseCollectionView.swift */,
 			);
 			path = View;
@@ -348,7 +345,6 @@
 				8406477B1FA759A4009B21C4 /* Login.storyboard in Resources */,
 				843C3EB41FA8A6EC0076EB8C /* Home.storyboard in Resources */,
 				846D88601FAC223300DE6308 /* MineOrderCollectionViewCell.xib in Resources */,
-				847DD0D31FAED5DE0077F78A /* PublishCell.xib in Resources */,
 				84F0402E1FA9A48C003BCC54 /* HomeMainTableViewCell.xib in Resources */,
 				84C983F91FA611A60058FA7B /* LaunchScreen.storyboard in Resources */,
 				843C3EBC1FA946FB0076EB8C /* MyDoctor.storyboard in Resources */,
@@ -454,6 +450,7 @@
 				846D885F1FAC223300DE6308 /* MineOrderCollectionViewCell.swift in Sources */,
 				840647361FA62D03009B21C4 /* Util.swift in Sources */,
 				8406477F1FA770D8009B21C4 /* LoginViewController.swift in Sources */,
+				84031D171FCD52EB0058D437 /* PublishCell.swift in Sources */,
 				843C3EB81FA8A7860076EB8C /* Home_main.swift in Sources */,
 				841A27031FAD5AE500D1A807 /* MyDoctorTableViewCell.swift in Sources */,
 				84C984061FA618060058FA7B /* BaseViewController.swift in Sources */,
@@ -461,7 +458,6 @@
 				84C984021FA617F00058FA7B /* ModelBean.swift in Sources */,
 				846D885C1FAC106400DE6308 /* Mine_setting.swift in Sources */,
 				843A958A1FAEA66B00434254 /* Publish_main.swift in Sources */,
-				847DD0D21FAED5DE0077F78A /* PublishCell.swift in Sources */,
 				840647721FA6A6E4009B21C4 /* XLSegmentedSlideSwitch.m in Sources */,
 				840647811FA80898009B21C4 /* BaseAPIBean.swift in Sources */,
 				84736BA31FAC5ADA001E9AA5 /* Mine_family.swift in Sources */,

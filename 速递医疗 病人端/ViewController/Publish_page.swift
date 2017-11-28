@@ -29,12 +29,20 @@ class Publish_page: BaseRefreshController<SickBean>, UICollectionViewDataSource,
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if type == 2 {
+            let cell =
+                collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PublishCell2
+            let sickBean = data[indexPath.row]
+            cell.updataView(sickBean: sickBean, vc: self)
+            return cell
+        }else{
         let cell =
             collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PublishCell
+            let sickBean = data[indexPath.row]
+            cell.updataView(sickBean: sickBean, vc: self)
+            return cell
+        }
         
-        let sickBean = data[indexPath.row]
-        cell.updataView(sickBean: sickBean, vc: self)
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
