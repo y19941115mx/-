@@ -563,6 +563,11 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="height">
+                                        <integer key="value" value="150"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="pYy-LT-v90" id="vG1-0w-tb4"/>
                                     <outlet property="delegate" destination="pYy-LT-v90" id="U6n-GZ-CBl"/>
