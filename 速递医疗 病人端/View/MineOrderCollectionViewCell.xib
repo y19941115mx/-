@@ -43,22 +43,6 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已接单" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fe-54-hh2">
-                        <rect key="frame" x="220" y="120" width="60" height="30"/>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="60" id="Gn7-lw-0eW"/>
-                            <constraint firstAttribute="height" constant="30" id="Nze-Rc-Qhc"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="5"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQ4-sW-2eh">
                         <rect key="frame" x="15" y="67" width="255" height="33.5"/>
                         <constraints>
@@ -69,6 +53,19 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aj7-kl-VaK">
+                        <rect key="frame" x="221" y="120" width="59" height="30"/>
+                        <color key="backgroundColor" red="0.014965149573981762" green="0.47698318958282471" blue="0.9854087233543396" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="59" id="vwD-Rq-jGJ"/>
+                        </constraints>
+                        <state key="normal" title="确认">
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="click_confirm:" destination="gTV-IL-0wX" eventType="touchUpInside" id="tJc-fa-u8q"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -76,16 +73,16 @@
                 <constraint firstItem="FkR-ti-Yx1" firstAttribute="leading" secondItem="H7P-iR-sdb" secondAttribute="trailing" constant="10" id="0Je-eQ-4HT"/>
                 <constraint firstItem="oNj-Vv-chZ" firstAttribute="leading" secondItem="H7P-iR-sdb" secondAttribute="trailing" constant="10" id="3tk-jF-uk7"/>
                 <constraint firstAttribute="trailing" secondItem="oNj-Vv-chZ" secondAttribute="trailing" constant="10" id="3vh-d6-ReB"/>
+                <constraint firstAttribute="bottom" secondItem="aj7-kl-VaK" secondAttribute="bottom" id="5DE-3e-Ypd"/>
                 <constraint firstItem="FkR-ti-Yx1" firstAttribute="top" secondItem="oNj-Vv-chZ" secondAttribute="bottom" constant="10" id="9ix-q4-OTR"/>
                 <constraint firstItem="H7P-iR-sdb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="-1" id="CDC-l1-cpQ"/>
-                <constraint firstAttribute="bottom" secondItem="0fe-54-hh2" secondAttribute="bottom" id="Eae-Bv-x0y"/>
                 <constraint firstItem="HQ4-sW-2eh" firstAttribute="leading" secondItem="H7P-iR-sdb" secondAttribute="trailing" constant="10" id="GhT-4K-lAy"/>
                 <constraint firstAttribute="bottom" secondItem="H7P-iR-sdb" secondAttribute="bottom" constant="-1" id="IJv-QZ-3nA"/>
                 <constraint firstItem="HQ4-sW-2eh" firstAttribute="top" secondItem="Ivd-ie-eOx" secondAttribute="bottom" constant="15" id="KvB-lo-reW"/>
                 <constraint firstItem="Ivd-ie-eOx" firstAttribute="top" secondItem="oNj-Vv-chZ" secondAttribute="bottom" constant="10" id="PTz-Ao-kR1"/>
                 <constraint firstItem="Ivd-ie-eOx" firstAttribute="leading" secondItem="FkR-ti-Yx1" secondAttribute="trailing" constant="10" id="PXT-xP-RKS"/>
                 <constraint firstAttribute="trailing" secondItem="HQ4-sW-2eh" secondAttribute="trailing" constant="10" id="aYG-aQ-N3q"/>
-                <constraint firstAttribute="trailing" secondItem="0fe-54-hh2" secondAttribute="trailing" id="mb5-nR-jY1"/>
+                <constraint firstAttribute="trailing" secondItem="aj7-kl-VaK" secondAttribute="trailing" id="awF-sy-z6i"/>
                 <constraint firstItem="oNj-Vv-chZ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="vyv-rS-X50"/>
                 <constraint firstItem="H7P-iR-sdb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="yd5-cI-rZE"/>
             </constraints>
@@ -102,7 +99,6 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="btn_state" destination="0fe-54-hh2" id="Xbk-OO-4dE"/>
                 <outlet property="label_desc" destination="HQ4-sW-2eh" id="imk-sX-iXv"/>
                 <outlet property="label_name" destination="FkR-ti-Yx1" id="DJ2-Ua-aMF"/>
                 <outlet property="label_time" destination="Ivd-ie-eOx" id="pcN-qs-570"/>

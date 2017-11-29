@@ -49,8 +49,10 @@ class Mine_family: UIViewController, UITableViewDataSource {
                     SVProgressHUD.dismiss()
                     let bean = Mapper<familyListBean>().map(JSONObject: try response.mapJSON())
                     if bean?.code == 100 {
-                        self.familyData = (bean?.familyDataList!)!
-                        self.tableView.reloadData()
+                        if bean?.familyDataList != nil {
+                            self.familyData = (bean?.familyDataList)!
+                            self.tableView.reloadData()
+                        }
                     }else{
                      showToast(self.view, bean!.msg!)
                     }

@@ -27,4 +27,6 @@ class MineOrderCollectionViewCell: UICollectionViewCell {
         label_title.text = mdata.usersickdesc 
     }
 
+    @IBAction func click_confirm(_ sender: Any) {
+    }
 }
