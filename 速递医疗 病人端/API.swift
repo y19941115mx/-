@@ -100,12 +100,12 @@ extension API: TargetType {
                 return .requestParameters(parameters: ["page": page, "userloginid": id, "type":type], encoding: URLEncoding.default)
             }
         case .getredoctor:
-            return .requestParameters(parameters: ["userloginid":LOGINID!], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["userloginid":Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
     
         case .updateinfo(let data):
-    return .uploadCompositeMultipart([MultipartFormData.init(provider: .data(data), name: "pictureFile", fileName: "photo.jpg", mimeType:"image/png")], urlParameters: ["userloginid": LOGINID!])
+    return .uploadCompositeMultipart([MultipartFormData.init(provider: .data(data), name: "pictureFile", fileName: "photo.jpg", mimeType:"image/png")], urlParameters: ["userloginid": Int(user_default.userId.getStringValue()!)!])
         case .getsick(let type):
-            return .requestParameters(parameters: ["userloginid":LOGINID!, "type":type], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["userloginid":Int(user_default.userId.getStringValue()!)!, "type":type], encoding: URLEncoding.default)
         case .addsick(let datas, let desc, let onedept, let twodept,let familyid):
             var formDatas = [MultipartFormData.init(provider: .data(Data.init()), name: "pictureFile")]
             if datas != nil {
@@ -115,17 +115,17 @@ extension API: TargetType {
                     formDatas.append(formData)
                 }
             }
-            return .uploadCompositeMultipart(formDatas, urlParameters: ["usersickdesc": desc, "usersickprimarydept":onedept, "usersickseconddept": twodept,"userloginid":LOGINID!, "familyid": familyid])
+            return .uploadCompositeMultipart(formDatas, urlParameters: ["usersickdesc": desc, "usersickprimarydept":onedept, "usersickseconddept": twodept,"userloginid":Int(user_default.userId.getStringValue()!)!, "familyid": familyid])
         case .publishsick(let sick):
-            return .requestParameters(parameters: ["userloginid":LOGINID!, "usersickid":sick], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["userloginid":Int(user_default.userId.getStringValue()!)!, "usersickid":sick], encoding: URLEncoding.default)
         case .deletesick(let sick):
-            return .requestParameters(parameters: ["userloginid":LOGINID!, "usersickid":sick], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["userloginid":Int(user_default.userId.getStringValue()!)!, "usersickid":sick], encoding: URLEncoding.default)
         case .cancelsick(let sick):
-            return .requestParameters(parameters: ["userloginid":LOGINID!, "usersickid":sick], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["userloginid":Int(user_default.userId.getStringValue()!)!, "usersickid":sick], encoding: URLEncoding.default)
         case .optdoctor(let doctorId):
-            return .requestParameters(parameters: ["docloginid":doctorId, "userloginid":LOGINID!], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["docloginid":doctorId, "userloginid":Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
         case .createorder(let docId, let timestr):
-            return .requestParameters(parameters: ["docloginid":docId, "userorderappointment": timestr, "userloginid": LOGINID!], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["docloginid":docId, "userorderappointment": timestr, "userloginid": Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
         }
         
     }

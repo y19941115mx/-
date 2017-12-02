@@ -34,8 +34,8 @@ class Date_page: BaseRefreshController<OrderBean>, UICollectionViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initRefresh(scrollView: self.mCollectionView, ApiMethod: API.getorder(selectedPage, LOGINID!, type),getMoreHandler: {
-            self.getMoreMethod = API.getorder(self.selectedPage, LOGINID!, self.type)
+        initRefresh(scrollView: self.mCollectionView, ApiMethod: API.getorder(selectedPage, Int(user_default.userId.getStringValue()!)!, type),getMoreHandler: {
+            self.getMoreMethod = API.getorder(self.selectedPage, Int(user_default.userId.getStringValue()!)!, self.type)
         }, isTableView: false)
         self.header?.beginRefreshing()
     }

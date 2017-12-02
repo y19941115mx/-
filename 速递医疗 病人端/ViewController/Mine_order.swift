@@ -44,7 +44,7 @@ class Mine_order: UIViewController, UICollectionViewDataSource {
     private func getData() {
         let Provider = MoyaProvider<API>()
         SVProgressHUD.show()
-        Provider.request(API.getorder(1, LOGINID!, type)) { result in
+        Provider.request(API.getorder(1, Int(user_default.userId.getStringValue()!)!, type)) { result in
             switch result {
             case let .success(response):
                 do {

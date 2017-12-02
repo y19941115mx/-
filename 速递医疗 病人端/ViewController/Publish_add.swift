@@ -25,7 +25,7 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
     var deptPicker = UIPickerView()
     var flagPatient = false
     var dapartPatient = false
-    
+    // 科室信息
     var departData = [String:[String]]()
     var proIndex:Int = 0
     // 就诊人信息
@@ -82,7 +82,7 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
         setInputView(mPicker:deptPicker, mTextField:departTextField)
         // 获取亲属信息
         let Provider = MoyaProvider<API>()
-        Provider.request(API.findfamily(LOGINID!)) { result in
+        Provider.request(API.findfamily(Int(user_default.userId.getStringValue()!)!)) { result in
             switch result {
             case let .success(response):
                 do {
@@ -180,7 +180,7 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
                 self.deptPicker.reloadComponent(1)
             }
             //获取选中的一级科室
-            let oneDepart = Array(departData.keys)[row]
+            let oneDepart = Array(departData.keys)[proIndex]
             //获取选中的二级科室
             let twoDeparts = departData[oneDepart]
             if  twoDeparts?.count != 0{
