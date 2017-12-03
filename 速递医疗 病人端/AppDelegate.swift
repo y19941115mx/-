@@ -25,14 +25,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SVProgressHUD.setBackgroundColor(UIColor.clear)
         SVProgressHUD.setDefaultMaskType(.none)
         SVProgressHUD.setDefaultAnimationType(.native)
-//      百度推送
+//        百度推送
         self.setUpBaiDuPush(application, didFinishLaunchingWithOptions: launchOptions)
 //        高德地图
         self.setUpMap()
-        //        环信设置
-        let options = EMOptions.init(appkey: StaticClass.HuanxinAppkey)
-        EMClient.shared().initializeSDK(with: options)
-        return true
+//        环信
+        self.setupHuanxin()
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -136,9 +135,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 showToast((APPLICATION.window?.rootViewController?.view)!, "定位成功："+(reGeocode?.country)! + (reGeocode?.city)! + (reGeocode?.aoiName)!)
             }
         })
-        
     }
     
+    private func setupHuanxin() {
+        let options = EMOptions.init(appkey: StaticClass.HuanxinAppkey)
+        EMClient.shared().initializeSDK(with: options)
+        // 环信登录
+        let account = user_default.account.getStringValue()
+        let pass = user_default.password.getStringValue()
+        if account != nil && account != ""{
+            EMClient.shared().login(withUsername: account!, password: pass, completion: { (name, error) in
+                if error == nil {
+                    Toast("环信登录成功")
+                }else {
+                    Toast("环信登录失败，\(error.debugDescription)")
+                }
+            })
+        }
+    }
     
 
 

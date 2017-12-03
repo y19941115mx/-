@@ -40,45 +40,51 @@ class LoginViewController: BaseTextViewController {
         let passNum =  tv_pwd.text!
         
         // FIXME:  需要做字符串验证
-        
-        SVProgressHUD.show()
-        let Provider = MoyaProvider<API>()
-        
-        Provider.request(API.login(phoneNum, MD5(passNum))) { result in
-            switch result {
-            case let .success(response):
-                do {
-                    SVProgressHUD.dismiss()
-                    let jsonObj =  try response.mapJSON()
-                    let bean = Mapper<BaseAPIBean>().map(JSONObject: jsonObj)
-                    if bean?.code == 100 {
-                        let json = JSON(jsonObj)
-                        let data = json["data"]
-                        let userId = data["id"].intValue
-                        let type = data["type"].boolValue
-                        let pix = data["pix"].stringValue
-                        let token = data["token"].stringValue
-                        let username = data["username"].stringValue
-                        user_default.setUserDefault(key: .userId, value: String(userId))
-                        user_default.setUserDefault(key: .type, value: type)
-                        user_default.setUserDefault(key: .pix, value: pix)
-                        user_default.setUserDefault(key: .token, value: token)
-                        user_default.setUserDefault(key: .username, value: username)
-                        let vc_main = MainViewController()
-                        APPLICATION.window?.rootViewController = vc_main
-                    } else{
-                        self.view.makeToast(bean!.msg!)
-                    }
-                }catch {
-                    SVProgressHUD.dismiss()
-                    self.view.makeToast(CATCHMSG)
+        // 登录
+        NetWorkUtil<BaseAPIBean>.init(method: .login(phoneNum, MD5(passNum)), vc: self).newRequest { (bean, json) in
+            if bean.code == 100 {
+                let data = json["data"]
+                let userId = data["id"].intValue
+                let typename = data["typename"].stringValue
+                var account = data["huanxinaccount"].stringValue
+                let pix = data["pix"].stringValue
+                let token = data["token"].stringValue
+                let username = data["username"].stringValue
+                let title = data["title"].stringValue
+                user_default.setUserDefault(key: .userId, value: String(userId))
+                user_default.setUserDefault(key: .typename, value: typename)
+                user_default.setUserDefault(key: .pix, value: pix)
+                user_default.setUserDefault(key: .token, value: token)
+                user_default.setUserDefault(key: .username, value: username)
+                user_default.setUserDefault(key: .title, value: title)
+                user_default.setUserDefault(key: .password, value: MD5(passNum))
+                // 环信注册
+                if account == "" {
+                    NetWorkUtil<BaseAPIBean>.init(method: API.huanxinregister, vc: self).newRequest(handler: { (bean, json) in
+                        if bean.code == 100 {
+                            account = "user_\(userId)"
+                        }
+                    })
                 }
-            case let .failure(error):
-                SVProgressHUD.dismiss()
-                dPrint(message: "error:\(error)")
-                self.view.makeToast(ERRORMSG)
+                user_default.setUserDefault(key: .account, value: account)
+                // 环信登录
+                EMClient.shared().login(withUsername: account!, password: pass, completion: { (name, error) in
+                    if error == nil {
+                        Toast("环信登录成功")
+                    }else {
+                        Toast("环信登录失败，\(error.debugDescription)")
+                    }
+                })
+                
+    
+                let vc_main = MainViewController()
+                APPLICATION.window?.rootViewController = vc_main
+                
+            }else {
+                showToast(self.view, bean.msg!)
             }
         }
+        
     }
     
     //MARK: - navigation

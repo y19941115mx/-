@@ -11,6 +11,7 @@ public enum API {
     case phonetest(String) // 检查手机号码
     case getcode(String) // 发送短信验证码
     case register(String, String, String) // 注册
+    case huanxinregister // 环信注册
     case getdoctorlist(Int, String, String) // 获取首页医生信息
     case getorder(Int, Int, Int) // 获取订单信息
     case addfamily(Int, String, String, Int) // 添加亲属
@@ -38,6 +39,8 @@ extension API: TargetType {
             return "/getcode"
         case .register:
             return "/register"
+        case .huanxinregister:
+            return "/huanxinregister"
         case .getdoctorlist:
             return "/listdoctors"
         case .getorder:
@@ -85,6 +88,8 @@ extension API: TargetType {
             return .requestParameters(parameters: ["userloginphone": phone], encoding: URLEncoding.default)
         case .register(let phone, let pwd, let code):
             return .requestParameters(parameters: ["userloginphone":phone, "userloginpwd": pwd, "code": code], encoding: URLEncoding.default)
+        case .huanxinregister:
+            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "userloginpwd": user_default.password.getStringValue()!], encoding: URLEncoding.default)
         case .getdoctorlist(let page, let lon, let lat):
             return .requestParameters(parameters: ["page": page, "userloginlon": lon, "userloginlat":lat], encoding: URLEncoding.default)
         case .addfamily(let id, let name, let sex, let age):

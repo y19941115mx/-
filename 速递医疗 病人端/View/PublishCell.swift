@@ -168,7 +168,7 @@ class PublishCell2: UICollectionViewCell, UICollectionViewDataSource {
     
     @objc func DelAction(button:UIButton) {
         AlertUtil.popAlert(vc: vc, msg: "确认取消发布") {
-            NetWorkUtil<BaseAPIBean>.init(method: API.cancelsick((self.data?.usersickid)!), vc: self.vc).newRequest(handler: { (bean) in
+            NetWorkUtil<BaseAPIBean>.init(method: API.cancelsick((self.data?.usersickid)!), vc: self.vc).newRequest(handler: { (bean, json) in
                 if bean.code == 100 {
                     self.vc.refreshData()
                 }
