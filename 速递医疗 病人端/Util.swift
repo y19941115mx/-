@@ -10,6 +10,7 @@ import Moya
 import SVProgressHUD
 import ObjectMapper
 import SwiftyJSON
+import SwiftHash
 
 let SCREEN_WIDTH = UIScreen.main.bounds.size.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
@@ -256,6 +257,10 @@ class MapUtil {
 }
 
 class StringUTil {
+    // 转换MD5值
+    class public func transformMD5(_ string:String)->String {
+        return MD5(string)
+    }
     
     // 将时间戳转换为时间字符串
     class public func timestamp2string(timeStamp:Int) -> String{

@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setUpMap()
 //        环信
         self.setupHuanxin()
-        
+        return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -68,7 +68,7 @@ class LoginViewController: BaseTextViewController {
                 }
                 user_default.setUserDefault(key: .account, value: account)
                 // 环信登录
-                EMClient.shared().login(withUsername: account!, password: pass, completion: { (name, error) in
+                EMClient.shared().login(withUsername: account, password: MD5(passNum), completion: { (name, error) in
                     if error == nil {
                         Toast("环信登录成功")
                     }else {
