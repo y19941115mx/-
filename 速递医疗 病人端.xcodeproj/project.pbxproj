@@ -39,11 +39,27 @@
 		84736B9F1FAC5592001E9AA5 /* MinePocketCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84736B9D1FAC5592001E9AA5 /* MinePocketCollectionViewCell.xib */; };
 		84736BA11FAC564A001E9AA5 /* Mine_pocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84736BA01FAC564A001E9AA5 /* Mine_pocket.swift */; };
 		84736BA31FAC5ADA001E9AA5 /* Mine_family.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84736BA21FAC5ADA001E9AA5 /* Mine_family.swift */; };
+		847C12DC1FD2A8AF00B32BB7 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 847C12DB1FD2A8AF00B32BB7 /* libc++.tbd */; };
+		847C12DE1FD2A8C900B32BB7 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 847C12DD1FD2A8C900B32BB7 /* libz.tbd */; };
+		847C12E01FD2A8FA00B32BB7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847C12DF1FD2A8F000B32BB7 /* SystemConfiguration.framework */; };
+		847C12E21FD2A92E00B32BB7 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847C12E11FD2A92300B32BB7 /* CoreTelephony.framework */; };
+		847C12E41FD2A94400B32BB7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847C12E31FD2A93C00B32BB7 /* QuartzCore.framework */; };
+		847C12E61FD2A95700B32BB7 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847C12E51FD2A95000B32BB7 /* CoreText.framework */; };
+		847C12E81FD2A96A00B32BB7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847C12E71FD2A96300B32BB7 /* CoreGraphics.framework */; };
+		847C12EA1FD2A97D00B32BB7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847C12E91FD2A97600B32BB7 /* UIKit.framework */; };
+		847C12EC1FD2A9B000B32BB7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847C12EB1FD2A9AA00B32BB7 /* Foundation.framework */; };
+		847C12EE1FD2A9C500B32BB7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847C12ED1FD2A9BE00B32BB7 /* CFNetwork.framework */; };
+		847C12F01FD2A9D900B32BB7 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847C12EF1FD2A9D100B32BB7 /* CoreMotion.framework */; };
+		847C13981FD2B40300B32BB7 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 847C13961FD2B40300B32BB7 /* AlipaySDK.bundle */; };
+		847C139A1FD2B46700B32BB7 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847C13971FD2B40300B32BB7 /* AlipaySDK.framework */; };
+		847C13A11FD2B86100B32BB7 /* libBPush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 847C139E1FD2B86000B32BB7 /* libBPush.a */; };
+		847C13A21FD2B86100B32BB7 /* BPushCerResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 847C139F1FD2B86000B32BB7 /* BPushCerResource.bundle */; };
+		847C13A31FD2B86100B32BB7 /* test.caf in Resources */ = {isa = PBXBuildFile; fileRef = 847C13A01FD2B86000B32BB7 /* test.caf */; };
+		847C13A61FD2D62000B32BB7 /* BaseCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C13A51FD2D61F00B32BB7 /* BaseCollectionView.swift */; };
 		847DD0D51FAEE2B50077F78A /* Publish_add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847DD0D41FAEE2B50077F78A /* Publish_add.swift */; };
 		848A29891FAAFCAE00123A3F /* Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848A29881FAAFCAE00123A3F /* Mine.storyboard */; };
 		848A298B1FAB092900123A3F /* Mine_main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A298A1FAB092900123A3F /* Mine_main.swift */; };
 		84939BC81FAC8F050062062C /* Mine_info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84939BC71FAC8F050062062C /* Mine_info.swift */; };
-		84939BCC1FACA8540062062C /* BaseCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84939BCB1FACA8540062062C /* BaseCollectionView.swift */; };
 		849BAA5C1FAD534100871EA8 /* Date_page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849BAA5A1FAD534100871EA8 /* Date_page.swift */; };
 		849BAA5D1FAD534100871EA8 /* MyDoctor_main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849BAA5B1FAD534100871EA8 /* MyDoctor_main.swift */; };
 		84AB2F461FAEA22000E4B3EC /* Publish.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84AB2F451FAEA21F00E4B3EC /* Publish.storyboard */; };
@@ -99,11 +115,29 @@
 		84736B9D1FAC5592001E9AA5 /* MinePocketCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MinePocketCollectionViewCell.xib; sourceTree = "<group>"; };
 		84736BA01FAC564A001E9AA5 /* Mine_pocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine_pocket.swift; sourceTree = "<group>"; };
 		84736BA21FAC5ADA001E9AA5 /* Mine_family.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine_family.swift; sourceTree = "<group>"; };
+		847C12DB1FD2A8AF00B32BB7 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		847C12DD1FD2A8C900B32BB7 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		847C12DF1FD2A8F000B32BB7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		847C12E11FD2A92300B32BB7 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		847C12E31FD2A93C00B32BB7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		847C12E51FD2A95000B32BB7 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		847C12E71FD2A96300B32BB7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		847C12E91FD2A97600B32BB7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		847C12EB1FD2A9AA00B32BB7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		847C12ED1FD2A9BE00B32BB7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		847C12EF1FD2A9D100B32BB7 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		847C13961FD2B40300B32BB7 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		847C13971FD2B40300B32BB7 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		847C139D1FD2B86000B32BB7 /* BPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPush.h; sourceTree = "<group>"; };
+		847C139E1FD2B86000B32BB7 /* libBPush.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBPush.a; sourceTree = "<group>"; };
+		847C139F1FD2B86000B32BB7 /* BPushCerResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BPushCerResource.bundle; sourceTree = "<group>"; };
+		847C13A01FD2B86000B32BB7 /* test.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.caf; sourceTree = "<group>"; };
+		847C13A41FD2D07700B32BB7 /* 速递医疗 病人端.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "速递医疗 病人端.entitlements"; sourceTree = "<group>"; };
+		847C13A51FD2D61F00B32BB7 /* BaseCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionView.swift; sourceTree = "<group>"; };
 		847DD0D41FAEE2B50077F78A /* Publish_add.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Publish_add.swift; sourceTree = "<group>"; };
 		848A29881FAAFCAE00123A3F /* Mine.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Mine.storyboard; sourceTree = "<group>"; };
 		848A298A1FAB092900123A3F /* Mine_main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine_main.swift; sourceTree = "<group>"; };
 		84939BC71FAC8F050062062C /* Mine_info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine_info.swift; sourceTree = "<group>"; };
-		84939BCB1FACA8540062062C /* BaseCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionView.swift; sourceTree = "<group>"; };
 		849BAA5A1FAD534100871EA8 /* Date_page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date_page.swift; sourceTree = "<group>"; };
 		849BAA5B1FAD534100871EA8 /* MyDoctor_main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDoctor_main.swift; sourceTree = "<group>"; };
 		84AB2F451FAEA21F00E4B3EC /* Publish.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Publish.storyboard; sourceTree = "<group>"; };
@@ -127,6 +161,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				847C12F01FD2A9D900B32BB7 /* CoreMotion.framework in Frameworks */,
+				847C12EE1FD2A9C500B32BB7 /* CFNetwork.framework in Frameworks */,
+				847C12EC1FD2A9B000B32BB7 /* Foundation.framework in Frameworks */,
+				847C12EA1FD2A97D00B32BB7 /* UIKit.framework in Frameworks */,
+				847C12E81FD2A96A00B32BB7 /* CoreGraphics.framework in Frameworks */,
+				847C12E61FD2A95700B32BB7 /* CoreText.framework in Frameworks */,
+				847C12E41FD2A94400B32BB7 /* QuartzCore.framework in Frameworks */,
+				847C139A1FD2B46700B32BB7 /* AlipaySDK.framework in Frameworks */,
+				847C12E21FD2A92E00B32BB7 /* CoreTelephony.framework in Frameworks */,
+				847C12E01FD2A8FA00B32BB7 /* SystemConfiguration.framework in Frameworks */,
+				847C13A11FD2B86100B32BB7 /* libBPush.a in Frameworks */,
+				847C12DC1FD2A8AF00B32BB7 /* libc++.tbd in Frameworks */,
+				847C12DE1FD2A8C900B32BB7 /* libz.tbd in Frameworks */,
 				69A48EF81A7060F810D582DE /* Pods_________.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,6 +184,9 @@
 		840647671FA6A6E4009B21C4 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				847C139C1FD2B86000B32BB7 /* LibBPush */,
+				847C13961FD2B40300B32BB7 /* AlipaySDK.bundle */,
+				847C13971FD2B40300B32BB7 /* AlipaySDK.framework */,
 				840647681FA6A6E4009B21C4 /* XLSlideSwitch */,
 			);
 			path = Libs;
@@ -174,9 +224,31 @@
 		845899C2F3C2D1E167E529FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				847C12EF1FD2A9D100B32BB7 /* CoreMotion.framework */,
+				847C12ED1FD2A9BE00B32BB7 /* CFNetwork.framework */,
+				847C12EB1FD2A9AA00B32BB7 /* Foundation.framework */,
+				847C12E91FD2A97600B32BB7 /* UIKit.framework */,
+				847C12E71FD2A96300B32BB7 /* CoreGraphics.framework */,
+				847C12E51FD2A95000B32BB7 /* CoreText.framework */,
+				847C12E31FD2A93C00B32BB7 /* QuartzCore.framework */,
+				847C12E11FD2A92300B32BB7 /* CoreTelephony.framework */,
+				847C12DF1FD2A8F000B32BB7 /* SystemConfiguration.framework */,
+				847C12DD1FD2A8C900B32BB7 /* libz.tbd */,
+				847C12DB1FD2A8AF00B32BB7 /* libc++.tbd */,
 				1A6FE386D3244A2B5232BE91 /* Pods_________.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		847C139C1FD2B86000B32BB7 /* LibBPush */ = {
+			isa = PBXGroup;
+			children = (
+				847C139D1FD2B86000B32BB7 /* BPush.h */,
+				847C139E1FD2B86000B32BB7 /* libBPush.a */,
+				847C139F1FD2B86000B32BB7 /* BPushCerResource.bundle */,
+				847C13A01FD2B86000B32BB7 /* test.caf */,
+			);
+			path = LibBPush;
 			sourceTree = "<group>";
 		};
 		84C983E21FA611A60058FA7B = {
@@ -200,6 +272,7 @@
 		84C983ED1FA611A60058FA7B /* 速递医疗 病人端 */ = {
 			isa = PBXGroup;
 			children = (
+				847C13A41FD2D07700B32BB7 /* 速递医疗 病人端.entitlements */,
 				843C3EB91FA8AAC20076EB8C /* Assets.xcassets */,
 				840647791FA75984009B21C4 /* StoryBoard */,
 				840647671FA6A6E4009B21C4 /* Libs */,
@@ -257,6 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				84031D161FCD52EB0058D437 /* PublishCell.swift */,
+				847C13A51FD2D61F00B32BB7 /* BaseCollectionView.swift */,
 				840647311FA62C1B009B21C4 /* CustomButton.swift */,
 				84F0402B1FA9A48C003BCC54 /* HomeMainTableViewCell.swift */,
 				84F0402C1FA9A48C003BCC54 /* HomeMainTableViewCell.xib */,
@@ -266,7 +340,6 @@
 				846D885E1FAC223300DE6308 /* MineOrderCollectionViewCell.xib */,
 				84736B9C1FAC5592001E9AA5 /* MinePocketCollectionViewCell.swift */,
 				84736B9D1FAC5592001E9AA5 /* MinePocketCollectionViewCell.xib */,
-				84939BCB1FACA8540062062C /* BaseCollectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -316,6 +389,14 @@
 					84C983EA1FA611A60058FA7B = {
 						CreatedOnToolsVersion = 9.0.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -345,6 +426,8 @@
 				8406477B1FA759A4009B21C4 /* Login.storyboard in Resources */,
 				843C3EB41FA8A6EC0076EB8C /* Home.storyboard in Resources */,
 				846D88601FAC223300DE6308 /* MineOrderCollectionViewCell.xib in Resources */,
+				847C13A31FD2B86100B32BB7 /* test.caf in Resources */,
+				847C13981FD2B40300B32BB7 /* AlipaySDK.bundle in Resources */,
 				84F0402E1FA9A48C003BCC54 /* HomeMainTableViewCell.xib in Resources */,
 				84C983F91FA611A60058FA7B /* LaunchScreen.storyboard in Resources */,
 				843C3EBC1FA946FB0076EB8C /* MyDoctor.storyboard in Resources */,
@@ -354,6 +437,7 @@
 				84736B9F1FAC5592001E9AA5 /* MinePocketCollectionViewCell.xib in Resources */,
 				843C3EBA1FA8AAC20076EB8C /* Assets.xcassets in Resources */,
 				848A29891FAAFCAE00123A3F /* Mine.storyboard in Resources */,
+				847C13A21FD2B86100B32BB7 /* BPushCerResource.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,11 +452,17 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-速递医疗 病人端/Pods-速递医疗 病人端-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework",
+				"${BUILT_PRODUCTS_DIR}/EaseUI/EaseUI.framework",
+				"${PODS_ROOT}/Hyphenate/ios_IM_Hyphenate_sdk_3.3.7/HyphenateFullSDK/Hyphenate.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/MWPhotoBrowser/MWPhotoBrowser.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftHash/SwiftHash.framework",
@@ -382,11 +472,17 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DACircularProgress.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EaseUI.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hyphenate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MWPhotoBrowser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftHash.framework",
@@ -470,8 +566,8 @@
 				848A298B1FAB092900123A3F /* Mine_main.swift in Sources */,
 				84F0402D1FA9A48C003BCC54 /* HomeMainTableViewCell.swift in Sources */,
 				849BAA5D1FAD534100871EA8 /* MyDoctor_main.swift in Sources */,
+				847C13A61FD2D62000B32BB7 /* BaseCollectionView.swift in Sources */,
 				840647731FA6A6E4009B21C4 /* XLSlideSegmented.m in Sources */,
-				84939BCC1FACA8540062062C /* BaseCollectionView.swift in Sources */,
 				84C984071FA618060058FA7B /* MainViewController.swift in Sources */,
 				84939BC81FAC8F050062062C /* Mine_info.swift in Sources */,
 				840647351FA62D03009B21C4 /* Extension.swift in Sources */,
@@ -612,10 +708,23 @@
 			baseConfigurationReference = 34CAB850216A56570E87C8D2 /* Pods-速递医疗 病人端.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "速递医疗 病人端/速递医疗 病人端.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4RH4DUFC64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/速递医疗\\ 病人端/Libs",
+					"$(PROJECT_DIR)/速递医疗\\ 病人端/Libs",
+					"$(PROJECT_DIR)/速递医疗\\ 病人端/Libs",
+					"$(PROJECT_DIR)/速递医疗\\ 病人端/Libs",
+					"$(PROJECT_DIR)/速递医疗\\ 病人端/Libs",
+				);
 				INFOPLIST_FILE = "速递医疗 病人端/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/速递医疗\\ 病人端/Libs/LibBPush",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.victor.PatientClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/admin/Desktop/ios/速递医疗 病人端/速递医疗 病人端/Bridging-Header.h";
@@ -629,10 +738,23 @@
 			baseConfigurationReference = AFA4C207599FEB4E0FA6C085 /* Pods-速递医疗 病人端.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "速递医疗 病人端/速递医疗 病人端.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4RH4DUFC64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/速递医疗\\ 病人端/Libs",
+					"$(PROJECT_DIR)/速递医疗\\ 病人端/Libs",
+					"$(PROJECT_DIR)/速递医疗\\ 病人端/Libs",
+					"$(PROJECT_DIR)/速递医疗\\ 病人端/Libs",
+					"$(PROJECT_DIR)/速递医疗\\ 病人端/Libs",
+				);
 				INFOPLIST_FILE = "速递医疗 病人端/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/速递医疗\\ 病人端/Libs/LibBPush",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.victor.PatientClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/admin/Desktop/ios/速递医疗 病人端/速递医疗 病人端/Bridging-Header.h";

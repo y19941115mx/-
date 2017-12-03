@@ -31,7 +31,7 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
         initView()
         // 初始化navigationBar
         setUpNavTitle(title: "首页")
-        initRefresh(scrollView: infoTableView, ApiMethod: API.getdoctorlist(selectedPage, "0", "0"), getMoreHandler:{
+        initRefresh(scrollView: infoTableView, ApiMethod: API.getdoctorlist(selectedPage, "0", "0"), refreshHandler: {}, getMoreHandler:{
             self.getMoreMethod = API.getdoctorlist(self.selectedPage, "0", "0")
         })
         // 获取数据

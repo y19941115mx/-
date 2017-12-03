@@ -20,5 +20,11 @@ target '速递医疗 病人端' do
     pod 'Kingfisher'
     # 下拉刷新加载
     pod 'MJRefresh'
+    # 高德定位
+    pod 'AMapLocation'
+    # 环信
+    pod 'Hyphenate'
+    # 环信UI
+    pod 'EaseUI', :git => 'https://github.com/easemob/easeui-ios-hyphenate-cocoapods.git'
     
 end

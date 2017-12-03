@@ -9,6 +9,7 @@ import Alamofire
 import Moya
 import SVProgressHUD
 import ObjectMapper
+import SwiftyJSON
 
 let SCREEN_WIDTH = UIScreen.main.bounds.size.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
@@ -87,11 +88,14 @@ struct StaticClass {
     static let RootIP = "http://1842719ny8.iok.la:14086"
     static let PictureIP = RootIP + "/picture/"
     static let GetDept = RootIP + "/internetmedical/doctor/getdept"
+    static let TuisongAPIKey = "vGiSGpkn8LDk5U7GB7wEtS1r"
+    static let GaodeAPIKey = "e1f634835289963a63040a55a00ab886"
+    static let HuanxinAppkey = "1133171107115421#medicalclient"
 }
 
 // UserDefault UserDefault相关的枚举值
 enum user_default:String {
-    case userId, type, pix, token, username
+    case userId, type, pix, token, username, channel_id
     func getStringValue()->String? {
         switch self {
         case .type:
@@ -115,6 +119,7 @@ enum user_default:String {
         UserDefaults.standard.removeObject(forKey: "pix")
         UserDefaults.standard.removeObject(forKey: "token")
         UserDefaults.standard.removeObject(forKey: "username")
+        UserDefaults.standard.removeObject(forKey: "channel_id")
     }
 }
 
@@ -207,6 +212,44 @@ class ImageUtil{
     }
 }
 
+//MARK: - 地图定位
+class MapUtil {
+    class func singleLocation(successHandler:((_ location:CLLocation, _ reGeocode:AMapLocationReGeocode?) -> Void)? ) {
+        APPLICATION.locationManager.requestLocation(withReGeocode: true, completionBlock: {(location: CLLocation?, reGeocode: AMapLocationReGeocode?, error: Error?) in
+            
+            if let error = error {
+                let error = error as NSError
+                
+                if error.code == AMapLocationErrorCode.locateFailed.rawValue {
+                    //定位错误：此时location和regeocode没有返回值，不进行annotation的添加
+                    let msg = "定位错误:{\(error.code) - \(error.localizedDescription)};"
+                    showToast((APPLICATION.window?.rootViewController?.view)!, msg)
+                    return
+                }
+                else if error.code == AMapLocationErrorCode.reGeocodeFailed.rawValue
+                    || error.code == AMapLocationErrorCode.timeOut.rawValue
+                    || error.code == AMapLocationErrorCode.cannotFindHost.rawValue
+                    || error.code == AMapLocationErrorCode.badURL.rawValue
+                    || error.code == AMapLocationErrorCode.notConnectedToInternet.rawValue
+                    || error.code == AMapLocationErrorCode.cannotConnectToHost.rawValue {
+                    
+                    //逆地理错误：在带逆地理的单次定位中，逆地理过程可能发生错误，此时location有返回值，regeocode无返回值，进行annotation的添加
+                    let msg = "获取地理位置失败，请检查GPS设置;"
+                    showToast((APPLICATION.window?.rootViewController?.view)!, msg)
+                }
+            }
+            if let location = location  {
+                APPLICATION.lon = String(location.coordinate.longitude)
+                APPLICATION.lat = String(location.coordinate.latitude)
+                if successHandler != nil {
+                    successHandler!(location, reGeocode)
+                }
+            }
+            
+        })
+    }
+}
+
 class StringUTil {
     
     // 将时间戳转换为时间字符串
@@ -276,6 +319,57 @@ class StringUTil {
         return str.components(separatedBy: ",")
     }
     
+}
+
+public class AliSdkManager: NSObject {
+    public static var aliSdkManager:AliSdkManager!
+    
+    public static func sharedManager () -> AliSdkManager{
+        AliSdkManager.aliSdkManager = AliSdkManager.init()
+        return AliSdkManager.aliSdkManager
+    }
+    internal func showResult(result:NSDictionary){
+        //        9000    订单支付成功
+        //        8000    正在处理中
+        //        4000    订单支付失败
+        //        6001    用户中途取消
+        //        6002    网络连接出错
+        let returnCode:String = result["resultStatus"] as! String
+        var returnMsg:String = result["memo"] as! String
+        dPrint(message: "returnMsg: \(returnMsg)")
+        switch  returnCode{
+        case "6001":
+            break
+        case "8000":
+            break
+        case "4000":
+            break
+        case "9000":
+            returnMsg = "支付成功"
+            dPrint(message: JSON.init(parseJSON: (result["result"] as! String))["alipay_trade_app_pay_response"]["sub_msg"].stringValue)
+            break
+        default:
+            break
+        }
+    }
+}
+
+
+public class AliPayUtils: NSObject {
+    var context:UIViewController;
+    
+    public init(context:UIViewController) {
+        self.context = context;
+    }
+    
+    public func pay(sign:String){
+        let decodedData = sign.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))!
+        let decodedString:String = (NSString(data: decodedData, encoding: String.Encoding.utf8.rawValue))! as String
+        
+        AlipaySDK.defaultService().payOrder(decodedString, fromScheme: "com.xmars.porsche.m2m", callback: { (resp) in
+            dPrint(message: resp)
+        } )
+    }
 }
 
 
