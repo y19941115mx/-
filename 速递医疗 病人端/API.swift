@@ -81,7 +81,7 @@ extension API: TargetType {
         
         switch self {
         case .login(let user, let pwd):
-            return  .requestParameters(parameters: ["userloginphone": user, "userloginpwd": pwd, userlogindev:2], encoding: URLEncoding.default)
+            return  .requestParameters(parameters: ["userloginphone": user, "userloginpwd": pwd, "userlogindev":2], encoding: URLEncoding.default)
         case .phonetest(let phone):
             return .requestParameters(parameters: ["userloginphone": phone], encoding: URLEncoding.default)
         case .getcode(let phone):
