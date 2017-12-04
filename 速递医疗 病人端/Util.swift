@@ -153,6 +153,9 @@ class AlertUtil: NSObject {
             }
             alertController.addAction(action)
         }
+        // 添加Pad支持
+        alertController.popoverPresentationController?.sourceView = vc.view
+        alertController.popoverPresentationController?.sourceRect = CGRect.init(x: 0, y: 0, width: 1, height: 1)
         
         vc.present(alertController, animated: true, completion: nil)
     }
