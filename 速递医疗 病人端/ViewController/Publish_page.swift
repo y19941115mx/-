@@ -50,32 +50,10 @@ class Publish_page: BaseRefreshController<SickBean>, UICollectionViewDataSource,
         if sickBean.usersickpic == nil {
             return CGSize(width: SCREEN_WIDTH - 20, height: 150)
         }else{
-            return CGSize(width: SCREEN_WIDTH - 20, height: 240)
+            return CGSize(width: SCREEN_WIDTH - 20, height: 250)
         }
     }
     
-
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "edit" {
-//            let SelectedIndexPath = collectionView.indexPathsForSelectedItems
-//            checkedIndexRow = SelectedIndexPath?[0].row
-//            let sick = data[checkedIndexRow!]
-//            let vc = segue.destination as! EditViewController
-//            vc.descString = sick.desc
-        }
-    }
-    
-    //MARK: - navigation Methond
-    @IBAction func unwindToPublishPage(sender: UIStoryboardSegue){
-        // 编辑病情
-//        if let sourceViewController = sender.source as? EditViewController, let editString = sourceViewController.editString {
-//            data[checkedIndexRow!].desc = editString
-//            collectionView.reloadData()
-//        }
-        // 保存病情
-        
-    }
     
 }
 

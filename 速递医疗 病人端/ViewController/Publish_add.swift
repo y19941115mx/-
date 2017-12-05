@@ -246,10 +246,8 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
         departTextField.endEditing(true)
     }
     
-    
+    // 添加病情
     @IBAction func saveBtn(_ sender: UIButton) {
-        SVProgressHUD.show()
-        let Provider = MoyaProvider<API>()
         var datas:[Data]?
         let count = imgResource.count
         if count > 1 {
@@ -258,25 +256,12 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
                 datas?.append(ImageUtil.image2Data(image:imgResource[i]))
             }
         }
-        
-        Provider.request(API.addsick(datas, textView.text, oneDepart, twoDepart, family)) { result in
-            switch result {
-            case let .success(response):
-                do {
-                    SVProgressHUD.dismiss()
-                    let bean = Mapper<BaseAPIBean>().map(JSONObject: try response.mapJSON())
-                    showToast(self.view, bean!.msg!)
-                }catch {
-                    SVProgressHUD.dismiss()
-                    showToast(self.view, CATCHMSG)
-                }
-            case let .failure(error):
-                SVProgressHUD.dismiss()
-                dPrint(message: "error:\(error)")
-                showToast(self.view, ERRORMSG)
+        NetWorkUtil<BaseAPIBean>.init(method: .addsick(datas, textView.text, oneDepart, twoDepart, family)).newRequest { (bean, json) in
+            if bean.code == 100 {
+                self.dismiss(animated: false, completion: nil)
             }
+            Toast(bean.msg!)
         }
-        
     }
     
     // 添加就诊人

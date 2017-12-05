@@ -18,6 +18,16 @@ let APPLICATION = UIApplication.shared.delegate as! AppDelegate
 let ERRORMSG = "获取服务器数据失败"
 let CATCHMSG = "解析服务器数据失败"
 
+struct StaticClass {
+    static let BaseApi = "http://1842719ny8.iok.la:14086/internetmedical/user"
+    static let RootIP = "http://1842719ny8.iok.la:14086"
+    static let PictureIP = RootIP + "/picture/"
+    static let GetDept = RootIP + "/internetmedical/doctor/getdept"
+    static let TuisongAPIKey = "vGiSGpkn8LDk5U7GB7wEtS1r"
+    static let GaodeAPIKey = "e1f634835289963a63040a55a00ab886"
+    static let HuanxinAppkey = "1133171107115421#medicalclient"
+}
+
 
 //日志打印
 public func dPrint<N>(message:N,fileName:String = #file,methodName:String = #function,lineNumber:Int = #line){
@@ -42,11 +52,9 @@ public func Toast(_ message:String) {
 // 网络请求
 class NetWorkUtil<T:BaseAPIBean> {
     var method:API?
-    var vc:UIViewController = UIViewController()
     
-    init(method:API, vc:UIViewController) {
+    init(method:API) {
         self.method = method
-        self.vc = vc
     }
     
     class func getRequest(urlString: String, params : [String : Any], success : @escaping (_ response : [String : AnyObject])->(), failture : @escaping (_ error : Error)->()) {
@@ -75,12 +83,12 @@ class NetWorkUtil<T:BaseAPIBean> {
                     handler(bean!, json)
                 }catch {
                     dPrint(message: "response:\(response)")
-                    showToast(self.vc.view, CATCHMSG)
+                    Toast(CATCHMSG)
                 }
             case let .failure(error):
                 SVProgressHUD.dismiss()
                 dPrint(message: "error:\(error)")
-                showToast(self.vc.view, ERRORMSG)
+                Toast(ERRORMSG)
             }
         }
     }
@@ -97,11 +105,11 @@ class NetWorkUtil<T:BaseAPIBean> {
                     handler(bean!, json)
                 }catch {
                     dPrint(message: "response:\(response)")
-                    showToast(self.vc.view, CATCHMSG)
+                    Toast(CATCHMSG)
                 }
             case let .failure(error):
                 dPrint(message: "error:\(error)")
-                showToast(self.vc.view, ERRORMSG)
+                Toast(ERRORMSG)
             }
         }
     }
@@ -115,15 +123,7 @@ class NetWorkUtil<T:BaseAPIBean> {
 
 
 
-struct StaticClass {
-    static let BaseApi = "http://1842719ny8.iok.la:14086/internetmedical/user"
-    static let RootIP = "http://1842719ny8.iok.la:14086"
-    static let PictureIP = RootIP + "/picture/"
-    static let GetDept = RootIP + "/internetmedical/doctor/getdept"
-    static let TuisongAPIKey = "vGiSGpkn8LDk5U7GB7wEtS1r"
-    static let GaodeAPIKey = "e1f634835289963a63040a55a00ab886"
-    static let HuanxinAppkey = "1133171107115421#medicalclient"
-}
+
 
 // UserDefault UserDefault相关的枚举值
 enum user_default:String {
@@ -145,7 +145,6 @@ enum user_default:String {
         UserDefaults.standard.removeObject(forKey: "username")
         UserDefaults.standard.removeObject(forKey: "title")
         UserDefaults.standard.removeObject(forKey: "account")
-        UserDefaults.standard.removeObject(forKey: "channel_id")
         UserDefaults.standard.removeObject(forKey: "password")
     }
 }
@@ -244,7 +243,7 @@ class ImageUtil{
 
 //MARK: - 地图定位
 class MapUtil {
-    class func singleLocation(successHandler:((_ location:CLLocation, _ reGeocode:AMapLocationReGeocode?) -> Void)? ) {
+    class func singleLocation(successHandler:((_ location:CLLocation, _ reGeocode:AMapLocationReGeocode?) -> Void)?, failHandler:@escaping () -> Void ) {
         APPLICATION.locationManager.requestLocation(withReGeocode: true, completionBlock: {(location: CLLocation?, reGeocode: AMapLocationReGeocode?, error: Error?) in
             
             if let error = error {
@@ -253,7 +252,8 @@ class MapUtil {
                 if error.code == AMapLocationErrorCode.locateFailed.rawValue {
                     //定位错误：此时location和regeocode没有返回值，不进行annotation的添加
                     let msg = "定位错误:{\(error.code) - \(error.localizedDescription)};"
-                    showToast((APPLICATION.window?.rootViewController?.view)!, msg)
+                    Toast(msg)
+                    failHandler()
                     return
                 }
                 else if error.code == AMapLocationErrorCode.reGeocodeFailed.rawValue
@@ -265,7 +265,8 @@ class MapUtil {
                     
                     //逆地理错误：在带逆地理的单次定位中，逆地理过程可能发生错误，此时location有返回值，regeocode无返回值，进行annotation的添加
                     let msg = "获取地理位置失败，请检查GPS设置;"
-                    showToast((APPLICATION.window?.rootViewController?.view)!, msg)
+                    failHandler()
+                    Toast(msg)
                 }
             }
             if let location = location  {

@@ -22,6 +22,7 @@ class PublishCell: UICollectionViewCell, UICollectionViewDataSource {
     @IBOutlet weak var btn_del: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    
     var imageSource = [String]()
     var data:SickBean?
     var vc = BaseRefreshController<SickBean>()
@@ -114,7 +115,14 @@ class PublishCell: UICollectionViewCell, UICollectionViewDataSource {
             }
         }
     }
-
+    // 编辑病情
+    @IBAction func Edit_action(_ sender: Any) {
+        let vc = UIStoryboard.init(name: "Publish", bundle: nil).instantiateViewController(withIdentifier: "EditSick") as! EditViewController
+        vc.bean = data
+        vc.vc = self.vc
+        self.vc.present(vc, animated: false, completion: nil)
+    }
+    
 }
 
 
@@ -168,11 +176,11 @@ class PublishCell2: UICollectionViewCell, UICollectionViewDataSource {
     
     @objc func DelAction(button:UIButton) {
         AlertUtil.popAlert(vc: vc, msg: "确认取消发布") {
-            NetWorkUtil<BaseAPIBean>.init(method: API.cancelsick((self.data?.usersickid)!), vc: self.vc).newRequest(handler: { (bean, json) in
+            NetWorkUtil<BaseAPIBean>.init(method: API.cancelsick((self.data?.usersickid)!)).newRequest(handler: { (bean, json) in
                 if bean.code == 100 {
                     self.vc.refreshData()
                 }
-                速递医疗_病人端.showToast((self.vc.view)!, bean.msg!)
+                Toast(bean.msg!)
             })
             
         }

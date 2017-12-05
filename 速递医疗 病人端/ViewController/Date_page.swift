@@ -39,7 +39,9 @@ class Date_page: BaseRefreshController<OrderBean>, UICollectionViewDataSource {
         },getMoreHandler: {
             self.getMoreMethod = API.getorder(self.selectedPage, Int(user_default.userId.getStringValue()!)!, self.type)
         }, isTableView: false)
+        
         self.header?.beginRefreshing()
+
     }
     
     // MARK: - Table view data source

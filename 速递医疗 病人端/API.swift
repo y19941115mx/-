@@ -11,7 +11,7 @@ public enum API {
     case phonetest(String) // 检查手机号码
     case getcode(String) // 发送短信验证码
     case register(String, String, String) // 注册
-    case updatechannelid(String)
+    case updatechannelid(Int,String)// 更新channelid
     case huanxinregister // 环信注册
     case getdoctorlist(Int, String, String) // 获取首页医生信息
     case getorder(Int, Int, Int) // 获取订单信息
@@ -24,8 +24,10 @@ public enum API {
     case publishsick(Int) // 发布病情
     case deletesick(Int) // 删除病情
     case cancelsick(Int) // 取消发布病情
+    case editsick(Int, String) // 编辑病情
     case optdoctor(Int) // 预选医生
     case createorder(Int, String) // 生成订单
+    case exit // 退出登录
 }
 // 配置请求
 extension API: TargetType {
@@ -58,6 +60,8 @@ extension API: TargetType {
             return "/getsick"
         case .addsick:
             return "/addsick"
+        case .editsick:
+            return "/editsick"
         case .publishsick:
             return "/publishsick"
         case .deletesick:
@@ -70,6 +74,8 @@ extension API: TargetType {
             return "/cancelsick"
         case .updatechannelid:
             return "/updatechannelid"
+        case .exit:
+            return "/exit"
         }
     }
     public var method: Moya.Method {
@@ -91,8 +97,8 @@ extension API: TargetType {
             return .requestParameters(parameters: ["userloginphone": phone], encoding: URLEncoding.default)
         case .register(let phone, let pwd, let code):
             return .requestParameters(parameters: ["userloginphone":phone, "userloginpwd": pwd, "code": code], encoding: URLEncoding.default)
-        case .updatechannelid(let id):
-            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "channelid":id], encoding: URLEncoding.default)
+        case .updatechannelid(let id, let channelid):
+            return .requestParameters(parameters: ["userloginid":id, "channelid":channelid], encoding: URLEncoding.default)
         case .huanxinregister:
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "userloginpwd": user_default.password.getStringValue()!], encoding: URLEncoding.default)
         case .getdoctorlist(let page, let lon, let lat):
@@ -132,10 +138,15 @@ extension API: TargetType {
             return .requestParameters(parameters: ["userloginid":Int(user_default.userId.getStringValue()!)!, "usersickid":sick], encoding: URLEncoding.default)
         case .cancelsick(let sick):
             return .requestParameters(parameters: ["userloginid":Int(user_default.userId.getStringValue()!)!, "usersickid":sick], encoding: URLEncoding.default)
+        case .editsick(let sickID, let desc):
+            let formDatas = [MultipartFormData.init(provider: .data(Data.init()), name: "pictureFile")]
+            return .uploadCompositeMultipart(formDatas, urlParameters: ["usersickid":sickID, "usersickdesc":desc])
         case .optdoctor(let doctorId):
             return .requestParameters(parameters: ["docloginid":doctorId, "userloginid":Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
         case .createorder(let docId, let timestr):
             return .requestParameters(parameters: ["docloginid":docId, "userorderappointment": timestr, "userloginid": Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
+        case .exit:
+            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!], encoding: URLEncoding.default)
         }
         
     }

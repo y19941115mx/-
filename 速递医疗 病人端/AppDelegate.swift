@@ -63,9 +63,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let BaiDu_Channel_id = BPush.getChannelId()
                 dPrint(message: BaiDu_Channel_id)
                 user_default.setUserDefault(key: user_default.channel_id, value: BaiDu_Channel_id!)
-                NetWorkUtil<BaseAPIBean>.init(method: API.updatechannelid(BaiDu_Channel_id!), vc: (self.window?.rootViewController)!).newRequest(handler: { (bean, json) in
-                    Toast(bean.msg!)
-                })
             }
         })
     }
@@ -85,6 +82,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let vc = ViewController()
             APPLICATION.window?.rootViewController = vc
         }
+        
+        
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -121,7 +120,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if userInfo != nil{
             BPush.handleNotification(userInfo as! [AnyHashable : Any])
         }
-        
+        // 清空角标
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     private func setUpMap() {
@@ -137,7 +137,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if reGeocode != nil {
                 showToast((APPLICATION.window?.rootViewController?.view)!, "定位成功："+(reGeocode?.country)! + (reGeocode?.city)! + (reGeocode?.aoiName)!)
             }
-        })
+        }, failHandler: {})
     }
     
     private func setupHuanxin() {

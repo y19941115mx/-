@@ -46,7 +46,7 @@ class MyDoctorTableViewCell: UITableViewCell {
     
     @objc func checkedBtn(button:UIButton) {
         AlertUtil.popAlert(vc: self.vc!, msg: "确定选择该医生", okhandler: {
-            NetWorkUtil<BaseAPIBean>.init(method: API.createorder((self.data?.docId)!, "2017年12月1日 上午"), vc: self.vc!).newRequest(handler: { bean,json  in
+            NetWorkUtil<BaseAPIBean>.init(method: API.createorder((self.data?.docId)!, "2017年12月1日 上午")).newRequest(handler: { bean,json  in
                 速递医疗_病人端.showToast((self.vc?.view)!, bean.msg!)
             })
         })

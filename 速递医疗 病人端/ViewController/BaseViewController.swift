@@ -115,10 +115,17 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
     var ApiMethod:API?
     var getMoreMethod:API?
     var isTableView:Bool = true
+    let button = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        self.scrollView?.isHidden = false
+//        button.removeFromSuperview()
+//        self.header?.beginRefreshing()
+//    }
     
     func initRefresh(scrollView:UIScrollView, ApiMethod:API,refreshHandler:(()->Void)?,getMoreHandler:@escaping ()->Void, isTableView:Bool = true) {
         self.ApiMethod = ApiMethod
@@ -148,7 +155,6 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
     
     func showRefreshBtn() {
         self.scrollView?.isHidden = true
-        let button = UIButton()
         //label
         button.setTitle("无内容，点击刷新", for: .normal)
         button.setTitleColor(UIColor.lightGray, for: .normal)
@@ -160,52 +166,60 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
         
     }
     
-    func refreshData(){
+    func getData() {
         //刷新数据
         self.selectedPage = 1
+        
         let Provider = MoyaProvider<API>()
-        //刷新地理位置信息
-        MapUtil.singleLocation { (location, regeocode) in
-            if self.refreshHandler != nil {
-                self.refreshHandler!()
-            }
-            Provider.request(self.ApiMethod!) { result in
-                switch result {
-                case let .success(response):
-                    do {
-                        self.header?.endRefreshing()
-                        let bean = Mapper<BaseListBean<T>>().map(JSONObject: try response.mapJSON())
-                        if bean?.code == 100 {
-                            if bean?.dataList == nil {
-                                bean?.dataList = [T]()
-                            }
-                            self.data = (bean?.dataList)!
-                            if self.data.count == 0{
-                                //隐藏tableView,添加刷新按钮
-                                self.showRefreshBtn()
-                            }
-                            if self.isTableView {
-                                let tableView = self.scrollView as! UITableView
-                                tableView.reloadData()
-                            }else {
-                                let collectionView = self.scrollView as! UICollectionView
-                                collectionView.reloadData()
-                            }
-                            
+        if self.refreshHandler != nil {
+            self.refreshHandler!()
+        }
+        Provider.request(self.ApiMethod!) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    self.header?.endRefreshing()
+                    let bean = Mapper<BaseListBean<T>>().map(JSONObject: try response.mapJSON())
+                    if bean?.code == 100 {
+                        if bean?.dataList == nil {
+                            bean?.dataList = [T]()
+                        }
+                        self.data = (bean?.dataList)!
+                        if self.data.count == 0{
+                            //隐藏tableView,添加刷新按钮
+                            self.showRefreshBtn()
+                        }
+                        if self.isTableView {
+                            let tableView = self.scrollView as! UITableView
+                            tableView.reloadData()
                         }else {
-                            showToast(self.view, (bean?.msg!)!)
+                            let collectionView = self.scrollView as! UICollectionView
+                            collectionView.reloadData()
                         }
                         
-                    }catch {
-                        showToast(self.view,CATCHMSG)
+                    }else {
+                        showToast(self.view, (bean?.msg!)!)
                     }
-                case let .failure(error):
-                    self.header?.endRefreshing()
-                    dPrint(message: "error:\(error)")
-                    showToast(self.view, ERRORMSG)
+                    
+                }catch {
+                    showToast(self.view,CATCHMSG)
                 }
+            case let .failure(error):
+                self.header?.endRefreshing()
+                dPrint(message: "error:\(error)")
+                showToast(self.view, ERRORMSG)
             }
         }
+    }
+    
+    func refreshData(){
+        //刷新地理位置信息
+        MapUtil.singleLocation(successHandler: { (location, regcode) in
+            self.getData()
+        }, failHandler: {
+            self.getData()
+        })
+        
         
         
         

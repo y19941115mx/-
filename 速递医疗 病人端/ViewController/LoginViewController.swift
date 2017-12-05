@@ -41,7 +41,7 @@ class LoginViewController: BaseTextViewController {
         
         // FIXME:  需要做字符串验证
         // 登录
-        NetWorkUtil<BaseAPIBean>.init(method: .login(phoneNum, MD5(passNum)), vc: self).newRequest { (bean, json) in
+        NetWorkUtil<BaseAPIBean>.init(method: .login(phoneNum, MD5(passNum))).newRequest { (bean, json) in
             if bean.code == 100 {
                 let data = json["data"]
                 let userId = data["id"].intValue
@@ -51,6 +51,10 @@ class LoginViewController: BaseTextViewController {
                 let token = data["token"].stringValue
                 let username = data["username"].stringValue
                 let title = data["title"].stringValue
+                
+                NetWorkUtil<BaseAPIBean>.init(method: API.updatechannelid(userId, user_default.channel_id.getStringValue()!)).newRequestWithOutHUD(handler: { (bean, json) in
+                    Toast(bean.msg!)
+                })
                 user_default.setUserDefault(key: .userId, value: String(userId))
                 user_default.setUserDefault(key: .typename, value: typename)
                 user_default.setUserDefault(key: .pix, value: pix)
@@ -60,7 +64,7 @@ class LoginViewController: BaseTextViewController {
                 user_default.setUserDefault(key: .password, value: MD5(passNum))
                 // 环信注册
                 if account == "" {
-                    NetWorkUtil<BaseAPIBean>.init(method: API.huanxinregister, vc: self).newRequest(handler: { (bean, json) in
+                    NetWorkUtil<BaseAPIBean>.init(method: API.huanxinregister).newRequest(handler: { (bean, json) in
                         if bean.code == 100 {
                             account = "user_\(userId)"
                         }
