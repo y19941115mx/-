@@ -62,7 +62,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // 获取channel_id
                 let BaiDu_Channel_id = BPush.getChannelId()
                 dPrint(message: BaiDu_Channel_id)
-                user_default.setUserDefault(key: user_default.channel_id, value: BaiDu_Channel_id)
+                user_default.setUserDefault(key: user_default.channel_id, value: BaiDu_Channel_id!)
+                NetWorkUtil<BaseAPIBean>.init(method: API.updatechannelid(BaiDu_Channel_id!), vc: (self.window?.rootViewController)!).newRequest(handler: { (bean, json) in
+                    Toast(bean.msg!)
+                })
             }
         })
     }
@@ -151,6 +154,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     Toast("环信登录失败，\(error.debugDescription)")
                 }
             })
+            
         }
     }
     
