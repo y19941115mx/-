@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Mine_info: UIViewController, UITableViewDataSource {
+class Mine_info: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var tableData = ["未填","未填","未填","未填","未填","未填"]
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,6 +50,9 @@ class Mine_info: UIViewController, UITableViewDataSource {
     @IBAction func click_save(_ sender: UIButton) {
         showToast(self.view, "保存成功")
     }
+    
+    
+    
     /*
     // MARK: - Navigation
 
