@@ -70,13 +70,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
         // App 收到推送的通知
         BPush.handleNotification(userInfo)
-        //        _ps_Type=userInfo["psType"].intValue;//自定义type消息（和后台约定）
-        let manager = userInfo["aps"] as? [String:String]
-        let message = manager!["alert"]
-        
+//        let manager = userInfo["aps"] as? [String:String]
+//        let message = manager!["alert"]
+
         //        应用在前台或者后台，不跳转页面，让用户选择。
         if application.applicationState == .active || application.applicationState == .background{
-            AlertUtil.popAlert(vc: (APPLICATION.window?.rootViewController)!, msg:message! , okhandler: {})
+            
+            let vc = ViewController()
+            APPLICATION.window?.rootViewController = vc
         }else {
             // 应用被杀死跳转页面
             let vc = ViewController()

@@ -19,8 +19,8 @@ let ERRORMSG = "获取服务器数据失败"
 let CATCHMSG = "解析服务器数据失败"
 
 struct StaticClass {
-    static let BaseApi = "http://1842719ny8.iok.la:14086/internetmedical/user"
-    static let RootIP = "http://1842719ny8.iok.la:14086"
+    static let RootIP = "http://192.168.2.2:8080"
+    static let BaseApi = RootIP + "/internetmedical/user"
     static let PictureIP = RootIP + "/picture/"
     static let GetDept = RootIP + "/internetmedical/doctor/getdept"
     static let TuisongAPIKey = "vGiSGpkn8LDk5U7GB7wEtS1r"

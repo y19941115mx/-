@@ -110,22 +110,17 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
     var data = [T]()
     var scrollView:UIScrollView?
     var selectedPage = 1
-    var getMoreHandler:()->Void = {}
-    var refreshHandler:(()->Void)?
+    var getMoreHandler:()->Void = {} //动态改变 获取更多的API
+    var refreshHandler:(()->Void)? // 动态改变 刷新数据的API
     var ApiMethod:API?
     var getMoreMethod:API?
     var isTableView:Bool = true
-    let button = UIButton()
+    var button = UIButton()
+    lazy var imageView = UIImageView.init(image: #imageLiteral(resourceName: "empty"))
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        self.scrollView?.isHidden = false
-//        button.removeFromSuperview()
-//        self.header?.beginRefreshing()
-//    }
     
     func initRefresh(scrollView:UIScrollView, ApiMethod:API,refreshHandler:(()->Void)?,getMoreHandler:@escaping ()->Void, isTableView:Bool = true) {
         self.ApiMethod = ApiMethod
@@ -155,14 +150,22 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
     
     func showRefreshBtn() {
         self.scrollView?.isHidden = true
-        let button = UIButton()
+        self.button.isHidden = false
+        self.imageView.isHidden = false
         //label
-        button.setTitle("数据加载失败，点击重新加载", for: .normal)
+        button.setTitle("数据为空，点击重新加载", for: .normal)
         button.setTitleColor(UIColor.lightGray, for: .normal)
-        button.addTarget(self, action: #selector(refreshBtn(button:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(refreshBtn(mybutton:)), for: .touchUpInside)
         self.view.addSubview(button)
-        button.snp.makeConstraints { make in
+        self.view.addSubview(imageView)
+        imageView.snp.makeConstraints { make in
             make.center.equalTo(self.view)
+            make.height.equalTo(250)
+            make.width.equalTo(200)
+        }
+        button.snp.makeConstraints { (make) in
+            make.top.equalTo(imageView.snp.bottom)
+            make.centerX.equalTo(self.view)
         }
         
     }
@@ -199,17 +202,18 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
                         }
                         
                     }else {
-                        self.showRefreshBtn()
                         showToast(self.view, (bean?.msg!)!)
                     }
                     
                 }catch {
-                    self.showRefreshBtn()
                     showToast(self.view,CATCHMSG)
                 }
             case let .failure(error):
+                self.header?.endRefreshing()
+                if self.data.count == 0{
+                    self.showRefreshBtn()
+                }
                 dPrint(message: "error:\(error)")
-                self.showRefreshBtn()
                 showToast(self.view, ERRORMSG)
             }
         }
@@ -230,22 +234,22 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
     }
     
     private func getMoreData(){
+        self.selectedPage += 1
         //获取更多数据
         getMoreHandler()
         let Provider = MoyaProvider<API>()
         Provider.request(self.getMoreMethod!) { result in
             switch result {
             case let .success(response):
+                self.footer?.endRefreshing()
                 do {
                     let bean = Mapper<BaseListBean<T>>().map(JSONObject: try response.mapJSON())
-                    self.footer?.endRefreshing()
                     if bean?.code == 100 {
                         if bean?.dataList?.count == 0 || bean?.dataList == nil{
                             showToast(self.view, "已经到底了")
                             return
                         }
                         self.data += (bean?.dataList)!
-                        self.selectedPage += 1
                         if self.isTableView {
                             let tableView = self.scrollView as! UITableView
                             tableView.reloadData()
@@ -270,11 +274,11 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
         
     }
     
-    @objc func refreshBtn(button:UIButton) {
-        // 点击刷新
+    @objc func refreshBtn(mybutton:UIButton) {
+        button.isHidden = true
+        imageView.isHidden = true
         self.scrollView?.isHidden = false
-        button.removeFromSuperview()
-        self.refreshData()
+        self.header?.beginRefreshing()
     }
     
     
