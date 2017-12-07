@@ -26,6 +26,7 @@ public enum API {
     case cancelsick(Int) // 取消发布病情
     case editsick(Int, String) // 编辑病情
     case optdoctor(Int) // 预选医生
+    case getcalendar(Int) // 获取医生日程
     case createorder(Int, String) // 生成订单
     case exit // 退出登录
 }
@@ -72,6 +73,8 @@ extension API: TargetType {
             return "/createorder"
         case .cancelsick:
             return "/cancelsick"
+        case .getcalendar:
+            return "/getcalendar"
         case .updatechannelid:
             return "/updatechannelid"
         case .exit:
@@ -147,6 +150,8 @@ extension API: TargetType {
             return .requestParameters(parameters: ["docloginid":docId, "userorderappointment": timestr, "userloginid": Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
         case .exit:
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!], encoding: URLEncoding.default)
+        case .getcalendar(let doctorId):
+            return .requestParameters(parameters: ["docloginid":doctorId], encoding: URLEncoding.default)
         }
         
     }

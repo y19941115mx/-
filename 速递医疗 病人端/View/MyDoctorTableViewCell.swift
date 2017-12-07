@@ -20,7 +20,7 @@ class MyDoctorTableViewCell: UITableViewCell {
     
     @IBOutlet weak var label_docType: UILabel!
     var data:DoctorBean?
-    var vc:UIViewController?
+    var vc:BaseRefreshController<DoctorBean>?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,7 +33,7 @@ class MyDoctorTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func updateView(mData:DoctorBean, vc:UIViewController) {
+    func updateView(mData:DoctorBean, vc:BaseRefreshController<DoctorBean>) {
         self.vc = vc
         self.data = mData
         nameLabel.text = mData.name
@@ -46,9 +46,27 @@ class MyDoctorTableViewCell: UITableViewCell {
     
     @objc func checkedBtn(button:UIButton) {
         AlertUtil.popAlert(vc: self.vc!, msg: "确定选择该医生", okhandler: {
-            NetWorkUtil<BaseAPIBean>.init(method: API.createorder((self.data?.docId)!, "2017年12月1日 上午")).newRequest(handler: { bean,json  in
-                速递医疗_病人端.showToast((self.vc?.view)!, bean.msg!)
+            let id = self.data?.docId
+            NetWorkUtil<BaseAPIBean>.init(method: API.getcalendar(id!)).newRequest(handler: { (bean, json) in
+                let dataArray = json["data"].array
+                if dataArray == nil {
+                    Toast("日程为空")
+                }else {
+                    var stringArray = [String]()
+                    for data in dataArray! {
+                        let date = data["doccalendarday"].stringValue
+                        let time = data["doccalendartime"].stringValue
+                        stringArray.append("\(date) \(time)")
+                    }
+                    AlertUtil.popMenu(vc: self.vc!, title: "选择医生日程", msg: "", btns: stringArray, handler: { (str) in
+                        NetWorkUtil<BaseAPIBean>.init(method: .createorder(id!, str)).newRequest(handler: { (bean, json) in
+                            Toast(bean.msg!)
+                            self.vc?.refreshData()
+                        })
+                    })
+                }
             })
+
         })
     }
 
