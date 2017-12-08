@@ -5,7 +5,6 @@
 //  Created by admin on 2017/10/18.
 //  Copyright © 2017年 victor. All rights reserved.
 //
-
 import UIKit
 import SwiftyJSON
 import Moya
