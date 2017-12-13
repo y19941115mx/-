@@ -65,8 +65,7 @@ class RegisterViewController: BaseTextViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         // 初始化界面
-        initTextFieldDelegate(tv_source: [photoTextField, msgCodeTextField, password, password2])
-        updateBtnState = updateButtonState
+        initTextFieldDelegate(tv_source: [photoTextField, msgCodeTextField, password, password2], updateBtnState: updateButtonState)
         updateButtonState()
     }
     

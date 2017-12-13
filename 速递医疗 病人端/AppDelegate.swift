@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SVProgressHUD.setDefaultStyle(.custom)
         SVProgressHUD.setForegroundColor(UIColor.APPColor)
         SVProgressHUD.setBackgroundColor(UIColor.clear)
-        SVProgressHUD.setDefaultMaskType(.none)
+        SVProgressHUD.setDefaultMaskType(.black)
         SVProgressHUD.setDefaultAnimationType(.native)
 //        百度推送
         self.setUpBaiDuPush(application, didFinishLaunchingWithOptions: launchOptions)

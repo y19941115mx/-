@@ -30,8 +30,7 @@ class LoginViewController: BaseTextViewController {
         super.viewDidLoad()
         updateButtonState()
         // 界面设置
-        initTextFieldDelegate(tv_source: [tv_pwd, tv_phone])
-        updateBtnState = updateButtonState
+        initTextFieldDelegate(tv_source: [tv_pwd, tv_phone], updateBtnState: updateButtonState)
     }
     
     //MARK: - action

@@ -11,7 +11,7 @@ import ObjectMapper
 
 // 基本
 class BaseViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
@@ -43,7 +43,8 @@ class BaseTextViewController:BaseViewController, UITextFieldDelegate {
         
     }
     
-    func initTextFieldDelegate(tv_source:[UITextField]) {
+    func initTextFieldDelegate(tv_source:[UITextField], updateBtnState:@escaping () -> Void) {
+        self.updateBtnState = updateBtnState
         self.tv_source = tv_source
         if tv_source.count != 0 {
             for textField in tv_source {
@@ -67,7 +68,7 @@ class BaseTextViewController:BaseViewController, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        updateBtnState()
+        self.updateBtnState()
     }
 }
 
@@ -100,8 +101,6 @@ class SegmentedSlideViewController: BaseViewController {
         slideSwitch?.show(in: self)
     }
 }
-
-
 
 // 下拉刷新
 class BaseRefreshController<T:Mappable>:BaseViewController {
@@ -224,14 +223,8 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
     func refreshData(){
         //刷新数据
         self.selectedPage = 1
-        //刷新地理位置信息
-        MapUtil.singleLocation(successHandler: { (location, cgcode) in
-            self.getData()
-        }, failHandler: {
-            self.getData()
-        })
-        
-        
+        //FIXME: - 刷新地理位置信息
+        getData()
     }
     
     private func getMoreData(){
@@ -251,6 +244,7 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
                             return
                         }
                         self.data += (bean?.dataList)!
+                        
                         if self.isTableView {
                             let tableView = self.scrollView as! UITableView
                             tableView.reloadData()
@@ -283,4 +277,50 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
     }
     
     
+}
+
+// 信息填写
+class BaseTableInfoViewController:BaseViewController,UITableViewDataSource,UITableViewDelegate {
+    var tableTiles = [[String]]()
+    var tableInfo = [[String]]()
+    var mTableView:UITableView?
+    var clickHandler:((IndexPath)->Void)?
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return tableTiles.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableTiles[section].count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? InfoTableViewCell
+        if cell == nil {
+            cell =  Bundle.main.loadNibNamed("InfoTableViewCell", owner: nil, options: nil)?.last as? InfoTableViewCell
+        }
+        cell?.titleLabel.text = tableTiles[indexPath.section][indexPath.row]
+        cell?.infoLabel.text = tableInfo[indexPath.section][indexPath.row]
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if self.clickHandler != nil {
+            clickHandler!(indexPath)
+        }
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    func initViewController(tableTiles: [[String]], tableInfo:[[String]],tableView:UITableView, clickHandler:((IndexPath)->Void)?) {
+        self.mTableView = tableView
+        self.tableInfo = tableInfo
+        self.tableTiles = tableTiles
+        self.clickHandler = clickHandler
+        self.mTableView?.dataSource = self
+        self.mTableView?.delegate = self
+    }
 }
