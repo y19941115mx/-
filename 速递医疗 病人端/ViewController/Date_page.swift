@@ -10,53 +10,45 @@ import UIKit
 import Moya
 import ObjectMapper
 
-class Date_page: BaseRefreshController<OrderBean>, UICollectionViewDataSource {
-    
-    @IBOutlet weak var mCollectionView: BaseCollectionView!
-    var type:Int = 0
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+class Date_page: BaseRefreshController<OrderBean>, UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? MineOrderCollectionViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? MyDateTableViewCell
         if cell == nil {
-            cell = Bundle.main.loadNibNamed("MineOrderCollectionViewCell", owner: nil, options: nil)?.last as? MineOrderCollectionViewCell
-            
+            cell =  Bundle.main.loadNibNamed("MyDateTableViewCell", owner: nil, options: nil)?.last as? MyDateTableViewCell
         }
-        let modelBean = data[indexPath.row]
-        cell?.updateView(mdata: modelBean)
-        
+        let bean = data[indexPath.row]
+        cell?.flag = self.type
+        cell?.updateViews(vc: self, data: bean)
         return cell!
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
+    
+    
+    var type:Int = 1
+    
+    @IBOutlet weak var tableView: BaseTableView!
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initRefresh(scrollView: self.mCollectionView, ApiMethod: API.getorder(selectedPage, Int(user_default.userId.getStringValue()!)!, type), refreshHandler: {
+        initRefresh(scrollView: self.tableView, ApiMethod: API.getorder(selectedPage, Int(user_default.userId.getStringValue()!)!, type), refreshHandler: {
             
         },getMoreHandler: {
             self.getMoreMethod = API.getorder(self.selectedPage, Int(user_default.userId.getStringValue()!)!, self.type)
-        }, isTableView: false)
+        })
         
         self.header?.beginRefreshing()
 
     }
     
-    // MARK: - Table view data source
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 

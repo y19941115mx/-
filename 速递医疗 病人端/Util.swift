@@ -27,6 +27,7 @@ struct StaticClass {
     static let TuisongAPIKey = "vGiSGpkn8LDk5U7GB7wEtS1r"
     static let GaodeAPIKey = "e1f634835289963a63040a55a00ab886"
     static let HuanxinAppkey = "1133171107115421#medicalclient"
+    static let AliPayScheme = "com.dingling.medical.o2o"
 }
 
 
@@ -195,8 +196,28 @@ class AlertUtil: NSObject {
         alertController.addAction(okAction)
         vc.present(alertController, animated: true, completion: nil)
     }
-    // 弹出输入框
-    class func popTextFields(vc:UIViewController, okhandler: @escaping (_ textfields:[UITextField])->()) {
+    
+    // 弹出带文本输入框
+    class func popTextFields(vc:UIViewController,title:String, textfields:[UITextField], okhandler: @escaping (_ textfields:[UITextField])->()) {
+        let alertController = UIAlertController(title: title,
+                                                message: "", preferredStyle: .alert)
+        for item in textfields {
+            alertController.addTextField {
+                (textField: UITextField!) -> Void in
+                textField.placeholder = item.placeholder
+                textField.keyboardType = item.keyboardType
+            }
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let okAction = UIAlertAction(title: "确定", style: .default, handler: {
+            action in
+            okhandler(alertController.textFields!)
+        })
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        vc.present(alertController, animated: true, completion: nil)
+    }
+    class func popInfoTextFields(vc:UIViewController, okhandler: @escaping (_ textfields:[UITextField])->()) {
         let alertController = UIAlertController(title: "输入内容",
                                                 message: "", preferredStyle: .alert)
         alertController.addTextField {
@@ -224,6 +245,26 @@ class AlertUtil: NSObject {
 }
 
 class ImageUtil{
+    // 设置按钮不可用灰色
+    class func setButtonDisabledImg(button:UIButton){
+         button.setBackgroundImage(ImageUtil.color2img(color: UIColor.APPGrey), for: .disabled)
+    }
+    
+    // 颜色转图片
+    class func color2img(color:UIColor) -> UIImage{
+        //  颜色转换为背景图片
+        let rect = CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0)
+        UIGraphicsBeginImageContext(rect.size)
+        let context:CGContext = UIGraphicsGetCurrentContext()!
+        context.setFillColor(color.cgColor);
+        context.fill(rect);
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image!
+        
+    }
     //设置图片
     class public func setImage(path:String, imageView:UIImageView){
         let url = URL(string:path)
@@ -271,8 +312,8 @@ class MapUtil {
                 }
             }
             if let location = location  {
-                APPLICATION.lon = String(location.coordinate.longitude)
-                APPLICATION.lat = String(location.coordinate.latitude)
+                APPLICATION.lon = location.coordinate.longitude.description
+                APPLICATION.lat = location.coordinate.latitude.description
                 if successHandler != nil {
                     successHandler!(location, reGeocode)
                 }
@@ -283,6 +324,16 @@ class MapUtil {
 }
 
 class StringUTil {
+    // 距离转换
+    class public func transformDistance(_ distance:Int) -> String {
+        if distance/1000 < 1 {
+            return "\(distance)米"
+        }else {
+            let res = Int(distance/1000)
+            return  "\(res)千米"
+        }
+    }
+    
     // 转换MD5值
     class public func transformMD5(_ string:String)->String {
         return MD5(string)
@@ -374,18 +425,13 @@ public class AliSdkManager: NSObject {
         var returnMsg:String = result["memo"] as! String
         dPrint(message: "returnMsg: \(returnMsg)")
         switch  returnCode{
-        case "6001":
-            break
-        case "8000":
-            break
-        case "4000":
-            break
         case "9000":
             returnMsg = "支付成功"
             dPrint(message: JSON.init(parseJSON: (result["result"] as! String))["alipay_trade_app_pay_response"]["sub_msg"].stringValue)
+            Toast(returnMsg)
             break
         default:
-            break
+            Toast(returnMsg)
         }
     }
 }
@@ -402,7 +448,8 @@ public class AliPayUtils: NSObject {
         let decodedData = sign.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))!
         let decodedString:String = (NSString(data: decodedData, encoding: String.Encoding.utf8.rawValue))! as String
         
-        AlipaySDK.defaultService().payOrder(decodedString, fromScheme: "com.xmars.porsche.m2m", callback: { (resp) in
+        
+        AlipaySDK.defaultService().payOrder(decodedString, fromScheme: StaticClass.AliPayScheme, callback: { (resp) in
             dPrint(message: resp)
         } )
     }

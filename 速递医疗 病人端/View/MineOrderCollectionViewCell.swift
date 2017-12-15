@@ -15,6 +15,7 @@ class MineOrderCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var label_time: UILabel!
     @IBOutlet weak var label_name: UILabel!
     @IBOutlet weak var label_title: UILabel!
+    var type = 0
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,6 +28,6 @@ class MineOrderCollectionViewCell: UICollectionViewCell {
         label_title.text = mdata.usersickdesc 
     }
 
-    @IBAction func click_confirm(_ sender: Any) {
+    @objc func click_confirm(_ sender: Any) {
     }
 }

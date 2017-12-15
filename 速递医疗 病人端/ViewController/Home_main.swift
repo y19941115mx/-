@@ -18,7 +18,6 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
 
     @IBOutlet weak var sortByPatientBtn: UIButton!
 
-    @IBOutlet weak var sortByTimeBtn: UIButton!
 
     @IBOutlet weak var sortByDept: UIButton!
     @IBOutlet weak var sortByLocBtn: UIButton!
@@ -27,11 +26,15 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        //初始化navigationBar,添加按钮事件
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "message"), style: .plain, target: self, action: #selector(self.showContantList))
         //添加按钮事件
         initView()
         // 初始化navigationBar
         setUpNavTitle(title: "首页")
-        initRefresh(scrollView: infoTableView, ApiMethod: API.getdoctorlist(selectedPage, "0", "0"), refreshHandler: {}, getMoreHandler:{
+        initRefresh(scrollView: infoTableView, ApiMethod: API.getdoctorlist(selectedPage, APPLICATION.lon, APPLICATION.lat), refreshHandler: {
+            self.ApiMethod = API.getdoctorlist(self.selectedPage, APPLICATION.lon, APPLICATION.lat)
+        }, getMoreHandler:{
             self.getMoreMethod = API.getdoctorlist(self.selectedPage, "0", "0")
         })
         // 获取数据
@@ -50,12 +53,17 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
             cell =  Bundle.main.loadNibNamed("HomeMainTableViewCell", owner: nil, options: nil)?.last as? HomeMainTableViewCell
         }
         let modelBean = self.data[indexPath.row]
-        cell?.updateViews(modelBean: modelBean)
+        cell?.updateViews(modelBean: modelBean, vc: self)
         return cell!
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 145
+//        if data[indexPath.row].docexpert == "" || data[indexPath.row].docexpert == nil {
+//            return 120
+//        }else {
+//            return 145
+//        }
+        return 100
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -67,14 +75,12 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
     
     private func initView(){
         sortByLocBtn.addTarget(self, action: #selector(clickBtn(button:)), for: .touchUpInside)
-        sortByTimeBtn.addTarget(self, action: #selector(clickBtn(button:)), for: .touchUpInside)
         sortByPatientBtn.addTarget(self, action: #selector(clickBtn(button:)), for: .touchUpInside)
         sortByDept.addTarget(self, action: #selector(clickBtn(button:)), for: .touchUpInside)
     }
 
     private func cleanButton(){
         sortByLocBtn.setTitleColor(UIColor.darkGray, for: .normal)
-        sortByTimeBtn.setTitleColor(UIColor.darkGray, for: .normal)
         sortByPatientBtn.setTitleColor(UIColor.darkGray, for: .normal)
         sortByDept.setTitleColor(UIColor.darkGray, for: .normal)
     }
@@ -86,11 +92,6 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
         case 10001:
             cleanButton()
             sortByPatientBtn.setTitleColor(UIColor.APPColor, for: .normal)
-        // 时间
-        case 10002:
-            cleanButton()
-            sortByTimeBtn.setTitleColor(UIColor.APPColor, for: .normal)
-            showToast(self.view, "按照时间排序")
         // 地点
         case 10003:
             cleanButton()
@@ -104,12 +105,21 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
         }
 
     }
+    
+    // 显示环信会话列表
+    @objc private func showContantList() {
+        let viewController = ConversationListViewController()
+        viewController.setUpNavTitle(title: "会话列表")
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: false)
+    }
 
     //MARK: - navigation Methond
 
     @IBAction func unwindToHome(sender: UIStoryboardSegue){
 
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowDetail" {
             let SelectedIndexPath = infoTableView.indexPathForSelectedRow

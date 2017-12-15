@@ -30,6 +30,11 @@
 		843C3EB81FA8A7860076EB8C /* Home_main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C3EB61FA8A7860076EB8C /* Home_main.swift */; };
 		843C3EBA1FA8AAC20076EB8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 843C3EB91FA8AAC20076EB8C /* Assets.xcassets */; };
 		843C3EBC1FA946FB0076EB8C /* MyDoctor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843C3EBB1FA946FB0076EB8C /* MyDoctor.storyboard */; };
+		8461E55A1FE273600096D041 /* ResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8461E5591FE273600096D041 /* ResetViewController.swift */; };
+		8461E55C1FE366630096D041 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8461E55B1FE366630096D041 /* ChatViewController.swift */; };
+		8461E55E1FE36C290096D041 /* Mine_msg_main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8461E55D1FE36C290096D041 /* Mine_msg_main.swift */; };
+		8461E5611FE38F7C0096D041 /* MyDateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8461E55F1FE38F7B0096D041 /* MyDateTableViewCell.xib */; };
+		8461E5621FE38F7C0096D041 /* MyDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8461E5601FE38F7B0096D041 /* MyDateTableViewCell.swift */; };
 		846D885A1FAC067C00DE6308 /* BaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D88591FAC067C00DE6308 /* BaseTableView.swift */; };
 		846D885C1FAC106400DE6308 /* Mine_setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D885B1FAC106400DE6308 /* Mine_setting.swift */; };
 		846D885F1FAC223300DE6308 /* MineOrderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D885D1FAC223300DE6308 /* MineOrderCollectionViewCell.swift */; };
@@ -109,6 +114,11 @@
 		843C3EB61FA8A7860076EB8C /* Home_main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home_main.swift; sourceTree = "<group>"; };
 		843C3EB91FA8AAC20076EB8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		843C3EBB1FA946FB0076EB8C /* MyDoctor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyDoctor.storyboard; sourceTree = "<group>"; };
+		8461E5591FE273600096D041 /* ResetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetViewController.swift; sourceTree = "<group>"; };
+		8461E55B1FE366630096D041 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		8461E55D1FE36C290096D041 /* Mine_msg_main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mine_msg_main.swift; sourceTree = "<group>"; };
+		8461E55F1FE38F7B0096D041 /* MyDateTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDateTableViewCell.xib; sourceTree = "<group>"; };
+		8461E5601FE38F7B0096D041 /* MyDateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDateTableViewCell.swift; sourceTree = "<group>"; };
 		846D88591FAC067C00DE6308 /* BaseTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableView.swift; sourceTree = "<group>"; };
 		846D885B1FAC106400DE6308 /* Mine_setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine_setting.swift; sourceTree = "<group>"; };
 		846D885D1FAC223300DE6308 /* MineOrderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineOrderCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -310,6 +320,9 @@
 		84C984031FA618060058FA7B /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				8461E55D1FE36C290096D041 /* Mine_msg_main.swift */,
+				8461E55B1FE366630096D041 /* ChatViewController.swift */,
+				8461E5591FE273600096D041 /* ResetViewController.swift */,
 				84DDACDE1FE0C96F004199FF /* EditViewController.swift */,
 				849BAA5B1FAD534100871EA8 /* MyDoctor_main.swift */,
 				8406477D1FA770D7009B21C4 /* LoginViewController.swift */,
@@ -349,6 +362,8 @@
 				846D885E1FAC223300DE6308 /* MineOrderCollectionViewCell.xib */,
 				84736B9C1FAC5592001E9AA5 /* MinePocketCollectionViewCell.swift */,
 				84736B9D1FAC5592001E9AA5 /* MinePocketCollectionViewCell.xib */,
+				8461E5601FE38F7B0096D041 /* MyDateTableViewCell.swift */,
+				8461E55F1FE38F7B0096D041 /* MyDateTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -436,6 +451,7 @@
 				843C3EB41FA8A6EC0076EB8C /* Home.storyboard in Resources */,
 				846D88601FAC223300DE6308 /* MineOrderCollectionViewCell.xib in Resources */,
 				847C13A31FD2B86100B32BB7 /* test.caf in Resources */,
+				8461E5611FE38F7C0096D041 /* MyDateTableViewCell.xib in Resources */,
 				847C13981FD2B40300B32BB7 /* AlipaySDK.bundle in Resources */,
 				84DDACDD1FE0C915004199FF /* InfoTableViewCell.xib in Resources */,
 				84F0402E1FA9A48C003BCC54 /* HomeMainTableViewCell.xib in Resources */,
@@ -556,14 +572,17 @@
 				846D885F1FAC223300DE6308 /* MineOrderCollectionViewCell.swift in Sources */,
 				840647361FA62D03009B21C4 /* Util.swift in Sources */,
 				84DDACDC1FE0C915004199FF /* InfoTableViewCell.swift in Sources */,
+				8461E5621FE38F7C0096D041 /* MyDateTableViewCell.swift in Sources */,
 				8406477F1FA770D8009B21C4 /* LoginViewController.swift in Sources */,
 				84031D171FCD52EB0058D437 /* PublishCell.swift in Sources */,
+				8461E55A1FE273600096D041 /* ResetViewController.swift in Sources */,
 				843C3EB81FA8A7860076EB8C /* Home_main.swift in Sources */,
 				841A27031FAD5AE500D1A807 /* MyDoctorTableViewCell.swift in Sources */,
 				84C984061FA618060058FA7B /* BaseViewController.swift in Sources */,
 				84736B9E1FAC5592001E9AA5 /* MinePocketCollectionViewCell.swift in Sources */,
 				84C984021FA617F00058FA7B /* ModelBean.swift in Sources */,
 				846D885C1FAC106400DE6308 /* Mine_setting.swift in Sources */,
+				8461E55E1FE36C290096D041 /* Mine_msg_main.swift in Sources */,
 				843A958A1FAEA66B00434254 /* Publish_main.swift in Sources */,
 				840647721FA6A6E4009B21C4 /* XLSegmentedSlideSwitch.m in Sources */,
 				840647811FA80898009B21C4 /* BaseAPIBean.swift in Sources */,
@@ -580,6 +599,7 @@
 				849BAA5D1FAD534100871EA8 /* MyDoctor_main.swift in Sources */,
 				847C13A61FD2D62000B32BB7 /* BaseCollectionView.swift in Sources */,
 				840647731FA6A6E4009B21C4 /* XLSlideSegmented.m in Sources */,
+				8461E55C1FE366630096D041 /* ChatViewController.swift in Sources */,
 				84C984071FA618060058FA7B /* MainViewController.swift in Sources */,
 				84939BC81FAC8F050062062C /* Mine_info.swift in Sources */,
 				840647351FA62D03009B21C4 /* Extension.swift in Sources */,
@@ -656,7 +676,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -707,7 +727,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

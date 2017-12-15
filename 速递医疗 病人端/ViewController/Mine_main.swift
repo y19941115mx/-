@@ -19,7 +19,7 @@ class Mine_main: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     @IBOutlet weak var label_id: UILabel!
     
     
-    private let tableCell:[String] = ["个人信息", "亲属信息", "我的订单", "我的钱包", "我的设置"]
+    private let tableCell:[String] = ["个人信息", "亲属信息", "历史订单", "交易记录", "我的消息","我的设置"]
     
     
     override func viewDidLoad() {

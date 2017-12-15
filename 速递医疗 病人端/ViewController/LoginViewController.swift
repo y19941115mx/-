@@ -101,7 +101,7 @@ class LoginViewController: BaseTextViewController {
         // Disable the  button if the text field is empty.
         let phoneText = tv_phone.text ?? ""
         let password = tv_pwd.text ?? ""
-        
+        ImageUtil.setButtonDisabledImg(button: btn_login)
         btn_login.isEnabled = (!phoneText.isEmpty && !password.isEmpty)
         
     }

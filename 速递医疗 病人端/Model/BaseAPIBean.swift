@@ -58,6 +58,7 @@ class DoctorBean:Mappable {
     var docLevel:String?
     var docexpert:String?
     var preordertypename:String?
+    var account:String?
     
     required init?(map: Map) {
     }
@@ -75,6 +76,7 @@ class DoctorBean:Mappable {
         docLevel <- map["doctitle"]
         docexpert <- map["docexpert"]
         preordertypename <- map["preordertypename"]
+        account <- map["dochuanxinaccount"]
     }
 }
 
@@ -91,11 +93,14 @@ class OrderListBean:BaseAPIBean {
 }
 
 class OrderBean: Mappable {
-    var userorderappointment: String? // 订单预约医生时间
-    var familyname: String? // 用户姓名
+    var userorderprice:Double? // 订单价格
+    var docaddresslocation:String? // 地点
+    var userorderappointment: String? // 订单时间
+    var usersickdesc:String? // 病情描述
+    var familyname: String? // 就诊人姓名
     var userorderid: Int = 0 //订单Id
-    var usersickdesc: String? // 病情描述
-    var userorderstateid: Int = 0 // 订单状态
+    var userorderstatename: String? // 订单状态描述
+    var userorderetime: String? // 订单时间
     
     required init?(map: Map) {
         
@@ -103,10 +108,12 @@ class OrderBean: Mappable {
     
     func mapping(map: Map) {
         userorderappointment <- map["userorderappointment"]
+        userorderprice <- map["userorderprice"]
+        docaddresslocation <- map["docaddresslocation"]
         familyname <- map["familyname"]
         userorderid <- map["userorderid"]
         usersickdesc <- map["usersickdesc"]
-        userorderstateid <- map["userorderstateid"]
+        userorderstatename <- map["userorderstatename"]
     }
 }
 
@@ -205,6 +212,48 @@ class SickBean:Mappable {
         usersickprimarydept <- map["usersickprimarydept"]
         usersickdesc <- map["usersickdesc"]
         familyage <- map["familyage"]
+    }
+    
+}
+// 交易记录
+class MineTradeBean:Mappable {
+    var payorderid:Int?
+    var paymodename:String? // 支付方式
+    var paycreattime:String? // 时间
+    var paytotalamount:Double? // 金额
+    var paysendername:String? // 收款人
+    
+    
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        payorderid <- map["payorderid"]
+        paymodename <- map["paymodename"]
+        paycreattime <- map["paycreattime"]
+        paytotalamount <- map["paytotalamount"]
+        paysendername <- map["paysendername"]
+    }
+    
+}
+// 我的消息
+class NotificationBean:Mappable {
+    var notificationwords:String?
+    var notificationid:Int?
+    var notificationread:Bool?
+    var notificationtitle:String?
+    var notificationcreatetime:String?
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        notificationwords <- map["notificationwords"]
+        notificationid <- map["notificationid"]
+        notificationread <- map["notificationread"]
+        notificationtitle <- map["notificationtitle"]
+        notificationcreatetime <- map["notificationcreatetime"]
     }
     
 }

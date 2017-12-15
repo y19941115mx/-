@@ -22,8 +22,6 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
     // 病情描述
     @IBOutlet weak var textView: UITextView!
     var deptPicker = UIPickerView()
-    var flagPatient = false
-    var dapartPatient = false
     // 科室信息
     var departData = [String:[String]]()
     var proIndex:Int = 0
@@ -36,6 +34,10 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
     //科室名
     var oneDepart = ""
     var twoDepart = ""
+    // 标志
+    var descFlag = false
+    var patientFlag = false
+    var departFlag = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,7 +83,7 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
         setInputView(mPicker:deptPicker, mTextField:departTextField)
         // 获取亲属信息
         let Provider = MoyaProvider<API>()
-        Provider.request(API.findfamily(Int(user_default.userId.getStringValue()!)!)) { result in
+        Provider.request(API.findfamily) { result in
             switch result {
             case let .success(response):
                 do {
@@ -203,8 +205,10 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
     func textViewDidChange(_ textView: UITextView){
         // 输入文字
         placeHolderLabel.isHidden = true
+        descFlag = true
         if textView.text.isEmpty {
             placeHolderLabel.isHidden = false
+            descFlag = false
         }
     }
     
@@ -243,35 +247,48 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
     @objc func clickBtn(button:UIButton){
         // 选择科室
         departTextField.endEditing(true)
+        departFlag = true
     }
     
     // 添加病情
     @IBAction func saveBtn(_ sender: UIButton) {
-        var datas:[Data]?
-        let count = imgResource.count
-        if count > 1 {
-            datas = [Data]()
-            for i in 0..<(count-1){
-                datas?.append(ImageUtil.image2Data(image:imgResource[i]))
+        textView.resignFirstResponder()
+        if descFlag && departFlag && patientFlag {
+            var datas:[Data]?
+            let count = imgResource.count
+            if count > 1 {
+                datas = [Data]()
+                for i in 0..<(count-1){
+                    datas?.append(ImageUtil.image2Data(image:imgResource[i]))
+                }
             }
-        }
-        NetWorkUtil<BaseAPIBean>.init(method: .addsick(datas, textView.text, oneDepart, twoDepart, family)).newRequest { (bean, json) in
-            if bean.code == 100 {
-                self.dismiss(animated: false, completion: nil)
+            NetWorkUtil<BaseAPIBean>.init(method: .addsick(datas, textView.text, oneDepart, twoDepart, family)).newRequest { (bean, json) in
+                showToast(self.view, bean.msg!)
+                if bean.code == 100 {
+                    self.dismiss(animated: false, completion: nil)
+                }
             }
-            Toast(bean.msg!)
+        }else {
+            showToast(self.view, "请完整填写病情信息")
+            return
         }
+        
     }
     
     // 添加就诊人
     @IBAction func addPatient(_ sender: UIButton) {
+        textView.resignFirstResponder()
         var titles = [String]()
+        if familyData.count == 0 {
+            showToast(self.view, "候选就诊人为空，就诊请添加亲属信息")
+            return
+        }
         for bean in familyData {
             titles.append(bean.familyname!)
         }
         AlertUtil.popMenu(vc: self, title: "添加就诊人", msg: "", btns: titles, handler: {result in
-            self.flagPatient = true
             let index = titles.index(of: result)!
+            self.patientFlag = true
             self.family = self.familyData[index].familyid
             sender.setTitle(result, for: .normal)
         })

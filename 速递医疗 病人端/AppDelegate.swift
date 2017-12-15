@@ -31,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setUpMap()
 //        环信
         self.setupHuanxin()
+        //初始化支付管理类
+        AliSdkManager.sharedManager()
         return true
     }
 
@@ -70,20 +72,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
         // App 收到推送的通知
         BPush.handleNotification(userInfo)
-//        let manager = userInfo["aps"] as? [String:String]
-//        let message = manager!["alert"]
-
-        //        应用在前台或者后台，不跳转页面，让用户选择。
-        if application.applicationState == .active || application.applicationState == .background{
-            
-            let vc = ViewController()
-            APPLICATION.window?.rootViewController = vc
-        }else {
-            // 应用被杀死跳转页面
-            let vc = ViewController()
-            APPLICATION.window?.rootViewController = vc
-        }
-        
+        let vc = UIStoryboard.init(name: "Mine", bundle: nil).instantiateViewController(withIdentifier: "mineMsg") as! Mine_msg_main
+        APPLICATION.window?.rootViewController = vc
+        // 清空角标
+        UIApplication.shared.applicationIconBadgeNumber = 0
         
     }
     
@@ -94,8 +86,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
         application.registerForRemoteNotifications()
     }
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        if url.host == "safepay" {
+            AlipaySDK.defaultService().processOrder(withPaymentResult: url as URL!, standbyCallback: {
+                (resultDic) -> Void in
+                //调起支付结果处理
+                AliSdkManager.aliSdkManager.showResult(result: resultDic! as NSDictionary);
+            })
+        }
+        return true;
+    }
     
-    
+    // MARK: - private method
     private func setUpBaiDuPush(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
         if (UIDevice.current.systemVersion as NSString).floatValue >= 10.0 {
             let center =  UNUserNotificationCenter.current()

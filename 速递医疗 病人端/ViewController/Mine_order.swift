@@ -12,9 +12,7 @@ import Moya
 import SVProgressHUD
 import ObjectMapper
 
-class Mine_order: UIViewController, UICollectionViewDataSource {
-    var data = [OrderBean]()
-    var type:Int = 0
+class Mine_order: BaseRefreshController<OrderBean>, UICollectionViewDataSource {
     
     @IBOutlet weak var collectionView: BaseCollectionView!
     
@@ -31,46 +29,18 @@ class Mine_order: UIViewController, UICollectionViewDataSource {
         }
         let modelBean = data[indexPath.row]
         cell?.updateView(mdata: modelBean)
-    
         return cell!
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getData()
+        initRefresh(scrollView: collectionView, ApiMethod: .gethistoryorder(self.selectedPage), refreshHandler: nil, getMoreHandler: {
+            self.getMoreMethod  = .gethistoryorder(self.selectedPage)
+        }, isTableView: false)
+        self.header?.beginRefreshing()
     }
     
-    private func getData() {
-        let Provider = MoyaProvider<API>()
-        SVProgressHUD.show()
-        Provider.request(API.getorder(1, Int(user_default.userId.getStringValue()!)!, type)) { result in
-            switch result {
-            case let .success(response):
-                do {
-                    SVProgressHUD.dismiss()
-                    let bean = Mapper<OrderListBean>().map(JSONObject: try response.mapJSON())
-                    if bean?.code == 100 {
-                        if bean?.OrderDataList == nil {
-                            bean?.OrderDataList = [OrderBean]()
-                        }
-                        self.data = (bean?.OrderDataList)!
-                        self.collectionView.reloadData()
-                    }else {
-                        showToast(self.view, bean!.msg!)
-                    }
-                }catch {
-                    SVProgressHUD.dismiss()
-                    showToast(self.view,CATCHMSG)
-                }
-            case let .failure(error):
-                SVProgressHUD.dismiss()
-                dPrint(message: "error:\(error)")
-                showToast(self.view, ERRORMSG)
-            }
-        }
-        
-    }
     
    
     /*

@@ -22,7 +22,10 @@ class Publish_main: SegmentedSlideViewController {
     
     }
 
-    
+    @IBAction func unwindToPublish(segue: UIStoryboardSegue) {
+        //nothing goes here
+        
+    }
 
    
 

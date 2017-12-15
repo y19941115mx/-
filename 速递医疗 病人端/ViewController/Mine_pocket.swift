@@ -9,13 +9,13 @@
 import UIKit
 import SnapKit
 
-class Mine_pocket: UIViewController, UICollectionViewDataSource {
+class Mine_pocket: BaseRefreshController<MineTradeBean>, UICollectionViewDataSource {
     
     
     @IBOutlet weak var collectionView: BaseCollectionView!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -23,6 +23,9 @@ class Mine_pocket: UIViewController, UICollectionViewDataSource {
         if cell == nil {
             cell = Bundle.main.loadNibNamed("MinePocketCollectionViewCell", owner: nil, options: nil)?.last as? MinePocketCollectionViewCell
         }
+        let bean = data[indexPath.row]
+        cell?.updataView(bean:bean)
+        
         return cell!
     }
     
@@ -30,6 +33,10 @@ class Mine_pocket: UIViewController, UICollectionViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        initRefresh(scrollView: collectionView, ApiMethod: API.listtraderecord(selectedPage), refreshHandler: nil, getMoreHandler: {
+            self.getMoreMethod = API.listtraderecord(self.selectedPage)
+        }, isTableView: false)
+        self.header?.beginRefreshing()
     }
     
 

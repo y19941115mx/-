@@ -11,12 +11,15 @@ public enum API {
     case phonetest(String) // 检查手机号码
     case getcode(String) // 发送短信验证码
     case register(String, String, String) // 注册
+    case editpassword(String, String, String) // 重置密码
     case updatechannelid(Int,String)// 更新channelid
     case huanxinregister // 环信注册
     case getdoctorlist(Int, String, String) // 获取首页医生信息
+    // 我的日程
     case getorder(Int, Int, Int) // 获取订单信息
-    case addfamily(Int, String, String, Int) // 添加亲属
-    case findfamily(Int) // 查询亲属
+    case cancelorder(Int) // 取消订单
+    case addfamily(String, String, Int) // 添加亲属
+    case findfamily // 查询亲属
     case getredoctor // 获取我的医生
     case updateinfo(Data) // 上传头像
     case getsick(Int) // 获取病情
@@ -26,9 +29,21 @@ public enum API {
     case cancelsick(Int) // 取消发布病情
     case editsick(Int, String) // 编辑病情
     case optdoctor(Int) // 预选医生
-    case getcalendar(Int) // 获取医生日程
     case createorder(Int, String) // 生成订单
+    case getinfo // 获取个人信息
+    case editinfo(String, String, Data, String, Int, String) // 保存个人信息
     case exit // 退出登录
+    case deleteallreceivenotification //删除通知
+    // todo
+    case gethistoryorder(Int) // 获取历史订单
+    case listtraderecord(Int) // 获取交易记录
+    case listreceivenotification(Int) // 获取消息记录
+    case reviewinfo // 提交审核
+    case confirmorder(Int) // 病人确认订单
+    case getcalendar(Int) // 获取医生日程
+    case getevaluation(Int, Int) // 获取医生评价
+    case evaluate(Int, Int, Int, Int, String) // 提交评价
+
 }
 // 配置请求
 extension API: TargetType {
@@ -79,6 +94,30 @@ extension API: TargetType {
             return "/updatechannelid"
         case .exit:
             return "/exit"
+        case .confirmorder:
+            return "/confirmorder"
+        case .cancelorder:
+            return "/cancelorder"
+        case .editpassword:
+            return "/editpassword"
+        case .getinfo:
+            return "/getinfo"
+        case .editinfo:
+            return "/editinfo"
+        case .gethistoryorder:
+            return "/gethistoryorder"
+        case .listtraderecord:
+            return "/listtraderecord"
+        case .listreceivenotification:
+            return "/listreceivenotification"
+        case .getevaluation:
+            return "/getevaluation"
+        case .evaluate:
+            return "/evaluate"
+        case .deleteallreceivenotification:
+            return "/deleteallreceivenotification"
+        case .reviewinfo:
+            return "/reviewinfo"
         }
     }
     public var method: Moya.Method {
@@ -100,16 +139,18 @@ extension API: TargetType {
             return .requestParameters(parameters: ["userloginphone": phone], encoding: URLEncoding.default)
         case .register(let phone, let pwd, let code):
             return .requestParameters(parameters: ["userloginphone":phone, "userloginpwd": pwd, "code": code], encoding: URLEncoding.default)
+        case .editpassword(let phone, let pwd, let code):
+            return .requestParameters(parameters: ["userloginphone":phone, "userloginpwd": pwd, "code": code], encoding: URLEncoding.default)
         case .updatechannelid(let id, let channelid):
             return .requestParameters(parameters: ["userloginid":id, "channelid":channelid], encoding: URLEncoding.default)
         case .huanxinregister:
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "userloginpwd": user_default.password.getStringValue()!], encoding: URLEncoding.default)
         case .getdoctorlist(let page, let lon, let lat):
             return .requestParameters(parameters: ["page": page, "userloginlon": lon, "userloginlat":lat], encoding: URLEncoding.default)
-        case .addfamily(let id, let name, let sex, let age):
-            return .requestParameters(parameters: ["userloginid": id, "familyname": name, "familymale":sex, "familyage": age], encoding: URLEncoding.default)
-        case .findfamily(let id):
-            return .requestParameters(parameters: ["userloginid": id], encoding: URLEncoding.default)
+        case .addfamily(let name, let sex, let age):
+            return .requestParameters(parameters: ["userloginid": Int(user_default.userId.getStringValue()!), "familyname": name, "familymale":sex, "familyage": age], encoding: URLEncoding.default)
+        case .findfamily:
+            return .requestParameters(parameters: ["userloginid": Int(user_default.userId.getStringValue()!)], encoding: URLEncoding.default)
         case .getorder(let page, let id, let type):
             switch type {
             case 0:
@@ -120,9 +161,9 @@ extension API: TargetType {
             }
         case .getredoctor:
             return .requestParameters(parameters: ["userloginid":Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
-    
+            
         case .updateinfo(let data):
-    return .uploadCompositeMultipart([MultipartFormData.init(provider: .data(data), name: "pictureFile", fileName: "photo.jpg", mimeType:"image/png")], urlParameters: ["userloginid": Int(user_default.userId.getStringValue()!)!])
+            return .uploadCompositeMultipart([MultipartFormData.init(provider: .data(data), name: "pictureFile", fileName: "photo.jpg", mimeType:"image/png")], urlParameters: ["userloginid": Int(user_default.userId.getStringValue()!)!])
         case .getsick(let type):
             return .requestParameters(parameters: ["userloginid":Int(user_default.userId.getStringValue()!)!, "type":type], encoding: URLEncoding.default)
         case .addsick(let datas, let desc, let onedept, let twodept,let familyid):
@@ -152,6 +193,29 @@ extension API: TargetType {
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!], encoding: URLEncoding.default)
         case .getcalendar(let doctorId):
             return .requestParameters(parameters: ["docloginid":doctorId], encoding: URLEncoding.default)
+        case .cancelorder(let orderId):
+            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "userorderid":orderId], encoding: URLEncoding.default)
+        case .confirmorder(let orderId):
+            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "userorderid":orderId, "type":1], encoding: URLEncoding.default)
+        case .getinfo:
+            return .requestParameters(parameters: ["userloginid":Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
+        case .editinfo(let name, let card, let data, let male, let age, let address):
+            return .uploadCompositeMultipart([MultipartFormData.init(provider: .data(data), name: "usercardphoto", fileName: "photo.jpg", mimeType:"image/png")], urlParameters: ["userloginid": Int(user_default.userId.getStringValue()!)!, "username":name, "usermale":male, "usercardnum":card, "useradrother":address, "userage":age])
+            
+        case .gethistoryorder(let page):
+            return .requestParameters(parameters: ["page": page, "userloginid": Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
+        case .listtraderecord(let page):
+            return .requestParameters(parameters: ["page": page, "userloginid": Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
+        case .listreceivenotification(let page):
+            return .requestParameters(parameters: ["page": page,"userloginid": Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
+        case .getevaluation(let page, let doctorId):
+            return .requestParameters(parameters: ["page": page,"docloginid": doctorId], encoding: URLEncoding.default)
+        case .evaluate(let orderId, let doccommentservicelevel,let  doccommentprofessionallevel,let doccommentpricelevel, let doccommentwords):
+            return .requestParameters(parameters: ["userorderid": orderId,"userloginid": Int(user_default.userId.getStringValue()!)!,"doccommentservicelevel":doccommentservicelevel, "doccommentprofessionallevel":doccommentprofessionallevel, "doccommentpricelevel":doccommentpricelevel, "doccommentwords":doccommentwords], encoding: URLEncoding.default)
+        case .deleteallreceivenotification:
+            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!], encoding: URLEncoding.default)
+        case .reviewinfo:
+            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!], encoding: URLEncoding.default)
         }
         
     }

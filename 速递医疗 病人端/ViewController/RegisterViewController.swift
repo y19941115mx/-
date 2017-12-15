@@ -178,6 +178,8 @@ class RegisterViewController: BaseTextViewController{
         let phoneText = photoTextField.text ?? ""
         let msgCode = msgCodeTextField.text ?? ""
         let passwordText = password.text ?? ""
+        ImageUtil.setButtonDisabledImg(button: registerButton)
+        ImageUtil.setButtonDisabledImg(button: sendMsgButton)
         registerButton.isEnabled = (!phoneText.isEmpty && !msgCode.isEmpty
             && !passwordText.isEmpty)
         
