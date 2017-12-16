@@ -26,5 +26,7 @@ target '速递医疗 病人端' do
     pod 'HyphenateLite'
     # 环信UI
     pod 'EaseUILite', :git => 'https://github.com/easemob/easeui-ios-hyphenate-cocoapods.git'
+    # 图片浏览
+    pod 'HJPhotoBrowser'
     
 end

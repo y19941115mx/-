@@ -10,9 +10,8 @@ import UIKit
 import Moya
 import SVProgressHUD
 import ObjectMapper
-
-class PublishCell: UICollectionViewCell, UICollectionViewDataSource {
-
+import HJPhotoBrowser
+class PublishCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate,HJPhotoBrowserDelegate {
     @IBOutlet weak var label_desc: UILabel!
     @IBOutlet weak var label_age: UILabel!
     @IBOutlet weak var label_sex: UILabel!
@@ -22,6 +21,13 @@ class PublishCell: UICollectionViewCell, UICollectionViewDataSource {
     @IBOutlet weak var btn_del: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    func photoBrowser(_ browser: HJPhotoBrowser!, placeholderImageFor index: Int) -> UIImage! {
+        return #imageLiteral(resourceName: "photo_default")
+    }
+    func photoBrowser(_ browser: HJPhotoBrowser!, highQualityImageURLFor index: Int) -> URL! {
+        return URL.init(string: imageSource[index])
+    }
+    
     
     var imageSource = [String]()
     var data:SickBean?
@@ -29,6 +35,7 @@ class PublishCell: UICollectionViewCell, UICollectionViewDataSource {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.collectionView.dataSource = self
+        self.collectionView.delegate = self
     }
     
     func updataView(sickBean:SickBean, vc:BaseRefreshController<SickBean>) {
@@ -60,6 +67,16 @@ class PublishCell: UICollectionViewCell, UICollectionViewDataSource {
         let imageView = cell.viewWithTag(1) as! UIImageView
         ImageUtil.setImage(path: imageSource[indexPath.row], imageView: imageView)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let count = imageSource.count;
+        let browser = HJPhotoBrowser()
+        browser.sourceImagesContainerView = collectionView
+        browser.imageCount = count
+        browser.currentImageIndex = indexPath.row;
+        browser.delegate = self
+        browser.show()
     }
     
     @objc func PublishAction(button:UIButton) {
@@ -126,7 +143,14 @@ class PublishCell: UICollectionViewCell, UICollectionViewDataSource {
 }
 
 
-class PublishCell2: UICollectionViewCell, UICollectionViewDataSource {
+class PublishCell2: UICollectionViewCell, UICollectionViewDataSource,UICollectionViewDelegate,HJPhotoBrowserDelegate {
+    
+    func photoBrowser(_ browser: HJPhotoBrowser!, placeholderImageFor index: Int) -> UIImage! {
+        return #imageLiteral(resourceName: "photo_default")
+    }
+    func photoBrowser(_ browser: HJPhotoBrowser!, highQualityImageURLFor index: Int) -> URL! {
+        return URL.init(string: imageSource[index])
+    }
     
     @IBOutlet weak var label_desc: UILabel!
     @IBOutlet weak var label_age: UILabel!
@@ -142,6 +166,7 @@ class PublishCell2: UICollectionViewCell, UICollectionViewDataSource {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.collectionView.dataSource = self
+        self.collectionView.delegate = self
     }
     
     func updataView(sickBean:SickBean, vc:BaseRefreshController<SickBean>) {
@@ -171,6 +196,16 @@ class PublishCell2: UICollectionViewCell, UICollectionViewDataSource {
         let imageView = cell.viewWithTag(1) as! UIImageView
         ImageUtil.setImage(path: imageSource[indexPath.row], imageView: imageView)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let count = imageSource.count;
+        let browser = HJPhotoBrowser()
+        browser.sourceImagesContainerView = collectionView
+        browser.imageCount = count
+        browser.currentImageIndex = indexPath.row;
+        browser.delegate = self
+        browser.show()
     }
     
     

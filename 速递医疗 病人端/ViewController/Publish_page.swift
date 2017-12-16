@@ -8,11 +8,14 @@
 
 import UIKit
 import ObjectMapper
+import HJPhotoBrowser
 
 
 // 病情展示分页
 
 class Publish_page: BaseRefreshController<SickBean>, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    
+    
     var type: Int = 0
     
     @IBOutlet weak var infoCollectionView: UICollectionView!
@@ -53,8 +56,6 @@ class Publish_page: BaseRefreshController<SickBean>, UICollectionViewDataSource,
             return CGSize(width: SCREEN_WIDTH - 20, height: 250)
         }
     }
-    
-    
     
     
 }

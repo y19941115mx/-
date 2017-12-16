@@ -10,12 +10,14 @@ import SwiftyJSON
 import Moya
 import ObjectMapper
 import SVProgressHUD
+import HJPhotoBrowser
 
 let maxImageNum = 4
 
 // 添加病情页面
 
-class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource,HJPhotoBrowserDelegate {
+    
     @IBOutlet weak var placeHolderLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var departTextField: UITextField!
@@ -44,6 +46,10 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
         textView.delegate = self
         initData()
         // Do any additional setup after loading the view.
+    }
+    
+    func photoBrowser(_ browser: HJPhotoBrowser!, placeholderImageFor index: Int) -> UIImage! {
+        return imgResource[index]
     }
     
     // MARK: - Private Method
@@ -238,7 +244,14 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
             }else {
                 showToast(self.view, "请上传不多于四张图片")
             }
-            
+        } else {
+            let count = imgResource.count;
+            let browser = HJPhotoBrowser()
+            browser.sourceImagesContainerView = collectionView
+            browser.imageCount = count - 1
+            browser.currentImageIndex = indexPath.row;
+            browser.delegate = self
+            browser.show()
         }
     }
     
