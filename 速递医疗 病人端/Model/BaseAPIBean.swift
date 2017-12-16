@@ -59,11 +59,13 @@ class DoctorBean:Mappable {
     var docexpert:String?
     var preordertypename:String?
     var account:String?
+    var docabs:String? // 简介
     
     required init?(map: Map) {
     }
     
     func mapping(map: Map) {
+        docabs <- map["docabs"]
         dept <- map["docseconddept"]
         hospital <- map["dochosp"]
         allday <- map["docallday"]
@@ -256,6 +258,30 @@ class NotificationBean:Mappable {
         notificationcreatetime <- map["notificationcreatetime"]
     }
     
+}
+
+// 我的 日程信息
+
+class MineCalendarBean:Mappable {
+    var doccalendarid = 0
+    var doccalendaradressid = 0
+    var docaddresslocation:String?
+    var doccalendarday:String?
+    var doccalendaraffair:String?
+    var doccalendartime:String?
+    
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        doccalendarid <- map["doccalendarid"]
+        doccalendaradressid <- map["doccalendaradressid"]
+        docaddresslocation <- map["docaddresslocation"]
+        doccalendarday <- map["doccalendarday"]
+        doccalendaraffair <- map["doccalendaraffair"]
+        doccalendartime <- map["doccalendartime"]
+    }
 }
 
 

@@ -86,5 +86,159 @@
             </objects>
             <point key="canvasLocation" x="89" y="1057"/>
         </scene>
+        <!--Evaluate View Controller-->
+        <scene sceneID="i2h-js-MP2">
+            <objects>
+                <viewController storyboardIdentifier="evaluate" id="Pgx-LF-clH" customClass="EvaluateViewController" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2SD-4P-5Dd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医生服务水平:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rs7-Pb-x18">
+                                <rect key="frame" x="10" y="74" width="128" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医生专业水平:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6l-tx-TdZ">
+                                <rect key="frame" x="10" y="172" width="128" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I1c-ho-Jek" customClass="RatingController" customModule="速递医疗_病人端" customModuleProvider="target">
+                                <rect key="frame" x="10" y="108" width="220" height="44"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="starSize">
+                                        <size key="value" width="44" height="44"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="starCount">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医生价格水平:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EcE-vK-L80">
+                                <rect key="frame" x="10" y="270" width="128" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fsR-Yu-WRy" customClass="RatingController" customModule="速递医疗_病人端" customModuleProvider="target">
+                                <rect key="frame" x="10" y="206" width="220" height="44"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="starSize">
+                                        <size key="value" width="44" height="44"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="starCount">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcv-PH-QMQ" customClass="RatingController" customModule="速递医疗_病人端" customModuleProvider="target">
+                                <rect key="frame" x="10" y="304" width="220" height="44"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="starSize">
+                                        <size key="value" width="44" height="44"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="starCount">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医生评价：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93t-zf-k5c">
+                                <rect key="frame" x="10" y="368" width="102" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisiciodioque civiuda." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="k8q-pm-7ML">
+                                <rect key="frame" x="10" y="402" width="355" height="120"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="uF4-Nb-F7h"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZ4-D1-yt6">
+                                <rect key="frame" x="112.5" y="552" width="150" height="30"/>
+                                <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="9Nu-o2-qsH"/>
+                                    <constraint firstAttribute="width" constant="150" id="Ugx-0L-ize"/>
+                                </constraints>
+                                <state key="normal" title="提交">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="confirmAction:" destination="Pgx-LF-clH" eventType="touchUpInside" id="ikI-Jb-1sV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="I1c-ho-Jek" firstAttribute="top" secondItem="Rs7-Pb-x18" secondAttribute="bottom" constant="10" id="0Zf-rA-MKJ"/>
+                            <constraint firstItem="EcE-vK-L80" firstAttribute="top" secondItem="fsR-Yu-WRy" secondAttribute="bottom" constant="20" id="1KC-JL-ZbV"/>
+                            <constraint firstItem="93t-zf-k5c" firstAttribute="top" secondItem="bcv-PH-QMQ" secondAttribute="bottom" constant="20" id="552-m3-5XI"/>
+                            <constraint firstItem="bcv-PH-QMQ" firstAttribute="top" secondItem="EcE-vK-L80" secondAttribute="bottom" constant="10" id="5zy-0A-VTd"/>
+                            <constraint firstItem="k8q-pm-7ML" firstAttribute="leading" secondItem="gHU-0o-g8w" secondAttribute="leading" constant="10" id="7M1-IQ-5G9"/>
+                            <constraint firstItem="fsR-Yu-WRy" firstAttribute="leading" secondItem="gHU-0o-g8w" secondAttribute="leading" constant="10" id="JeZ-wk-r4s"/>
+                            <constraint firstItem="EcE-vK-L80" firstAttribute="leading" secondItem="gHU-0o-g8w" secondAttribute="leading" constant="10" id="L8k-QV-MQe"/>
+                            <constraint firstItem="gHU-0o-g8w" firstAttribute="trailing" secondItem="k8q-pm-7ML" secondAttribute="trailing" constant="10" id="P15-yW-qEc"/>
+                            <constraint firstItem="I1c-ho-Jek" firstAttribute="leading" secondItem="gHU-0o-g8w" secondAttribute="leading" constant="10" id="P4e-rB-83T"/>
+                            <constraint firstItem="Rs7-Pb-x18" firstAttribute="top" secondItem="gHU-0o-g8w" secondAttribute="top" constant="10" id="ZfW-6C-wwz"/>
+                            <constraint firstItem="V6l-tx-TdZ" firstAttribute="leading" secondItem="gHU-0o-g8w" secondAttribute="leading" constant="10" id="ZvA-hF-Ba3"/>
+                            <constraint firstItem="GZ4-D1-yt6" firstAttribute="top" secondItem="k8q-pm-7ML" secondAttribute="bottom" constant="30" id="bBq-0K-IK9"/>
+                            <constraint firstItem="fsR-Yu-WRy" firstAttribute="top" secondItem="V6l-tx-TdZ" secondAttribute="bottom" constant="10" id="bw4-7d-0Y7"/>
+                            <constraint firstItem="bcv-PH-QMQ" firstAttribute="leading" secondItem="gHU-0o-g8w" secondAttribute="leading" constant="10" id="ef3-Yz-pMX"/>
+                            <constraint firstItem="Rs7-Pb-x18" firstAttribute="leading" secondItem="gHU-0o-g8w" secondAttribute="leading" constant="10" id="gGd-o0-cQK"/>
+                            <constraint firstItem="k8q-pm-7ML" firstAttribute="top" secondItem="93t-zf-k5c" secondAttribute="bottom" constant="10" id="h0b-an-knb"/>
+                            <constraint firstItem="93t-zf-k5c" firstAttribute="leading" secondItem="gHU-0o-g8w" secondAttribute="leading" constant="10" id="hXH-K3-9Iq"/>
+                            <constraint firstItem="V6l-tx-TdZ" firstAttribute="top" secondItem="I1c-ho-Jek" secondAttribute="bottom" constant="20" id="i3c-Ox-LA8"/>
+                            <constraint firstItem="GZ4-D1-yt6" firstAttribute="centerX" secondItem="2SD-4P-5Dd" secondAttribute="centerX" id="i7N-mZ-KEb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gHU-0o-g8w"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="IOa-eV-pIU">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="EYc-fM-0Bh">
+                            <connections>
+                                <action selector="backAction:" destination="Pgx-LF-clH" id="ppr-Ip-hEo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="doccommentservicelevel" destination="I1c-ho-Jek" id="zO8-1y-vZt"/>
+                        <outlet property="priceLevel" destination="bcv-PH-QMQ" id="hJR-R6-bKr"/>
+                        <outlet property="professionallevel" destination="fsR-Yu-WRy" id="Cyj-0h-BTa"/>
+                        <outlet property="textView" destination="k8q-pm-7ML" id="95G-eT-FPx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wfj-Dk-aGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1997.5999999999999" y="1065.5172413793105"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hLx-tc-1aN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GD7-mN-bhc" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zwC-Dh-fg0">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Pgx-LF-clH" kind="relationship" relationship="rootViewController" id="LwN-Sl-WjM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9HT-YR-LtH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1107.2" y="1065.9670164917543"/>
+        </scene>
     </scenes>
 </document>

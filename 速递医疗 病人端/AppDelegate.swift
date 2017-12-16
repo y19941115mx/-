@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // App 收到推送的通知
         BPush.handleNotification(userInfo)
         let vc = UIStoryboard.init(name: "Mine", bundle: nil).instantiateViewController(withIdentifier: "mineMsg") as! Mine_msg_main
-        APPLICATION.window?.rootViewController = vc
+        APPLICATION.window?.rootViewController?.present(vc, animated: false, completion: nil)
         // 清空角标
         UIApplication.shared.applicationIconBadgeNumber = 0
         

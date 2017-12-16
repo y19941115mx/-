@@ -65,6 +65,9 @@
 		848A29891FAAFCAE00123A3F /* Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848A29881FAAFCAE00123A3F /* Mine.storyboard */; };
 		848A298B1FAB092900123A3F /* Mine_main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A298A1FAB092900123A3F /* Mine_main.swift */; };
 		84939BC81FAC8F050062062C /* Mine_info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84939BC71FAC8F050062062C /* Mine_info.swift */; };
+		849513691FE4156100C9E261 /* SetDateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849513681FE4156000C9E261 /* SetDateCollectionViewCell.swift */; };
+		8495136B1FE4F86000C9E261 /* RatingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8495136A1FE4F85F00C9E261 /* RatingController.swift */; };
+		8495136D1FE4FE5100C9E261 /* EvaluateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8495136C1FE4FE5100C9E261 /* EvaluateViewController.swift */; };
 		849BAA5C1FAD534100871EA8 /* Date_page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849BAA5A1FAD534100871EA8 /* Date_page.swift */; };
 		849BAA5D1FAD534100871EA8 /* MyDoctor_main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849BAA5B1FAD534100871EA8 /* MyDoctor_main.swift */; };
 		84AB2F461FAEA22000E4B3EC /* Publish.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84AB2F451FAEA21F00E4B3EC /* Publish.storyboard */; };
@@ -151,6 +154,9 @@
 		848A29881FAAFCAE00123A3F /* Mine.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Mine.storyboard; sourceTree = "<group>"; };
 		848A298A1FAB092900123A3F /* Mine_main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine_main.swift; sourceTree = "<group>"; };
 		84939BC71FAC8F050062062C /* Mine_info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine_info.swift; sourceTree = "<group>"; };
+		849513681FE4156000C9E261 /* SetDateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDateCollectionViewCell.swift; sourceTree = "<group>"; };
+		8495136A1FE4F85F00C9E261 /* RatingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingController.swift; sourceTree = "<group>"; };
+		8495136C1FE4FE5100C9E261 /* EvaluateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateViewController.swift; sourceTree = "<group>"; };
 		849BAA5A1FAD534100871EA8 /* Date_page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date_page.swift; sourceTree = "<group>"; };
 		849BAA5B1FAD534100871EA8 /* MyDoctor_main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDoctor_main.swift; sourceTree = "<group>"; };
 		84AB2F451FAEA21F00E4B3EC /* Publish.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Publish.storyboard; sourceTree = "<group>"; };
@@ -342,6 +348,7 @@
 				841A27061FAD850800D1A807 /* Date_main.swift */,
 				84C984041FA618060058FA7B /* BaseViewController.swift */,
 				84C984051FA618060058FA7B /* MainViewController.swift */,
+				8495136C1FE4FE5100C9E261 /* EvaluateViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -349,12 +356,14 @@
 		84C984081FA6180D0058FA7B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8495136A1FE4F85F00C9E261 /* RatingController.swift */,
 				84DDACDA1FE0C914004199FF /* InfoTableViewCell.swift */,
 				84DDACDB1FE0C915004199FF /* InfoTableViewCell.xib */,
 				84031D161FCD52EB0058D437 /* PublishCell.swift */,
 				847C13A51FD2D61F00B32BB7 /* BaseCollectionView.swift */,
 				840647311FA62C1B009B21C4 /* CustomButton.swift */,
 				84F0402B1FA9A48C003BCC54 /* HomeMainTableViewCell.swift */,
+				849513681FE4156000C9E261 /* SetDateCollectionViewCell.swift */,
 				84F0402C1FA9A48C003BCC54 /* HomeMainTableViewCell.xib */,
 				846D88591FAC067C00DE6308 /* BaseTableView.swift */,
 				841A27021FAD5AE500D1A807 /* MyDoctorTableViewCell.swift */,
@@ -561,6 +570,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				841A27071FAD850800D1A807 /* Date_main.swift in Sources */,
+				8495136D1FE4FE5100C9E261 /* EvaluateViewController.swift in Sources */,
 				843C3EB71FA8A7860076EB8C /* Home_DoctorDetail.swift in Sources */,
 				847DD0D51FAEE2B50077F78A /* Publish_add.swift in Sources */,
 				846D885A1FAC067C00DE6308 /* BaseTableView.swift in Sources */,
@@ -571,10 +581,12 @@
 				843A958C1FAEA81D00434254 /* Publish_page.swift in Sources */,
 				846D885F1FAC223300DE6308 /* MineOrderCollectionViewCell.swift in Sources */,
 				840647361FA62D03009B21C4 /* Util.swift in Sources */,
+				8495136B1FE4F86000C9E261 /* RatingController.swift in Sources */,
 				84DDACDC1FE0C915004199FF /* InfoTableViewCell.swift in Sources */,
 				8461E5621FE38F7C0096D041 /* MyDateTableViewCell.swift in Sources */,
 				8406477F1FA770D8009B21C4 /* LoginViewController.swift in Sources */,
 				84031D171FCD52EB0058D437 /* PublishCell.swift in Sources */,
+				849513691FE4156100C9E261 /* SetDateCollectionViewCell.swift in Sources */,
 				8461E55A1FE273600096D041 /* ResetViewController.swift in Sources */,
 				843C3EB81FA8A7860076EB8C /* Home_main.swift in Sources */,
 				841A27031FAD5AE500D1A807 /* MyDoctorTableViewCell.swift in Sources */,

@@ -733,6 +733,7 @@
                                         </constraints>
                                         <state key="normal" title="返回" image="back"/>
                                         <connections>
+                                            <action selector="BackAction:" destination="bHh-qo-qiX" eventType="touchUpInside" id="rUo-Kr-ODg"/>
                                             <segue destination="vXz-Oe-JS7" kind="unwind" unwindAction="unwindToMineWithSender:" id="kJH-k7-DHJ"/>
                                         </connections>
                                     </button>
@@ -756,7 +757,7 @@
                                     <constraint firstItem="OnV-kc-QCH" firstAttribute="leading" secondItem="A3K-EV-BfU" secondAttribute="leading" id="qaX-9P-BNq"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8KU-QK-SST" customClass="BaseTableView" customModule="速递医疗_医生端" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8KU-QK-SST" customClass="BaseTableView" customModule="速递医疗_病人端" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>

@@ -43,6 +43,7 @@ public enum API {
     case getcalendar(Int) // 获取医生日程
     case getevaluation(Int, Int) // 获取医生评价
     case evaluate(Int, Int, Int, Int, String) // 提交评价
+    case doctorInfo(Int)
 
 }
 // 配置请求
@@ -118,6 +119,8 @@ extension API: TargetType {
             return "/deleteallreceivenotification"
         case .reviewinfo:
             return "/reviewinfo"
+        case .doctorInfo:
+            return "/doctorInfo"
         }
     }
     public var method: Moya.Method {
@@ -216,6 +219,8 @@ extension API: TargetType {
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!], encoding: URLEncoding.default)
         case .reviewinfo:
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!], encoding: URLEncoding.default)
+        case .doctorInfo(let id):
+            return .requestParameters(parameters: ["docloginid":id], encoding: URLEncoding.default)
         }
         
     }

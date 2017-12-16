@@ -55,6 +55,8 @@ class MyDateTableViewCell: UITableViewCell {
     }
     
     func updateViews(vc:BaseRefreshController<OrderBean>, data:OrderBean) {
+        self.vc = vc
+        self.data = data
         nameLabel.text = data.familyname!
         descLabel.text = data.usersickdesc!
         priceLabel.text = "\(data.userorderprice!)"
@@ -84,7 +86,7 @@ class MyDateTableViewCell: UITableViewCell {
                     let data = json["data"]
                     let str = data["alipay_sdk"].stringValue
                     let alipayUtils = AliPayUtils.init(context: self.vc!);
-                    alipayUtils.pay(sign:"")
+                    alipayUtils.pay(sign:str)
                 }else {
                     Toast(bean.msg!)
                 }
@@ -92,8 +94,10 @@ class MyDateTableViewCell: UITableViewCell {
         }
         
     }
+    // 跳转到评价页面
     @objc func evaluateAction(_ sender: UIButton) {
-        
+        let vc = UIStoryboard.init(name: "Date", bundle: nil).instantiateViewController(withIdentifier: "evaluate") as! EvaluateViewController
+        self.vc?.present(vc, animated: false, completion: nil)
     }
     
 }

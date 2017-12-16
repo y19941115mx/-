@@ -12,6 +12,7 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var tableView: BaseTableView!
     var textField = UITextField()
     var image:Data?
+//    var flags = [fal]
     override func viewDidLoad() {
         super.viewDidLoad()
         let titles =  [["姓名","身份证","身份证照片","性别","年龄","具体地址"]]
@@ -25,7 +26,7 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
     
     @IBAction func click_save(_ sender: UIButton) {
         NetWorkUtil.init(method: .editinfo(tableInfo[0][0], tableInfo[0][1], self.image!, tableInfo[0][3], Int(tableInfo[0][4])!, tableInfo[0][5])).newRequest { (bean, json) in
-            Toast(bean.msg!)
+            showToast(self.view, bean.msg!)
             if bean.code == 100 {
                 self.dismiss(animated: false, completion: nil)
             }
@@ -131,7 +132,7 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
             if bean.code == 100 {
                 self.dismiss(animated: false, completion: nil)
             }
-            Toast(bean.msg!)
+            showToast(self.view, bean.msg!)
         }
     }
     
