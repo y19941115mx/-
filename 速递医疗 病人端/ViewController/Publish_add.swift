@@ -24,9 +24,8 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
     // 病情描述
     @IBOutlet weak var textView: UITextView!
     var deptPicker = UIPickerView()
-    // 科室信息
-    var departData = [String:[String]]()
     var proIndex:Int = 0
+    var departData = APPLICATION.departData
     // 就诊人信息
     var familyData = [familyBean]()
     // 就诊人ID
@@ -69,22 +68,7 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
     }
     
     func initData() {
-        imgResource.append(#imageLiteral(resourceName: "add"))
-         //获取部门数据
-       NetWorkUtil.getDepartMent(success: { response in
-            let json = JSON(response)
-            let data = json["data"].arrayValue
-            for i in 0..<data.count{
-                // 处理数据
-                let one = data[i]["first"].stringValue
-                let two = data[i]["second"].arrayObject as! [String]
-                if one != "" {
-                    self.departData[one] = two
-                    self.deptPicker.reloadAllComponents()
-                }
-            }
-        }, failture:{ error in dPrint(message: error)
-        })
+        imgResource.append(#imageLiteral(resourceName: "add_picture"))
         // 关联 UIPicker 和 textField
         setInputView(mPicker:deptPicker, mTextField:departTextField)
         // 获取亲属信息
