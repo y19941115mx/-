@@ -266,7 +266,7 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
                 }
             }
         }else {
-            showToast(self.view, "请完整填写病情信息")
+            showToast(self.view, "请填写完整病情信息")
             return
         }
         
@@ -277,7 +277,7 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
         textView.resignFirstResponder()
         var titles = [String]()
         if familyData.count == 0 {
-            showToast(self.view, "候选就诊人为空，就诊请添加亲属信息")
+            showToast(self.view, "候选就诊人为空，请添加亲属信息")
             return
         }
         for bean in familyData {

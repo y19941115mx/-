@@ -276,7 +276,7 @@ class ImageUtil{
     static public func setAvator(path:String, imageView:UIImageView) {
         let url = URL(string: path)
 //        imageView.kf.setImage(with: url)
-        imageView.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "default"), options: nil, progressBlock: nil, completionHandler: nil)
+        imageView.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "photo_default"), options: nil, progressBlock: nil, completionHandler: nil)
     }
     
     // 图片转为Data类型

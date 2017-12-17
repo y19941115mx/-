@@ -12,7 +12,7 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var tableView: BaseTableView!
     var textField = UITextField()
     var image:Data?
-//    var flags = [fal]
+    var flags = [false,false,false,false,false,false,]
     override func viewDidLoad() {
         super.viewDidLoad()
         let titles =  [["姓名","身份证","身份证照片","性别","年龄","具体地址"]]
@@ -25,6 +25,12 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
     
     
     @IBAction func click_save(_ sender: UIButton) {
+        for flag in flags {
+            if !flag {
+                showToast(self.view, "请填写完整信息")
+                return
+            }
+        }
         NetWorkUtil.init(method: .editinfo(tableInfo[0][0], tableInfo[0][1], self.image!, tableInfo[0][3], Int(tableInfo[0][4])!, tableInfo[0][5])).newRequest { (bean, json) in
             showToast(self.view, bean.msg!)
             if bean.code == 100 {
@@ -34,28 +40,36 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
     }
     
     private func  handleClick(index_path:IndexPath) {
+        flags[index_path.row] = false
         switch index_path.row {
         case 0:
             self.textField.placeholder = "请输入姓名"
             self.textField.keyboardType = .default
             AlertUtil.popTextFields(vc: self, title: "输入信息", textfields: [self.textField], okhandler: { (textfields) in
                 let text = textfields[0].text ?? ""
-                self.tableInfo[0][0] = text
-                self.tableView.reloadRows(at: [index_path], with: .none)
+                if text != "" {
+                    self.tableInfo[0][0] = text
+                    self.tableView.reloadRows(at: [index_path], with: .none)
+                    self.flags[0] = true
+                }
             })
         case 1:
             self.textField.placeholder = "请输入身份证号"
             self.textField.keyboardType = .default
             AlertUtil.popTextFields(vc: self, title: "输入信息", textfields: [self.textField], okhandler: { (textfields) in
                 let text = textfields[0].text ?? ""
-                self.tableInfo[0][1] = text
-                self.tableView.reloadRows(at: [index_path], with: .none)
+                if text != "" {
+                    self.tableInfo[0][1] = text
+                    self.tableView.reloadRows(at: [index_path], with: .none)
+                    self.flags[1] = true
+                }
             })
         case 2:
             pickImageFromPhotoLib()
         case 3:
             AlertUtil.popMenu(vc: self, title: "选择性别", msg: "", btns: ["男", "女"], handler: { (str) in
                 self.tableInfo[0][3] = str
+                self.flags[3] = true
                 self.tableView.reloadRows(at: [index_path], with: .none)
             })
         case 4:
@@ -63,16 +77,22 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
             self.textField.keyboardType = .numberPad
             AlertUtil.popTextFields(vc: self, title: "输入信息", textfields: [self.textField], okhandler: { (textfields) in
                 let text = textfields[0].text ?? ""
-                self.tableInfo[0][4] = text
-                self.tableView.reloadRows(at: [index_path], with: .none)
+                if text != "" {
+                    self.tableInfo[0][4] = text
+                    self.tableView.reloadRows(at: [index_path], with: .none)
+                    self.flags[4] = true
+                }
             })
         default:
             self.textField.placeholder = "请输入具体住址"
             self.textField.keyboardType = .default
             AlertUtil.popTextFields(vc: self, title: "输入信息", textfields: [self.textField], okhandler: { (textfields) in
                 let text = textfields[0].text ?? ""
-                self.tableInfo[0][5] = text
-                self.tableView.reloadRows(at: [index_path], with: .none)
+                if text != "" {
+                    self.tableInfo[0][5] = text
+                    self.tableView.reloadRows(at: [index_path], with: .none)
+                    self.flags[5] = true
+                }
             })
         }
     }

@@ -193,7 +193,7 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
                 make.bottom.equalTo(0)
                 make.left.equalTo(0)
                 make.right.equalTo(0)
-                make.height.equalTo(SCREEN_HEIGHT/2)
+                make.height.equalTo(SCREEN_HEIGHT/3)
             }
             self.view.addSubview(self.cityToolBar)
             cityToolBar.snp.makeConstraints { (make) in
@@ -216,7 +216,7 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
                 make.bottom.equalTo(0)
                 make.left.equalTo(0)
                 make.right.equalTo(0)
-                make.height.equalTo(SCREEN_HEIGHT/2)
+                make.height.equalTo(SCREEN_HEIGHT/3)
             }
             self.view.addSubview(self.deptToolBar)
             deptToolBar.snp.makeConstraints { (make) in
