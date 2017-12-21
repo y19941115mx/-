@@ -9,6 +9,8 @@
 import UIKit
 import SVProgressHUD
 import SwiftyJSON
+import Bugly
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,11 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+//        bugly 配置
+        Bugly.start(withAppId: StaticClass.BuglyAPPID)
 //        进度条设置
         SVProgressHUD.setDefaultStyle(.custom)
         SVProgressHUD.setForegroundColor(UIColor.APPColor)
         SVProgressHUD.setBackgroundColor(UIColor.clear)
-        SVProgressHUD.setDefaultMaskType(.black)
+        SVProgressHUD.setDefaultMaskType(.clear)
         SVProgressHUD.setDefaultAnimationType(.native)
         //        获取基本数据
         self.initData()
@@ -74,12 +78,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        if user_default.userId.getStringValue() == nil {
+            let vc_login = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()
+            APPLICATION.window?.rootViewController = vc_login
+        }else {
+            AlertUtil.popAlert(vc: (APPLICATION.window?.rootViewController!)!, msg: "有新的消息，点击查看", okhandler: {
+                let vc = UIStoryboard.init(name: "Mine", bundle: nil).instantiateViewController(withIdentifier: "mineMsg") as! Mine_msg_main
+                APPLICATION.window?.rootViewController?.present(vc, animated: false, completion: nil)
+            })
+        }
         // App 收到推送的通知
         BPush.handleNotification(userInfo)
-        let vc = UIStoryboard.init(name: "Mine", bundle: nil).instantiateViewController(withIdentifier: "mineMsg") as! Mine_msg_main
-        APPLICATION.window?.rootViewController?.present(vc, animated: false, completion: nil)
-        // 清空角标
-        UIApplication.shared.applicationIconBadgeNumber = 0
         
     }
     

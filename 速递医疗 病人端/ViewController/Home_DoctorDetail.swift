@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource {
+class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     var doctorBean:DoctorBean?
     var dates = [MineCalendarBean]()
     
@@ -48,7 +48,8 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        NetWorkUtil<BaseListBean<MineCalendarBean>>.init(method: .getcalendar((doctorBean?.docId)!)).newRequest { (bean, json) in
+        NetWorkUtil<BaseListBean<MineCalendarBean>>.init(method: .getcalendar((doctorBean?.docId)!))
+            .newRequest { (bean, json) in
             if bean.code == 100 {
                 if bean.dataList != nil {
                     self.dates = bean.dataList!
@@ -56,8 +57,18 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource {
                 }
             }
         }
+        NetWorkUtil.init(method: API.doctorinfo((doctorBean?.docId)!)).newRequestWithOutHUD { (bean, json) in
+            if bean.code == 100 {
+                let data = json["data"]
+                let abs = data["docabs"].stringValue
+                self.absLabel.text = "简介：\(abs)"
+            }
+        }
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+          return CGSize(width: SCREEN_WIDTH - 50, height: 100)
+    }
     
     @IBAction func click_opt(_ sender: UIButton) {
         NetWorkUtil<BaseAPIBean>.init(method: API.optdoctor((doctorBean?.docId)!)).newRequest{ bean,json in

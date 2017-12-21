@@ -21,7 +21,7 @@ class Date_page: BaseRefreshController<OrderBean>, UITableViewDataSource, UITabl
             cell =  Bundle.main.loadNibNamed("MyDateTableViewCell", owner: nil, options: nil)?.last as? MyDateTableViewCell
         }
         let bean = data[indexPath.row]
-        cell?.flag = self.type
+        cell?.flag = self.type!
         cell?.updateViews(vc: self, data: bean)
         return cell!
     }
@@ -31,7 +31,7 @@ class Date_page: BaseRefreshController<OrderBean>, UITableViewDataSource, UITabl
     }
     
     
-    var type:Int = 1
+    var type:Int?
     
     @IBOutlet weak var tableView: BaseTableView!
     
@@ -39,10 +39,10 @@ class Date_page: BaseRefreshController<OrderBean>, UITableViewDataSource, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initRefresh(scrollView: self.tableView, ApiMethod: API.getorder(selectedPage, Int(user_default.userId.getStringValue()!)!, type), refreshHandler: {
+        initRefresh(scrollView: self.tableView, ApiMethod: API.getorder(selectedPage, Int(user_default.userId.getStringValue()!)!, type!), refreshHandler: {
             
         },getMoreHandler: {
-            self.getMoreMethod = API.getorder(self.selectedPage, Int(user_default.userId.getStringValue()!)!, self.type)
+            self.getMoreMethod = API.getorder(self.selectedPage, Int(user_default.userId.getStringValue()!)!, self.type!)
         })
         
         self.header?.beginRefreshing()

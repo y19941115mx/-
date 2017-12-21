@@ -90,7 +90,7 @@ class PublishCell: UICollectionViewCell, UICollectionViewDataSource, UICollectio
                         SVProgressHUD.dismiss()
                         let bean = Mapper<BaseAPIBean>().map(JSONObject: try response.mapJSON())
                         if bean?.code == 100 {
-                            self.vc.refreshData()
+                            self.vc.refreshBtn()
                         }
                         速递医疗_病人端.showToast((self.vc.view)!, bean!.msg!)
                     }catch {

@@ -63,23 +63,31 @@ class LoginViewController: BaseTextViewController {
                 user_default.setUserDefault(key: .password, value: MD5(passNum))
                 // 环信注册
                 if account == "" {
-                    NetWorkUtil<BaseAPIBean>.init(method: API.huanxinregister).newRequest(handler: { (bean, json) in
+                    NetWorkUtil<BaseAPIBean>.init(method: API.huanxinregister).newRequestWithOutHUD(handler: { (bean, json) in
                         if bean.code == 100 {
                             account = "user_\(userId)"
+                            // 环信登录
+                            EMClient.shared().login(withUsername: account, password: MD5(passNum), completion: { (name, error) in
+                                if error == nil {
+                                    Toast("环信登录成功")
+                                    user_default.setUserDefault(key: .account, value: account)
+                                }else {
+                                    Toast("环信登录失败，\(error.debugDescription)")
+                                }
+                            })
+                        }
+                    })
+                }else {
+                    // 环信登录
+                    EMClient.shared().login(withUsername: account, password: MD5(passNum), completion: { (name, error) in
+                        if error == nil {
+                            Toast("环信登录成功")
+                        }else {
+                            Toast("环信登录失败，\(error.debugDescription)")
                         }
                     })
                 }
-                user_default.setUserDefault(key: .account, value: account)
-                // 环信登录
-                EMClient.shared().login(withUsername: account, password: MD5(passNum), completion: { (name, error) in
-                    if error == nil {
-                        Toast("环信登录成功")
-                    }else {
-                        Toast("环信登录失败，\(error.debugDescription)")
-                    }
-                })
-                
-    
+
                 let vc_main = MainViewController()
                 APPLICATION.window?.rootViewController = vc_main
                 

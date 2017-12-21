@@ -75,6 +75,7 @@
                         <rect key="frame" x="260" y="109.5" width="40" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="hY8-MK-cgo"/>
+                            <constraint firstAttribute="height" constant="30" id="kTb-PQ-SEf"/>
                         </constraints>
                         <state key="normal" title="取消">
                             <color key="titleColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>

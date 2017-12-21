@@ -26,9 +26,9 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
     @IBOutlet weak var sortByDept: UIButton!
     @IBOutlet weak var sortByLocBtn: UIButton!
     
-    var city:String?
-    var province:String?
-    var area:String?
+    var city:String = ""
+    var province:String = ""
+    var area:String = ""
     
     var oneDepart = ""
     var twoDepart = ""
@@ -66,19 +66,19 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
             case .sortByPatient:
                 self.ApiMethod = API.getdoctorlist(self.selectedPage, APPLICATION.lon, APPLICATION.lat)
             case .sortByLoc:
-                self.ApiMethod = API.getdoctorlist(self.selectedPage, APPLICATION.lon, APPLICATION.lat)
+                self.ApiMethod = API.getdoctorlistByLoc(self.selectedPage, APPLICATION.lon, APPLICATION.lat, self.province, self.city, self.area)
             case .sortByDept:
-                self.ApiMethod = API.getdoctorlist(self.selectedPage, APPLICATION.lon, APPLICATION.lat)
+                self.ApiMethod = API.getdoctorlistByDept(self.selectedPage, APPLICATION.lon, APPLICATION.lat, self.oneDepart, self.twoDepart)
             }
             
         }, getMoreHandler:{
             switch self.sortType {
             case .sortByPatient:
-                self.ApiMethod = API.getdoctorlist(self.selectedPage, APPLICATION.lon, APPLICATION.lat)
+                self.getMoreMethod = API.getdoctorlist(self.selectedPage, APPLICATION.lon, APPLICATION.lat)
             case .sortByLoc:
-                self.ApiMethod = API.getdoctorlist(self.selectedPage, APPLICATION.lon, APPLICATION.lat)
+                self.getMoreMethod = API.getdoctorlistByLoc(self.selectedPage, APPLICATION.lon, APPLICATION.lat, self.province, self.city, self.area)
             case .sortByDept:
-                self.ApiMethod = API.getdoctorlist(self.selectedPage, APPLICATION.lon, APPLICATION.lat)
+                self.getMoreMethod = API.getdoctorlistByDept(self.selectedPage, APPLICATION.lon, APPLICATION.lat, self.oneDepart, self.twoDepart)
             }
         })
         // 获取数据
@@ -134,23 +134,31 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
         switch button.tag {
         // 推荐病人
         case 10001:
+            self.cityPicker.isHidden = true
+            self.cityToolBar.isHidden = true
+            self.deptPicker.isHidden = true
+            self.deptToolBar.isHidden = true
+            self.sortType = .sortByPatient
+            self.refreshBtn()
             cleanButton()
             sortByPatientBtn.setTitleColor(UIColor.APPColor, for: .normal)
         // 地点
         case 10003:
+            self.deptPicker.isHidden = true
+            self.deptToolBar.isHidden = true
             cleanButton()
             sortByLocBtn.setTitleColor(UIColor.APPColor, for: .normal)
             self.sortType = .sortByLoc
             // 显示地点选择器
             showUIPickView(type: 1)
-            self.header?.beginRefreshing()
         case 10004:
+            self.cityPicker.isHidden = true
+            self.cityToolBar.isHidden = true
             cleanButton()
             sortByDept.setTitleColor(UIColor.APPColor, for: .normal)
             self.sortType = .sortByDept
             // 显示地点选择器
             showUIPickView(type: 2)
-            self.header?.beginRefreshing()
         default:
             if button.tag == 1 {
                 // 完成地点选择
@@ -158,18 +166,20 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
                 self.cityToolBar.isHidden = true
                 //获取选中的省
                 let p = self.addressArray[provinceIndex]
-                province = p["state"]! as? String
+                province = (p["state"]! as? String)!
                 //获取选中的市
                 let c = (p["cities"] as! NSArray)[cityIndex] as! [String: AnyObject]
-                city = c["city"] as? String
+                city = (c["city"] as? String)!
                 //获取选中的县（地区）
                 area = ""
                 if (c["areas"] as! [String]).count > 0 {
                     area = (c["areas"] as! [String])[areaIndex]
                 }
+                self.refreshBtn()
             }else {
                 self.deptPicker.isHidden = true
                 self.deptToolBar.isHidden = true
+                self.refreshBtn()
             }
         }
 

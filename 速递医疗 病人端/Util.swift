@@ -19,10 +19,10 @@ let ERRORMSG = "获取服务器数据失败"
 let CATCHMSG = "解析服务器数据失败"
 
 struct StaticClass {
-//    static let RootIP = "http://192.168.2.2:8080"
+    static let RootIP = "http://118.89.172.204:8080"
     
 //    static let RootIP = "http://1842719ny8.iok.la:14086"
-    static let RootIP = "http://120.77.32.15:8080"
+//    static let RootIP = "http://120.77.32.15:8080"
     static let BaseApi = RootIP + "/internetmedical/user"
     static let PictureIP = RootIP + "/picture/"
     static let GetDept = RootIP + "/internetmedical/doctor/getdept"
@@ -30,6 +30,7 @@ struct StaticClass {
     static let GaodeAPIKey = "e1f634835289963a63040a55a00ab886"
     static let HuanxinAppkey = "1133171107115421#medicalclient"
     static let AliPayScheme = "com.dingling.medical.o2o"
+    static let BuglyAPPID = "e0392726ce"
 }
 
 
@@ -247,6 +248,16 @@ class AlertUtil: NSObject {
 }
 
 class ImageUtil{
+    class func URLToImg(url:URL) -> UIImage {
+        var img = UIImage.init()
+        do {
+            let data = try Data.init(contentsOf: url)
+            img = UIImage.init(data: data)!
+        }catch {
+            img = #imageLiteral(resourceName: "photo_default")
+        }
+        return img
+    }
     // 设置按钮不可用灰色
     class func setButtonDisabledImg(button:UIButton){
          button.setBackgroundImage(ImageUtil.color2img(color: UIColor.APPGrey), for: .disabled)
@@ -431,7 +442,6 @@ public class AliSdkManager: NSObject {
             returnMsg = "支付成功"
             dPrint(message: JSON.init(parseJSON: (result["result"] as! String))["alipay_trade_app_pay_response"]["sub_msg"].stringValue)
             Toast(returnMsg)
-            break
         default:
             Toast(returnMsg)
         }

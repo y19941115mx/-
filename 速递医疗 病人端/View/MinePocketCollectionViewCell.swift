@@ -10,6 +10,7 @@ import UIKit
 
 class MinePocketCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var label_stateMsg: UILabel!
     @IBOutlet weak var label_name: UILabel!
     @IBOutlet weak var label_payway: UILabel!
     @IBOutlet weak var label_money: UILabel!
@@ -23,6 +24,7 @@ class MinePocketCollectionViewCell: UICollectionViewCell {
         label_payway.text = bean.paymodename
         label_money.text = "\(bean.paytotalamount!)"
         Label_time.text = bean.paycreattime
+        label_stateMsg.text = bean.paystatename
     }
 
 }

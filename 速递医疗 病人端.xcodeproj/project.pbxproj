@@ -20,6 +20,7 @@
 		8406477E1FA770D8009B21C4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406477C1FA770D7009B21C4 /* RegisterViewController.swift */; };
 		8406477F1FA770D8009B21C4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406477D1FA770D7009B21C4 /* LoginViewController.swift */; };
 		840647811FA80898009B21C4 /* BaseAPIBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840647801FA80897009B21C4 /* BaseAPIBean.swift */; };
+		840B1EA41FEA511400A6A94E /* Mine_info_photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EA31FEA511400A6A94E /* Mine_info_photo.swift */; };
 		841A27031FAD5AE500D1A807 /* MyDoctorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A27021FAD5AE500D1A807 /* MyDoctorTableViewCell.swift */; };
 		841A27071FAD850800D1A807 /* Date_main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A27061FAD850800D1A807 /* Date_main.swift */; };
 		841A27091FAD86D900D1A807 /* Date.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 841A27081FAD86D900D1A807 /* Date.storyboard */; };
@@ -108,6 +109,7 @@
 		8406477C1FA770D7009B21C4 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		8406477D1FA770D7009B21C4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		840647801FA80897009B21C4 /* BaseAPIBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPIBean.swift; sourceTree = "<group>"; };
+		840B1EA31FEA511400A6A94E /* Mine_info_photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mine_info_photo.swift; sourceTree = "<group>"; };
 		841A27021FAD5AE500D1A807 /* MyDoctorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDoctorTableViewCell.swift; sourceTree = "<group>"; };
 		841A27061FAD850800D1A807 /* Date_main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date_main.swift; sourceTree = "<group>"; };
 		841A27081FAD86D900D1A807 /* Date.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Date.storyboard; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				84736BA01FAC564A001E9AA5 /* Mine_pocket.swift */,
 				84736BA21FAC5ADA001E9AA5 /* Mine_family.swift */,
 				84939BC71FAC8F050062062C /* Mine_info.swift */,
+				840B1EA31FEA511400A6A94E /* Mine_info_photo.swift */,
 				849BAA5A1FAD534100871EA8 /* Date_page.swift */,
 				841A27061FAD850800D1A807 /* Date_main.swift */,
 				84C984041FA618060058FA7B /* BaseViewController.swift */,
@@ -608,6 +611,7 @@
 				840647751FA6A6E4009B21C4 /* XLSlideSwitch.m in Sources */,
 				84C983EF1FA611A60058FA7B /* AppDelegate.swift in Sources */,
 				84DDACDF1FE0C96F004199FF /* EditViewController.swift in Sources */,
+				840B1EA41FEA511400A6A94E /* Mine_info_photo.swift in Sources */,
 				846D88621FAC26EC00DE6308 /* Mine_order.swift in Sources */,
 				840647321FA62C1B009B21C4 /* CustomButton.swift in Sources */,
 				8406477E1FA770D8009B21C4 /* RegisterViewController.swift in Sources */,

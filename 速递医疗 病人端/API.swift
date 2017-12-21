@@ -15,10 +15,14 @@ public enum API {
     case updatechannelid(Int,String)// 更新channelid
     case huanxinregister // 环信注册
     case getdoctorlist(Int, String, String) // 获取首页医生信息
+    case doctorinfo(Int) // 获取医生详细信息
+    case getdoctorlistByDept(Int,String,String,String,String)
+    case getdoctorlistByLoc(Int,String,String,String,String, String)
     // 我的日程
     case getorder(Int, Int, Int) // 获取订单信息
     case cancelorder(Int) // 取消订单
     case addfamily(String, String, Int) // 添加亲属
+    case deletefamily(Int) // 删除亲属
     case findfamily // 查询亲属
     case getredoctor // 获取我的医生
     case updateinfo(Data) // 上传头像
@@ -31,8 +35,10 @@ public enum API {
     case optdoctor(Int) // 预选医生
     case createorder(Int, String) // 生成订单
     case getinfo // 获取个人信息
-    case editinfo(String, String, Data, String, Int, String) // 保存个人信息
+    case editinfo(String, String, [Data], String, Int, String) // 保存个人信息
     case exit // 退出登录
+    case updatealipayaccount(String) // 修改支付宝账号
+    case getalipayaccount // 获取支付宝账号
     case deleteallreceivenotification //删除通知
     // todo
     case gethistoryorder(Int) // 获取历史订单
@@ -43,7 +49,6 @@ public enum API {
     case getcalendar(Int) // 获取医生日程
     case getevaluation(Int, Int) // 获取医生评价
     case evaluate(Int, Int, Int, Int, String) // 提交评价
-    case doctorInfo(Int)
 
 }
 // 配置请求
@@ -51,6 +56,8 @@ extension API: TargetType {
     public var baseURL: URL { return URL(string: StaticClass.BaseApi)! }
     public var path: String {
         switch self {
+        case .deletefamily:
+            return "/deletefamily"
         case .login:
             return "/login"
         case .phonetest:
@@ -61,7 +68,7 @@ extension API: TargetType {
             return "/register"
         case .huanxinregister:
             return "/huanxinregister"
-        case .getdoctorlist:
+        case .getdoctorlist, .getdoctorlistByLoc, .getdoctorlistByDept:
             return "/listdoctors"
         case .getorder:
             return "/getorder"
@@ -119,8 +126,13 @@ extension API: TargetType {
             return "/deleteallreceivenotification"
         case .reviewinfo:
             return "/reviewinfo"
-        case .doctorInfo:
-            return "/doctorInfo"
+        case .doctorinfo:
+            return "/doctorinfo"
+
+        case .updatealipayaccount:
+            return "/updatealipayaccount"
+        case .getalipayaccount:
+            return "/getalipayaccount"
         }
     }
     public var method: Moya.Method {
@@ -150,6 +162,10 @@ extension API: TargetType {
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "userloginpwd": user_default.password.getStringValue()!], encoding: URLEncoding.default)
         case .getdoctorlist(let page, let lon, let lat):
             return .requestParameters(parameters: ["page": page, "userloginlon": lon, "userloginlat":lat], encoding: URLEncoding.default)
+        case .getdoctorlistByDept(let page, let lon, let lat, let onedept, let twodept):
+            return .requestParameters(parameters: ["page": page, "userloginlon": lon, "userloginlat":lat, "docprimarydept":onedept, "docseconddept":twodept,"type":1], encoding: URLEncoding.default)
+        case .getdoctorlistByLoc(let page, let lon, let lat, let province, let city,let area):
+            return .requestParameters(parameters: ["page": page, "userloginlon": lon, "userloginlat":lat, "dochospprovince":province, "dochospcity":city, "dochosparea":area,"type":2], encoding: URLEncoding.default)
         case .addfamily(let name, let sex, let age):
             return .requestParameters(parameters: ["userloginid": Int(user_default.userId.getStringValue()!), "familyname": name, "familymale":sex, "familyage": age], encoding: URLEncoding.default)
         case .findfamily:
@@ -202,8 +218,13 @@ extension API: TargetType {
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "userorderid":orderId, "type":1], encoding: URLEncoding.default)
         case .getinfo:
             return .requestParameters(parameters: ["userloginid":Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
-        case .editinfo(let name, let card, let data, let male, let age, let address):
-            return .uploadCompositeMultipart([MultipartFormData.init(provider: .data(data), name: "usercardphoto", fileName: "photo.jpg", mimeType:"image/png")], urlParameters: ["userloginid": Int(user_default.userId.getStringValue()!)!, "username":name, "usermale":male, "usercardnum":card, "useradrother":address, "userage":age])
+        case .editinfo(let name, let card, let datas, let male, let age, let address):
+            var formDatas = [MultipartFormData]()
+            for (i, data) in datas.enumerated() {
+                let formData = MultipartFormData.init(provider: .data(data), name: "usercardphoto", fileName: "picture\(i).jpg", mimeType: "image/png")
+                formDatas.append(formData)
+            }
+            return .uploadCompositeMultipart(formDatas, urlParameters: ["userloginid": Int(user_default.userId.getStringValue()!)!, "username":name, "usermale":male, "usercardnum":card, "useradrother":address, "userage":age])
             
         case .gethistoryorder(let page):
             return .requestParameters(parameters: ["page": page, "userloginid": Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
@@ -219,8 +240,14 @@ extension API: TargetType {
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!], encoding: URLEncoding.default)
         case .reviewinfo:
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!], encoding: URLEncoding.default)
-        case .doctorInfo(let id):
-            return .requestParameters(parameters: ["docloginid":id], encoding: URLEncoding.default)
+        case .doctorinfo(let id):
+            return .requestParameters(parameters: ["docloginid":id, "userloginid":user_default.userId.getStringValue()!], encoding: URLEncoding.default)
+        case .updatealipayaccount(let account):
+            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "alipayaccount":account], encoding: URLEncoding.default)
+        case .getalipayaccount:
+            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!], encoding: URLEncoding.default)
+        case .deletefamily(let familyId):
+            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "familyid":familyId], encoding: URLEncoding.default)
         }
         
     }

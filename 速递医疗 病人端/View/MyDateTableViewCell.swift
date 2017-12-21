@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class MyDateTableViewCell: UITableViewCell {
 
@@ -19,10 +20,16 @@ class MyDateTableViewCell: UITableViewCell {
     @IBOutlet weak var button: UIButton!
     var vc:BaseRefreshController<OrderBean>?
     var data:OrderBean?
-    var flag = 1 // 4 待医生确认 1 病人确认 2 正在进行 3 待评价
+    var flag:Int? // 4 待医生确认 1 病人确认 2 正在进行 3 待评价
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.selectionStyle = .none
         button.addTarget(self, action: #selector(self.delAction(_:)), for: .touchUpInside)
+        
+    }
+    
+    func updateViews(vc:BaseRefreshController<OrderBean>, data:OrderBean) {
         // 动态添加按钮
         if flag == 1 {
             let confirmButton = UIButton()
@@ -30,11 +37,16 @@ class MyDateTableViewCell: UITableViewCell {
             confirmButton.layer.borderColor = UIColor.red.cgColor
             confirmButton.layer.borderWidth = 1
             confirmButton.setTitle("确认", for: .normal)
+            confirmButton.setTitleColor(.red, for: .normal)
             self.contentView.addSubview(confirmButton)
             confirmButton.snp.makeConstraints { (make) in
-                make.width.equalTo(40)
-                make.bottom.equalTo(10)
-                make.right.equalTo(80)
+                make.height.equalTo(30)
+                make.width.equalTo(50)
+                make.bottom.equalTo(-10)
+                make.right.equalTo(-80)
+                //                make.bottom.equalTo(10)
+                //                make.right.equalTo(80)
+                //                make.center.equalTo(self.contentView)
             }
             confirmButton.addTarget(self, action: #selector(self.confirmAction(_:)), for: .touchUpInside)
         } else if flag == 3 {
@@ -44,17 +56,16 @@ class MyDateTableViewCell: UITableViewCell {
             evaluateButton.layer.borderColor = UIColor.blue.cgColor
             evaluateButton.layer.borderWidth = 1
             evaluateButton.setTitle("评价", for: .normal)
+            evaluateButton.setTitleColor(.blue, for: .normal)
             self.contentView.addSubview(evaluateButton)
             evaluateButton.snp.makeConstraints { (make) in
-                make.width.equalTo(40)
-                make.bottom.equalTo(10)
-                make.right.equalTo(10)
+                make.height.equalTo(30)
+                make.width.equalTo(50)
+                make.bottom.equalTo(-10)
+                make.right.equalTo(-80)
             }
             evaluateButton.addTarget(self, action: #selector(self.evaluateAction(_:)), for: .touchUpInside)
         }
-    }
-    
-    func updateViews(vc:BaseRefreshController<OrderBean>, data:OrderBean) {
         self.vc = vc
         self.data = data
         nameLabel.text = data.familyname!
@@ -75,6 +86,9 @@ class MyDateTableViewCell: UITableViewCell {
             let id = self.data?.userorderid
             NetWorkUtil.init(method: API.cancelorder(id!)).newRequest { (bean, josn) in
                 Toast(bean.msg!)
+                if bean.code == 100 {
+                    self.vc?.refreshBtn()
+                }
             }
         }
     }
@@ -83,8 +97,7 @@ class MyDateTableViewCell: UITableViewCell {
             let id = self.data?.userorderid
             NetWorkUtil.init(method: API.confirmorder(id!)).newRequest { (bean, json) in
                 if bean.code == 100 {
-                    let data = json["data"]
-                    let str = data["alipay_sdk"].stringValue
+                    let str = json["data"].stringValue
                     let alipayUtils = AliPayUtils.init(context: self.vc!);
                     alipayUtils.pay(sign:str)
                 }else {

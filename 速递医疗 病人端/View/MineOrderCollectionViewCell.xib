@@ -100,6 +100,7 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="btn_state" destination="aj7-kl-VaK" id="1CG-Ro-MHe"/>
                 <outlet property="label_desc" destination="HQ4-sW-2eh" id="imk-sX-iXv"/>
                 <outlet property="label_name" destination="FkR-ti-Yx1" id="DJ2-Ua-aMF"/>
                 <outlet property="label_time" destination="Ivd-ie-eOx" id="pcN-qs-570"/>

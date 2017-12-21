@@ -11,9 +11,33 @@ import Moya
 import ObjectMapper
 import SVProgressHUD
 
-class Mine_family: BaseRefreshController<familyBean>, UITableViewDataSource {
+class Mine_family: BaseRefreshController<familyBean>, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: BaseTableView!
+    
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
+    }
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "删除"
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let user = data[indexPath.row]
+            let id = user.familyid
+            NetWorkUtil.init(method: .deletefamily(id)).newRequest(handler: { (bean, json) in
+                showToast(self.view, bean.msg!)
+                if bean.code == 100 {
+                    self.data.remove(at: indexPath.row)
+                    self.tableView.deleteRows(at: [indexPath], with: .none)
+                }
+            })
+        }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count

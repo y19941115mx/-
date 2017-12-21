@@ -107,7 +107,7 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
         // Make sure ViewController is notified when the user picks an image.
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
-
+        
     }
     
     
@@ -152,37 +152,37 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
     //MARK: - UIPickerViewDelegate
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
         
-            if (component == 0) {
-                // 一级科室
-                return Array(departData.keys)[row]
-            }else{
-                //取出选中的二级科室
-                let key = Array(departData.keys)[proIndex]
-                return departData[key]?[row]
-            }
+        if (component == 0) {
+            // 一级科室
+            return Array(departData.keys)[row]
+        }else{
+            //取出选中的二级科室
+            let key = Array(departData.keys)[proIndex]
+            return departData[key]?[row]
+        }
         
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
         
-            if (component == 0) {
-                //选中第一列
-                proIndex = pickerView.selectedRow(inComponent: 0)
-                self.deptPicker.reloadComponent(1)
-            }
-            //获取选中的一级科室
-            let oneDepart = Array(departData.keys)[proIndex]
-            //获取选中的二级科室
-            let twoDeparts = departData[oneDepart]
-            if  twoDeparts?.count != 0{
-                let row = pickerView.selectedRow(inComponent: 1)
-                self.oneDepart = oneDepart
-                self.twoDepart = (twoDeparts?[row])!
-                departTextField.text = "\(oneDepart) \(twoDeparts?[row] ?? "")"
-            }else{
-                self.oneDepart = oneDepart
-                departTextField.text = oneDepart
-            }
+        if (component == 0) {
+            //选中第一列
+            proIndex = pickerView.selectedRow(inComponent: 0)
+            self.deptPicker.reloadComponent(1)
+        }
+        //获取选中的一级科室
+        let oneDepart = Array(departData.keys)[proIndex]
+        //获取选中的二级科室
+        let twoDeparts = departData[oneDepart]
+        if  twoDeparts?.count != 0{
+            let row = pickerView.selectedRow(inComponent: 1)
+            self.oneDepart = oneDepart
+            self.twoDepart = (twoDeparts?[row])!
+            departTextField.text = "\(oneDepart) \(twoDeparts?[row] ?? "")"
+        }else{
+            self.oneDepart = oneDepart
+            departTextField.text = oneDepart
+        }
         
     }
     
@@ -206,7 +206,7 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
         // 开始编辑文字
         placeHolderLabel.isHidden = true
     }
-
+    
     // MARK: - UICollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return imgResource.count
@@ -290,7 +290,7 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
             sender.setTitle(result, for: .normal)
         })
     }
-
-   
-
+    
+    
+    
 }

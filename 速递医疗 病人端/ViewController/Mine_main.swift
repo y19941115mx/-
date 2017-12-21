@@ -50,18 +50,21 @@ class Mine_main: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     @IBAction func click_photo(_ sender: UIButton) {
         AlertUtil.popMenu(vc: self, title: "上传图片", msg: "上传图片", btns: ["拍照","从图库选择"]) {msg in
             if msg == "拍照" {
-                showToast(self.view, "请检查照相机设备")
+                self.pickImageFromPhotoLib(type: 1)
             }else {
-                self.pickImageFromPhotoLib()
+                self.pickImageFromPhotoLib(type: 0)
             }
         }
         
     }
     
     
-    func pickImageFromPhotoLib() {
+    func pickImageFromPhotoLib(type:Int) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.sourceType = .photoLibrary
+        if type == 1 {
+            imagePickerController.sourceType = .camera
+        }
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
     }

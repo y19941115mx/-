@@ -11,12 +11,16 @@ import UIKit
 class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var tableView: BaseTableView!
     var textField = UITextField()
-    var image:Data?
-    var flags = [false,false,false,false,false,false,]
+    var image = [UIImage]()
+    var imageString = [String]()
+    var flag = 0
+    
+    @IBOutlet weak var confirmBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+         ImageUtil.setButtonDisabledImg(button: confirmBtn)
         let titles =  [["姓名","身份证","身份证照片","性别","年龄","具体地址"]]
-        let tableData = [["输入姓名","输入身份证","未上传","选择性别","0", "输入具体地址"]]
+        let tableData = [["","","","","", ""]]
         initViewController(tableTiles: titles, tableInfo: tableData, tableView: tableView) { (index_path) in
             self.handleClick(index_path: index_path)
         }
@@ -25,22 +29,31 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
     
     
     @IBAction func click_save(_ sender: UIButton) {
-        for flag in flags {
-            if !flag {
-                showToast(self.view, "请填写完整信息")
+        for i in 0 ..< tableInfo[0].count - 1 {
+            if tableInfo[0][i] == "" {
+                showToast(self.view, "请输入完整信息")
                 return
             }
         }
-        NetWorkUtil.init(method: .editinfo(tableInfo[0][0], tableInfo[0][1], self.image!, tableInfo[0][3], Int(tableInfo[0][4])!, tableInfo[0][5])).newRequest { (bean, json) in
-            showToast(self.view, bean.msg!)
-            if bean.code == 100 {
-                self.dismiss(animated: false, completion: nil)
+        let count = image.count
+        if count > 0 {
+            var datas = [Data]()
+            for i in 0..<count{
+                datas.append(ImageUtil.image2Data(image:image[i]))
             }
+            NetWorkUtil.init(method: .editinfo(tableInfo[0][0], tableInfo[0][1], datas, tableInfo[0][3], Int(tableInfo[0][4])!, tableInfo[0][5])).newRequest { (bean, json) in
+                showToast(self.view, bean.msg!)
+                if bean.code == 100 {
+                    self.confirmBtn.isEnabled = true
+                }
+            }
+        }else {
+            showToast(self.view, "照片为空")
         }
+       
     }
     
     private func  handleClick(index_path:IndexPath) {
-        flags[index_path.row] = false
         switch index_path.row {
         case 0:
             self.textField.placeholder = "请输入姓名"
@@ -50,7 +63,6 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
                 if text != "" {
                     self.tableInfo[0][0] = text
                     self.tableView.reloadRows(at: [index_path], with: .none)
-                    self.flags[0] = true
                 }
             })
         case 1:
@@ -61,15 +73,21 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
                 if text != "" {
                     self.tableInfo[0][1] = text
                     self.tableView.reloadRows(at: [index_path], with: .none)
-                    self.flags[1] = true
                 }
             })
         case 2:
-            pickImageFromPhotoLib()
+            // 跳转上传图片页面 传入 addPhoto
+            let vc = UIStoryboard.init(name: "Mine", bundle: nil).instantiateViewController(withIdentifier: "addPhoto") as! Mine_info_photo
+            if self.imageString.count != 0 {
+                for str in self.imageString {
+                    self.image.append(ImageUtil.URLToImg(url: URL.init(string: str)!))
+                }
+                vc.imgResource = image
+            }
+            self.present(vc, animated: false, completion: nil)
         case 3:
             AlertUtil.popMenu(vc: self, title: "选择性别", msg: "", btns: ["男", "女"], handler: { (str) in
                 self.tableInfo[0][3] = str
-                self.flags[3] = true
                 self.tableView.reloadRows(at: [index_path], with: .none)
             })
         case 4:
@@ -80,7 +98,6 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
                 if text != "" {
                     self.tableInfo[0][4] = text
                     self.tableView.reloadRows(at: [index_path], with: .none)
-                    self.flags[4] = true
                 }
             })
         default:
@@ -91,19 +108,24 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
                 if text != "" {
                     self.tableInfo[0][5] = text
                     self.tableView.reloadRows(at: [index_path], with: .none)
-                    self.flags[5] = true
                 }
             })
         }
     }
         
         override func viewDidAppear(_ animated: Bool) {
+            confirmBtn.isEnabled = false
             NetWorkUtil.init(method: .getinfo).newRequest { (bean, json) in
                 let data = json["data"]
                 let username = data["username"].string ?? self.tableInfo[0][0]
                 let usercardnum = data["usercardnum"].string ?? self.tableInfo[0][1]
                 
-                if data["usercardphoto"].string != nil {
+                if self.flag != 0 {
+                    self.tableInfo[0][2] = "已上传"
+                }
+                
+                if data["usercardphoto"].string != nil && data["usercardphoto"].string != "" {
+                    self.imageString = StringUTil.splitImage(str: data["usercardphoto"].string!)
                     self.tableInfo[0][2] = "已上传"
                 }
                 let usermale = data["usermale"].string ?? self.tableInfo[0][3]
@@ -114,38 +136,7 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
             }
             
         }
-        
-       private func pickImageFromPhotoLib() {
-            let imagePickerController = UIImagePickerController()
-            
-            // Only allow photos to be picked, not taken.
-            imagePickerController.sourceType = .photoLibrary
-            
-            // Make sure ViewController is notified when the user picks an image.
-            imagePickerController.delegate = self
-            present(imagePickerController, animated: true, completion: nil)
-            
-        }
-        
-        //MARK:- UIImagePickerControllerDelegate
-        
-        func imagePickerControllerDidCancel(_ picker: UIImagePickerController){
-            // Dismiss the picker if the user canceled.
-            dismiss(animated: true, completion: nil)
-        }
-        
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-            guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
-                fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
-            }
-            // 储存选中的图片
-            self.image = ImageUtil.image2Data(image: selectedImage)
-            self.tableInfo[0][2] = "已上传"
-            self.tableView.reloadRows(at: [IndexPath.init(row: 2, section: 0)], with: .none)
-            // Dismiss the picker.
-            dismiss(animated: true, completion: nil)
-        }
-        
+    
     @IBAction func click_confirm(_ sender: Any) {
         // 提交审核
         NetWorkUtil.init(method: .reviewinfo).newRequest { (bean, json) in
