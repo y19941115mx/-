@@ -37,7 +37,7 @@ public enum API {
     case getinfo // 获取个人信息
     case editinfo(String, String, [Data], String, Int, String) // 保存个人信息
     case exit // 退出登录
-    case updatealipayaccount(String) // 修改支付宝账号
+    case updatealipayaccount(String, String) // 修改支付宝账号
     case getalipayaccount // 获取支付宝账号
     case deleteallreceivenotification //删除通知
     // todo
@@ -242,8 +242,8 @@ extension API: TargetType {
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!], encoding: URLEncoding.default)
         case .doctorinfo(let id):
             return .requestParameters(parameters: ["docloginid":id, "userloginid":user_default.userId.getStringValue()!], encoding: URLEncoding.default)
-        case .updatealipayaccount(let account):
-            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "alipayaccount":account], encoding: URLEncoding.default)
+        case .updatealipayaccount(let account, let name):
+            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "alipayaccount":account, "alipayname": name], encoding: URLEncoding.default)
         case .getalipayaccount:
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!], encoding: URLEncoding.default)
         case .deletefamily(let familyId):

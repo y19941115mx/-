@@ -10,7 +10,7 @@ import UIKit
 import SwiftHash
 // 重置密码
 class ResetViewController: BaseTextViewController {
-    let MsgSeconds = 30 // 设置验证码发送间隔时间
+    let MsgSeconds = 120 // 设置验证码发送间隔时间
     @IBOutlet weak var photoTextField: UITextField!
     
     @IBOutlet weak var msgCodeTextField: UITextField!
@@ -68,6 +68,7 @@ class ResetViewController: BaseTextViewController {
     
     //MARK: - 点击事件
     @IBAction func click_reset(_ sender: Any) {
+        self.view.endEditing(true)
         // 重置密码
         let phoneText = photoTextField.text ?? ""
         let msgCode = msgCodeTextField.text ?? ""
@@ -130,8 +131,6 @@ class ResetViewController: BaseTextViewController {
         resetButton.setBackgroundImage(ImageUtil.color2img(color: UIColor.APPGrey), for: .disabled)
         resetButton.isEnabled = (!phoneText.isEmpty && !msgCode.isEmpty
             && !passwordText.isEmpty)
-        sendMsgButton.setBackgroundImage(ImageUtil.color2img(color: UIColor.APPGrey), for: .disabled)
-        sendMsgButton.isEnabled = !phoneText.isEmpty
     }
     
     @objc private func updateTime(timer: Timer) {

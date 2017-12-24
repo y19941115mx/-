@@ -19,7 +19,7 @@ let ERRORMSG = "获取服务器数据失败"
 let CATCHMSG = "解析服务器数据失败"
 
 struct StaticClass {
-    static let RootIP = "http://118.89.172.204:8080"
+    static let RootIP = "http://118.89.172.204:8081"
     
 //    static let RootIP = "http://1842719ny8.iok.la:14086"
 //    static let RootIP = "http://120.77.32.15:8080"
@@ -47,11 +47,26 @@ public func showToast(_ view:UIView, _ message:String) {
     view.makeToast(message, duration: 2.0, position: .bottom, style:style)
 }
 
+public func ToastError(_ view:UIView, _ message:String) {
+    var style = ToastStyle()
+    style.backgroundColor = UIColor.red
+    view.makeToast(message, duration: 2.0, position: .bottom, style:style)
+}
+
 public func Toast(_ message:String) {
     var style = ToastStyle()
     style.backgroundColor = UIColor.APPColor
     let view = APPLICATION.window?.rootViewController?.view
     view?.makeToast(message, duration: 2.0, position: .bottom, style:style)
+}
+
+public func customBtn(str:String) -> UIButton {
+    let btn = UIButton()
+    btn.layer.cornerRadius = 5
+    btn.backgroundColor = UIColor.APPColor
+    btn.setTitleColor(.white, for: .normal)
+    btn.setTitle(str, for: .normal)
+    return btn
 }
 
 // 网络请求
@@ -132,7 +147,7 @@ class NetWorkUtil<T:BaseAPIBean> {
 
 // UserDefault UserDefault相关的枚举值
 enum user_default:String {
-    case userId, password, typename, pix, token, username, title, account, channel_id
+    case userId, password, typename, pix, token, username, title, account, channel_id, phoneNum
     func getStringValue()->String? {
         return UserDefaults.standard.string(forKey: self.rawValue)
     }
@@ -220,6 +235,8 @@ class AlertUtil: NSObject {
         alertController.addAction(okAction)
         vc.present(alertController, animated: true, completion: nil)
     }
+    
+    
     class func popInfoTextFields(vc:UIViewController, okhandler: @escaping (_ textfields:[UITextField])->()) {
         let alertController = UIAlertController(title: "输入内容",
                                                 message: "", preferredStyle: .alert)
@@ -436,7 +453,7 @@ public class AliSdkManager: NSObject {
         //        6002    网络连接出错
         let returnCode:String = result["resultStatus"] as! String
         var returnMsg:String = result["memo"] as! String
-        dPrint(message: "returnMsg: \(returnMsg)")
+        dPrint(message: "returnMsg: \(result)")
         switch  returnCode{
         case "9000":
             returnMsg = "支付成功"

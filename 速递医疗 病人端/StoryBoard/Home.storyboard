@@ -37,7 +37,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="touxiang" translatesAutoresizingMaskIntoConstraints="NO" id="GTR-Zb-cas">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GTR-Zb-cas">
                                 <rect key="frame" x="20" y="84" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="1l6-n7-a3a"/>
@@ -50,7 +50,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9C-Ew-eOH">
-                                <rect key="frame" x="87" y="526" width="146" height="30"/>
+                                <rect key="frame" x="87" y="509" width="146" height="30"/>
                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="QfV-ti-O1h"/>
@@ -68,32 +68,32 @@
                                     <action selector="click_opt:" destination="dEe-b0-evy" eventType="touchUpInside" id="7xn-3J-e9A"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姚成" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3i-70-81W">
-                                <rect key="frame" x="100" y="84" width="41" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3i-70-81W">
+                                <rect key="frame" x="100" y="84" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="急诊科" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NtJ-pa-IYr">
-                                <rect key="frame" x="100" y="123" width="52" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NtJ-pa-IYr">
+                                <rect key="frame" x="100" y="99" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="副主任医师" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSt-sV-7sz">
-                                <rect key="frame" x="157" y="123" width="87" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSt-sV-7sz">
+                                <rect key="frame" x="105" y="99" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="安医大二附院" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCJ-rK-puN">
-                                <rect key="frame" x="20" y="154" width="86" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCJ-rK-puN">
+                                <rect key="frame" x="20" y="154" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ink-xL-RYt">
-                                <rect key="frame" x="20" y="237" width="5" height="20"/>
+                                <rect key="frame" x="20" y="220" width="5" height="20"/>
                                 <color key="backgroundColor" red="0.014965149570000001" green="0.47698318960000002" blue="0.98540872339999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="JeZ-uL-0P3"/>
@@ -101,7 +101,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4dz-oo-zd3">
-                                <rect key="frame" x="15" y="266" width="290" height="220"/>
+                                <rect key="frame" x="15" y="249" width="290" height="220"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="220" id="DJP-xT-mnF"/>
@@ -175,8 +175,8 @@
                                     <outlet property="delegate" destination="dEe-b0-evy" id="1hG-EA-t2V"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="擅长：学习" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7a-dt-LjC">
-                                <rect key="frame" x="20" y="181" width="280" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="擅长：" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7a-dt-LjC">
+                                <rect key="frame" x="20" y="164" width="280" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="Oz0-6x-Ifb"/>
                                 </constraints>
@@ -184,8 +184,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="简介：学习" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mgn-ru-PTN">
-                                <rect key="frame" x="20" y="206.5" width="280" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="简介：" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mgn-ru-PTN">
+                                <rect key="frame" x="20" y="189.5" width="280" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="VGz-aJ-3vV"/>
                                 </constraints>
@@ -194,7 +194,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医师日程(未来30天)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hzH-Qh-gb6">
-                                <rect key="frame" x="30" y="239" width="128" height="17"/>
+                                <rect key="frame" x="30" y="222" width="128" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -238,14 +238,17 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <navigationItem key="navigationItem" id="E4W-7C-cBY"/>
                     <connections>
                         <outlet property="absLabel" destination="Mgn-ru-PTN" id="EeR-0y-hiS"/>
                         <outlet property="avator" destination="GTR-Zb-cas" id="q2b-Lo-wX9"/>
                         <outlet property="collectionView" destination="4dz-oo-zd3" id="6it-Kv-HCb"/>
+                        <outlet property="dateLabel" destination="hzH-Qh-gb6" id="rfT-Eb-d2E"/>
                         <outlet property="deptLabel" destination="NtJ-pa-IYr" id="vY9-bl-XXr"/>
                         <outlet property="expertLabel" destination="N7a-dt-LjC" id="O7B-Ga-5wT"/>
                         <outlet property="label_hospital" destination="GCJ-rK-puN" id="FJr-F3-0fW"/>
                         <outlet property="nameLabel" destination="W3i-70-81W" id="l72-HI-9ZR"/>
+                        <outlet property="opt_btn" destination="N9C-Ew-eOH" id="gJc-Kc-qw7"/>
                         <outlet property="titleLabel" destination="BSt-sV-7sz" id="FyY-P7-uef"/>
                     </connections>
                 </viewController>
@@ -326,7 +329,7 @@
                         <outlet property="sortByDept" destination="lKt-uQ-6xq" id="p6b-em-6em"/>
                         <outlet property="sortByLocBtn" destination="oIv-Ip-anP" id="WgY-u5-r6K"/>
                         <outlet property="sortByPatientBtn" destination="1G0-OH-ei5" id="O1z-vi-Lui"/>
-                        <segue destination="dEe-b0-evy" kind="show" identifier="ShowDetail" id="zxt-18-fYN"/>
+                        <segue destination="dEe-b0-evy" kind="show" identifier="ShowDetail" animates="NO" id="zxt-18-fYN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nt6-uR-Evr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -352,7 +355,4 @@
             <point key="canvasLocation" x="-2238" y="-2080"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="touxiang" width="80" height="80"/>
-    </resources>
 </document>

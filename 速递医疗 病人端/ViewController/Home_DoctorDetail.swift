@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import SnapKit
 
 class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    @IBOutlet weak var opt_btn: UIButton!
     var doctorBean:DoctorBean?
     var dates = [MineCalendarBean]()
     
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var avator: UIImageView!
     @IBOutlet weak var label_hospital: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -34,6 +38,8 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpNavTitle(title: "患者详情")
+        self.hidesBottomBarWhenPushed = true
         if let doctor = doctorBean{
             nameLabel.text = doctor.name
             titleLabel.text = doctor.docLevel
@@ -50,12 +56,18 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
         super.viewDidAppear(animated)
         NetWorkUtil<BaseListBean<MineCalendarBean>>.init(method: .getcalendar((doctorBean?.docId)!))
             .newRequest { (bean, json) in
-            if bean.code == 100 {
-                if bean.dataList != nil {
-                    self.dates = bean.dataList!
-                    self.collectionView.reloadData()
+                if bean.code == 100 {
+                    if bean.dataList != nil {
+                        self.dates = bean.dataList!
+                        self.collectionView.reloadData()
+                    }
                 }
-            }
+                // 更新top constrains
+                if self.dates.count == 0 {
+                    self.opt_btn.snp.makeConstraints({ (make) in
+                        make.top.equalTo(self.dateLabel).offset(40)
+                    })
+                }
         }
         NetWorkUtil.init(method: API.doctorinfo((doctorBean?.docId)!)).newRequestWithOutHUD { (bean, json) in
             if bean.code == 100 {
@@ -67,7 +79,7 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-          return CGSize(width: SCREEN_WIDTH - 50, height: 100)
+        return CGSize(width: SCREEN_WIDTH - 50, height: 100)
     }
     
     @IBAction func click_opt(_ sender: UIButton) {
