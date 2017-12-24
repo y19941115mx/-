@@ -50,7 +50,7 @@ class MyDateTableViewCell: UITableViewCell {
             }
             confirmButton.addTarget(self, action: #selector(self.confirmAction(_:)), for: .touchUpInside)
         } else if flag == 3 {
-            button.removeFromSuperview()
+            button.isHidden = true
             let evaluateButton = UIButton()
             evaluateButton.layer.cornerRadius = 5
             evaluateButton.layer.borderColor = UIColor.blue.cgColor
@@ -62,7 +62,7 @@ class MyDateTableViewCell: UITableViewCell {
                 make.height.equalTo(30)
                 make.width.equalTo(50)
                 make.bottom.equalTo(-10)
-                make.right.equalTo(-80)
+                make.right.equalTo(-20)
             }
             evaluateButton.addTarget(self, action: #selector(self.evaluateAction(_:)), for: .touchUpInside)
         }
@@ -109,7 +109,9 @@ class MyDateTableViewCell: UITableViewCell {
     }
     // 跳转到评价页面
     @objc func evaluateAction(_ sender: UIButton) {
-        let vc = UIStoryboard.init(name: "Date", bundle: nil).instantiateViewController(withIdentifier: "evaluate") as! EvaluateViewController
+        let vc = UIStoryboard.init(name: "Date", bundle: nil).instantiateViewController(withIdentifier: "evaluate") as! UINavigationController
+        let vc2 = vc.viewControllers[0] as! EvaluateViewController
+        vc2.OdrderId = data?.userorderid
         self.vc?.present(vc, animated: false, completion: nil)
     }
     

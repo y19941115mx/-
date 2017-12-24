@@ -49,6 +49,7 @@ public enum API {
     case getcalendar(Int) // 获取医生日程
     case getevaluation(Int, Int) // 获取医生评价
     case evaluate(Int, Int, Int, Int, String) // 提交评价
+    case getreviewinfo // 更新账号状态
 
 }
 // 配置请求
@@ -133,6 +134,8 @@ extension API: TargetType {
             return "/updatealipayaccount"
         case .getalipayaccount:
             return "/getalipayaccount"
+        case .getreviewinfo:
+            return "/getreviewinfo"
         }
     }
     public var method: Moya.Method {
@@ -203,7 +206,7 @@ extension API: TargetType {
             return .requestParameters(parameters: ["userloginid":Int(user_default.userId.getStringValue()!)!, "usersickid":sick], encoding: URLEncoding.default)
         case .editsick(let sickID, let desc):
             let formDatas = [MultipartFormData.init(provider: .data(Data.init()), name: "pictureFile")]
-            return .uploadCompositeMultipart(formDatas, urlParameters: ["usersickid":sickID, "usersickdesc":desc])
+            return .uploadCompositeMultipart(formDatas, urlParameters: ["usersickid":sickID, "usersickdesc":desc, "userloginid":Int(user_default.userId.getStringValue()!)!])
         case .optdoctor(let doctorId):
             return .requestParameters(parameters: ["docloginid":doctorId, "userloginid":Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
         case .createorder(let docId, let timestr):
@@ -248,6 +251,8 @@ extension API: TargetType {
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!], encoding: URLEncoding.default)
         case .deletefamily(let familyId):
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "familyid":familyId], encoding: URLEncoding.default)
+        case .getreviewinfo:
+            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!], encoding: URLEncoding.default)
         }
         
     }

@@ -89,7 +89,7 @@
         <!--Evaluate View Controller-->
         <scene sceneID="i2h-js-MP2">
             <objects>
-                <viewController storyboardIdentifier="evaluate" id="Pgx-LF-clH" customClass="EvaluateViewController" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Pgx-LF-clH" customClass="EvaluateViewController" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2SD-4P-5Dd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -151,7 +151,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisiciodioque civiuda." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="k8q-pm-7ML">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="填写评价" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="k8q-pm-7ML">
                                 <rect key="frame" x="10" y="402" width="355" height="120"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <constraints>
@@ -225,7 +225,7 @@
         <!--Navigation Controller-->
         <scene sceneID="hLx-tc-1aN">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GD7-mN-bhc" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="evaluate" automaticallyAdjustsScrollViewInsets="NO" id="GD7-mN-bhc" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zwC-Dh-fg0">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

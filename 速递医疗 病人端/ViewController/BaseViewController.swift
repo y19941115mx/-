@@ -7,6 +7,7 @@ import MJRefresh
 import Moya
 import SnapKit
 import ObjectMapper
+import SVProgressHUD
 import HJPhotoBrowser
 
 
@@ -121,6 +122,10 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.refresh()
+    }
     
     func initRefresh(scrollView:UIScrollView, ApiMethod:API,refreshHandler:(()->Void)?,getMoreHandler:@escaping ()->Void, isTableView:Bool = true) {
         self.ApiMethod = ApiMethod
@@ -174,7 +179,6 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
     func getData() {
         //刷新数据
         self.selectedPage = 1
-        
         let Provider = MoyaProvider<API>()
         if self.refreshHandler != nil {
             self.refreshHandler!()
@@ -207,6 +211,7 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
                     }
                     
                 }catch {
+
                     //隐藏tableView,添加刷新按钮
                     self.showRefreshBtn()
                     showToast(self.view,CATCHMSG)
@@ -236,6 +241,7 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
     
     private func getMoreData(){
         self.selectedPage += 1
+    
         //获取更多数据
         getMoreHandler()
         let Provider = MoyaProvider<API>()
@@ -281,6 +287,13 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
         imageView.isHidden = true
         self.scrollView?.isHidden = false
         self.header?.beginRefreshing()
+    }
+    
+    func refresh() {
+        button.isHidden = true
+        imageView.isHidden = true
+        self.scrollView?.isHidden = false
+        self.refreshData()
     }
     
     

@@ -69,7 +69,7 @@ class Mine_family: BaseRefreshController<familyBean>, UITableViewDataSource, UIT
             NetWorkUtil.init(method: API.addfamily( textFields[0].text!, textFields[1].text!, Int(textFields[2].text!)!)).newRequestWithOutHUD(handler: { (bean, josn) in
                 showToast(self.view, bean.msg!)
                 if bean.code == 100 {
-                    self.refreshData()
+                    self.refreshBtn()
                 }
             })
         })

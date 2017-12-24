@@ -18,6 +18,7 @@ class Mine_main: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     @IBOutlet weak var label_name: UILabel!
     @IBOutlet weak var label_id: UILabel!
     
+    @IBOutlet weak var label_type: UILabel!
     
     private let tableCell:[String] = ["个人信息", "亲属信息", "历史订单", "交易记录", "我的消息","我的设置"]
     
@@ -27,6 +28,14 @@ class Mine_main: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         // 界面初始化
         updateView()
         // Do any additional setup after loading the view.
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        // 更新账号审核状态
+        NetWorkUtil.init(method: .getreviewinfo).newRequestWithOutHUD { (bean, json) in
+            let data = json["data"]
+            let msg = data["typename"].stringValue
+            self.label_type.text = "\(msg)"
+        }
     }
     
     
@@ -113,6 +122,7 @@ class Mine_main: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         self.label_id.text = user_default.userId.getStringValue()
         self.label_name.text = user_default.username.getStringValue()
         ImageUtil.setAvator(path: user_default.pix.getStringValue()!, imageView: self.img_photo)
+        label_type.text = user_default.typename.getStringValue()
     }
     
     @IBAction func unwindToMine(sender: UIStoryboardSegue) {

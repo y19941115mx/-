@@ -36,10 +36,14 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
         return cell
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder:aDecoder)
+        self.hidesBottomBarWhenPushed = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavTitle(title: "患者详情")
-        self.hidesBottomBarWhenPushed = true
         if let doctor = doctorBean{
             nameLabel.text = doctor.name
             titleLabel.text = doctor.docLevel
@@ -62,12 +66,12 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
                         self.collectionView.reloadData()
                     }
                 }
-                // 更新top constrains
-                if self.dates.count == 0 {
-                    self.opt_btn.snp.makeConstraints({ (make) in
-                        make.top.equalTo(self.dateLabel).offset(40)
-                    })
-                }
+//                // 更新top constrains
+//                if self.dates.count == 0 {
+//                    self.opt_btn.snp.makeConstraints({ (make) in
+//                        make.top.equalTo(self.dateLabel).offset(40)
+//                    })
+//                }
         }
         NetWorkUtil.init(method: API.doctorinfo((doctorBean?.docId)!)).newRequestWithOutHUD { (bean, json) in
             if bean.code == 100 {
