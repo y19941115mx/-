@@ -107,6 +107,8 @@ class OrderListBean:BaseAPIBean {
 }
 
 class OrderBean: Mappable {
+    var inhospname:String?
+    var userorderstateid:Int?
     var docloginpix:String?
     var userorderprice:Double? // 订单价格
     var docaddresslocation:String? // 地点（医院名）
@@ -131,6 +133,8 @@ class OrderBean: Mappable {
     }
     
     func mapping(map: Map) {
+        inhospname <- map["inhospname"]
+        userorderstateid <- map["userorderstateid"]
         userorderetime <- map["userorderetime"]
         docloginpix <- map["docloginpix"]
         usersickpic <- map["usersickpic"]

@@ -209,13 +209,13 @@
                             <constraint firstItem="4dz-oo-zd3" firstAttribute="top" secondItem="hzH-Qh-gb6" secondAttribute="bottom" constant="10" id="6fP-vk-J0k"/>
                             <constraint firstItem="GCJ-rK-puN" firstAttribute="leading" secondItem="csf-cJ-M5O" secondAttribute="leading" constant="20" id="BRN-HV-Tc9"/>
                             <constraint firstItem="hzH-Qh-gb6" firstAttribute="top" secondItem="Mgn-ru-PTN" secondAttribute="bottom" constant="12" id="CbS-mf-F2Y"/>
+                            <constraint firstItem="N9C-Ew-eOH" firstAttribute="top" secondItem="hzH-Qh-gb6" secondAttribute="bottom" constant="270" id="E35-vC-a2U"/>
                             <constraint firstAttribute="trailing" secondItem="N7a-dt-LjC" secondAttribute="trailing" constant="20" id="JYu-Cq-7J8"/>
                             <constraint firstItem="ink-xL-RYt" firstAttribute="leading" secondItem="csf-cJ-M5O" secondAttribute="leading" constant="20" id="K7W-E5-ZAb"/>
                             <constraint firstItem="yNy-gr-MvX" firstAttribute="top" secondItem="wLB-l2-fRh" secondAttribute="bottom" constant="30" id="NmC-0r-Gul"/>
                             <constraint firstItem="NtJ-pa-IYr" firstAttribute="top" secondItem="W3i-70-81W" secondAttribute="bottom" constant="15" id="PJk-Ji-2DE"/>
                             <constraint firstItem="GTR-Zb-cas" firstAttribute="leading" secondItem="csf-cJ-M5O" secondAttribute="leading" constant="20" id="TWO-jm-VkQ"/>
                             <constraint firstItem="N9C-Ew-eOH" firstAttribute="centerX" secondItem="csf-cJ-M5O" secondAttribute="centerX" id="V2I-Ly-0RP"/>
-                            <constraint firstItem="N9C-Ew-eOH" firstAttribute="top" secondItem="4dz-oo-zd3" secondAttribute="bottom" constant="40" id="YKZ-TP-CtZ"/>
                             <constraint firstItem="ink-xL-RYt" firstAttribute="top" secondItem="Mgn-ru-PTN" secondAttribute="bottom" constant="10" id="YiO-Ee-2hw"/>
                             <constraint firstItem="N7a-dt-LjC" firstAttribute="leading" secondItem="csf-cJ-M5O" secondAttribute="leading" constant="20" id="b03-o8-clO"/>
                             <constraint firstItem="wLB-l2-fRh" firstAttribute="leading" secondItem="csf-cJ-M5O" secondAttribute="leading" constant="10" id="bgp-Hb-qZG"/>
@@ -246,6 +246,7 @@
                         <outlet property="dateLabel" destination="hzH-Qh-gb6" id="rfT-Eb-d2E"/>
                         <outlet property="deptLabel" destination="NtJ-pa-IYr" id="vY9-bl-XXr"/>
                         <outlet property="expertLabel" destination="N7a-dt-LjC" id="O7B-Ga-5wT"/>
+                        <outlet property="height" destination="E35-vC-a2U" id="ZgP-PE-1yf"/>
                         <outlet property="label_hospital" destination="GCJ-rK-puN" id="FJr-F3-0fW"/>
                         <outlet property="nameLabel" destination="W3i-70-81W" id="l72-HI-9ZR"/>
                         <outlet property="opt_btn" destination="N9C-Ew-eOH" id="gJc-Kc-qw7"/>

@@ -11,6 +11,7 @@ import SnapKit
 
 class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    @IBOutlet weak var height: NSLayoutConstraint!
     @IBOutlet weak var opt_btn: UIButton!
     var doctorBean:DoctorBean?
     var dates = [MineCalendarBean]()
@@ -66,12 +67,11 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
                         self.collectionView.reloadData()
                     }
                 }
-//                // 更新top constrains
-//                if self.dates.count == 0 {
-//                    self.opt_btn.snp.makeConstraints({ (make) in
-//                        make.top.equalTo(self.dateLabel).offset(40)
-//                    })
-//                }
+                // 更新top constrains
+                if self.dates.count == 0 {
+                    self.collectionView.isHidden = true
+                    self.height.constant -= 220
+                }
         }
         NetWorkUtil.init(method: API.doctorinfo((doctorBean?.docId)!)).newRequestWithOutHUD { (bean, json) in
             if bean.code == 100 {

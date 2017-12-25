@@ -37,6 +37,8 @@ public enum API {
     case getinfo // 获取个人信息
     case editinfo(String, String, [Data], String, Int, String) // 保存个人信息
     case exit // 退出登录
+    case cancelhospital(Int) // 取消住院
+    case payhospital(Int) // 支付住院押金
     case updatealipayaccount(String, String) // 修改支付宝账号
     case getalipayaccount // 获取支付宝账号
     case deleteallreceivenotification //删除通知
@@ -140,6 +142,10 @@ extension API: TargetType {
             return "/getreviewinfo"
         case .orderdetail:
             return "/orderdetail"
+        case .cancelhospital:
+            return "/cancelhospital"
+        case .payhospital:
+            return "/payhospital"
         }
     }
     public var method: Moya.Method {
@@ -216,7 +222,7 @@ extension API: TargetType {
         case .createorder(let docId, let timestr):
             return .requestParameters(parameters: ["docloginid":docId, "userorderappointment": timestr, "userloginid": Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
         case .exit:
-            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["userloginid":Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
         case .getcalendar(let doctorId):
             return .requestParameters(parameters: ["docloginid":doctorId], encoding: URLEncoding.default)
         case .cancelorder(let orderId):
@@ -259,6 +265,10 @@ extension API: TargetType {
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!], encoding: URLEncoding.default)
         case .orderdetail(let orderId):
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "userorderid":orderId], encoding: URLEncoding.default)
+        case .cancelhospital(let orderId):
+            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "userorderid":orderId], encoding: URLEncoding.default)
+        case .payhospital(let orderId):
+            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "userorderid":orderId, "type":1], encoding: URLEncoding.default)
         }
         
     }
