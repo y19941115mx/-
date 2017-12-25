@@ -30,6 +30,7 @@ class Mine_msg_main: BaseRefreshController<NotificationBean>,UITableViewDataSour
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.shared.applicationIconBadgeNumber = 0
         self.tableView.dataSource = self
         
         initRefresh(scrollView: tableView, ApiMethod: .listreceivenotification(self.selectedPage), refreshHandler: nil, getMoreHandler: {

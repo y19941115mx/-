@@ -152,33 +152,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="填写评价" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="k8q-pm-7ML">
-                                <rect key="frame" x="10" y="402" width="355" height="120"/>
+                                <rect key="frame" x="10" y="402" width="355" height="265"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="uF4-Nb-F7h"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZ4-D1-yt6">
-                                <rect key="frame" x="112.5" y="552" width="150" height="30"/>
-                                <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="9Nu-o2-qsH"/>
-                                    <constraint firstAttribute="width" constant="150" id="Ugx-0L-ize"/>
-                                </constraints>
-                                <state key="normal" title="提交">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="confirmAction:" destination="Pgx-LF-clH" eventType="touchUpInside" id="ikI-Jb-1sV"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -191,16 +169,15 @@
                             <constraint firstItem="EcE-vK-L80" firstAttribute="leading" secondItem="gHU-0o-g8w" secondAttribute="leading" constant="10" id="L8k-QV-MQe"/>
                             <constraint firstItem="gHU-0o-g8w" firstAttribute="trailing" secondItem="k8q-pm-7ML" secondAttribute="trailing" constant="10" id="P15-yW-qEc"/>
                             <constraint firstItem="I1c-ho-Jek" firstAttribute="leading" secondItem="gHU-0o-g8w" secondAttribute="leading" constant="10" id="P4e-rB-83T"/>
+                            <constraint firstItem="gHU-0o-g8w" firstAttribute="bottom" secondItem="k8q-pm-7ML" secondAttribute="bottom" id="UYa-18-9E8"/>
                             <constraint firstItem="Rs7-Pb-x18" firstAttribute="top" secondItem="gHU-0o-g8w" secondAttribute="top" constant="10" id="ZfW-6C-wwz"/>
                             <constraint firstItem="V6l-tx-TdZ" firstAttribute="leading" secondItem="gHU-0o-g8w" secondAttribute="leading" constant="10" id="ZvA-hF-Ba3"/>
-                            <constraint firstItem="GZ4-D1-yt6" firstAttribute="top" secondItem="k8q-pm-7ML" secondAttribute="bottom" constant="30" id="bBq-0K-IK9"/>
                             <constraint firstItem="fsR-Yu-WRy" firstAttribute="top" secondItem="V6l-tx-TdZ" secondAttribute="bottom" constant="10" id="bw4-7d-0Y7"/>
                             <constraint firstItem="bcv-PH-QMQ" firstAttribute="leading" secondItem="gHU-0o-g8w" secondAttribute="leading" constant="10" id="ef3-Yz-pMX"/>
                             <constraint firstItem="Rs7-Pb-x18" firstAttribute="leading" secondItem="gHU-0o-g8w" secondAttribute="leading" constant="10" id="gGd-o0-cQK"/>
                             <constraint firstItem="k8q-pm-7ML" firstAttribute="top" secondItem="93t-zf-k5c" secondAttribute="bottom" constant="10" id="h0b-an-knb"/>
                             <constraint firstItem="93t-zf-k5c" firstAttribute="leading" secondItem="gHU-0o-g8w" secondAttribute="leading" constant="10" id="hXH-K3-9Iq"/>
                             <constraint firstItem="V6l-tx-TdZ" firstAttribute="top" secondItem="I1c-ho-Jek" secondAttribute="bottom" constant="20" id="i3c-Ox-LA8"/>
-                            <constraint firstItem="GZ4-D1-yt6" firstAttribute="centerX" secondItem="2SD-4P-5Dd" secondAttribute="centerX" id="i7N-mZ-KEb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gHU-0o-g8w"/>
                     </view>
@@ -208,6 +185,11 @@
                         <barButtonItem key="leftBarButtonItem" title="返回" id="EYc-fM-0Bh">
                             <connections>
                                 <action selector="backAction:" destination="Pgx-LF-clH" id="ppr-Ip-hEo"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="提交" id="9ee-2z-2q1">
+                            <connections>
+                                <action selector="confirmAction:" destination="Pgx-LF-clH" id="Oof-Uc-Jug"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
