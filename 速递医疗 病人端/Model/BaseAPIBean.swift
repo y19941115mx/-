@@ -21,6 +21,18 @@ class BaseAPIBean:Mappable {
     }
 }
 
+class BaseBean<T:Mappable>:BaseAPIBean {
+    var data: T?
+    required init?(map: Map) {
+        super.init(map: map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map: map)
+        data <- map["data"]
+    }
+}
+
 class BaseListBean<T:Mappable>:BaseAPIBean {
     var dataList:[T]?
     required init?(map: Map) {
@@ -95,20 +107,42 @@ class OrderListBean:BaseAPIBean {
 }
 
 class OrderBean: Mappable {
+    var docloginpix:String?
     var userorderprice:Double? // 订单价格
-    var docaddresslocation:String? // 地点
-    var userorderappointment: String? // 订单时间
+    var docaddresslocation:String? // 地点（医院名）
+    var userorderappointment: String? // 预约时间
     var usersickdesc:String? // 病情描述
+    var usersickpic:String?
     var familyname: String? // 就诊人姓名
+    var familyage:Int?
     var userorderid: Int = 0 //订单Id
     var userorderstatename: String? // 订单状态描述
     var userorderetime: String? // 订单时间
     
+    var userorderdprice:Double? // 出诊价格
+    var userordertprice:Double? //交通价格
+    var userorderaprice:Double? // 住宿价格
+    var userordereprice:Double? // 餐饮价格
+    var userordertpricetypename:String?
+    var userorderapricetypename:String?
+    var userorderepricetypename:String?
     required init?(map: Map) {
         
     }
     
     func mapping(map: Map) {
+        userorderetime <- map["userorderetime"]
+        docloginpix <- map["docloginpix"]
+        usersickpic <- map["usersickpic"]
+        familyage <- map["familyage"]
+        userorderdprice <- map["userorderdprice"]
+        userordertprice <- map["userordertprice"]
+        userorderaprice <- map["userorderaprice"]
+        userordereprice <- map["userordereprice"]
+        userordertpricetypename <- map["userordertpricetypename"]
+        userorderapricetypename <- map["userorderapricetypename"]
+        userorderepricetypename <- map["userorderepricetypename"]
+        
         userorderappointment <- map["userorderappointment"]
         userorderprice <- map["userorderprice"]
         docaddresslocation <- map["docaddresslocation"]

@@ -458,9 +458,11 @@ public class AliSdkManager: NSObject {
         case "9000":
             returnMsg = "支付成功"
             dPrint(message: JSON.init(parseJSON: (result["result"] as! String))["alipay_trade_app_pay_response"]["sub_msg"].stringValue)
+            let vc = APPLICATION.window?.rootViewController as! BaseRefreshController<OrderBean>
+            vc.refreshData()
             Toast(returnMsg)
         default:
-            Toast(returnMsg)
+            Toast("支付失败")
         }
     }
 }

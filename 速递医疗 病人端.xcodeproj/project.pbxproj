@@ -38,8 +38,6 @@
 		8461E5621FE38F7C0096D041 /* MyDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8461E5601FE38F7B0096D041 /* MyDateTableViewCell.swift */; };
 		846D885A1FAC067C00DE6308 /* BaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D88591FAC067C00DE6308 /* BaseTableView.swift */; };
 		846D885C1FAC106400DE6308 /* Mine_setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D885B1FAC106400DE6308 /* Mine_setting.swift */; };
-		846D885F1FAC223300DE6308 /* MineOrderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D885D1FAC223300DE6308 /* MineOrderCollectionViewCell.swift */; };
-		846D88601FAC223300DE6308 /* MineOrderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846D885E1FAC223300DE6308 /* MineOrderCollectionViewCell.xib */; };
 		846D88621FAC26EC00DE6308 /* Mine_order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D88611FAC26EC00DE6308 /* Mine_order.swift */; };
 		84736B9E1FAC5592001E9AA5 /* MinePocketCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84736B9C1FAC5592001E9AA5 /* MinePocketCollectionViewCell.swift */; };
 		84736B9F1FAC5592001E9AA5 /* MinePocketCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84736B9D1FAC5592001E9AA5 /* MinePocketCollectionViewCell.xib */; };
@@ -86,6 +84,7 @@
 		84DDACDF1FE0C96F004199FF /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DDACDE1FE0C96F004199FF /* EditViewController.swift */; };
 		84F0402D1FA9A48C003BCC54 /* HomeMainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0402B1FA9A48C003BCC54 /* HomeMainTableViewCell.swift */; };
 		84F0402E1FA9A48C003BCC54 /* HomeMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F0402C1FA9A48C003BCC54 /* HomeMainTableViewCell.xib */; };
+		84F4DF881FF0D340000855B0 /* Order_Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4DF871FF0D33F000855B0 /* Order_Detail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,8 +126,6 @@
 		8461E5601FE38F7B0096D041 /* MyDateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDateTableViewCell.swift; sourceTree = "<group>"; };
 		846D88591FAC067C00DE6308 /* BaseTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableView.swift; sourceTree = "<group>"; };
 		846D885B1FAC106400DE6308 /* Mine_setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine_setting.swift; sourceTree = "<group>"; };
-		846D885D1FAC223300DE6308 /* MineOrderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineOrderCollectionViewCell.swift; sourceTree = "<group>"; };
-		846D885E1FAC223300DE6308 /* MineOrderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MineOrderCollectionViewCell.xib; sourceTree = "<group>"; };
 		846D88611FAC26EC00DE6308 /* Mine_order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine_order.swift; sourceTree = "<group>"; };
 		84736B9C1FAC5592001E9AA5 /* MinePocketCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinePocketCollectionViewCell.swift; sourceTree = "<group>"; };
 		84736B9D1FAC5592001E9AA5 /* MinePocketCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MinePocketCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -179,6 +176,7 @@
 		84DDACDE1FE0C96F004199FF /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		84F0402B1FA9A48C003BCC54 /* HomeMainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMainTableViewCell.swift; sourceTree = "<group>"; };
 		84F0402C1FA9A48C003BCC54 /* HomeMainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeMainTableViewCell.xib; sourceTree = "<group>"; };
+		84F4DF871FF0D33F000855B0 /* Order_Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order_Detail.swift; sourceTree = "<group>"; };
 		AFA4C207599FEB4E0FA6C085 /* Pods-速递医疗 病人端.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-速递医疗 病人端.release.xcconfig"; path = "Pods/Target Support Files/Pods-速递医疗 病人端/Pods-速递医疗 病人端.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -331,6 +329,7 @@
 		84C984031FA618060058FA7B /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				84F4DF871FF0D33F000855B0 /* Order_Detail.swift */,
 				8461E55D1FE36C290096D041 /* Mine_msg_main.swift */,
 				8461E55B1FE366630096D041 /* ChatViewController.swift */,
 				8461E5591FE273600096D041 /* ResetViewController.swift */,
@@ -373,8 +372,6 @@
 				84F0402C1FA9A48C003BCC54 /* HomeMainTableViewCell.xib */,
 				846D88591FAC067C00DE6308 /* BaseTableView.swift */,
 				841A27021FAD5AE500D1A807 /* MyDoctorTableViewCell.swift */,
-				846D885D1FAC223300DE6308 /* MineOrderCollectionViewCell.swift */,
-				846D885E1FAC223300DE6308 /* MineOrderCollectionViewCell.xib */,
 				84736B9C1FAC5592001E9AA5 /* MinePocketCollectionViewCell.swift */,
 				84736B9D1FAC5592001E9AA5 /* MinePocketCollectionViewCell.xib */,
 				8461E5601FE38F7B0096D041 /* MyDateTableViewCell.swift */,
@@ -464,7 +461,6 @@
 			files = (
 				8406477B1FA759A4009B21C4 /* Login.storyboard in Resources */,
 				843C3EB41FA8A6EC0076EB8C /* Home.storyboard in Resources */,
-				846D88601FAC223300DE6308 /* MineOrderCollectionViewCell.xib in Resources */,
 				847C13A31FD2B86100B32BB7 /* test.caf in Resources */,
 				8461E5611FE38F7C0096D041 /* MyDateTableViewCell.xib in Resources */,
 				8496F80A1FE6113C0038D39E /* address.plist in Resources */,
@@ -588,7 +584,6 @@
 				84736BA11FAC564A001E9AA5 /* Mine_pocket.swift in Sources */,
 				849BAA5C1FAD534100871EA8 /* Date_page.swift in Sources */,
 				843A958C1FAEA81D00434254 /* Publish_page.swift in Sources */,
-				846D885F1FAC223300DE6308 /* MineOrderCollectionViewCell.swift in Sources */,
 				840647361FA62D03009B21C4 /* Util.swift in Sources */,
 				8495136B1FE4F86000C9E261 /* RatingController.swift in Sources */,
 				84DDACDC1FE0C915004199FF /* InfoTableViewCell.swift in Sources */,
@@ -605,6 +600,7 @@
 				846D885C1FAC106400DE6308 /* Mine_setting.swift in Sources */,
 				8461E55E1FE36C290096D041 /* Mine_msg_main.swift in Sources */,
 				843A958A1FAEA66B00434254 /* Publish_main.swift in Sources */,
+				84F4DF881FF0D340000855B0 /* Order_Detail.swift in Sources */,
 				840647721FA6A6E4009B21C4 /* XLSegmentedSlideSwitch.m in Sources */,
 				840647811FA80898009B21C4 /* BaseAPIBean.swift in Sources */,
 				84736BA31FAC5ADA001E9AA5 /* Mine_family.swift in Sources */,

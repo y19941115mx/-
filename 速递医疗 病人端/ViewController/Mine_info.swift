@@ -129,7 +129,7 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
                     self.tableInfo[0][2] = "已上传"
                 }
                 let usermale = data["usermale"].string ?? self.tableInfo[0][3]
-                let userage = data["userage"].string ?? self.tableInfo[0][4]
+                let userage = "\(data["userage"].intValue)"
                 let useradrother = data["useradrother"].string ?? self.tableInfo[0][5]
                 self.tableInfo = [[username, usercardnum, self.tableInfo[0][2], usermale, userage, useradrother]]
                 self.tableView.reloadData()

@@ -50,6 +50,8 @@ public enum API {
     case getevaluation(Int, Int) // 获取医生评价
     case evaluate(Int, Int, Int, Int, String) // 提交评价
     case getreviewinfo // 更新账号状态
+    
+    case orderdetail(Int) // 订单详情
 
 }
 // 配置请求
@@ -136,6 +138,8 @@ extension API: TargetType {
             return "/getalipayaccount"
         case .getreviewinfo:
             return "/getreviewinfo"
+        case .orderdetail:
+            return "/orderdetail"
         }
     }
     public var method: Moya.Method {
@@ -253,6 +257,8 @@ extension API: TargetType {
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "familyid":familyId], encoding: URLEncoding.default)
         case .getreviewinfo:
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!], encoding: URLEncoding.default)
+        case .orderdetail(let orderId):
+            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "userorderid":orderId], encoding: URLEncoding.default)
         }
         
     }
