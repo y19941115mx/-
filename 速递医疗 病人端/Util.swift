@@ -19,7 +19,7 @@ let ERRORMSG = "获取服务器数据失败"
 let CATCHMSG = "解析服务器数据失败"
 
 struct StaticClass {
-    static let RootIP = "http://118.89.172.204:8081"
+    static let RootIP = "http://118.89.172.204:6221"
     
 //    static let RootIP = "http://1842719ny8.iok.la:14086"
 //    static let RootIP = "http://120.77.32.15:8080"
@@ -354,6 +354,10 @@ class MapUtil {
 }
 
 class StringUTil {
+    // 消除空格
+    class public func trimmingCharactersWithWhiteSpaces(_ str:String) -> String{
+        return str.trimmingCharacters(in: .whitespaces)
+    }
     // 距离转换
     class public func transformDistance(_ distance:Int) -> String {
         if distance/1000 < 1 {
@@ -441,8 +445,9 @@ class StringUTil {
 public class AliSdkManager: NSObject {
     public static var aliSdkManager:AliSdkManager!
     
+    
     public static func sharedManager () -> AliSdkManager{
-        AliSdkManager.aliSdkManager = AliSdkManager.init()
+         AliSdkManager.aliSdkManager = AliSdkManager.init()
         return AliSdkManager.aliSdkManager
     }
     internal func showResult(result:NSDictionary){
@@ -469,7 +474,7 @@ public class AliSdkManager: NSObject {
 
 
 public class AliPayUtils: NSObject {
-    var context:UIViewController;
+    var context:UIViewController
     
     public init(context:UIViewController) {
         self.context = context;

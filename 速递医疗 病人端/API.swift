@@ -52,7 +52,7 @@ public enum API {
     case getevaluation(Int, Int) // 获取医生评价
     case evaluate(Int, Int, Int, Int, String) // 提交评价
     case getreviewinfo // 更新账号状态
-    
+    case updatelocation(String, String,String,String,String) // 更新用户位置信息
     case orderdetail(Int) // 订单详情
 
 }
@@ -146,6 +146,8 @@ extension API: TargetType {
             return "/cancelhospital"
         case .payhospital:
             return "/payhospital"
+        case .updatelocation:
+            return "/updatelocation"
         }
     }
     public var method: Moya.Method {
@@ -269,6 +271,9 @@ extension API: TargetType {
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "userorderid":orderId], encoding: URLEncoding.default)
         case .payhospital(let orderId):
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "userorderid":orderId, "type":1], encoding: URLEncoding.default)
+        case .updatelocation(let lon, let lat, let province, let city, let area):
+            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "userloginlon":lon, "userloginlat":lat, "userloginprovince":province,"userlogincity":city,"userloginarea":area], encoding: URLEncoding.default)
+            
         }
         
     }

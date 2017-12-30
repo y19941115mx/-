@@ -219,6 +219,8 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
             cityPicker.dataSource = self
             cityPicker.backgroundColor = UIColor.white
         }else {
+            
+            
             self.deptPicker.isHidden = false
             self.deptToolBar.isHidden = false
             self.view.addSubview(self.deptPicker)
@@ -241,6 +243,15 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
             deptPicker.delegate = self
             deptPicker.dataSource = self
             deptPicker.backgroundColor = UIColor.white
+            // 默认显示
+            let oneDepart = Array(APPLICATION.departData.keys)[0]
+            let twoDeparts = APPLICATION.departData[oneDepart]
+            if  twoDeparts?.count != 0{
+                self.oneDepart = oneDepart
+                self.twoDepart = (twoDeparts?[0])!
+            }else{
+                self.oneDepart = oneDepart
+            }
         }
         
     }

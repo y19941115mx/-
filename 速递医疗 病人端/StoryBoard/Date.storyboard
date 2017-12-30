@@ -101,16 +101,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医生专业水平:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6l-tx-TdZ">
-                                <rect key="frame" x="10" y="172" width="128" height="24"/>
+                                <rect key="frame" x="10" y="158" width="128" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I1c-ho-Jek" customClass="RatingController" customModule="速递医疗_病人端" customModuleProvider="target">
-                                <rect key="frame" x="10" y="108" width="220" height="44"/>
+                                <rect key="frame" x="10" y="108" width="150" height="30"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="size" keyPath="starSize">
-                                        <size key="value" width="44" height="44"/>
+                                        <size key="value" width="30" height="30"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="starCount">
                                         <integer key="value" value="5"/>
@@ -118,16 +118,16 @@
                                 </userDefinedRuntimeAttributes>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医生价格水平:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EcE-vK-L80">
-                                <rect key="frame" x="10" y="270" width="128" height="24"/>
+                                <rect key="frame" x="10" y="242" width="128" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fsR-Yu-WRy" customClass="RatingController" customModule="速递医疗_病人端" customModuleProvider="target">
-                                <rect key="frame" x="10" y="206" width="220" height="44"/>
+                                <rect key="frame" x="10" y="192" width="150" height="30"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="size" keyPath="starSize">
-                                        <size key="value" width="44" height="44"/>
+                                        <size key="value" width="30" height="30"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="starCount">
                                         <integer key="value" value="5"/>
@@ -135,10 +135,10 @@
                                 </userDefinedRuntimeAttributes>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcv-PH-QMQ" customClass="RatingController" customModule="速递医疗_病人端" customModuleProvider="target">
-                                <rect key="frame" x="10" y="304" width="220" height="44"/>
+                                <rect key="frame" x="10" y="276" width="150" height="30"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="size" keyPath="starSize">
-                                        <size key="value" width="44" height="44"/>
+                                        <size key="value" width="30" height="30"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="starCount">
                                         <integer key="value" value="5"/>
@@ -146,13 +146,13 @@
                                 </userDefinedRuntimeAttributes>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医生评价：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93t-zf-k5c">
-                                <rect key="frame" x="10" y="368" width="102" height="24"/>
+                                <rect key="frame" x="10" y="326" width="102" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="填写评价" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="k8q-pm-7ML">
-                                <rect key="frame" x="10" y="402" width="355" height="265"/>
+                                <rect key="frame" x="10" y="360" width="355" height="307"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

@@ -27,7 +27,8 @@ class Date_main: SegmentedSlideViewController {
         let vc4 = UIStoryboard.init(name: "Date", bundle: nil).instantiateViewController(withIdentifier: "order") as! Date_page
         vc4.type = 3
         vcs = [vc1, vc2, vc3, vc4]
-        setUpSlideSwitch(titles: types, vcs: vcs)
+        setUpSlideSwitchNoNavigation(titles: types, vcs: vcs)
+//        setUpSlideSwitch(titles: types, vcs: vcs)
     }
 
 }

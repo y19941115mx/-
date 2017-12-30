@@ -153,7 +153,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         MapUtil.singleLocation(successHandler: {location, reGeocode in
             if reGeocode != nil {
-                showToast((APPLICATION.window?.rootViewController?.view)!, "定位成功："+(reGeocode?.country)! + (reGeocode?.city)! + (reGeocode?.aoiName)!)
+                showToast((APPLICATION.window?.rootViewController?.view)!, "定位成功："+(reGeocode?.province)! + (reGeocode?.city)! + (reGeocode?.district)!)
+                if user_default.userId.getStringValue() != nil {
+                    NetWorkUtil.init(method: API.updatelocation(APPLICATION.lon, APPLICATION.lat, (reGeocode?.province)!, (reGeocode?.city)!, (reGeocode?.district)!)).newRequestWithOutHUD(handler: { (bean, json) in
+                        if bean.code != 100 {
+                            Toast(bean.msg!)
+                        }
+                    })
+                }
             }
         }, failHandler: {})
     }

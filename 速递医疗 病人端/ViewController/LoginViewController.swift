@@ -65,35 +65,51 @@ class LoginViewController: BaseTextViewController {
                 user_default.setUserDefault(key: .username, value: username)
                 user_default.setUserDefault(key: .title, value: title)
                 user_default.setUserDefault(key: .password, value: MD5(passNum))
-                // 环信注册
+                // 服务器环信注册失败 重新注册
                 if account == "" {
                     NetWorkUtil<BaseAPIBean>.init(method: API.huanxinregister).newRequestWithOutHUD(handler: { (bean, json) in
                         if bean.code == 100 {
-                            account = "user_\(userId)"
-                            // 环信登录
+                            account = "doc_\(userId)"
+                            user_default.setUserDefault(key: .account, value: account)
+                            // 注册后登录
                             EMClient.shared().login(withUsername: account, password: MD5(passNum), completion: { (name, error) in
                                 if error == nil {
                                     Toast("环信登录成功")
-                                    user_default.setUserDefault(key: .account, value: account)
                                 }else {
-                                    Toast("环信登录失败，\(error.debugDescription)")
+                                    Toast("环信登录失败")
                                 }
                             })
+                            
+                        }else {
+                            Toast("环信注册失败")
                         }
                     })
-                }else {
-                    // 环信登录
+                } else {
+                    user_default.setUserDefault(key: .account, value: account)
+                    // 环信直接登录
                     EMClient.shared().login(withUsername: account, password: MD5(passNum), completion: { (name, error) in
                         if error == nil {
                             Toast("环信登录成功")
                         }else {
-                            Toast("环信登录失败，\(error.debugDescription)")
+                            dPrint(message: error)
+                            Toast("环信登录失败")
                         }
                     })
                 }
                 
                 user_default.setUserDefault(key: .phoneNum, value: phoneNum)
-                
+                // 上传位置信息
+                MapUtil.singleLocation(successHandler: {location, reGeocode in
+                    if reGeocode != nil {
+                        if user_default.userId.getStringValue() != nil {
+                            NetWorkUtil.init(method: API.updatelocation(APPLICATION.lon, APPLICATION.lat, (reGeocode?.province)!, (reGeocode?.city)!, (reGeocode?.district)!)).newRequestWithOutHUD(handler: { (bean, json) in
+                                if bean.code != 100 {
+                                    Toast(bean.msg!)
+                                }
+                            })
+                        }
+                    }
+                }, failHandler: {})
                 let vc_main = MainViewController()
                 APPLICATION.window?.rootViewController = vc_main
                 

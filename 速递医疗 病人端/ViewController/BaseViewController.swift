@@ -17,6 +17,7 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
+        navigationController?.navigationBar.isTranslucent = false
         //设置导航栏颜色和字体
         navigationController?.navigationBar.barTintColor = UIColor.APPColor
         navigationController?.navigationBar.tintColor = UIColor.white
