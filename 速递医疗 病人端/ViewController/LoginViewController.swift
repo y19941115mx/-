@@ -76,6 +76,7 @@ class LoginViewController: BaseTextViewController {
                                 if error == nil {
                                     Toast("环信登录成功")
                                 }else {
+                                    dPrint(message:"环信错误码:\(error?.code.rawValue)")
                                     Toast("环信登录失败")
                                 }
                             })
@@ -91,7 +92,7 @@ class LoginViewController: BaseTextViewController {
                         if error == nil {
                             Toast("环信登录成功")
                         }else {
-                            dPrint(message: error)
+                            dPrint(message:"环信错误码:\(error?.code.rawValue)")
                             Toast("环信登录失败")
                         }
                     })

@@ -8,10 +8,11 @@
 
 import UIKit
 
-class EvaluateViewController: BaseViewController {
+class EvaluateViewController: BaseViewController, UITextViewDelegate {
     
     var OdrderId:Int?
     
+    @IBOutlet weak var PlaceHolderLabel: UILabel!
     @IBOutlet weak var doccommentservicelevel: RatingController!
     @IBOutlet weak var priceLevel: RatingController!
     @IBOutlet weak var professionallevel: RatingController!
@@ -19,10 +20,21 @@ class EvaluateViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavTitle(title: "订单评价")
-        
+        textView.delegate = self
         // Do any additional setup after loading the view.
     }
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        self.PlaceHolderLabel.isHidden = true
+    }
+    
+    func textViewDidChange(_ textView: UITextView){
+        // 输入文字
+        PlaceHolderLabel.isHidden = true
+        if textView.text.isEmpty {
+            PlaceHolderLabel.isHidden = false
+        }
+    }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }

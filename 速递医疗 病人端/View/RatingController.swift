@@ -41,9 +41,8 @@ import UIKit
     //MARK: Private Methods
     private func setupButtons() {
         let bundle = Bundle(for: type(of: self))
-        let filledStar = UIImage(named: "filledStar", in: bundle, compatibleWith: self.traitCollection)
-        let emptyStar = UIImage(named:"emptyStar", in: bundle, compatibleWith: self.traitCollection)
-        let highlightedStar = UIImage(named:"highLightedStar", in: bundle, compatibleWith: self.traitCollection)
+        let filledStar = UIImage(named: "StarFull", in: bundle, compatibleWith: self.traitCollection)
+        let emptyStar = UIImage(named:"StarEmpty", in: bundle, compatibleWith: self.traitCollection)
         
         // clear any existing buttons
         for button in ratingButtons {
@@ -58,8 +57,6 @@ import UIKit
             // Set the button images
             button.setImage(emptyStar, for: .normal)
             button.setImage(filledStar, for: .selected)
-            button.setImage(highlightedStar, for: .highlighted)
-            button.setImage(highlightedStar, for: [.highlighted, .selected])
             
             // Add constraints
             button.translatesAutoresizingMaskIntoConstraints = false

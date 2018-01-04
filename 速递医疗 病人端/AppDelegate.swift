@@ -79,7 +79,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
         
-        UIApplication.shared.applicationIconBadgeNumber = 0
         if user_default.userId.getStringValue() == nil {
             let vc_login = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()
             APPLICATION.window?.rootViewController = vc_login
@@ -138,8 +137,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if userInfo != nil{
             BPush.handleNotification(userInfo as! [AnyHashable : Any])
         }
-        // 清空角标
-        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     private func setUpMap() {
@@ -176,7 +173,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if error == nil {
                     Toast("环信登录成功")
                 }else {
-                    Toast("环信登录失败，\(error.debugDescription)")
+                    dPrint(message:"环信错误码:\(error?.code.rawValue)")
+                    Toast("环信登录失败")
+//                    EMErrorCode
                 }
             })
             
