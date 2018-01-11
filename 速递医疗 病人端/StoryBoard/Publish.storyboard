@@ -297,7 +297,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y4c-Yg-jch">
-                                        <rect key="frame" x="8" y="31" width="47" height="22"/>
+                                        <rect key="frame" x="8" y="30.5" width="47" height="22"/>
                                         <state key="normal" title="返回" image="button:y4c-Yg-jch:image"/>
                                         <connections>
                                             <action selector="Back_acion:" destination="dOK-1G-a1Q" eventType="touchUpInside" id="Csx-fD-4PP"/>

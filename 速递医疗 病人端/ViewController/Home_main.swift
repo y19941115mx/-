@@ -55,12 +55,12 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        //初始化navigationBar,添加按钮事件
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "message"), style: .plain, target: self, action: #selector(self.showContantList))
         //添加按钮事件
         initView()
         // 初始化navigationBar
         setUpNavTitle(title: "首页")
+        // 初始化消息按钮
+         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "message"), style: .plain, target: self, action: #selector(self.showContantList))
         initRefresh(scrollView: infoTableView, ApiMethod: API.getdoctorlist(selectedPage, APPLICATION.lon, APPLICATION.lat), refreshHandler: {
             switch self.sortType {
             case .sortByPatient:
@@ -91,6 +91,24 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
         infoTableView.dataSource = self
         infoTableView.delegate = self
     }
+    
+    // 更新环信会话列表状态
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // 获取所有会话
+        let conversations:([EMConversation])? = EMClient.shared().chatManager.getAllConversations() as? [EMConversation]
+        if conversations != nil {
+            var count:Int32 = 0
+            for conversation in conversations! {
+                count += conversation.unreadMessagesCount
+            }
+            if count == 0 {
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "message"), style: .plain, target: self, action: #selector(self.showContantList))
+            }else {
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "potMsg"), style: .plain, target: self, action: #selector(self.showContantList))
+            }
+        }
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return data.count
@@ -115,8 +133,118 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
     }
     
     
+    //MARK: - 重写父类方法 保存数据库
+    
+    override func getData() {
+        //刷新数据
+        self.selectedPage = 1
+        let Provider = MoyaProvider<API>()
+        if self.refreshHandler != nil {
+            self.refreshHandler!()
+        }
+        Provider.request(self.ApiMethod!) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    self.header?.endRefreshing()
+                    let bean = Mapper<BaseListBean<DoctorBean>>().map(JSONObject: try response.mapJSON())
+                    if bean?.code == 100 {
+                        if bean?.dataList == nil {
+                            bean?.dataList = [DoctorBean]()
+                        }
+                        self.data = (bean?.dataList)!
+                        if self.data.count == 0{
+                            //隐藏tableView,添加刷新按钮
+                            self.showRefreshBtn()
+                        }else {
+                            // 保存数据库
+                            for bean in self.data {
+                                UserInfo.updateUserInfo(user_id: bean.account!, nick_name: bean.name!, user_photo: bean.pix!)
+                            }
+                        }
+                        
+                        if self.isTableView {
+                            let tableView = self.scrollView as! UITableView
+                            tableView.reloadData()
+                        }else {
+                            let collectionView = self.scrollView as! UICollectionView
+                            collectionView.reloadData()
+                        }
+                        
+                    }else {
+                        showToast(self.view, (bean?.msg!)!)
+                    }
+                    
+                }catch {
+                    //隐藏tableView,添加刷新按钮
+                    if self.data.count == 0{
+                        self.showRefreshBtn()
+                    }
+                    showToast(self.view,CATCHMSG)
+                }
+            case let .failure(error):
+                self.header?.endRefreshing()
+                if self.data.count == 0{
+                    self.showRefreshBtn()
+                }
+                dPrint(message: "error:\(error)")
+                showToast(self.view, ERRORMSG)
+            }
+        }
+    }
+    
+    override func getMoreData() {
+        self.selectedPage += 1
+        
+        //获取更多数据
+        getMoreHandler()
+        let Provider = MoyaProvider<API>()
+        Provider.request(self.getMoreMethod!) { result in
+            switch result {
+            case let .success(response):
+                self.footer?.endRefreshing()
+                do {
+                    let bean = Mapper<BaseListBean<DoctorBean>>().map(JSONObject: try response.mapJSON())
+                    if bean?.code == 100 {
+                        if bean?.dataList?.count == 0 || bean?.dataList == nil{
+                            showToast(self.view, "已经到底了")
+                            return
+                        } else {
+                            // 保存数据库
+                            for bean in (bean?.dataList)! {
+                                UserInfo.updateUserInfo(user_id: bean.account!, nick_name: bean.name!, user_photo: bean.pix!)
+                            }
+                        }
+                        self.data += (bean?.dataList)!
+                        
+                        if self.isTableView {
+                            let tableView = self.scrollView as! UITableView
+                            tableView.reloadData()
+                        }else {
+                            let CollectionView = self.scrollView as! UICollectionView
+                            CollectionView.reloadData()
+                        }
+                        
+                    }else {
+                        showToast(self.view, (bean?.msg!)!)
+                    }
+                }catch {
+                    self.footer?.endRefreshing()
+                    showToast(self.view, CATCHMSG)
+                }
+            case let .failure(error):
+                self.footer?.endRefreshing()
+                dPrint(message: "error:\(error)")
+                showToast(self.view, ERRORMSG)
+            }
+        }
+    }
     
     
+    
+    
+    
+    //MARK: - 私有方法
     private func initView(){
         sortByLocBtn.addTarget(self, action: #selector(clickBtn(button:)), for: .touchUpInside)
         sortByPatientBtn.addTarget(self, action: #selector(clickBtn(button:)), for: .touchUpInside)

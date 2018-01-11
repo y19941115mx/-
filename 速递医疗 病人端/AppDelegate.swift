@@ -13,7 +13,7 @@ import Bugly
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
 
     var window: UIWindow?
     var locationManager:AMapLocationManager = AMapLocationManager()
@@ -39,6 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setUpMap()
 //        环信
         self.setupHuanxin()
+//        本地数据库
+        DBHelper.setUpDB()
         //初始化支付管理类
         AliSdkManager.sharedManager()
         return true
@@ -111,6 +113,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true;
     }
     
+    // 强制退出 回调
+    func userAccountDidLoginFromOtherDevice() {
+        user_default.logout("账号在其他设备登录")
+    }
+    
+    func userAccountDidRemoveFromServer() {
+        user_default.logout("账号异常")
+    }
+    
     // MARK: - private method
     private func setUpBaiDuPush(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
         if (UIDevice.current.systemVersion as NSString).floatValue >= 10.0 {
@@ -165,6 +176,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupHuanxin() {
         let options = EMOptions.init(appkey: StaticClass.HuanxinAppkey)
         EMClient.shared().initializeSDK(with: options)
+        EMClient.shared().add(self, delegateQueue: nil)
         // 环信登录
         let account = user_default.account.getStringValue()
         let pass = user_default.password.getStringValue()

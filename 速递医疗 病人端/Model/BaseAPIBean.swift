@@ -56,7 +56,7 @@ class DoctorListBean:BaseAPIBean {
         doctorDataList <- map["data"]
     }
 }
-
+/// 医生实体类
 class DoctorBean:Mappable {
     var dept:String?
     var hospital:String?

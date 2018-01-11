@@ -212,9 +212,10 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
                     }
                     
                 }catch {
-
                     //隐藏tableView,添加刷新按钮
-                    self.showRefreshBtn()
+                    if self.data.count == 0{
+                        self.showRefreshBtn()
+                    }
                     showToast(self.view,CATCHMSG)
                 }
             case let .failure(error):
@@ -232,11 +233,14 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
     func refreshData(){
         //刷新数据
         self.selectedPage = 1
-        //FIXME: - 刷新地理位置信息
-        getData()
+        MapUtil.singleLocation(successHandler: { (loc, code) in
+            self.getData()
+        }, failHandler: {
+            self.getData()
+        })
     }
     
-    private func getMoreData(){
+    func getMoreData(){
         self.selectedPage += 1
     
         //获取更多数据

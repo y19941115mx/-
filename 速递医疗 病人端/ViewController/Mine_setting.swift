@@ -55,7 +55,7 @@ class Mine_setting: BaseViewController, UITableViewDataSource, UITableViewDelega
         case 1:
             showToast(self.view, "功能完善中")
         default:
-            logout()
+            user_default.logout("")
         }
     }
 
@@ -74,25 +74,6 @@ class Mine_setting: BaseViewController, UITableViewDataSource, UITableViewDelega
     }
 
     
-    private func logout() {
-        let vc_login = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()
-        APPLICATION.window?.rootViewController = vc_login
-        NetWorkUtil<BaseAPIBean>.init(method: .exit).newRequestWithOutHUD { (bean, json) in
-            if bean.code == 100 {
-                user_default.clearUserDefaultValue()
-                EMClient.shared().logout(false, completion: { (error)
-                    in
-                    if error == nil {
-                        Toast("环信退出成功")
-                    }else {
-                        Toast("环信退出失败")
-                    }
-                })
-            }else {
-                Toast(bean.msg!)
-            }
-        }
-        
-    }
+   
 
 }

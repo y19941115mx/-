@@ -11,6 +11,7 @@ import SVProgressHUD
 import ObjectMapper
 import SwiftyJSON
 import SwiftHash
+import RealmSwift
 
 let SCREEN_WIDTH = UIScreen.main.bounds.size.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
@@ -21,8 +22,8 @@ let CATCHMSG = "解析服务器数据失败"
 struct StaticClass {
     static let RootIP = "http://118.89.172.204:6221"
     
-//    static let RootIP = "http://1842719ny8.iok.la:14086"
-//    static let RootIP = "http://120.77.32.15:8080"
+    //    static let RootIP = "http://1842719ny8.iok.la:14086"
+    //    static let RootIP = "http://120.77.32.15:8080"
     static let BaseApi = RootIP + "/internetmedical/user"
     static let PictureIP = RootIP + "/picture/"
     static let GetDept = RootIP + "/internetmedical/doctor/getdept"
@@ -167,6 +168,27 @@ enum user_default:String {
         UserDefaults.standard.removeObject(forKey: "account")
         UserDefaults.standard.removeObject(forKey: "password")
     }
+    // 退出登录
+    static func logout(_ msg:String) {
+        let vc_login = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()
+        APPLICATION.window?.rootViewController = vc_login
+        NetWorkUtil<BaseAPIBean>.init(method: .exit).newRequestWithOutHUD { (bean, json) in
+            if bean.code == 100 {
+                user_default.clearUserDefaultValue()
+                EMClient.shared().logout(false, completion: { (error)
+                    in
+                    if error == nil {
+                        Toast("\(msg)账号退出成功")
+                    }else {
+                        Toast("\(msg)账号退出失败")
+                    }
+                })
+            }else {
+                Toast(bean.msg!)
+            }
+        }
+        
+    }
 }
 
 
@@ -277,7 +299,7 @@ class ImageUtil{
     }
     // 设置按钮不可用灰色
     class func setButtonDisabledImg(button:UIButton){
-         button.setBackgroundImage(ImageUtil.color2img(color: UIColor.APPGrey), for: .disabled)
+        button.setBackgroundImage(ImageUtil.color2img(color: UIColor.APPGrey), for: .disabled)
     }
     
     // 颜色转图片
@@ -303,7 +325,7 @@ class ImageUtil{
     
     static public func setAvator(path:String, imageView:UIImageView) {
         let url = URL(string: path)
-//        imageView.kf.setImage(with: url)
+        //        imageView.kf.setImage(with: url)
         imageView.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "photo_default"), options: nil, progressBlock: nil, completionHandler: nil)
     }
     
@@ -447,7 +469,7 @@ public class AliSdkManager: NSObject {
     
     
     public static func sharedManager () -> AliSdkManager{
-         AliSdkManager.aliSdkManager = AliSdkManager.init()
+        AliSdkManager.aliSdkManager = AliSdkManager.init()
         return AliSdkManager.aliSdkManager
     }
     internal func showResult(result:NSDictionary){
@@ -463,8 +485,8 @@ public class AliSdkManager: NSObject {
         case "9000":
             returnMsg = "支付成功"
             dPrint(message: JSON.init(parseJSON: (result["result"] as! String))["alipay_trade_app_pay_response"]["sub_msg"].stringValue)
-//            let vc = APPLICATION.window?.rootViewController as! BaseRefreshController<OrderBean>
-//            vc.refreshData()
+            //            let vc = APPLICATION.window?.rootViewController as! BaseRefreshController<OrderBean>
+            //            vc.refreshData()
             Toast(returnMsg)
         default:
             Toast("支付失败")
@@ -488,6 +510,33 @@ public class AliPayUtils: NSObject {
         AlipaySDK.defaultService().payOrder(decodedString, fromScheme: StaticClass.AliPayScheme, callback: { (resp) in
             dPrint(message: resp)
         } )
+    }
+}
+
+public class DBHelper:NSObject {
+    // 初始化数据库
+    class public func setUpDB() {
+        /* Realm 数据库配置，用于数据库的迭代更新 */
+        let schemaVersion: UInt64 = 0
+        let config = Realm.Configuration(schemaVersion: schemaVersion, migrationBlock: { migration, oldSchemaVersion in
+            
+            /* 什么都不要做！Realm 会自行检测新增和需要移除的属性，然后自动更新硬盘上的数据库架构 */
+            if (oldSchemaVersion < schemaVersion) {}
+        })
+        Realm.Configuration.defaultConfiguration = config
+        Realm.asyncOpen { (realm, error) in
+            
+            /* Realm 成功打开，迁移已在后台线程中完成 */
+            if let _ = realm {
+                
+                print("Realm 数据库配置成功")
+            }
+                /* 处理打开 Realm 时所发生的错误 */
+            else if let error = error {
+                
+                print("Realm 数据库配置失败：\(error.localizedDescription)")
+            }
+        }
     }
 }
 
