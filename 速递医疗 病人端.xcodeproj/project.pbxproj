@@ -88,7 +88,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1A6FE386D3244A2B5232BE91 /* Pods_________.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_________.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A6FE386D3244A2B5232BE91 /* Pods_________.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_________.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		34CAB850216A56570E87C8D2 /* Pods-速递医疗 病人端.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-速递医疗 病人端.debug.xcconfig"; path = "Pods/Target Support Files/Pods-速递医疗 病人端/Pods-速递医疗 病人端.debug.xcconfig"; sourceTree = "<group>"; };
 		84031D161FCD52EB0058D437 /* PublishCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishCell.swift; sourceTree = "<group>"; };
 		840647311FA62C1B009B21C4 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -795,7 +795,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.victor.PatientClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/admin/Desktop/ios/速递医疗 病人端/速递医疗 病人端/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/速递医疗 病人端/Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -825,7 +825,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.victor.PatientClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/admin/Desktop/ios/速递医疗 病人端/速递医疗 病人端/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/速递医疗 病人端/Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

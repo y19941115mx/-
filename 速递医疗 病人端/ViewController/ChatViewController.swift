@@ -67,6 +67,9 @@ class ConversationListViewController: EaseConversationListViewController,EaseCon
         self.showRefreshHeader = true
         self.dataSource = self
         self.delegate = self
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         //首次进入加载数据
         self.tableViewDidTriggerHeaderRefresh()
     }
