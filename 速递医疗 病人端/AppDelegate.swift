@@ -187,7 +187,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
                 }else {
                     dPrint(message:"环信错误码:\(error?.code.rawValue)")
                     Toast("环信登录失败")
-//                    EMErrorCode
                 }
             })
             

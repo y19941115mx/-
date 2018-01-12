@@ -95,19 +95,7 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
     // 更新环信会话列表状态
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // 获取所有会话
-        let conversations:([EMConversation])? = EMClient.shared().chatManager.getAllConversations() as? [EMConversation]
-        if conversations != nil {
-            var count:Int32 = 0
-            for conversation in conversations! {
-                count += conversation.unreadMessagesCount
-            }
-            if count == 0 {
-                self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "message"), style: .plain, target: self, action: #selector(self.showContantList))
-            }else {
-                self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "potMsg"), style: .plain, target: self, action: #selector(self.showContantList))
-            }
-        }
+        self.updateView()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
@@ -245,6 +233,24 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
     
     
     //MARK: - 私有方法
+    func updateView(){
+        // 获取所有会话
+        let conversations:([EMConversation])? = EMClient.shared().chatManager.getAllConversations() as? [EMConversation]
+        if conversations != nil {
+            var count:Int32 = 0
+            for conversation in conversations! {
+                count += conversation.unreadMessagesCount
+            }
+            if count == 0 {
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "message"), style: .plain, target: self, action: #selector(self.showContantList))
+            }else {
+                let buttonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "potMsg"), style: .plain, target: self, action: #selector(self.showContantList))
+                buttonItem.tintColor = UIColor.red
+                self.navigationItem.rightBarButtonItem = buttonItem
+            }
+        }
+    }
+    
     private func initView(){
         sortByLocBtn.addTarget(self, action: #selector(clickBtn(button:)), for: .touchUpInside)
         sortByPatientBtn.addTarget(self, action: #selector(clickBtn(button:)), for: .touchUpInside)
