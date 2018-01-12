@@ -59,11 +59,6 @@ class Mine_msg_main: BaseRefreshController<NotificationBean>,UITableViewDataSour
                     self.navigationController?.pushViewController(vc, animated: false)
                     self.navigationController?.setNavigationBarHidden(false, animated: false)
                 }
-//                else if json["user_id"].int != nil {
-//
-//                }else if json["sick_id"].int != nil {
-//
-//                }
             }
         }
         
@@ -82,7 +77,21 @@ class Mine_msg_main: BaseRefreshController<NotificationBean>,UITableViewDataSour
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func cleanMsgAction(_ sender: Any) {
+    private func readAllMsgAction() {
+        for item in data {
+            item.notificationread = true
+        }
+        tableView.reloadData()
+        NetWorkUtil.init(method: .updateallnotificationtoread).newRequestWithOutHUD(handler: { (bean, json) in
+            if bean.code == 100 {
+                UIApplication.shared.applicationIconBadgeNumber = 0
+            }else {
+                showToast(self.view, bean.msg!)
+            }
+        })
+    }
+    
+    private func cleanMsgAction() {
         AlertUtil.popAlert(vc: self, msg: "确认删除所有通知", okhandler: {
             NetWorkUtil.init(method: .deleteallreceivenotification).newRequest(handler: { (bean, json) in
                 showToast(self.view, bean.msg!)
@@ -90,6 +99,17 @@ class Mine_msg_main: BaseRefreshController<NotificationBean>,UITableViewDataSour
                 self.refreshData()
             })
         })
+    }
+    
+   @IBAction func ListAction(_ sender: Any) {
+        AlertUtil.popMenu(vc: self, title: "操作", msg: "", btns: ["全部已读", "全部删除"]) { (str) in
+            if str == "全部已读" {
+                self.readAllMsgAction()
+            }else {
+                self.cleanMsgAction()
+            }
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

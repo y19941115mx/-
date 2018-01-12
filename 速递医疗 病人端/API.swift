@@ -55,6 +55,7 @@ public enum API {
     case updatelocation(String, String,String,String,String) // 更新用户位置信息
     case orderdetail(Int) // 订单详情
     case updatenotificationtoread(Int) // 更新已读状态
+    case updateallnotificationtoread // 全部消息更新为已读
 }
 // 配置请求
 extension API: TargetType {
@@ -150,6 +151,8 @@ extension API: TargetType {
             return "/updatelocation"
         case .updatenotificationtoread:
             return "/updatenotificationtoread"
+        case .updateallnotificationtoread:
+            return "/updateallnotificationtoread"
         }
     }
     public var method: Moya.Method {
@@ -277,6 +280,8 @@ extension API: TargetType {
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "userloginlon":lon, "userloginlat":lat, "userloginprovince":province,"userlogincity":city,"userloginarea":area], encoding: URLEncoding.default)
         case .updatenotificationtoread(let msgId):
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "notificationid":msgId], encoding: URLEncoding.default)
+        case .updateallnotificationtoread:
+            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!], encoding: URLEncoding.default)
         }
         
     }
