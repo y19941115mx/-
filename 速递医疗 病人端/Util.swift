@@ -123,6 +123,7 @@ class NetWorkUtil<T:BaseAPIBean> {
                     let jsonObj =  try response.mapJSON()
                     let bean = Mapper<T>().map(JSONObject: jsonObj)
                     let json = JSON(jsonObj)
+                    
                     handler(bean!, json)
                 }catch {
                     dPrint(message: "response:\(response)")

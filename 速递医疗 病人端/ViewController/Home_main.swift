@@ -421,7 +421,7 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
             let SelectedIndexPath = infoTableView.indexPathForSelectedRow
             let doctor = data[SelectedIndexPath!.row]
             let vc = segue.destination as! Home_DoctorDetail
-            vc.doctorBean = doctor
+            vc.doctorId = doctor.docId
         }
     }
     

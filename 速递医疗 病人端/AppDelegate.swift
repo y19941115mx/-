@@ -92,7 +92,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
         }
         // App 收到推送的通知
         BPush.handleNotification(userInfo)
-        
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

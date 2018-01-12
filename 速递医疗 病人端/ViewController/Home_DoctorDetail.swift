@@ -13,7 +13,7 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
     
     @IBOutlet weak var height: NSLayoutConstraint!
     @IBOutlet weak var opt_btn: UIButton!
-    var doctorBean:DoctorBean?
+    var doctorId:Int!
     var dates = [MineCalendarBean]()
     
     @IBOutlet weak var dateLabel: UILabel!
@@ -44,22 +44,12 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpNavTitle(title: "患者详情")
-        if let doctor = doctorBean{
-            nameLabel.text = doctor.name
-            titleLabel.text = doctor.docLevel
-            deptLabel.text = "\(doctor.primary ?? "") \(doctor.dept ?? "")"
-            label_hospital.text = doctor.hospital
-            absLabel.text = "简介：\(doctor.docabs ?? "")"
-            expertLabel.text = "擅长： \(doctor.docexpert ?? "")"
-            ImageUtil.setAvator(path: doctor.pix!, imageView: avator)
-        }
-        
+        setUpNavTitle(title: "医生详情")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        NetWorkUtil<BaseListBean<MineCalendarBean>>.init(method: .getcalendar((doctorBean?.docId)!))
+        NetWorkUtil<BaseListBean<MineCalendarBean>>.init(method: .getcalendar(doctorId))
             .newRequest { (bean, json) in
                 if bean.code == 100 {
                     if bean.dataList != nil {
@@ -73,11 +63,18 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
                     self.height.constant -= 220
                 }
         }
-        NetWorkUtil.init(method: API.doctorinfo((doctorBean?.docId)!)).newRequestWithOutHUD { (bean, json) in
+        NetWorkUtil.init(method: API.doctorinfo((doctorId)!)).newRequestWithOutHUD { (bean, json) in
             if bean.code == 100 {
                 let data = json["data"]
                 let abs = data["docabs"].stringValue
                 self.absLabel.text = "简介：\(abs)"
+                self.nameLabel.text = data["docname"].stringValue
+                self.titleLabel.text = data["doctitle"].stringValue
+                self.deptLabel.text = "\(data["docprimarydept"].stringValue) \(data["docseconddept"].stringValue)"
+                self.label_hospital.text = data["dochosp"].stringValue
+                
+                self.expertLabel.text = "擅长： \(data["docexpert"].stringValue)"
+                            ImageUtil.setAvator(path: data["docloginpix"].stringValue, imageView: self.avator)
             }
         }
     }
@@ -87,7 +84,7 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
     }
     
     @IBAction func click_opt(_ sender: UIButton) {
-        NetWorkUtil<BaseAPIBean>.init(method: API.optdoctor((doctorBean?.docId)!)).newRequest{ bean,json in
+        NetWorkUtil<BaseAPIBean>.init(method: API.optdoctor(doctorId)).newRequest{ bean,json in
             showToast(self.view, bean.msg!)
         }
     }
