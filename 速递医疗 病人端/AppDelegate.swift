@@ -177,20 +177,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
         let options = EMOptions.init(appkey: StaticClass.HuanxinAppkey)
         EMClient.shared().initializeSDK(with: options)
         EMClient.shared().add(self, delegateQueue: nil)
-        // 环信登录
-        let account = user_default.account.getStringValue()
-        let pass = user_default.password.getStringValue()
-        if account != nil && account != ""{
-            EMClient.shared().login(withUsername: account!, password: pass, completion: { (name, error) in
-                if error == nil {
-                    Toast("环信登录成功")
-                }else {
-                    dPrint(message:"环信错误码:\(error?.code.rawValue)")
-                    Toast("环信登录失败")
-                }
-            })
-            
-        }
+        
     }
     
     private func initData() {

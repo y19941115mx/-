@@ -19,10 +19,10 @@ enum HomeType:Int {
 class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate{
     
     @IBOutlet weak var infoTableView: UITableView!
-
+    
     @IBOutlet weak var sortByPatientBtn: UIButton!
-
-
+    
+    
     @IBOutlet weak var sortByDept: UIButton!
     @IBOutlet weak var sortByLocBtn: UIButton!
     
@@ -60,7 +60,7 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
         // 初始化navigationBar
         setUpNavTitle(title: "首页")
         // 初始化消息按钮
-         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "message"), style: .plain, target: self, action: #selector(self.showContantList))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "message"), style: .plain, target: self, action: #selector(self.showContantList))
         initRefresh(scrollView: infoTableView, ApiMethod: API.getdoctorlist(selectedPage, APPLICATION.lon, APPLICATION.lat), refreshHandler: {
             switch self.sortType {
             case .sortByPatient:
@@ -81,6 +81,8 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
                 self.getMoreMethod = API.getdoctorlistByDept(self.selectedPage, APPLICATION.lon, APPLICATION.lat, self.oneDepart, self.twoDepart)
             }
         })
+        // 登录环信
+        loginHuanxin()
         // 获取数据
         self.header?.beginRefreshing()
         // 初始化地址数据
@@ -97,7 +99,7 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
         super.viewDidAppear(animated)
         self.updateView()
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return data.count
     }
@@ -233,6 +235,24 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
     
     
     //MARK: - 私有方法
+    private func loginHuanxin() {
+        // 环信登录
+        let account = user_default.account.getStringValue()
+        let pass = user_default.password.getStringValue()
+        
+        EMClient.shared().login(withUsername: account!, password: pass, completion: { (name, error) in
+            if error == nil {
+                Toast("环信登录成功")
+                self.updateView()
+            }else {
+                dPrint(message:"环信错误码:\(error?.code.rawValue)")
+                Toast("环信登录失败")
+            }
+        })
+        
+        
+    }
+    
     func updateView(){
         // 获取所有会话
         let conversations:([EMConversation])? = EMClient.shared().chatManager.getAllConversations() as? [EMConversation]
@@ -256,13 +276,13 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
         sortByPatientBtn.addTarget(self, action: #selector(clickBtn(button:)), for: .touchUpInside)
         sortByDept.addTarget(self, action: #selector(clickBtn(button:)), for: .touchUpInside)
     }
-
+    
     private func cleanButton(){
         sortByLocBtn.setTitleColor(UIColor.darkGray, for: .normal)
         sortByPatientBtn.setTitleColor(UIColor.darkGray, for: .normal)
         sortByDept.setTitleColor(UIColor.darkGray, for: .normal)
     }
-
+    
     //MARK: - action
     @objc func clickBtn(button:UIButton){
         switch button.tag {
@@ -316,7 +336,7 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
                 self.refreshBtn()
             }
         }
-
+        
     }
     
     // 显示环信会话列表
@@ -389,11 +409,11 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
         }
         
     }
-
+    
     //MARK: - navigation Methond
-
+    
     @IBAction func unwindToHome(sender: UIStoryboardSegue){
-
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -408,7 +428,7 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
     // MARK: - UIPickerView
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         if pickerView.tag == 1 {
-          return 3
+            return 3
         } else {
             return 2
         }
@@ -518,7 +538,7 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
         }
         
     }
-
+    
 }
 
 
