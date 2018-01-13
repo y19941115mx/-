@@ -53,13 +53,18 @@ class MyDoctorTableViewCell: UITableViewCell {
                     Toast("日程为空")
                 }else {
                     var stringArray = [String]()
+                    var calenderIds = [Int]()
                     for data in dataArray! {
                         let date = data["doccalendarday"].stringValue
                         let time = data["doccalendartime"].stringValue
                         stringArray.append("\(date) \(time)")
+                        let id = data["doccalendarid"].intValue
+                        calenderIds.append(id)
                     }
                     AlertUtil.popMenu(vc: self.vc!, title: "选择医生日程", msg: "", btns: stringArray, handler: { (str) in
-                        NetWorkUtil<BaseAPIBean>.init(method: .createorder(id!, str)).newRequest(handler: { (bean, json) in
+                        let index = stringArray.index(of: str)
+                        let calenderId = calenderIds[index!]
+                        NetWorkUtil<BaseAPIBean>.init(method: .createorder(id!, calenderId)).newRequest(handler: { (bean, json) in
                             Toast(bean.msg!)
                             self.vc?.refreshData()
                         })

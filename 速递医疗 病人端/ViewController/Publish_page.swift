@@ -13,7 +13,7 @@ import HJPhotoBrowser
 
 // 病情展示分页
 
-class Publish_page: BaseRefreshController<SickBean>, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+class Publish_page: BaseRefreshController<SickBean>, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate{
     
     
     var type: Int = 0
@@ -24,6 +24,7 @@ class Publish_page: BaseRefreshController<SickBean>, UICollectionViewDataSource,
         initNoFooterRefresh(scrollView: infoCollectionView, ApiMethod: .getsick(type), isTableView:false)
         self.header?.beginRefreshing()
     }
+    
     
     
     
@@ -46,6 +47,14 @@ class Publish_page: BaseRefreshController<SickBean>, UICollectionViewDataSource,
             return cell
         }
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // 单击进入 编辑页面
+        let vc = UIStoryboard.init(name: "Publish", bundle: nil).instantiateViewController(withIdentifier: "EditSick") as! EditViewController
+        vc.bean = data[indexPath.row]
+        vc.vc = self
+        self.present(vc, animated: false, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

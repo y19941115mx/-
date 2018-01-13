@@ -44,6 +44,14 @@ class MyDoctor_main: BaseRefreshController<DoctorBean>, UITableViewDataSource, U
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let bean = data[indexPath.row]
+        let vc = UIStoryboard.init(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Detail") as! Home_DoctorDetail
+        vc.doctorId = bean.docId
+        self.navigationController?.pushViewController(vc, animated: false)
+        
+    }
+    
     
 }
 

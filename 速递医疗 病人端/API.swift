@@ -33,7 +33,7 @@ public enum API {
     case cancelsick(Int) // 取消发布病情
     case editsick(Int, String) // 编辑病情
     case optdoctor(Int) // 预选医生
-    case createorder(Int, String) // 生成订单
+    case createorder(Int, Int) // 生成订单
     case getinfo // 获取个人信息
     case editinfo(String, String, [Data], String, Int, String) // 保存个人信息
     case exit // 退出登录
@@ -226,8 +226,8 @@ extension API: TargetType {
             return .uploadCompositeMultipart(formDatas, urlParameters: ["usersickid":sickID, "usersickdesc":desc, "userloginid":Int(user_default.userId.getStringValue()!)!])
         case .optdoctor(let doctorId):
             return .requestParameters(parameters: ["docloginid":doctorId, "userloginid":Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
-        case .createorder(let docId, let timestr):
-            return .requestParameters(parameters: ["docloginid":docId, "userorderappointment": timestr, "userloginid": Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
+        case .createorder(let docId, let calendarid):
+            return .requestParameters(parameters: ["docloginid":docId, "doccalendarid":calendarid, "userloginid": Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
         case .exit:
             return .requestParameters(parameters: ["userloginid":Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
         case .getcalendar(let doctorId):

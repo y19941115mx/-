@@ -32,6 +32,7 @@ struct StaticClass {
     static let HuanxinAppkey = "1133171107115421#medicalclient"
     static let AliPayScheme = "com.dingling.medical.o2o"
     static let BuglyAPPID = "e0392726ce"
+    static let weixinAPPID = ""
 }
 
 
