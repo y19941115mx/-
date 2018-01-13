@@ -123,10 +123,9 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.refresh()
-    }
+//        super.viewDidAppear(animated)
+//        self.refresh()
+//    }
     
     func initRefresh(scrollView:UIScrollView, ApiMethod:API,refreshHandler:(()->Void)?,getMoreHandler:@escaping ()->Void, isTableView:Bool = true) {
         self.ApiMethod = ApiMethod
@@ -323,6 +322,7 @@ class BaseTableInfoViewController:BaseViewController,UITableViewDataSource,UITab
         if cell == nil {
             cell =  Bundle.main.loadNibNamed("InfoTableViewCell", owner: nil, options: nil)?.last as? InfoTableViewCell
         }
+        cell?.selectionStyle = .none
         cell?.titleLabel.text = tableTiles[indexPath.section][indexPath.row]
         cell?.infoLabel.text = tableInfo[indexPath.section][indexPath.row]
         return cell!

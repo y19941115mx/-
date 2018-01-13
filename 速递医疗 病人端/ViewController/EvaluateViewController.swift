@@ -82,7 +82,7 @@ class EvaluateTableViewController:BaseRefreshController<EvaluateBean>, UITableVi
         let mdata = data[indexPath.row]
         
         let res = StringUTil.getTextRectSize(text: mdata.doccommentwords! as NSString, font: UIFont.systemFont(ofSize: 14), size: CGSize.init(width: 300, height: 17))
-        return 90 + res.height
+        return 93 + res.height 
     }
     
 

@@ -49,8 +49,9 @@ class MyDoctorTableViewCell: UITableViewCell {
             let id = self.data?.docId
             NetWorkUtil<BaseAPIBean>.init(method: API.getcalendar(id!)).newRequest(handler: { (bean, json) in
                 let dataArray = json["data"].array
-                if dataArray == nil {
-                    Toast("日程为空")
+                
+                if dataArray == nil || dataArray!.count == 0 {
+                ToastError("该医生无日程安排")
                 }else {
                     var stringArray = [String]()
                     var calenderIds = [Int]()

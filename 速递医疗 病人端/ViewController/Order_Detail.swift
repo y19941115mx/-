@@ -52,7 +52,7 @@ class Order_Detail: BasicCollectionViewBrowserController,UICollectionViewDataSou
                 let order = bean.data!
                 self.updateView(bean: order)
             }else {
-                ToastError(self.view, bean.msg!)
+                ToastError(bean.msg!)
             }
         }
     }

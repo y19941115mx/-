@@ -34,6 +34,7 @@ class Mine_main: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         NetWorkUtil.init(method: .getreviewinfo).newRequestWithOutHUD { (bean, json) in
             let data = json["data"]
             let msg = data["typename"].stringValue
+            user_default.setUserDefault(key: .typename, value: msg)
             self.label_type.text = "\(msg)"
         }
     }

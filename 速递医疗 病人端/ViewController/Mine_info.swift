@@ -18,7 +18,7 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var confirmBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-         ImageUtil.setButtonDisabledImg(button: confirmBtn)
+        ImageUtil.setButtonDisabledImg(button: confirmBtn)
         let titles =  [["姓名","身份证","身份证照片","性别","年龄","具体地址"]]
         let tableData = [["","","","","", ""]]
         initViewController(tableTiles: titles, tableInfo: tableData, tableView: tableView) { (index_path) in
@@ -27,7 +27,7 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
         // Do any additional setup after loading the view.
     }
     
-    
+    // 提交审核
     @IBAction func click_save(_ sender: UIButton) {
         for i in 0 ..< tableInfo[0].count - 1 {
             if tableInfo[0][i] == "" {
@@ -42,15 +42,24 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
                 datas.append(ImageUtil.image2Data(image:image[i]))
             }
             NetWorkUtil.init(method: .editinfo(tableInfo[0][0], tableInfo[0][1], datas, tableInfo[0][3], Int(tableInfo[0][4])!, tableInfo[0][5])).newRequest { (bean, json) in
-                showToast(self.view, bean.msg!)
+        
                 if bean.code == 100 {
-                    self.confirmBtn.isEnabled = true
+                    // 提交审核
+                    NetWorkUtil.init(method: .reviewinfo).newRequest { (bean, json) in
+                        if bean.code == 100 {
+                            self.dismiss(animated: false, completion: nil)
+                        }else{
+                            showToast(self.view, bean.msg!)
+                        }
+                    }
+                } else {
+                    showToast(self.view, bean.msg!)
                 }
             }
         }else {
             showToast(self.view, "照片为空")
         }
-       
+        
     }
     
     private func  handleClick(index_path:IndexPath) {
@@ -112,39 +121,39 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
             })
         }
     }
-        
-        override func viewDidAppear(_ animated: Bool) {
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let msg = user_default.typename.getStringValue()
+        if msg == "审核中" || msg == "已审核" {
             confirmBtn.isEnabled = false
-            NetWorkUtil.init(method: .getinfo).newRequest { (bean, json) in
-                let data = json["data"]
-                let username = data["username"].string ?? self.tableInfo[0][0]
-                let usercardnum = data["usercardnum"].string ?? self.tableInfo[0][1]
-                
-                if self.flag != 0 {
-                    self.tableInfo[0][2] = "已上传"
-                }
-                
-                if data["usercardphoto"].string != nil && data["usercardphoto"].string != "" {
-                    self.imageString = StringUTil.splitImage(str: data["usercardphoto"].string!)
-                    self.tableInfo[0][2] = "已上传"
-                }
-                let usermale = data["usermale"].string ?? self.tableInfo[0][3]
-                let userage = "\(data["userage"].intValue)"
-                let useradrother = data["useradrother"].string ?? self.tableInfo[0][5]
-                self.tableInfo = [[username, usercardnum, self.tableInfo[0][2], usermale, userage, useradrother]]
-                self.tableView.reloadData()
+            confirmBtn.setTitle(msg, for: .normal)
+            self.tableView.allowsSelection = false
+        }else {
+            confirmBtn.isEnabled = true
+            confirmBtn.setTitle("提交审核", for: .normal)
+            self.tableView.allowsSelection = true
+        }
+        NetWorkUtil.init(method: .getinfo).newRequest { (bean, json) in
+            let data = json["data"]
+            let username = data["username"].string ?? self.tableInfo[0][0]
+            let usercardnum = data["usercardnum"].string ?? self.tableInfo[0][1]
+            
+            if self.flag != 0 {
+                self.tableInfo[0][2] = "已上传"
             }
             
-        }
-    
-    @IBAction func click_confirm(_ sender: Any) {
-        // 提交审核
-        NetWorkUtil.init(method: .reviewinfo).newRequest { (bean, json) in
-            if bean.code == 100 {
-                self.dismiss(animated: false, completion: nil)
+            if data["usercardphoto"].string != nil && data["usercardphoto"].string != "" {
+                self.imageString = StringUTil.splitImage(str: data["usercardphoto"].string!)
+                self.tableInfo[0][2] = "已上传"
             }
-            showToast(self.view, bean.msg!)
+            let usermale = data["usermale"].string ?? self.tableInfo[0][3]
+            let userage = "\(data["userage"].intValue)"
+            let useradrother = data["useradrother"].string ?? self.tableInfo[0][5]
+            self.tableInfo = [[username, usercardnum, self.tableInfo[0][2], usermale, userage, useradrother]]
+            self.tableView.reloadData()
         }
+        
     }
+    
     
 }

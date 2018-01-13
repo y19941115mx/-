@@ -16,7 +16,7 @@ let maxImageNum = 4
 
 // 添加病情页面
 
-class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource,HJPhotoBrowserDelegate {
+class Publish_add: BasePickImgViewController, UITextViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource,HJPhotoBrowserDelegate {
     
     @IBOutlet weak var placeHolderLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -43,6 +43,11 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         textView.delegate = self
+        handler = {image in
+            // 显示选中的图片
+            self.imgResource.insert(image, at: 0)
+            self.collectionView.reloadData()
+        }
         initData()
         // Do any additional setup after loading the view.
     }
@@ -97,39 +102,8 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
         
     }
     
-    func pickImageFromPhotoLib() {
-        // 从图片库获取图片
-        let imagePickerController = UIImagePickerController()
-        
-        // Only allow photos to be picked, not taken.
-        imagePickerController.sourceType = .photoLibrary
-        
-        // Make sure ViewController is notified when the user picks an image.
-        imagePickerController.delegate = self
-        present(imagePickerController, animated: true, completion: nil)
-        
-    }
     
     
-    
-    //MARK:- UIImagePickerControllerDelegate
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController){
-        // Dismiss the picker if the user canceled.
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
-            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
-        }
-        // 显示选中的图片
-        imgResource.insert(selectedImage, at: 0)
-        collectionView.reloadData()
-        // Dismiss the picker.
-        dismiss(animated: true, completion: nil)
-        
-    }
     
     // MARK: - UIPickerView
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -224,7 +198,7 @@ class Publish_add: UIViewController, UITextViewDelegate, UICollectionViewDelegat
         // 点击了最后一个添加图片
         if indexPath.row == imgResource.count - 1 {
             if imgResource.count <= maxImageNum {
-                pickImageFromPhotoLib()
+                updatePicture()
             }else {
                 showToast(self.view, "请上传不多于四张图片")
             }

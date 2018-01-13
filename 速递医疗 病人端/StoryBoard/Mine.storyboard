@@ -300,7 +300,6 @@
                                         <state key="normal" title="添加"/>
                                         <connections>
                                             <action selector="clickSaveButton" destination="s19-bP-n6r" eventType="touchUpInside" id="PGM-SJ-mYH"/>
-                                            <action selector="click_save:" destination="bWV-sk-tJ9" eventType="touchUpInside" id="DVx-vw-Ul4"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -418,24 +417,10 @@
                                             <segue destination="kGw-B4-aDZ" kind="unwind" unwindAction="unwindToMineWithSender:" id="O5J-BE-vdS"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oH7-TT-U1S">
-                                        <rect key="frame" x="334" y="20.666666666666671" width="80" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="cvF-UA-7X5"/>
-                                            <constraint firstAttribute="height" constant="44" id="oth-4K-LvE"/>
-                                            <constraint firstAttribute="width" constant="80" id="u7n-Cg-O4u"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="保存"/>
-                                        <connections>
-                                            <action selector="click_save:" destination="bWV-sk-tJ9" eventType="touchUpInside" id="dAO-8d-nVM"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.39157021050000002" green="0.68089771269999999" blue="0.98662644619999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="1tg-CJ-KZL"/>
-                                    <constraint firstItem="oH7-TT-U1S" firstAttribute="baseline" secondItem="AD4-W3-aFC" secondAttribute="baseline" id="6M7-GT-Xkb"/>
                                     <constraint firstAttribute="bottom" secondItem="AD4-W3-aFC" secondAttribute="bottom" constant="12" id="81R-sH-Cmg"/>
                                     <constraint firstAttribute="height" constant="64" id="8Ws-ip-qZF"/>
                                     <constraint firstAttribute="bottom" secondItem="6PT-nY-HXN" secondAttribute="bottom" id="DVA-f6-9g8"/>
@@ -444,7 +429,6 @@
                                     <constraint firstItem="6PT-nY-HXN" firstAttribute="leading" secondItem="eVz-RW-o16" secondAttribute="leading" id="hu9-Bg-XHA"/>
                                     <constraint firstItem="AD4-W3-aFC" firstAttribute="centerX" secondItem="eVz-RW-o16" secondAttribute="centerX" id="md9-3v-iXN"/>
                                     <constraint firstAttribute="bottom" secondItem="6PT-nY-HXN" secondAttribute="bottom" id="q6A-qk-88Z"/>
-                                    <constraint firstAttribute="trailing" secondItem="oH7-TT-U1S" secondAttribute="trailing" id="wUq-5v-Hjo"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Brt-18-fsk" customClass="BaseTableView" customModule="速递医疗_病人端" customModuleProvider="target">
@@ -516,7 +500,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="click_confirm:" destination="bWV-sk-tJ9" eventType="touchUpInside" id="X5I-2A-glH"/>
+                                    <action selector="click_save:" destination="bWV-sk-tJ9" eventType="touchUpInside" id="3l7-Ia-pZC"/>
                                 </connections>
                             </button>
                         </subviews>
