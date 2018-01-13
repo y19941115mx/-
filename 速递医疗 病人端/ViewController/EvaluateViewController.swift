@@ -48,11 +48,8 @@ class EvaluateViewController: BaseViewController, UITextViewDelegate {
         let professionlevel = professionallevel.rating
         let mPriceLevel = priceLevel.rating
         if serviceLevel != 0 && professionlevel != 0 && mPriceLevel != 0 && textView.text != "" {
-            NetWorkUtil.init(method:API.evaluate(self.OdrderId!, serviceLevel, professionlevel, mPriceLevel, textView.text!)).newRequest(handler: { (bean, json) in
-                showToast(self.view, bean.msg!)
-                if bean.code == 100 {
-                    self.dismiss(animated: false, completion: nil)
-                }
+            NetWorkUtil.init(method:API.evaluate(self.OdrderId!, serviceLevel, professionlevel, mPriceLevel, textView.text!)).newRequest(successhandler: { (bean, json) in
+                self.dismiss(animated: false, completion: nil)
             })
         } else {
             showToast(self.view, "请填写完整信息")
@@ -85,7 +82,7 @@ class EvaluateTableViewController:BaseRefreshController<EvaluateBean>, UITableVi
         return 93 + res.height 
     }
     
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -84,15 +84,12 @@ class RegisterViewController: BaseTextViewController{
             self.view.makeToast("请输入6-15位数字或字母")
         }else{
             //            //1.发送注册请求
-            NetWorkUtil.init(method: API.register(phoneText, MD5(passwordText), msgCode)).newRequest(handler: { (bean, json) in
-                if bean.code == 100 {
-                    let vc = self.presentingViewController as! LoginViewController
-                    vc.tv_phone.text = phoneText
-                    self.dismiss(animated: false, completion: nil)
-                    showToast(vc.view, bean.msg!)
-                }else {
-                    showToast(self.view, bean.msg!)
-                }
+            NetWorkUtil.init(method: API.register(phoneText, MD5(passwordText), msgCode)).newRequest(successhandler: { (bean, json) in
+                let vc = self.presentingViewController as! LoginViewController
+                vc.tv_phone.text = phoneText
+                self.dismiss(animated: false, completion: nil)
+                showToast(vc.view, bean.msg!)
+                
             })
             
         }
@@ -101,22 +98,17 @@ class RegisterViewController: BaseTextViewController{
     @IBAction func sendMsg(_ sender: Any) {
         self.view.endEditing(true)
         if self.photoTextField.text == "" ||  self.photoTextField.text == nil {
-         showToast(self.view, "号码为空")
+            showToast(self.view, "号码为空")
             return
         }
         let phoneNum = photoTextField.text!
-        NetWorkUtil.init(method: .phonetest(phoneNum)).newRequest { (bean, json) in
-            // 发送验证码
-            if bean.code == 100 {
-                //开始倒计时
-                self.isCounting = true
-                NetWorkUtil.init(method: API.getcode(phoneNum)).newRequest(handler: { (bean, json) in
-                    showToast(self.view, bean.msg!)
-                })
-            }else {
-                showToast(self.view, bean.msg!)
-            }
-        }
+        NetWorkUtil.init(method: .phonetest(phoneNum)).newRequest(successhandler: { (bean, json) in
+            self.isCounting = true
+            NetWorkUtil.init(method: .getcode(phoneNum)).newRequest(successhandler: { (bean, json) in
+                showToast(self.view, "发送验证码成功")
+            }, failhandler: nil)
+        }, failhandler: nil)
+        
     }
     
     //MARK: - private method

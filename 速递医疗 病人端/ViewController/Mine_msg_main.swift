@@ -82,7 +82,7 @@ class Mine_msg_main: BaseRefreshController<NotificationBean>,UITableViewDataSour
             item.notificationread = true
         }
         tableView.reloadData()
-        NetWorkUtil.init(method: .updateallnotificationtoread).newRequestWithOutHUD(handler: { (bean, json) in
+        NetWorkUtil.init(method: .updateallnotificationtoread).newRequestWithOutHUD(successhandler: { (bean, json) in
             if bean.code == 100 {
                 UIApplication.shared.applicationIconBadgeNumber = 0
             }else {
@@ -93,7 +93,7 @@ class Mine_msg_main: BaseRefreshController<NotificationBean>,UITableViewDataSour
     
     private func cleanMsgAction() {
         AlertUtil.popAlert(vc: self, msg: "确认删除所有通知", okhandler: {
-            NetWorkUtil.init(method: .deleteallreceivenotification).newRequest(handler: { (bean, json) in
+            NetWorkUtil.init(method: .deleteallreceivenotification).newRequest(successhandler: { (bean, json) in
                 showToast(self.view, bean.msg!)
                 UIApplication.shared.applicationIconBadgeNumber = 0
                 self.refreshData()

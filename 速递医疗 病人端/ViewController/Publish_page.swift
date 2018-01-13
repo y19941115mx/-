@@ -75,12 +75,8 @@ class Publish_page: BaseRefreshController<SickBean>, UICollectionViewDataSource,
             let indexPath = self.infoCollectionView.indexPathForItem(at: touchPoint)
             let bean = data[indexPath!.row]
             AlertUtil.popAlert(vc: self, msg: "确定删除病情"){
-                NetWorkUtil.init(method: .deletesick(bean.usersickid)).newRequest(handler: { (bean, json) in
-                    if bean.code == 100 {
+                NetWorkUtil.init(method: .deletesick(bean.usersickid)).newRequest(successhandler: { (bean, json) in
                         self.refreshData()
-                    }else {
-                        showToast(self.view, bean.msg!)
-                    }
                 })
             }
         }

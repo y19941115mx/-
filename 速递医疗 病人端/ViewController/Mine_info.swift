@@ -41,21 +41,11 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
             for i in 0..<count{
                 datas.append(ImageUtil.image2Data(image:image[i]))
             }
-            NetWorkUtil.init(method: .editinfo(tableInfo[0][0], tableInfo[0][1], datas, tableInfo[0][3], Int(tableInfo[0][4])!, tableInfo[0][5])).newRequest { (bean, json) in
-        
-                if bean.code == 100 {
-                    // 提交审核
-                    NetWorkUtil.init(method: .reviewinfo).newRequest { (bean, json) in
-                        if bean.code == 100 {
-                            self.dismiss(animated: false, completion: nil)
-                        }else{
-                            showToast(self.view, bean.msg!)
-                        }
-                    }
-                } else {
-                    showToast(self.view, bean.msg!)
-                }
-            }
+            NetWorkUtil.init(method: .editinfo(tableInfo[0][0], tableInfo[0][1], datas, tableInfo[0][3], Int(tableInfo[0][4])!, tableInfo[0][5])).newRequestWithOutHUD(successhandler: { (bean, json) in
+                NetWorkUtil.init(method: .reviewinfo).newRequestWithOutHUD(successhandler: { (bean, sjon) in
+                    self.dismiss(animated: false, completion: nil)
+                })
+            })
         }else {
             showToast(self.view, "照片为空")
         }
@@ -133,7 +123,7 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
             confirmBtn.setTitle("提交审核", for: .normal)
             self.tableView.allowsSelection = true
         }
-        NetWorkUtil.init(method: .getinfo).newRequest { (bean, json) in
+        NetWorkUtil.init(method: .getinfo).newRequest(successhandler: { (bean, json) in
             let data = json["data"]
             let username = data["username"].string ?? self.tableInfo[0][0]
             let usercardnum = data["usercardnum"].string ?? self.tableInfo[0][1]
@@ -151,8 +141,7 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
             let useradrother = data["useradrother"].string ?? self.tableInfo[0][5]
             self.tableInfo = [[username, usercardnum, self.tableInfo[0][2], usermale, userage, useradrother]]
             self.tableView.reloadData()
-        }
-        
+        })
     }
     
     

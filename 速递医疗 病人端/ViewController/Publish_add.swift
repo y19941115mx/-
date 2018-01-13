@@ -233,12 +233,9 @@ class Publish_add: BasePickImgViewController, UITextViewDelegate, UICollectionVi
                     datas?.append(ImageUtil.image2Data(image:imgResource[i]))
                 }
             }
-            NetWorkUtil<BaseAPIBean>.init(method: .addsick(datas, textView.text, oneDepart, twoDepart, family)).newRequest { (bean, json) in
-                showToast(self.view, bean.msg!)
-                if bean.code == 100 {
+            NetWorkUtil<BaseAPIBean>.init(method: .addsick(datas, textView.text, oneDepart, twoDepart, family)).newRequest(successhandler: { (bean, json) in
                     self.dismiss(animated: false, completion: nil)
-                }
-            }
+            })
         }else {
             showToast(self.view, "请填写完整病情信息")
             return

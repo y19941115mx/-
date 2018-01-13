@@ -57,19 +57,17 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
         super.viewDidAppear(animated)
         self.height.constant = startHeight
         NetWorkUtil<BaseListBean<MineCalendarBean>>.init(method: .getcalendar(doctorId))
-            .newRequest { (bean, json) in
-                if bean.code == 100 {
+            .newRequest(successhandler: { (bean, json) in
                     if bean.dataList != nil {
                         self.dates = bean.dataList!
                         self.collectionView.reloadData()
-                    }
                 }
                 // 更新top constrains
                 if self.dates.count == 0 {
                     self.collectionView.isHidden = true
                     self.height.constant -= 220
                 }
-        }
+            })
         NetWorkUtil.init(method: API.doctorinfo((doctorId)!)).newRequestWithOutHUD { (bean, json) in
             if bean.code == 100 {
                 let data = json["data"]
@@ -118,9 +116,9 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
     }
     
     @IBAction func click_opt(_ sender: UIButton) {
-        NetWorkUtil<BaseAPIBean>.init(method: API.optdoctor(doctorId)).newRequest{ bean,json in
+        NetWorkUtil<BaseAPIBean>.init(method: API.optdoctor(doctorId)).newRequest(successhandler: { bean,json in
             showToast(self.view, bean.msg!)
-        }
+        })
     }
     
 }

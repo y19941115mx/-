@@ -25,13 +25,9 @@ class EditViewController: BaseViewController {
     @IBAction func Save_action(_ sender: Any) {
         self.view.endEditing(true)
         let text = textView.text ?? ""
-        NetWorkUtil<BaseAPIBean>.init(method: .editsick((bean?.usersickid)!, text)).newRequest { (bean, json) in
-            if bean.code == 100 {
+        NetWorkUtil<BaseAPIBean>.init(method: .editsick((bean?.usersickid)!, text)).newRequest(successhandler: { (bean, json) in
                 self.dismiss(animated: false, completion: nil)
-            }
-            Toast(bean.msg!)
-            
-        }
+        })
     }
     @IBAction func Back_acion(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)

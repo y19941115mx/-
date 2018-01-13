@@ -290,14 +290,6 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
         self.header?.beginRefreshing()
     }
     
-    func refresh() {
-        button.isHidden = true
-        imageView.isHidden = true
-        self.scrollView?.isHidden = false
-        self.refreshData()
-    }
-    
-    
 }
 
 // 信息填写

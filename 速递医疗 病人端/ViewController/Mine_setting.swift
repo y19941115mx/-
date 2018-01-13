@@ -41,13 +41,9 @@ class Mine_setting: BaseViewController, UITableViewDataSource, UITableViewDelega
                 if account == "" || name == ""{
                     showToast(self.view, "请填写完整信息")
                 }else {
-                    NetWorkUtil.init(method: API.updatealipayaccount(account, name)).newRequest(handler: { (bean, json) in
-                        showToast(self.view, bean.msg!)
-                        if bean.code == 100 {
+                    NetWorkUtil.init(method: API.updatealipayaccount(account, name)).newRequest(successhandler:{ (bean, json) in
                             self.tableInfo[0] = account
                             self.tableView.reloadData()
-                        }
-                        
                     })
                 }
                 

@@ -29,12 +29,9 @@ class Mine_family: BaseRefreshController<familyBean>, UITableViewDataSource, UIT
         if editingStyle == .delete {
             let user = data[indexPath.row]
             let id = user.familyid
-            NetWorkUtil.init(method: .deletefamily(id)).newRequest(handler: { (bean, json) in
-                showToast(self.view, bean.msg!)
-                if bean.code == 100 {
+            NetWorkUtil.init(method: .deletefamily(id)).newRequest(successhandler: { (bean, json) in
                     self.data.remove(at: indexPath.row)
                     self.tableView.deleteRows(at: [indexPath], with: .none)
-                }
             })
         }
     }
@@ -66,11 +63,8 @@ class Mine_family: BaseRefreshController<familyBean>, UITableViewDataSource, UIT
     @IBAction func clickSaveButton() {
         AlertUtil.popInfoTextFields(vc: self, okhandler:{ textFields in
             // FIXME: 服务器字符校验
-            NetWorkUtil.init(method: API.addfamily( textFields[0].text!, textFields[1].text!, Int(textFields[2].text!)!)).newRequestWithOutHUD(handler: { (bean, josn) in
-                showToast(self.view, bean.msg!)
-                if bean.code == 100 {
+            NetWorkUtil.init(method: API.addfamily( textFields[0].text!, textFields[1].text!, Int(textFields[2].text!)!)).newRequestWithOutHUD(successhandler: { (bean, josn) in
                     self.refreshBtn()
-                }
             })
         })
     }

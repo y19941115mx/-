@@ -130,27 +130,21 @@ class MyDateTableViewCell: UITableViewCell {
         
         AlertUtil.popAlert(vc: self.vc!, msg: "确认取消订单 该操作不可撤销") {
             let id = self.data?.userorderid
-            NetWorkUtil.init(method: API.cancelorder(id!)).newRequest { (bean, josn) in
-                Toast(bean.msg!)
-                if bean.code == 100 {
+            NetWorkUtil.init(method: API.cancelorder(id!)).newRequest(successhandler: { (bean, josn) in
                     self.vc?.refreshBtn()
-                }
-            }
+            })
         }
     }
     // 支付医院押金
     @objc func confirmHospAction(_ sender: UIButton) {
         AlertUtil.popAlert(vc: self.vc!, msg: "确认支付订单 需要支付\(priceLabel.text ?? "0" )元") {
             let id = self.data?.userorderid
-            NetWorkUtil.init(method: API.payhospital(id!)).newRequest { (bean, json) in
-                if bean.code == 100 {
+            NetWorkUtil.init(method: API.payhospital(id!)).newRequest(successhandler: { (bean, json) in
                     let str = json["data"].stringValue
                     let alipayUtils = AliPayUtils.init(context: self.vc!);
                     alipayUtils.pay(sign:str)
-                }else {
-                    Toast(bean.msg!)
-                }
-            }
+                
+            })
         }
         
     }
@@ -161,26 +155,20 @@ class MyDateTableViewCell: UITableViewCell {
         
         AlertUtil.popAlert(vc: self.vc!, msg: "确认取消住院 该操作不可撤销") {
             let id = self.data?.userorderid
-            NetWorkUtil.init(method: API.cancelhospital(id!)).newRequest { (bean, josn) in
-                Toast(bean.msg!)
-                if bean.code == 100 {
+            NetWorkUtil.init(method: API.cancelhospital(id!)).newRequest(successhandler: {
+                (bean, josn) in
                     self.vc?.refreshBtn()
-                }
-            }
+            })
         }
     }
     @objc func confirmAction(_ sender: UIButton) {
         AlertUtil.popAlert(vc: self.vc!, msg: "确认支付订单 需要支付\(priceLabel.text ?? "0" )元") {
             let id = self.data?.userorderid
-            NetWorkUtil.init(method: API.confirmorder(id!)).newRequest { (bean, json) in
-                if bean.code == 100 {
+            NetWorkUtil.init(method: API.confirmorder(id!)).newRequest(successhandler: { (bean, json) in
                     let str = json["data"].stringValue
                     let alipayUtils = AliPayUtils.init(context: self.vc!);
                     alipayUtils.pay(sign:str)
-                }else {
-                    Toast(bean.msg!)
-                }
-            }
+            })
         }
         
     }

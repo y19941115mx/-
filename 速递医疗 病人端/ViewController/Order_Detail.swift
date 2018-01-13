@@ -47,14 +47,10 @@ class Order_Detail: BasicCollectionViewBrowserController,UICollectionViewDataSou
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NetWorkUtil<BaseBean<OrderBean>>.init(method: .orderdetail(userorderId!)).newRequest { (bean, json) in
-            if bean.code == 100 {
+        NetWorkUtil<BaseBean<OrderBean>>.init(method: .orderdetail(userorderId!)).newRequest(successhandler: { (bean, json) in
                 let order = bean.data!
                 self.updateView(bean: order)
-            }else {
-                ToastError(bean.msg!)
-            }
-        }
+        })
     }
     
     

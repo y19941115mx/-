@@ -47,7 +47,7 @@ class MyDoctorTableViewCell: UITableViewCell {
     @objc func checkedBtn(button:UIButton) {
         AlertUtil.popAlert(vc: self.vc!, msg: "确定选择该医生", okhandler: {
             let id = self.data?.docId
-            NetWorkUtil<BaseAPIBean>.init(method: API.getcalendar(id!)).newRequest(handler: { (bean, json) in
+            NetWorkUtil<BaseAPIBean>.init(method: API.getcalendar(id!)).newRequest(successhandler: { (bean, json) in
                 let dataArray = json["data"].array
                 
                 if dataArray == nil || dataArray!.count == 0 {
@@ -65,7 +65,7 @@ class MyDoctorTableViewCell: UITableViewCell {
                     AlertUtil.popMenu(vc: self.vc!, title: "选择医生日程", msg: "", btns: stringArray, handler: { (str) in
                         let index = stringArray.index(of: str)
                         let calenderId = calenderIds[index!]
-                        NetWorkUtil<BaseAPIBean>.init(method: .createorder(id!, calenderId)).newRequest(handler: { (bean, json) in
+                        NetWorkUtil<BaseAPIBean>.init(method: .createorder(id!, calenderId)).newRequest(successhandler: { (bean, json) in
                             Toast(bean.msg!)
                             self.vc?.refreshData()
                         })

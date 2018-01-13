@@ -92,7 +92,7 @@ class NetWorkUtil<T:BaseAPIBean> {
         }
     }
     
-    func newRequest(handler:@escaping (_ bean:T, _ JSONObj:JSON) -> Void) {
+    func newRequest(successhandler:((_ bean:T, _ JSONObj:JSON) -> Void)?,failhandler:((_ bean:T, _ JSONObj:JSON) -> Void)? = nil ) {
         let Provider = MoyaProvider<API>()
         SVProgressHUD.show()
         Provider.request(method!) { result in
@@ -103,7 +103,19 @@ class NetWorkUtil<T:BaseAPIBean> {
                     let jsonObj =  try response.mapJSON()
                     let bean = Mapper<T>().map(JSONObject: jsonObj)
                     let json = JSON(jsonObj)
-                    handler(bean!, json)
+                    if let bean = bean {
+                        if bean.code == 100 {
+                            if successhandler != nil {
+                                successhandler!(bean, json)
+                            }
+                        }else {
+                            if failhandler != nil {
+                                failhandler!(bean, json)
+                            }else {
+                                ToastError(bean.msg!)
+                            }
+                        }
+                    }
                 }catch {
                     dPrint(message: "response:\(response)")
                     Toast(CATCHMSG)
@@ -116,7 +128,7 @@ class NetWorkUtil<T:BaseAPIBean> {
         }
     }
     
-    func newRequestWithOutHUD(handler:@escaping (_ bean:T, _ JSONObj:JSON) -> Void) {
+    func newRequestWithOutHUD(successhandler:((_ bean:T, _ JSONObj:JSON) -> Void)?) {
         let Provider = MoyaProvider<API>()
         Provider.request(method!) { result in
             switch result {
@@ -125,8 +137,17 @@ class NetWorkUtil<T:BaseAPIBean> {
                     let jsonObj =  try response.mapJSON()
                     let bean = Mapper<T>().map(JSONObject: jsonObj)
                     let json = JSON(jsonObj)
+                    if let bean = bean {
+                        if bean.code == 100 {
+                            if successhandler != nil {
+                                successhandler!(bean, json)
+                            }
+                        }else {
+                            ToastError(bean.msg!)
+                        }
+                    }
                     
-                    handler(bean!, json)
+                    
                 }catch {
                     dPrint(message: "response:\(response)")
                     Toast(CATCHMSG)
