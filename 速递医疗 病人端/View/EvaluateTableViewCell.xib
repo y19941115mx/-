@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="KGk-i7-Jjw" customClass="EvaluateTableViewCell" customModule="速递医疗_病人端" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="匿名评论" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="051-s9-XQB">
+                        <rect key="frame" x="20" y="10" width="58" height="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-12-30 15:67:32" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="til-8G-5k2">
+                        <rect key="frame" x="173" y="10" width="137" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医院拒绝" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQ2-wG-OiQ">
+                        <rect key="frame" x="20" y="90.5" width="280" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="FTV-9y-ofv"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医生价格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYG-YY-CuQ">
+                        <rect key="frame" x="20" y="71" width="49.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医生专业" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lt5-yK-e2H">
+                        <rect key="frame" x="20" y="51.5" width="49.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医生服务" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFH-Dx-gXp">
+                        <rect key="frame" x="20" y="32" width="49.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LOY-Vq-8Pr" customClass="RatingController" customModule="速递医疗_病人端" customModuleProvider="target">
+                        <rect key="frame" x="69.5" y="21" width="150" height="30"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="starCount">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="size" keyPath="starSize">
+                                <size key="value" width="30" height="30"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="glI-6U-aSd" customClass="RatingController" customModule="速递医疗_病人端" customModuleProvider="target">
+                        <rect key="frame" x="69.5" y="40.5" width="150" height="30"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="starCount">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="size" keyPath="starSize">
+                                <size key="value" width="30" height="30"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZsX-uK-vFD" customClass="RatingController" customModule="速递医疗_病人端" customModuleProvider="target">
+                        <rect key="frame" x="69.5" y="60" width="150" height="30"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="starCount">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="size" keyPath="starSize">
+                                <size key="value" width="30" height="30"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ZsX-uK-vFD" firstAttribute="leading" secondItem="fYG-YY-CuQ" secondAttribute="trailing" id="4vd-kh-LxW"/>
+                    <constraint firstItem="lt5-yK-e2H" firstAttribute="top" secondItem="CFH-Dx-gXp" secondAttribute="bottom" constant="5" id="7V8-LF-Lx6"/>
+                    <constraint firstItem="LOY-Vq-8Pr" firstAttribute="baseline" secondItem="CFH-Dx-gXp" secondAttribute="baseline" id="AKh-Zb-HMJ"/>
+                    <constraint firstItem="fYG-YY-CuQ" firstAttribute="top" secondItem="lt5-yK-e2H" secondAttribute="bottom" constant="5" id="Dpf-l6-dNL"/>
+                    <constraint firstItem="fYG-YY-CuQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="MLl-zG-QGE"/>
+                    <constraint firstItem="lt5-yK-e2H" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="QA4-wf-R0H"/>
+                    <constraint firstAttribute="trailing" secondItem="PQ2-wG-OiQ" secondAttribute="trailing" constant="20" id="Qdh-jU-BuP"/>
+                    <constraint firstItem="CFH-Dx-gXp" firstAttribute="top" secondItem="051-s9-XQB" secondAttribute="bottom" constant="5" id="Qyv-RS-1Tw"/>
+                    <constraint firstItem="glI-6U-aSd" firstAttribute="leading" secondItem="lt5-yK-e2H" secondAttribute="trailing" id="Rtp-xy-hfK"/>
+                    <constraint firstItem="051-s9-XQB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Stl-iv-zaC"/>
+                    <constraint firstItem="PQ2-wG-OiQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Y1t-Ud-GUA"/>
+                    <constraint firstAttribute="trailing" secondItem="til-8G-5k2" secondAttribute="trailing" constant="10" id="b2X-Ox-X0j"/>
+                    <constraint firstItem="LOY-Vq-8Pr" firstAttribute="leading" secondItem="CFH-Dx-gXp" secondAttribute="trailing" id="d98-B8-QDo"/>
+                    <constraint firstItem="CFH-Dx-gXp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="eTS-62-KEn"/>
+                    <constraint firstItem="051-s9-XQB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="fLj-rY-sT6"/>
+                    <constraint firstItem="til-8G-5k2" firstAttribute="baseline" secondItem="051-s9-XQB" secondAttribute="baseline" id="gKd-4q-sW1"/>
+                    <constraint firstItem="glI-6U-aSd" firstAttribute="baseline" secondItem="lt5-yK-e2H" secondAttribute="baseline" id="iUi-yV-kwH"/>
+                    <constraint firstItem="ZsX-uK-vFD" firstAttribute="baseline" secondItem="fYG-YY-CuQ" secondAttribute="baseline" id="ozt-Et-vMd"/>
+                    <constraint firstItem="PQ2-wG-OiQ" firstAttribute="top" secondItem="fYG-YY-CuQ" secondAttribute="bottom" constant="5" id="tyO-Ul-nW1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="commentLabel" destination="fYG-YY-CuQ" id="Rlm-o7-K7f"/>
+                <outlet property="height" destination="FTV-9y-ofv" id="enq-dR-3tq"/>
+                <outlet property="nameLabel" destination="051-s9-XQB" id="O4P-Ip-WSJ"/>
+                <outlet property="priceLevel" destination="ZsX-uK-vFD" id="exR-lw-E83"/>
+                <outlet property="professionLevel" destination="glI-6U-aSd" id="eEQ-GR-8ks"/>
+                <outlet property="serviceLevel" destination="LOY-Vq-8Pr" id="06G-lq-eoX"/>
+                <outlet property="time_label" destination="til-8G-5k2" id="Ad1-9n-t4g"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

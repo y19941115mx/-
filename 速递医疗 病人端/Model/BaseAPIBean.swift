@@ -326,5 +326,33 @@ class MineCalendarBean:Mappable {
         doccalendartime <- map["doccalendartime"]
     }
 }
+//doccommenttime": "2017-12-30 15:57:32",
+//"doccommentprofessionallevel": 5,
+//"doccommentwords": "医院拒绝",
+//"doccommentservicelevel": 5,
+//"doccommentpatientname": "黄**",
+//"doccommentpricelevel": 5
+class EvaluateBean: Mappable {
+    var doccommenttime:String?
+    var doccommentprofessionallevel:Int?
+    var doccommentservicelevel:Int?
+    var doccommentpricelevel:Int?
+    var doccommentpatientname:String?
+    var doccommentwords:String?
+    
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        doccommenttime <- map["doccommenttime"]
+        doccommentservicelevel <- map["doccommentservicelevel"]
+        doccommentprofessionallevel <- map["doccommentprofessionallevel"]
+        doccommentpricelevel <- map["doccommentpricelevel"]
+        doccommentpatientname <- map["doccommentpatientname"]
+        doccommentwords <- map["doccommentwords"]
+    }
+    
+}
 
 

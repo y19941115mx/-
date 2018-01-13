@@ -378,6 +378,15 @@ class MapUtil {
 }
 
 class StringUTil {
+    
+    // 动态获取字符串宽、高度
+   class func getTextRectSize(text:NSString, font:UIFont, size:CGSize) -> CGRect {
+        // 传入字符串的字体、最大宽高，返回字符串实际占用的宽高(.width   .height)
+    let attributes = [NSAttributedStringKey.font:font]
+        let option = NSStringDrawingOptions.usesLineFragmentOrigin
+        let rect:CGRect = text.boundingRect(with: size, options: option, attributes: attributes, context: nil)
+        return rect
+    }
     // 消除空格
     class public func trimmingCharactersWithWhiteSpaces(_ str:String) -> String{
         return str.trimmingCharacters(in: .whitespaces)

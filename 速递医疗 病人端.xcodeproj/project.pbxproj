@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29446849200A1DEE00908009 /* EvaluateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29446847200A1DEE00908009 /* EvaluateTableViewCell.swift */; };
+		2944684A200A1DEE00908009 /* EvaluateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29446848200A1DEE00908009 /* EvaluateTableViewCell.xib */; };
 		69A48EF81A7060F810D582DE /* Pods_________.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6FE386D3244A2B5232BE91 /* Pods_________.framework */; };
 		84031D171FCD52EB0058D437 /* PublishCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84031D161FCD52EB0058D437 /* PublishCell.swift */; };
 		840647321FA62C1B009B21C4 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840647311FA62C1B009B21C4 /* CustomButton.swift */; };
@@ -89,6 +91,8 @@
 
 /* Begin PBXFileReference section */
 		1A6FE386D3244A2B5232BE91 /* Pods_________.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_________.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		29446847200A1DEE00908009 /* EvaluateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateTableViewCell.swift; sourceTree = "<group>"; };
+		29446848200A1DEE00908009 /* EvaluateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EvaluateTableViewCell.xib; sourceTree = "<group>"; };
 		34CAB850216A56570E87C8D2 /* Pods-速递医疗 病人端.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-速递医疗 病人端.debug.xcconfig"; path = "Pods/Target Support Files/Pods-速递医疗 病人端/Pods-速递医疗 病人端.debug.xcconfig"; sourceTree = "<group>"; };
 		84031D161FCD52EB0058D437 /* PublishCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishCell.swift; sourceTree = "<group>"; };
 		840647311FA62C1B009B21C4 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -376,6 +380,8 @@
 				84736B9D1FAC5592001E9AA5 /* MinePocketCollectionViewCell.xib */,
 				8461E5601FE38F7B0096D041 /* MyDateTableViewCell.swift */,
 				8461E55F1FE38F7B0096D041 /* MyDateTableViewCell.xib */,
+				29446847200A1DEE00908009 /* EvaluateTableViewCell.swift */,
+				29446848200A1DEE00908009 /* EvaluateTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -474,6 +480,7 @@
 				84C983F41FA611A60058FA7B /* Main.storyboard in Resources */,
 				84AB2F461FAEA22000E4B3EC /* Publish.storyboard in Resources */,
 				84736B9F1FAC5592001E9AA5 /* MinePocketCollectionViewCell.xib in Resources */,
+				2944684A200A1DEE00908009 /* EvaluateTableViewCell.xib in Resources */,
 				843C3EBA1FA8AAC20076EB8C /* Assets.xcassets in Resources */,
 				848A29891FAAFCAE00123A3F /* Mine.storyboard in Resources */,
 				847C13A21FD2B86100B32BB7 /* BPushCerResource.bundle in Resources */,
@@ -624,6 +631,7 @@
 				84736BA31FAC5ADA001E9AA5 /* Mine_family.swift in Sources */,
 				840647751FA6A6E4009B21C4 /* XLSlideSwitch.m in Sources */,
 				84C983EF1FA611A60058FA7B /* AppDelegate.swift in Sources */,
+				29446849200A1DEE00908009 /* EvaluateTableViewCell.swift in Sources */,
 				84DDACDF1FE0C96F004199FF /* EditViewController.swift in Sources */,
 				840B1EA41FEA511400A6A94E /* Mine_info_photo.swift in Sources */,
 				846D88621FAC26EC00DE6308 /* Mine_order.swift in Sources */,

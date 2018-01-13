@@ -51,10 +51,12 @@ class Publish_page: BaseRefreshController<SickBean>, UICollectionViewDataSource,
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // 单击进入 编辑页面
-        let vc = UIStoryboard.init(name: "Publish", bundle: nil).instantiateViewController(withIdentifier: "EditSick") as! EditViewController
-        vc.bean = data[indexPath.row]
-        vc.vc = self
-        self.present(vc, animated: false, completion: nil)
+        if type == 1 {
+            let vc = UIStoryboard.init(name: "Publish", bundle: nil).instantiateViewController(withIdentifier: "EditSick") as! EditViewController
+            vc.bean = data[indexPath.row]
+            vc.vc = self
+            self.present(vc, animated: false, completion: nil)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -65,6 +67,26 @@ class Publish_page: BaseRefreshController<SickBean>, UICollectionViewDataSource,
             return CGSize(width: SCREEN_WIDTH - 20, height: 250)
         }
     }
+    
+    
+    @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
+        let touchPoint = sender.location(in: self.infoCollectionView)
+        if sender.state == .began {
+            let indexPath = self.infoCollectionView.indexPathForItem(at: touchPoint)
+            let bean = data[indexPath!.row]
+            AlertUtil.popAlert(vc: self, msg: "确定删除病情"){
+                NetWorkUtil.init(method: .deletesick(bean.usersickid)).newRequest(handler: { (bean, json) in
+                    if bean.code == 100 {
+                        self.refreshData()
+                    }else {
+                        showToast(self.view, bean.msg!)
+                    }
+                })
+            }
+        }
+    }
+    
+    
     
     
 }

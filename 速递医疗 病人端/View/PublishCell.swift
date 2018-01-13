@@ -17,8 +17,9 @@ class PublishCell: UICollectionViewCell, UICollectionViewDataSource, UICollectio
     @IBOutlet weak var label_sex: UILabel!
     @IBOutlet weak var label_name: UILabel!
     
+    @IBOutlet weak var time_label: UILabel!
     @IBOutlet weak var btn_publish: UIButton!
-    @IBOutlet weak var btn_del: UIButton!
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     func photoBrowser(_ browser: HJPhotoBrowser!, placeholderImageFor index: Int) -> UIImage! {
@@ -45,6 +46,7 @@ class PublishCell: UICollectionViewCell, UICollectionViewDataSource, UICollectio
         label_sex.text = sickBean.familymale
         label_age.text = "\(sickBean.familyage)"
         label_desc.text = sickBean.usersickdesc
+        time_label.text = sickBean.usersicktime
         if sickBean.usersickpic == nil {
             imageSource = []
         }else{
@@ -53,7 +55,6 @@ class PublishCell: UICollectionViewCell, UICollectionViewDataSource, UICollectio
             collectionView.reloadData()
         }
         btn_publish.addTarget(self, action: #selector(PublishCell.PublishAction(button:)), for: .touchUpInside)
-        btn_del.addTarget(self, action: #selector(PublishCell.DelAction(button:)), for: .touchUpInside)
         
     }
     
@@ -106,40 +107,6 @@ class PublishCell: UICollectionViewCell, UICollectionViewDataSource, UICollectio
         })
     }
     
-    @objc func DelAction(button:UIButton) {
-        AlertUtil.popAlert(vc: vc, msg: "确认删除病情") {
-            let Provider = MoyaProvider<API>()
-            SVProgressHUD.show()
-            Provider.request(API.deletesick((self.data?.usersickid)!)) { result in
-                switch result {
-                case let .success(response):
-                    do {
-                        SVProgressHUD.dismiss()
-                        let bean = Mapper<BaseAPIBean>().map(JSONObject: try response.mapJSON())
-                        if bean?.code == 100 {
-                            self.vc.refreshData()
-                        }
-                        速递医疗_病人端.showToast((self.vc.view)!, bean!.msg!)
-                    }catch {
-                        SVProgressHUD.dismiss()
-                        速递医疗_病人端.showToast((self.vc.view)!, CATCHMSG)
-                    }
-                case let .failure(error):
-                    SVProgressHUD.dismiss()
-                    dPrint(message: "error:\(error)")
-                    速递医疗_病人端.showToast((self.vc.view)!, ERRORMSG)
-                }
-            }
-        }
-    }
-    // 编辑病情
-    @IBAction func Edit_action(_ sender: Any) {
-        let vc = UIStoryboard.init(name: "Publish", bundle: nil).instantiateViewController(withIdentifier: "EditSick") as! EditViewController
-        vc.bean = data
-        vc.vc = self.vc
-        self.vc.present(vc, animated: false, completion: nil)
-    }
-    
 }
 
 
@@ -151,6 +118,7 @@ class PublishCell2: UICollectionViewCell, UICollectionViewDataSource,UICollectio
     func photoBrowser(_ browser: HJPhotoBrowser!, highQualityImageURLFor index: Int) -> URL! {
         return URL.init(string: imageSource[index])
     }
+    @IBOutlet weak var time_label: UICollectionView!
     
     @IBOutlet weak var label_desc: UILabel!
     @IBOutlet weak var label_age: UILabel!
@@ -172,6 +140,7 @@ class PublishCell2: UICollectionViewCell, UICollectionViewDataSource,UICollectio
     func updataView(sickBean:SickBean, vc:BaseRefreshController<SickBean>) {
         self.data = sickBean
         self.vc = vc
+        label_name.text = sickBean.usersicktime
         label_name.text = sickBean.familyname
         label_sex.text = sickBean.familymale
         label_age.text = "\(sickBean.familyage)"

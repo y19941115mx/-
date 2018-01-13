@@ -14,7 +14,10 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
     @IBOutlet weak var height: NSLayoutConstraint!
     @IBOutlet weak var opt_btn: UIButton!
     var doctorId:Int!
+    var account:String?
+    var docName:String?
     var dates = [MineCalendarBean]()
+    var startHeight:CGFloat!
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var avator: UIImageView!
@@ -45,10 +48,14 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavTitle(title: "医生详情")
+        self.startHeight = height.constant
+        let buttonItem = UIBarButtonItem.init(title: "评价", style: .plain, target: self, action: #selector(getEvaluate(_:)))
+        self.navigationItem.rightBarButtonItem = buttonItem
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.height.constant = startHeight
         NetWorkUtil<BaseListBean<MineCalendarBean>>.init(method: .getcalendar(doctorId))
             .newRequest { (bean, json) in
                 if bean.code == 100 {
@@ -67,20 +74,47 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
             if bean.code == 100 {
                 let data = json["data"]
                 let abs = data["docabs"].stringValue
+                self.account = data["dochuanxinaccount"].stringValue
                 self.absLabel.text = "简介：\(abs)"
-                self.nameLabel.text = data["docname"].stringValue
+                self.docName = data["docname"].stringValue
+                self.nameLabel.text = self.docName
                 self.titleLabel.text = data["doctitle"].stringValue
+                let flag = data["selected"].boolValue
+                if flag {
+                    self.opt_btn.setTitle("已经预选", for: .normal)
+                    self.opt_btn.backgroundColor = UIColor.gray
+                    self.opt_btn.isEnabled = false
+                }
                 self.deptLabel.text = "\(data["docprimarydept"].stringValue) \(data["docseconddept"].stringValue)"
                 self.label_hospital.text = data["dochosp"].stringValue
                 
                 self.expertLabel.text = "擅长： \(data["docexpert"].stringValue)"
-                            ImageUtil.setAvator(path: data["docloginpix"].stringValue, imageView: self.avator)
+                ImageUtil.setAvator(path: data["docloginpix"].stringValue, imageView: self.avator)
             }
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: SCREEN_WIDTH - 50, height: 100)
+    }
+    
+    // 获取评价
+    @objc func getEvaluate(_ sender:UIButton) {
+        let vc = EvaluateTableViewController()
+        vc.docId = self.doctorId
+        self.navigationController?.pushViewController(vc, animated: false)
+    }
+    
+    
+    @IBAction func sixin(_ sender: UIButton) {
+        if account == nil || account == "" {
+            Toast("环信账号异常")
+            return
+        }
+        let viewController = ChatViewController.init(conversationChatter: self.account, conversationType: EMConversationTypeChat)
+        viewController?.setUpNavTitle(title: (self.docName)!)
+        viewController?.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController!, animated: false)
     }
     
     @IBAction func click_opt(_ sender: UIButton) {
