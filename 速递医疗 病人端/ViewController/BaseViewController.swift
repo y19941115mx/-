@@ -123,6 +123,7 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+//    override func viewDidAppear(_ animated: Bool) {
 //        super.viewDidAppear(animated)
 //        self.refresh()
 //    }
