@@ -148,7 +148,7 @@
                         <segue destination="s19-bP-n6r" kind="presentation" identifier="亲属信息" animates="NO" modalTransitionStyle="partialCurl" id="6Ow-ai-yE4"/>
                         <segue destination="P0B-Q7-EZg" kind="presentation" identifier="我的设置" animates="NO" modalTransitionStyle="partialCurl" id="l5T-MP-9HH"/>
                         <segue destination="bWV-sk-tJ9" kind="presentation" identifier="个人信息" animates="NO" modalTransitionStyle="partialCurl" id="VZn-vq-43i"/>
-                        <segue destination="14o-P7-JDK" kind="presentation" identifier="交易记录" animates="NO" modalTransitionStyle="partialCurl" id="9t0-Qy-3Aa"/>
+                        <segue destination="Iq1-AG-cDn" kind="presentation" identifier="我的钱包" animates="NO" modalTransitionStyle="partialCurl" id="9t0-Qy-3Aa"/>
                         <segue destination="KuY-6D-I51" kind="presentation" identifier="我的消息" animates="NO" modalPresentationStyle="fullScreen" modalTransitionStyle="partialCurl" id="xzE-bz-pC1"/>
                         <segue destination="f3m-d3-m4g" kind="presentation" identifier="历史订单" animates="NO" modalPresentationStyle="fullScreen" modalTransitionStyle="partialCurl" id="nJR-8p-Pkt"/>
                     </connections>
@@ -291,7 +291,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wcg-v7-YZf">
-                                        <rect key="frame" x="334" y="20.333333333333329" width="80" height="44"/>
+                                        <rect key="frame" x="334" y="20" width="80" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="2cm-fZ-XK2"/>
                                             <constraint firstAttribute="width" constant="80" id="cTg-zc-0la"/>
@@ -528,93 +528,6 @@
                 <exit id="kGw-B4-aDZ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-3165.217391304348" y="-168.75"/>
-        </scene>
-        <!--Mine pocket-->
-        <scene sceneID="sVt-dR-5Xg">
-            <objects>
-                <viewController id="14o-P7-JDK" customClass="Mine_pocket" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="5ZH-sb-hLE"/>
-                        <viewControllerLayoutGuide type="bottom" id="FS5-sI-NPW"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7Fa-b7-lQo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EzC-Az-Ogg" userLabel="beginView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交易记录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Exx-rE-bpj">
-                                        <rect key="frame" x="173" y="32" width="69.333333333333314" height="20.333333333333329"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.96371272470000002" green="0.95316042430000003" blue="0.95234662219999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qyO-qH-n22">
-                                        <rect key="frame" x="0.0" y="20" width="80" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="mbT-eL-jKl"/>
-                                            <constraint firstAttribute="width" constant="80" id="ztJ-Yr-ba6"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="返回" image="back"/>
-                                        <connections>
-                                            <segue destination="KHc-jC-DgI" kind="unwind" unwindAction="unwindToMineWithSender:" id="qZI-7y-77O"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.39157021050000002" green="0.68089771269999999" blue="0.98662644619999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="Exx-rE-bpj" firstAttribute="centerX" secondItem="EzC-Az-Ogg" secondAttribute="centerX" id="B4b-b0-isK"/>
-                                    <constraint firstItem="qyO-qH-n22" firstAttribute="leading" secondItem="EzC-Az-Ogg" secondAttribute="leading" id="NxN-wG-zAM"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="QLs-uM-Ku1"/>
-                                    <constraint firstAttribute="height" constant="64" id="ipM-7n-lYa"/>
-                                    <constraint firstAttribute="bottom" secondItem="qyO-qH-n22" secondAttribute="bottom" id="vNs-Si-eYV"/>
-                                    <constraint firstAttribute="bottom" secondItem="Exx-rE-bpj" secondAttribute="bottom" constant="12" id="va4-dP-w4G"/>
-                                    <constraint firstItem="Exx-rE-bpj" firstAttribute="centerX" secondItem="EzC-Az-Ogg" secondAttribute="centerX" id="wCc-ps-VPO"/>
-                                </constraints>
-                            </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qKg-TB-dcy" customClass="BaseCollectionView" customModule="速递医疗_病人端" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="74" width="414" height="662"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="i0v-pp-vHJ">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="nibName" value="MinePocketCollectionViewCell"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="height">
-                                        <integer key="value" value="200"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="dataSource" destination="14o-P7-JDK" id="E94-BX-R22"/>
-                                    <outlet property="delegate" destination="14o-P7-JDK" id="xcf-ZH-lIb"/>
-                                </connections>
-                            </collectionView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="qKg-TB-dcy" secondAttribute="trailing" id="Ov6-bY-a4T"/>
-                            <constraint firstItem="EzC-Az-Ogg" firstAttribute="top" secondItem="7Fa-b7-lQo" secondAttribute="top" id="qXz-aW-kVv"/>
-                            <constraint firstItem="FS5-sI-NPW" firstAttribute="top" secondItem="qKg-TB-dcy" secondAttribute="bottom" id="qpP-Ph-6Pj"/>
-                            <constraint firstItem="qKg-TB-dcy" firstAttribute="leading" secondItem="7Fa-b7-lQo" secondAttribute="leading" id="vyF-8v-7Ru"/>
-                            <constraint firstAttribute="trailing" secondItem="EzC-Az-Ogg" secondAttribute="trailing" id="w0V-il-tnE"/>
-                            <constraint firstItem="qKg-TB-dcy" firstAttribute="top" secondItem="EzC-Az-Ogg" secondAttribute="bottom" constant="10" id="zg4-q6-CDq"/>
-                            <constraint firstItem="EzC-Az-Ogg" firstAttribute="leading" secondItem="7Fa-b7-lQo" secondAttribute="leading" id="znJ-Im-pgx"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="collectionView" destination="qKg-TB-dcy" id="Hna-o2-mlz"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vyh-wt-YOx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="KHc-jC-DgI" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="-3165" y="-3223"/>
         </scene>
         <!--Mine msg main-->
         <scene sceneID="ewL-Nd-gbM">
@@ -1054,6 +967,162 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lBM-7A-cpk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3165.217391304348" y="-4066.3043478260875"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Gj2-WE-BPl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Iq1-AG-cDn" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WTA-Jh-vXD">
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vYB-hT-0eP" kind="relationship" relationship="rootViewController" id="AbZ-qD-3L7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6IL-LH-RAO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3165.217391304348" y="-3223.3695652173915"/>
+        </scene>
+        <!--Mine pocket-->
+        <scene sceneID="TXC-vA-vaE">
+            <objects>
+                <tableViewController id="vYB-hT-0eP" customClass="Mine_pocket" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="6IT-4E-DE4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="89S-Zb-zU2">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="UT3-yT-CbZ" detailTextLabel="py1-eI-GxZ" style="IBUITableViewCellStyleSubtitle" id="gOp-5F-pUT">
+                                        <rect key="frame" x="0.0" y="35" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gOp-5F-pUT" id="ODT-UB-u6S">
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="绑定支付宝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UT3-yT-CbZ">
+                                                    <rect key="frame" x="20" y="5" width="86.666666666666671" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="未绑定" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="py1-eI-GxZ">
+                                                    <rect key="frame" x="20" y="25.333333333333332" width="37" height="14.333333333333334"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="mee-gb-kkL">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ccK-AV-yzJ" style="IBUITableViewCellStyleDefault" id="bgg-zj-GET">
+                                        <rect key="frame" x="0.0" y="115" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bgg-zj-GET" id="Oa9-Tf-4PS">
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="交易记录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ccK-AV-yzJ">
+                                                    <rect key="frame" x="20" y="0.0" width="356" height="43.666666666666664"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="BDt-xG-pz5" kind="show" id="2Vd-0h-GO6"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="vYB-hT-0eP" id="7wz-lc-6V6"/>
+                            <outlet property="delegate" destination="vYB-hT-0eP" id="PrP-wm-0g3"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="w4b-lo-vm8">
+                        <barButtonItem key="backBarButtonItem" title="返回" id="YvO-XM-G9x"/>
+                        <barButtonItem key="leftBarButtonItem" title="返回" image="back" id="9co-XC-7bA">
+                            <connections>
+                                <action selector="back_action:" destination="vYB-hT-0eP" id="62B-Nc-Yfe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="stateLabel" destination="py1-eI-GxZ" id="eA2-mb-dOb"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IGT-qD-i4N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2238" y="-3223"/>
+        </scene>
+        <!--Trade recode-->
+        <scene sceneID="qqu-IY-ZYc">
+            <objects>
+                <viewController id="BDt-xG-pz5" customClass="Trade_recode" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="q2V-ts-tUc"/>
+                        <viewControllerLayoutGuide type="bottom" id="sCj-Yv-vNc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xVN-0j-b0c">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aJv-uN-ebW" customClass="BaseCollectionView" customModule="速递医疗_病人端" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="74" width="414" height="662"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9pZ-Ha-hB3">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="rfY-wV-KnG">
+                                        <rect key="frame" x="10" y="0.0" width="394" height="200"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="394" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="nibName" value="MinePocketCollectionViewCell"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="height">
+                                        <integer key="value" value="200"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="sCj-Yv-vNc" firstAttribute="top" secondItem="aJv-uN-ebW" secondAttribute="bottom" id="8Yt-Uc-3jd"/>
+                            <constraint firstAttribute="trailing" secondItem="aJv-uN-ebW" secondAttribute="trailing" id="AQ8-XP-7UP"/>
+                            <constraint firstItem="aJv-uN-ebW" firstAttribute="top" secondItem="q2V-ts-tUc" secondAttribute="bottom" constant="10" id="jfb-rk-D1u"/>
+                            <constraint firstItem="aJv-uN-ebW" firstAttribute="leading" secondItem="xVN-0j-b0c" secondAttribute="leading" id="vMA-jv-c43"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="aJv-uN-ebW" id="cjV-mZ-Gvo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xiM-ng-sf1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1216" y="-3223"/>
         </scene>
     </scenes>
     <resources>

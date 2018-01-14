@@ -17,7 +17,7 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
     var account:String?
     var docName:String?
     var dates = [MineCalendarBean]()
-    var startHeight:CGFloat!
+    
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var avator: UIImageView!
@@ -48,19 +48,13 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavTitle(title: "医生详情")
-        self.startHeight = height.constant
         let buttonItem = UIBarButtonItem.init(title: "评价", style: .plain, target: self, action: #selector(getEvaluate(_:)))
         self.navigationItem.rightBarButtonItem = buttonItem
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.height.constant = startHeight
         NetWorkUtil<BaseListBean<MineCalendarBean>>.init(method: .getcalendar(doctorId))
             .newRequest(successhandler: { (bean, json) in
-                    if bean.dataList != nil {
-                        self.dates = bean.dataList!
-                        self.collectionView.reloadData()
+                if bean.dataList != nil {
+                    self.dates = bean.dataList!
+                    self.collectionView.reloadData()
                 }
                 // 更新top constrains
                 if self.dates.count == 0 {
@@ -91,7 +85,7 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
             }
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: SCREEN_WIDTH - 50, height: 100)
     }

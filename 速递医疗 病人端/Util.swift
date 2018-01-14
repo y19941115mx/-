@@ -59,8 +59,9 @@ public func ToastError(_ message:String) {
 public func Toast(_ message:String) {
     var style = ToastStyle()
     style.backgroundColor = UIColor.APPColor
-    let view = APPLICATION.window?.rootViewController?.view
-    view?.makeToast(message, duration: 2.0, position: .bottom, style:style)
+    let vc = APPLICATION.window?.rootViewController
+    
+    vc!.view!.makeToast(message, duration: 2.0, position: .bottom, style:style)
 }
 
 public func customBtn(str:String) -> UIButton {

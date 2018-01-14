@@ -35,6 +35,29 @@ class BaseViewController: UIViewController {
     
 }
 
+class BaseTableViewController: UITableViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = UIColor.white
+        navigationController?.navigationBar.isTranslucent = false
+        //设置导航栏颜色和字体
+        navigationController?.navigationBar.barTintColor = UIColor.APPColor
+        navigationController?.navigationBar.tintColor = UIColor.white
+    }
+    
+    
+    func setUpNavTitle(title:String) {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
+        label.text = title
+        label.backgroundColor = UIColor.clear
+        label.textColor = UIColor.white
+        navigationItem.titleView = label
+    }
+    
+    
+}
+
 // 多个输入框
 
 class BaseTextViewController:BaseViewController, UITextFieldDelegate {
@@ -341,6 +364,9 @@ class BaseTableInfoViewController:BaseViewController,UITableViewDataSource,UITab
         self.mTableView?.delegate = self
     }
 }
+
+
+
 
 class  BasicCollectionViewBrowserController:BaseViewController, UICollectionViewDelegate, HJPhotoBrowserDelegate {
     
