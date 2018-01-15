@@ -70,7 +70,7 @@ class LoginViewController: BaseTextViewController {
             // 注册环信
             if account == "" {
                 NetWorkUtil.init(method: .huanxinregister).newRequestWithOutHUD(successhandler: { (bean, sjon) in
-                    account = "doc_\(userId)"
+                    account = "user_\(userId)"
                 })
             }
             user_default.setUserDefault(key: .account, value: account)

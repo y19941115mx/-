@@ -12,6 +12,7 @@ import SnapKit
 class Trade_recode: BaseRefreshController<MineTradeBean>, UICollectionViewDataSource {
 
 
+    
     @IBOutlet weak var collectionView: BaseCollectionView!
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -45,6 +46,7 @@ class Trade_recode: BaseRefreshController<MineTradeBean>, UICollectionViewDataSo
 class Mine_pocket: BaseTableViewController {
     @IBOutlet weak var stateLabel: UILabel!
     
+    @IBOutlet weak var flagLabel: RedPointLabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavTitle(title: "我的钱包")
@@ -53,6 +55,8 @@ class Mine_pocket: BaseTableViewController {
             let str = data["alipayaccount"].stringValue
             if str != "" {
                 self.stateLabel.text = str
+            }else {
+                self.flagLabel.isRedPoint = true
             }
         }
     }

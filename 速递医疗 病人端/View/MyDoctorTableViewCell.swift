@@ -58,7 +58,8 @@ class MyDoctorTableViewCell: UITableViewCell {
                     for data in dataArray! {
                         let date = data["doccalendarday"].stringValue
                         let time = data["doccalendartime"].stringValue
-                        stringArray.append("\(date) \(time)")
+                        let price = data["doccalendarprice"].doubleValue
+                        stringArray.append("\(date) \(time) \(price)")
                         let id = data["doccalendarid"].intValue
                         calenderIds.append(id)
                     }

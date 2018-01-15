@@ -21,6 +21,7 @@ class Mine_main: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     @IBOutlet weak var label_type: UILabel!
     
     private let tableCell:[String] = ["个人信息", "亲属信息", "历史订单", "我的钱包", "我的消息","我的设置"]
+    private var flags = [false,false,false,false,false,false]
     
     
     override func viewDidLoad() {
@@ -37,6 +38,16 @@ class Mine_main: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             user_default.setUserDefault(key: .typename, value: msg)
             self.label_type.text = "\(msg)"
         }
+        
+        NetWorkUtil.init(method: .getalipayaccount).newRequestWithOutHUD { (bean, json) in
+            let data = json["data"]
+            let str = data["alipayaccount"].stringValue
+            if str == "" {
+                self.flags[3] = true
+                self.infoTable.reloadData()
+            }
+        }
+        
     }
     
     
@@ -48,7 +59,10 @@ class Mine_main: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let text = tableCell[indexPath.row]
-//        cell.imageView?.contentMode = .scaleToFill
+        let flag = flags[indexPath.row]
+        if let imgView = cell.imageView as? RedPointImageView {
+            imgView.isRedPoint = flag
+        }
         cell.imageView?.image = UIImage(named: text)
         cell.textLabel?.text = text
         return cell

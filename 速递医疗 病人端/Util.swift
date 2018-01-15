@@ -184,7 +184,6 @@ enum user_default:String {
     
     //UserDefaults 清空数据
     static func clearUserDefaultValue(){
-        UserDefaults.standard.removeObject(forKey: "userId")
         UserDefaults.standard.removeObject(forKey: "typename")
         UserDefaults.standard.removeObject(forKey: "pix")
         UserDefaults.standard.removeObject(forKey: "token")
@@ -495,6 +494,7 @@ class StringUTil {
     class func splitImage(str:String) -> [String] {
         return str.components(separatedBy: ",")
     }
+    
     
 }
 
