@@ -32,7 +32,7 @@ struct StaticClass {
     static let HuanxinAppkey = "1133171107115421#medicalclient"
     static let AliPayScheme = "com.dingling.medical.o2o"
     static let BuglyAPPID = "e0392726ce"
-    static let weixinAPPID = ""
+    static let weixinAPPID = "wx000999888777"
 }
 
 
@@ -519,8 +519,6 @@ public class AliSdkManager: NSObject {
         case "9000":
             returnMsg = "支付成功"
             dPrint(message: JSON.init(parseJSON: (result["result"] as! String))["alipay_trade_app_pay_response"]["sub_msg"].stringValue)
-            //            let vc = APPLICATION.window?.rootViewController as! BaseRefreshController<OrderBean>
-            //            vc.refreshData()
             Toast(returnMsg)
         default:
             Toast("支付失败")

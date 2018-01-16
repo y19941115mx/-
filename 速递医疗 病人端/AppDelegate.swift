@@ -43,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
         DBHelper.setUpDB()
         //初始化支付管理类
         AliSdkManager.sharedManager()
+        // 
         return true
     }
 

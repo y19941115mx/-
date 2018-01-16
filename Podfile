@@ -31,4 +31,6 @@ target '速递医疗 病人端' do
     pod 'Bugly'
     # 本地数据库
     pod 'RealmSwift'
+    # 微信支付
+    pod 'WechatOpenSDK'
 end
