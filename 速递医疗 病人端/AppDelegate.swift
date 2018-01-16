@@ -41,8 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
         self.setupHuanxin()
 //        本地数据库
         DBHelper.setUpDB()
-        //初始化支付管理类
-        AliSdkManager.sharedManager()
         // 
         return true
     }

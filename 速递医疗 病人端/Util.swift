@@ -500,10 +500,11 @@ class StringUTil {
 
 public class AliSdkManager: NSObject {
     public static var aliSdkManager:AliSdkManager!
+    var context:BaseRefreshController<OrderBean>?
     
-    
-    public static func sharedManager () -> AliSdkManager{
+    static func sharedManager (context:BaseRefreshController<OrderBean>) -> AliSdkManager{
         AliSdkManager.aliSdkManager = AliSdkManager.init()
+        AliSdkManager.aliSdkManager.context = context
         return AliSdkManager.aliSdkManager
     }
     internal func showResult(result:NSDictionary){
@@ -520,6 +521,7 @@ public class AliSdkManager: NSObject {
             returnMsg = "支付成功"
             dPrint(message: JSON.init(parseJSON: (result["result"] as! String))["alipay_trade_app_pay_response"]["sub_msg"].stringValue)
             Toast(returnMsg)
+            self.context?.refreshData()
         default:
             Toast("支付失败")
         }
@@ -531,7 +533,10 @@ public class AliPayUtils: NSObject {
     var context:UIViewController
     
     public init(context:UIViewController) {
-        self.context = context;
+        self.context = context
+        let vc = context as! BaseRefreshController<OrderBean>
+        //初始化支付管理类
+        AliSdkManager.sharedManager(context: vc)
     }
     
     public func pay(sign:String){
