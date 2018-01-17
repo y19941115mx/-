@@ -50,7 +50,7 @@ class Mine_pocket: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavTitle(title: "我的钱包")
-        NetWorkUtil.init(method: .getalipayaccount).newRequestWithOutHUD { (bean, json) in
+        NetWorkUtil.init(method: .getalipayaccount).newRequestWithOutHUD(successhandler: { (bean, json) in
             let data = json["data"]
             let str = data["alipayaccount"].stringValue
             if str != "" {
@@ -58,7 +58,7 @@ class Mine_pocket: BaseTableViewController {
             }else {
                 self.flagLabel.isRedPoint = true
             }
-        }
+        }) 
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

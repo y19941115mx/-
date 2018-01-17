@@ -129,7 +129,7 @@ class NetWorkUtil<T:BaseAPIBean> {
         }
     }
     
-    func newRequestWithOutHUD(successhandler:((_ bean:T, _ JSONObj:JSON) -> Void)?) {
+    func newRequestWithOutHUD(successhandler:((_ bean:T, _ JSONObj:JSON) -> Void)? ,failhandler:((_ bean:T, _ JSONObj:JSON) -> Void)? = nil) {
         let Provider = MoyaProvider<API>()
         Provider.request(method!) { result in
             switch result {
@@ -144,7 +144,11 @@ class NetWorkUtil<T:BaseAPIBean> {
                                 successhandler!(bean, json)
                             }
                         }else {
-                            ToastError(bean.msg!)
+                            if failhandler != nil {
+                                failhandler!(bean, json)
+                            }else {
+                                ToastError(bean.msg!)
+                            }
                         }
                     }
                     
@@ -196,8 +200,8 @@ enum user_default:String {
     static func logout(_ msg:String) {
         let vc_login = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()
         APPLICATION.window?.rootViewController = vc_login
-        NetWorkUtil<BaseAPIBean>.init(method: .exit).newRequestWithOutHUD { (bean, json) in
-            if bean.code == 100 {
+    NetWorkUtil<BaseAPIBean>.init(method: .exit).newRequestWithOutHUD(successhandler: { (bean, json) in
+            
                 user_default.clearUserDefaultValue()
                 EMClient.shared().logout(false, completion: { (error)
                     in
@@ -207,10 +211,7 @@ enum user_default:String {
                         Toast("\(msg)账号退出失败")
                     }
                 })
-            }else {
-                Toast(bean.msg!)
-            }
-        }
+        })
         
     }
 }
@@ -366,12 +367,11 @@ class MapUtil {
             
             if let error = error {
                 let error = error as NSError
-                
+                failHandler()
                 if error.code == AMapLocationErrorCode.locateFailed.rawValue {
                     //定位错误：此时location和regeocode没有返回值，不进行annotation的添加
                     let msg = "定位错误:{\(error.code) - \(error.localizedDescription)};"
                     Toast(msg)
-                    failHandler()
                     return
                 }
                 else if error.code == AMapLocationErrorCode.reGeocodeFailed.rawValue
@@ -383,17 +383,18 @@ class MapUtil {
                     
                     //逆地理错误：在带逆地理的单次定位中，逆地理过程可能发生错误，此时location有返回值，regeocode无返回值，进行annotation的添加
                     let msg = "获取地理位置失败，请检查GPS设置;"
-                    failHandler()
                     Toast(msg)
                 }
-            }
-            if let location = location  {
-                APPLICATION.lon = location.coordinate.longitude.description
-                APPLICATION.lat = location.coordinate.latitude.description
-                if successHandler != nil {
-                    successHandler!(location, reGeocode)
+            }else {
+                if let location = location  {
+                    APPLICATION.lon = location.coordinate.longitude.description
+                    APPLICATION.lat = location.coordinate.latitude.description
+                    if successHandler != nil {
+                        successHandler!(location, reGeocode)
+                    }
                 }
             }
+            
             
         })
     }

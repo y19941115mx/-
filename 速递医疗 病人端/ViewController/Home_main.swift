@@ -302,7 +302,6 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
             self.deptToolBar.isHidden = true
             cleanButton()
             sortByLocBtn.setTitleColor(UIColor.APPColor, for: .normal)
-            self.sortType = .sortByLoc
             // 显示地点选择器
             showUIPickView(type: 1)
         case 10004:
@@ -310,7 +309,6 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
             self.cityToolBar.isHidden = true
             cleanButton()
             sortByDept.setTitleColor(UIColor.APPColor, for: .normal)
-            self.sortType = .sortByDept
             // 显示地点选择器
             showUIPickView(type: 2)
         default:
@@ -320,19 +318,21 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
                 self.cityToolBar.isHidden = true
                 //获取选中的省
                 let p = self.addressArray[provinceIndex]
-                province = (p["state"]! as? String)!
+                province = "\(p["state"]! as! String)省"
                 //获取选中的市
                 let c = (p["cities"] as! NSArray)[cityIndex] as! [String: AnyObject]
-                city = (c["city"] as? String)!
+                city = "\((c["city"] as? String)!)市"
                 //获取选中的县（地区）
                 area = ""
                 if (c["areas"] as! [String]).count > 0 {
                     area = (c["areas"] as! [String])[areaIndex]
                 }
+                self.sortType = .sortByLoc
                 self.refreshBtn()
             }else {
                 self.deptPicker.isHidden = true
                 self.deptToolBar.isHidden = true
+                self.sortType = .sortByDept
                 self.refreshBtn()
             }
         }

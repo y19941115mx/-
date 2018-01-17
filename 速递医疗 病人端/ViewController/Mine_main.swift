@@ -32,21 +32,21 @@ class Mine_main: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     }
     override func viewDidAppear(_ animated: Bool) {
         // 更新账号审核状态
-        NetWorkUtil.init(method: .getreviewinfo).newRequestWithOutHUD { (bean, json) in
+        NetWorkUtil.init(method: .getreviewinfo).newRequestWithOutHUD(successhandler: { (bean, json) in
             let data = json["data"]
             let msg = data["typename"].stringValue
             user_default.setUserDefault(key: .typename, value: msg)
             self.label_type.text = "\(msg)"
-        }
+        })
         
-        NetWorkUtil.init(method: .getalipayaccount).newRequestWithOutHUD { (bean, json) in
+        NetWorkUtil.init(method: .getalipayaccount).newRequestWithOutHUD(successhandler:  { (bean, json) in
             let data = json["data"]
             let str = data["alipayaccount"].stringValue
             if str == "" {
                 self.flags[3] = true
                 self.infoTable.reloadData()
             }
-        }
+        })
         
     }
     

@@ -36,11 +36,11 @@ class Mine_msg_main: BaseRefreshController<NotificationBean>,UITableViewDataSour
         let bean = data[indexPath.row]
         bean.notificationread = true
         tableView.reloadRows(at: [indexPath], with: .none)
-        NetWorkUtil.init(method: .updatenotificationtoread(bean.notificationid!)).newRequestWithOutHUD { (bean, json) in
-            if bean.code == 100 {
-                UIApplication.shared.applicationIconBadgeNumber -= 1
-            }
-        }
+        NetWorkUtil.init(method: .updatenotificationtoread(bean.notificationid!)).newRequestWithOutHUD(successhandler: { (bean, json) in
+            
+            UIApplication.shared.applicationIconBadgeNumber -= 1
+            
+        })
         // 获取数据跳转对应页面
         let notificationdata = bean.notificationdata
         if notificationdata != "{}" && notificationdata != nil  {
@@ -49,11 +49,11 @@ class Mine_msg_main: BaseRefreshController<NotificationBean>,UITableViewDataSour
                 if json["order_id"].int != nil {
                     // 跳转到订单详情页
                     let vc = UIStoryboard.init(name: "Date", bundle: nil).instantiateViewController(withIdentifier: "OrderDetail") as! Order_Detail
-                            vc.userorderId = json["order_id"].intValue
+                    vc.userorderId = json["order_id"].intValue
                     self.present(vc, animated: false, completion: nil)
                 }
                 else if json["doc_id"].int != nil {
-//                    // 跳转到医生页
+                    //                    // 跳转到医生页
                     let vc = UIStoryboard.init(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Detail") as! Home_DoctorDetail
                     vc.doctorId = json["doc_id"].intValue
                     self.navigationController?.pushViewController(vc, animated: false)
@@ -101,7 +101,7 @@ class Mine_msg_main: BaseRefreshController<NotificationBean>,UITableViewDataSour
         })
     }
     
-   @IBAction func ListAction(_ sender: Any) {
+    @IBAction func ListAction(_ sender: Any) {
         AlertUtil.popMenu(vc: self, title: "操作", msg: "", btns: ["全部已读", "全部删除"]) { (str) in
             if str == "全部已读" {
                 self.readAllMsgAction()

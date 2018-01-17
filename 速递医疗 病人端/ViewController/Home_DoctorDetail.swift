@@ -62,7 +62,7 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
                     self.height.constant -= 220
                 }
             })
-        NetWorkUtil.init(method: API.doctorinfo((doctorId)!)).newRequestWithOutHUD { (bean, json) in
+        NetWorkUtil.init(method: API.doctorinfo((doctorId)!)).newRequestWithOutHUD(successhandler: { (bean, json) in
             if bean.code == 100 {
                 let data = json["data"]
                 let abs = data["docabs"].stringValue
@@ -83,7 +83,7 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
                 self.expertLabel.text = "擅长： \(data["docexpert"].stringValue)"
                 ImageUtil.setAvator(path: data["docloginpix"].stringValue, imageView: self.avator)
             }
-        }
+        }) 
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

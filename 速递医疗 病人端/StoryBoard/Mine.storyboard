@@ -147,7 +147,7 @@
                         <outlet property="label_type" destination="Dd0-YK-uoi" id="YNV-Xm-21w"/>
                         <segue destination="s19-bP-n6r" kind="presentation" identifier="亲属信息" animates="NO" modalTransitionStyle="partialCurl" id="6Ow-ai-yE4"/>
                         <segue destination="P0B-Q7-EZg" kind="presentation" identifier="我的设置" animates="NO" modalTransitionStyle="partialCurl" id="l5T-MP-9HH"/>
-                        <segue destination="bWV-sk-tJ9" kind="presentation" identifier="个人信息" animates="NO" modalTransitionStyle="partialCurl" id="VZn-vq-43i"/>
+                        <segue destination="bWV-sk-tJ9" kind="presentation" identifier="个人信息" animates="NO" modalPresentationStyle="fullScreen" modalTransitionStyle="partialCurl" id="VZn-vq-43i"/>
                         <segue destination="Iq1-AG-cDn" kind="presentation" identifier="我的钱包" animates="NO" modalTransitionStyle="partialCurl" id="9t0-Qy-3Aa"/>
                         <segue destination="KuY-6D-I51" kind="presentation" identifier="我的消息" animates="NO" modalPresentationStyle="fullScreen" modalTransitionStyle="partialCurl" id="xzE-bz-pC1"/>
                         <segue destination="f3m-d3-m4g" kind="presentation" identifier="历史订单" animates="NO" modalPresentationStyle="fullScreen" modalTransitionStyle="partialCurl" id="nJR-8p-Pkt"/>
@@ -527,7 +527,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nt9-t9-qdy" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="kGw-B4-aDZ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-3165.217391304348" y="-168.75"/>
+            <point key="canvasLocation" x="-3365" y="-56"/>
         </scene>
         <!--Mine msg main-->
         <scene sceneID="ewL-Nd-gbM">
@@ -806,7 +806,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P9T-RU-lCu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2138" y="-169"/>
+            <point key="canvasLocation" x="-2155" y="-56"/>
         </scene>
         <!--Mine order-->
         <scene sceneID="sXy-uG-rN6">
@@ -1093,10 +1093,10 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="rfY-wV-KnG">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="10" y="0.0" width="394" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="394" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </view>
                                     </collectionViewCell>

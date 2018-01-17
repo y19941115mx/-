@@ -27,6 +27,44 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        let msg = user_default.typename.getStringValue()
+        if msg == "审核中" || msg == "已审核" {
+            confirmBtn.isEnabled = false
+            confirmBtn.setTitle(msg, for: .normal)
+            self.tableView.allowsSelection = false
+        }else {
+            confirmBtn.isEnabled = true
+            confirmBtn.setTitle("提交审核", for: .normal)
+            self.tableView.allowsSelection = true
+        }
+        
+        NetWorkUtil.init(method: .getinfo).newRequest(successhandler: { (bean, json) in
+            let data = json["data"]
+            let username = data["username"].string ?? self.tableInfo[0][0]
+            let usercardnum = data["usercardnum"].string ?? self.tableInfo[0][1]
+            
+            if self.flag != 0 {
+                self.tableInfo[0][2] = "已上传"
+            }
+            
+            if data["usercardphoto"].string != nil && data["usercardphoto"].string != "" {
+                self.imageString = StringUTil.splitImage(str: data["usercardphoto"].string!)
+                // 添加图片
+                for str in self.imageString {
+                    self.image.append(ImageUtil.URLToImg(url: URL.init(string: str)!))
+                }
+                
+                self.tableInfo[0][2] = "已上传"
+            }
+            let usermale = data["usermale"].string ?? self.tableInfo[0][3]
+            let userage = "\(data["userage"].intValue)"
+            let useradrother = data["useradrother"].string ?? self.tableInfo[0][5]
+            self.tableInfo = [[username, usercardnum, self.tableInfo[0][2], usermale, userage, useradrother]]
+            self.tableView.reloadData()
+        })
+    }
+    
     // 提交审核
     @IBAction func click_save(_ sender: UIButton) {
         for i in 0 ..< tableInfo[0].count - 1 {
@@ -44,13 +82,18 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
             NetWorkUtil.init(method: .editinfo(tableInfo[0][0], tableInfo[0][1], datas, tableInfo[0][3], Int(tableInfo[0][4])!, tableInfo[0][5])).newRequestWithOutHUD(successhandler: { (bean, json) in
                 NetWorkUtil.init(method: .reviewinfo).newRequestWithOutHUD(successhandler: { (bean, sjon) in
                     self.dismiss(animated: false, completion: nil)
+                },failhandler:{ (bean, sjon) in
+                    showToast(self.view, bean.msg!)
                 })
+            },failhandler:{ (bean, sjon) in
+                showToast(self.view, bean.msg!)
             })
         }else {
             showToast(self.view, "照片为空")
         }
-        
     }
+    
+    
     
     private func  handleClick(index_path:IndexPath) {
         switch index_path.row {
@@ -111,38 +154,5 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
             })
         }
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        let msg = user_default.typename.getStringValue()
-        if msg == "审核中" || msg == "已审核" {
-            confirmBtn.isEnabled = false
-            confirmBtn.setTitle(msg, for: .normal)
-            self.tableView.allowsSelection = false
-        }else {
-            confirmBtn.isEnabled = true
-            confirmBtn.setTitle("提交审核", for: .normal)
-            self.tableView.allowsSelection = true
-        }
-        NetWorkUtil.init(method: .getinfo).newRequest(successhandler: { (bean, json) in
-            let data = json["data"]
-            let username = data["username"].string ?? self.tableInfo[0][0]
-            let usercardnum = data["usercardnum"].string ?? self.tableInfo[0][1]
-            
-            if self.flag != 0 {
-                self.tableInfo[0][2] = "已上传"
-            }
-            
-            if data["usercardphoto"].string != nil && data["usercardphoto"].string != "" {
-                self.imageString = StringUTil.splitImage(str: data["usercardphoto"].string!)
-                self.tableInfo[0][2] = "已上传"
-            }
-            let usermale = data["usermale"].string ?? self.tableInfo[0][3]
-            let userage = "\(data["userage"].intValue)"
-            let useradrother = data["useradrother"].string ?? self.tableInfo[0][5]
-            self.tableInfo = [[username, usercardnum, self.tableInfo[0][2], usermale, userage, useradrother]]
-            self.tableView.reloadData()
-        })
-    }
-    
     
 }

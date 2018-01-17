@@ -125,7 +125,19 @@ class Publish_add: BasePickImgViewController, UITextViewDelegate, UICollectionVi
     
     //MARK: - UIPickerViewDelegate
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
-        
+        if row == 0 && component == 0 {
+            // 默认显示
+            let oneDepart = Array(APPLICATION.departData.keys)[0]
+            let twoDeparts = APPLICATION.departData[oneDepart]
+            if  twoDeparts?.count != 0{
+                self.oneDepart = oneDepart
+                self.twoDepart = (twoDeparts?[0])!
+                departTextField.text = "\(oneDepart) \(twoDepart)"
+            }else{
+                self.oneDepart = oneDepart
+                departTextField.text = oneDepart
+            }
+        }
         if (component == 0) {
             // 一级科室
             return Array(departData.keys)[row]
@@ -235,6 +247,8 @@ class Publish_add: BasePickImgViewController, UITextViewDelegate, UICollectionVi
             }
             NetWorkUtil<BaseAPIBean>.init(method: .addsick(datas, textView.text, oneDepart, twoDepart, family)).newRequest(successhandler: { (bean, json) in
                     self.dismiss(animated: false, completion: nil)
+            }, failhandler:{ (bean, json) in
+                showToast(self.view, bean.msg!)
             })
         }else {
             showToast(self.view, "请填写完整病情信息")
