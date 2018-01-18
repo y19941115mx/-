@@ -17,6 +17,7 @@
 #endif
 # import <HyphenateLite/HyphenateLite.h>
 #import <AlipaySDK/AlipaySDK.h>
+#import <WXApi.h>
 
 
 

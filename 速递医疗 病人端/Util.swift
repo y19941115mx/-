@@ -32,7 +32,7 @@ struct StaticClass {
     static let HuanxinAppkey = "1133171107115421#medicalclient"
     static let AliPayScheme = "com.dingling.medical.o2o"
     static let BuglyAPPID = "e0392726ce"
-    static let weixinAPPID = "wx000999888777"
+    static let weixinAPPID = "wxd97a67a007393b4e"
 }
 
 
@@ -550,6 +550,39 @@ public class AliPayUtils: NSObject {
         } )
     }
 }
+
+
+//public class AliSdkManager: NSObject {
+//    public static var aliSdkManager:AliSdkManager!
+//    var context:BaseRefreshController<OrderBean>?
+//    
+//    static func sharedManager (context:BaseRefreshController<OrderBean>) -> AliSdkManager{
+//        AliSdkManager.aliSdkManager = AliSdkManager.init()
+//        AliSdkManager.aliSdkManager.context = context
+//        return AliSdkManager.aliSdkManager
+//    }
+//    internal func showResult(result:NSDictionary){
+//        //        9000    订单支付成功
+//        //        8000    正在处理中
+//        //        4000    订单支付失败
+//        //        6001    用户中途取消
+//        //        6002    网络连接出错
+//        let returnCode:String = result["resultStatus"] as! String
+//        var returnMsg:String = result["memo"] as! String
+//        dPrint(message: "returnMsg: \(result)")
+//        switch  returnCode{
+//        case "9000":
+//            returnMsg = "支付成功"
+//            dPrint(message: JSON.init(parseJSON: (result["result"] as! String))["alipay_trade_app_pay_response"]["sub_msg"].stringValue)
+//            Toast(returnMsg)
+//            self.context?.refreshData()
+//        default:
+//            Toast("支付失败")
+//        }
+//    }
+//}
+
+
 
 public class DBHelper:NSObject {
     // 初始化数据库

@@ -21,7 +21,7 @@ class Mine_msg_main: BaseRefreshController<NotificationBean>,UITableViewDataSour
         let titleLabel = cell.viewWithTag(1) as! UILabel
         let timeLabel = cell.viewWithTag(2) as! UILabel
         let descLabel = cell.viewWithTag(3) as! UILabel
-        let readFlag = cell.viewWithTag(4) as! UIView
+        let readFlag = cell.viewWithTag(4)!
         let bean = data[indexPath.row]
         if bean.notificationread! {
             readFlag.isHidden = true
@@ -45,19 +45,23 @@ class Mine_msg_main: BaseRefreshController<NotificationBean>,UITableViewDataSour
         let notificationdata = bean.notificationdata
         if notificationdata != "{}" && notificationdata != nil  {
             if let jsonData = notificationdata!.data(using: String.Encoding.utf8, allowLossyConversion: false) {
-                let json = JSON.init(data:jsonData)
-                if json["order_id"].int != nil {
-                    // 跳转到订单详情页
-                    let vc = UIStoryboard.init(name: "Date", bundle: nil).instantiateViewController(withIdentifier: "OrderDetail") as! Order_Detail
-                    vc.userorderId = json["order_id"].intValue
-                    self.present(vc, animated: false, completion: nil)
-                }
-                else if json["doc_id"].int != nil {
-                    //                    // 跳转到医生页
-                    let vc = UIStoryboard.init(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Detail") as! Home_DoctorDetail
-                    vc.doctorId = json["doc_id"].intValue
-                    self.navigationController?.pushViewController(vc, animated: false)
-                    self.navigationController?.setNavigationBarHidden(false, animated: false)
+                do {
+                    let json = try JSON.init(data:jsonData)
+                    if json["order_id"].int != nil {
+                        // 跳转到订单详情页
+                        let vc = UIStoryboard.init(name: "Date", bundle: nil).instantiateViewController(withIdentifier: "OrderDetail") as! Order_Detail
+                        vc.userorderId = json["order_id"].intValue
+                        self.present(vc, animated: false, completion: nil)
+                    }
+                    else if json["doc_id"].int != nil {
+                        //                    // 跳转到医生页
+                        let vc = UIStoryboard.init(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Detail") as! Home_DoctorDetail
+                        vc.doctorId = json["doc_id"].intValue
+                        self.navigationController?.pushViewController(vc, animated: false)
+                        self.navigationController?.setNavigationBarHidden(false, animated: false)
+                    }
+                } catch {
+                    dPrint(message: "JsonParse error")
                 }
             }
         }

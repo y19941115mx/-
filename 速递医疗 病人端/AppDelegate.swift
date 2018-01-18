@@ -41,7 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
         self.setupHuanxin()
 //        本地数据库
         DBHelper.setUpDB()
-        // 
+//        微信支付
+        WXApi.registerApp(StaticClass.weixinAPPID)
+        
         return true
     }
 
@@ -100,7 +102,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
     func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
         application.registerForRemoteNotifications()
     }
+    
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        //支付宝支付
         if url.host == "safepay" {
             AlipaySDK.defaultService().processOrder(withPaymentResult: url as URL!, standbyCallback: {
                 (resultDic) -> Void in
@@ -108,8 +112,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
                 AliSdkManager.aliSdkManager.showResult(result: resultDic! as NSDictionary);
             })
         }
-        return true;
+        // 微信支付
+        WXApi.handleOpen(url, delegate: nil)
+        return true
     }
+    
     
     // 强制退出 回调
     func userAccountDidLoginFromOtherDevice() {

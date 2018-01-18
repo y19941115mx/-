@@ -1,8 +1,8 @@
 PODS:
-  - Alamofire (4.5.1)
-  - AMapFoundation (1.4.2)
-  - AMapLocation (2.5.0):
-    - AMapFoundation (~> 1.4)
+  - Alamofire (4.6.0)
+  - AMapFoundation-NO-IDFA (1.4.3)
+  - AMapLocation-NO-IDFA (2.6.0):
+    - AMapFoundation-NO-IDFA (~> 1.4)
   - Bugly (2.5.0)
   - DACircularProgress (2.3.1)
   - EaseUILite (3.3.7):
@@ -12,37 +12,37 @@ PODS:
   - HJPhotoBrowser (1.0.2):
     - SDWebImage (!= 3.7.2, ~> 3.7)
   - HyphenateLite (3.3.7)
-  - Kingfisher (4.0.1)
+  - Kingfisher (4.6.1)
   - MBProgressHUD (0.9.2)
-  - MJRefresh (3.1.12)
-  - Moya (9.0.0):
-    - Moya/Core (= 9.0.0)
-  - Moya/Core (9.0.0):
+  - MJRefresh (3.1.15.1)
+  - Moya (10.0.1):
+    - Moya/Core (= 10.0.1)
+  - Moya/Core (10.0.1):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
   - MWPhotoBrowser (2.1.2):
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
-  - ObjectMapper (3.0.0)
+  - ObjectMapper (3.1.0)
   - Realm (3.0.2):
     - Realm/Headers (= 3.0.2)
   - Realm/Headers (3.0.2)
   - RealmSwift (3.0.2):
     - Realm (= 3.0.2)
-  - Result (3.2.3)
+  - Result (3.2.4)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - SnapKit (4.0.0)
-  - SVProgressHUD (2.2.1)
+  - SVProgressHUD (2.2.2)
   - SwiftHash (2.0.1)
-  - SwiftyJSON (3.1.4)
-  - Toast-Swift (2.0.0)
+  - SwiftyJSON (4.0.0)
+  - Toast-Swift (3.0.1)
   - WechatOpenSDK (1.8.1)
 
 DEPENDENCIES:
-  - AMapLocation
+  - AMapLocation-NO-IDFA
   - Bugly
   - EaseUILite (from `https://github.com/easemob/easeui-ios-hyphenate-cocoapods.git`)
   - HJPhotoBrowser
@@ -70,35 +70,35 @@ CHECKOUT OPTIONS:
     :commit: 525a827bd9559ba8a18305066d1d385204f76842
     :git: https://github.com/easemob/easeui-ios-hyphenate-cocoapods.git
   SwiftHash:
-    :commit: 1387bd2a614060ff516b3aa1279354b139b3e6f1
+    :commit: dd08f681c805c759d656c1cf98b0fec3b5886e42
     :git: https://github.com/onmyway133/SwiftHash
 
 SPEC CHECKSUMS:
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  AMapFoundation: 6c0471c9a6a0ad17dad46e3d800ad56ca170f82a
-  AMapLocation: d02bd8c0081b0bc51b2e4cf89925ef57448263c9
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  AMapFoundation-NO-IDFA: b6cbefab250ae8ab2e31aa9bb3dbbb98137cd76f
+  AMapLocation-NO-IDFA: a75b762ae9a90840ce683de12504ac843a9f3b6c
   Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   EaseUILite: a90e5aab0b6ed9768cb8bbe44d4bd040bb6d0cbd
   HJPhotoBrowser: 2397c07ba4de8d8883c3d26f56ee5bb4c7757d63
   HyphenateLite: c11b72fd7cd28a0bdc76e46094909f899369e5be
-  Kingfisher: b771785e9461ed4b8686d40e7145f9e58100cb24
+  Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
-  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
-  Moya: cf5e6ee93af526532f92614004b8ad2ea60fd845
+  MJRefresh: 5f8552bc25ca8751c010f621c1098dbdaacbccd6
+  Moya: 9e621707ff754eeb51ff3ec51a3d54e517c0733a
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
-  ObjectMapper: 92230db59bf8f341a5c3a3cf0b9fbdde3cf0d87f
+  ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   Realm: 6f23fd1f178a09342eac21bfa7c2bf4312a7a180
   RealmSwift: 695393add1b8f9d5fa75dd16e6355cf3935f71e2
-  Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
-  SVProgressHUD: db27c54e6e18bc903341661fc9feb55e04905cc4
+  SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
   SwiftHash: 62691a0d6b09b958d21ab1ea0014b83d56f58e8f
-  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
-  Toast-Swift: 5b2f8f720f7e78e48511f693df1f9c9a6e38a25a
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
   WechatOpenSDK: 491d965d79335070328571d3e79f714549e79a5e
 
-PODFILE CHECKSUM: 7fc8ceff37d606d87689ae1c285706aad7cfd44c
+PODFILE CHECKSUM: 081c812c997a2aa1097574c0b2afb98f8e3df325
 
 COCOAPODS: 1.3.1

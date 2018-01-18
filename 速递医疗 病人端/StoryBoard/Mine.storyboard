@@ -13,7 +13,7 @@
         <!--Mine main-->
         <scene sceneID="MHx-03-Nij">
             <objects>
-                <viewController id="ET6-4N-FNh" customClass="Mine_main" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ET6-4N-FNh" customClass="Mine_main" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yIG-um-HrS"/>
                         <viewControllerLayoutGuide type="bottom" id="351-9h-hiB"/>
@@ -95,7 +95,7 @@
                                     <constraint firstItem="Dd0-YK-uoi" firstAttribute="leading" secondItem="WVO-Md-th2" secondAttribute="trailing" constant="5" id="wo1-rQ-e64"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AE9-FX-ysG" customClass="BaseTableView" customModule="速递医疗_病人端" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AE9-FX-ysG" customClass="BaseTableView" customModule="PatientClient" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="160" width="414" height="576"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -113,7 +113,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="历史订单" id="ypo-Ao-J27" customClass="RedPointImageView" customModule="速递医疗_病人端" customModuleProvider="target">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="历史订单" id="ypo-Ao-J27" customClass="RedPointImageView" customModule="PatientClient" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="11" width="20" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -160,7 +160,7 @@
         <!--Mine setting-->
         <scene sceneID="19y-U8-XyE">
             <objects>
-                <viewController id="P0B-Q7-EZg" customClass="Mine_setting" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="P0B-Q7-EZg" customClass="Mine_setting" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ivM-64-Hb1"/>
                         <viewControllerLayoutGuide type="bottom" id="8MF-mL-mqR"/>
@@ -169,7 +169,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hdL-Nd-gWA" customClass="BaseTableView" customModule="速递医疗_病人端" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hdL-Nd-gWA" customClass="BaseTableView" customModule="PatientClient" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="74" width="414" height="662"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -260,7 +260,7 @@
         <!--Mine family-->
         <scene sceneID="z5L-Zl-t5d">
             <objects>
-                <viewController id="s19-bP-n6r" customClass="Mine_family" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="s19-bP-n6r" customClass="Mine_family" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qif-D4-Vzz"/>
                         <viewControllerLayoutGuide type="bottom" id="ZKO-Yg-xsk"/>
@@ -291,7 +291,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wcg-v7-YZf">
-                                        <rect key="frame" x="334" y="19.666666666666671" width="80" height="44"/>
+                                        <rect key="frame" x="334" y="20" width="80" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="2cm-fZ-XK2"/>
                                             <constraint firstAttribute="width" constant="80" id="cTg-zc-0la"/>
@@ -314,7 +314,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Wcg-v7-YZf" secondAttribute="trailing" id="ygS-HV-jzS"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8PS-wd-BDb" customClass="BaseTableView" customModule="速递医疗_病人端" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8PS-wd-BDb" customClass="BaseTableView" customModule="PatientClient" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="74" width="414" height="662"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -386,7 +386,7 @@
         <!--Mine info-->
         <scene sceneID="ID1-oC-pQt">
             <objects>
-                <viewController storyboardIdentifier="Detail" id="bWV-sk-tJ9" customClass="Mine_info" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Detail" id="bWV-sk-tJ9" customClass="Mine_info" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iPI-OR-PAN"/>
                         <viewControllerLayoutGuide type="bottom" id="Lth-47-Abe"/>
@@ -431,7 +431,7 @@
                                     <constraint firstAttribute="bottom" secondItem="6PT-nY-HXN" secondAttribute="bottom" id="q6A-qk-88Z"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Brt-18-fsk" customClass="BaseTableView" customModule="速递医疗_病人端" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Brt-18-fsk" customClass="BaseTableView" customModule="PatientClient" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="103.33333333333331" width="414" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -532,7 +532,7 @@
         <!--Mine msg main-->
         <scene sceneID="ewL-Nd-gbM">
             <objects>
-                <viewController storyboardIdentifier="mineMsg" id="bHh-qo-qiX" customClass="Mine_msg_main" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mineMsg" id="bHh-qo-qiX" customClass="Mine_msg_main" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jah-ap-T5y"/>
                         <viewControllerLayoutGuide type="bottom" id="dZy-hh-daY"/>
@@ -585,7 +585,7 @@
                                     <constraint firstItem="OnV-kc-QCH" firstAttribute="leading" secondItem="A3K-EV-BfU" secondAttribute="leading" id="qaX-9P-BNq"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8KU-QK-SST" customClass="BaseTableView" customModule="速递医疗_病人端" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8KU-QK-SST" customClass="BaseTableView" customModule="PatientClient" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -677,7 +677,7 @@
         <!--Mine info photo-->
         <scene sceneID="sr9-VP-hmw">
             <objects>
-                <viewController storyboardIdentifier="addPhoto" id="NSy-Rf-mHD" customClass="Mine_info_photo" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addPhoto" id="NSy-Rf-mHD" customClass="Mine_info_photo" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="86e-Lc-f5S"/>
                         <viewControllerLayoutGuide type="bottom" id="93o-GR-nHQ"/>
@@ -811,7 +811,7 @@
         <!--Mine order-->
         <scene sceneID="sXy-uG-rN6">
             <objects>
-                <viewController id="f3m-d3-m4g" customClass="Mine_order" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="f3m-d3-m4g" customClass="Mine_order" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qej-fm-Hs0"/>
                         <viewControllerLayoutGuide type="bottom" id="VVx-Jl-FpL"/>
@@ -853,7 +853,7 @@
                                     <constraint firstAttribute="bottom" secondItem="aLu-rx-uTH" secondAttribute="bottom" constant="12" id="zBJ-FI-2aG"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EKz-f4-0Q9" customClass="BaseTableView" customModule="速递医疗_病人端" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EKz-f4-0Q9" customClass="BaseTableView" customModule="PatientClient" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="74" width="414" height="662"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -989,7 +989,7 @@
         <!--Mine pocket-->
         <scene sceneID="TXC-vA-vaE">
             <objects>
-                <tableViewController id="vYB-hT-0eP" customClass="Mine_pocket" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="vYB-hT-0eP" customClass="Mine_pocket" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="6IT-4E-DE4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1004,12 +1004,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="绑定支付宝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UT3-yT-CbZ" customClass="RedPointLabel" customModule="速递医疗_病人端" customModuleProvider="target">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="绑定支付宝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UT3-yT-CbZ" customClass="RedPointLabel" customModule="PatientClient" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="5" width="86.666666666666671" height="20.333333333333332"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isRedPoint" value="NO"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="未绑定" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="py1-eI-GxZ">
                                                     <rect key="frame" x="20" y="25.333333333333332" width="37" height="14.333333333333334"/>
@@ -1073,7 +1076,7 @@
         <!--Trade recode-->
         <scene sceneID="qqu-IY-ZYc">
             <objects>
-                <viewController id="BDt-xG-pz5" customClass="Trade_recode" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BDt-xG-pz5" customClass="Trade_recode" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="q2V-ts-tUc"/>
                         <viewControllerLayoutGuide type="bottom" id="sCj-Yv-vNc"/>
@@ -1082,7 +1085,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aJv-uN-ebW" customClass="BaseCollectionView" customModule="速递医疗_病人端" customModuleProvider="target">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aJv-uN-ebW" customClass="BaseCollectionView" customModule="PatientClient" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="74" width="414" height="662"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9pZ-Ha-hB3">
