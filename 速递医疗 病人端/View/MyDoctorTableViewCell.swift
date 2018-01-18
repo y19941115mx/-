@@ -67,7 +67,6 @@ class MyDoctorTableViewCell: UITableViewCell {
                         let index = stringArray.index(of: str)
                         let calenderId = calenderIds[index!]
                         NetWorkUtil<BaseAPIBean>.init(method: .createorder(id!, calenderId)).newRequest(successhandler: { (bean, json) in
-                            Toast(bean.msg!)
                             NavigationUtil<Date_main>.setTabBarSonController(index: 3, handler: { (vc) in
                                 let sonvc = vc.vcs[0]
                                 vc.slideSwitch.selectedIndex = 0

@@ -81,6 +81,11 @@
 		84C984061FA618060058FA7B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C984041FA618060058FA7B /* BaseViewController.swift */; };
 		84C984071FA618060058FA7B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C984051FA618060058FA7B /* MainViewController.swift */; };
 		84C9840E1FA618EF0058FA7B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C9840D1FA618EE0058FA7B /* API.swift */; };
+		84CF70DF20112AE7000C6AE1 /* ShareItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF70DA20112AE6000C6AE1 /* ShareItem.swift */; };
+		84CF70E020112AE7000C6AE1 /* IFMShareImage.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84CF70DB20112AE6000C6AE1 /* IFMShareImage.bundle */; };
+		84CF70E120112AE7000C6AE1 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF70DC20112AE6000C6AE1 /* ShareView.swift */; };
+		84CF70E220112AE7000C6AE1 /* SharePlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF70DD20112AE6000C6AE1 /* SharePlatform.swift */; };
+		84CF70E320112AE7000C6AE1 /* ShareItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF70DE20112AE6000C6AE1 /* ShareItemCell.swift */; };
 		84DDACDC1FE0C915004199FF /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DDACDA1FE0C914004199FF /* InfoTableViewCell.swift */; };
 		84DDACDD1FE0C915004199FF /* InfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DDACDB1FE0C915004199FF /* InfoTableViewCell.xib */; };
 		84DDACDF1FE0C96F004199FF /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DDACDE1FE0C96F004199FF /* EditViewController.swift */; };
@@ -177,6 +182,11 @@
 		84C984041FA618060058FA7B /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		84C984051FA618060058FA7B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		84C9840D1FA618EE0058FA7B /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		84CF70DA20112AE6000C6AE1 /* ShareItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareItem.swift; sourceTree = "<group>"; };
+		84CF70DB20112AE6000C6AE1 /* IFMShareImage.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IFMShareImage.bundle; sourceTree = "<group>"; };
+		84CF70DC20112AE6000C6AE1 /* ShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		84CF70DD20112AE6000C6AE1 /* SharePlatform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharePlatform.swift; sourceTree = "<group>"; };
+		84CF70DE20112AE6000C6AE1 /* ShareItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareItemCell.swift; sourceTree = "<group>"; };
 		84DDACDA1FE0C914004199FF /* InfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		84DDACDB1FE0C915004199FF /* InfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoTableViewCell.xib; sourceTree = "<group>"; };
 		84DDACDE1FE0C96F004199FF /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
@@ -215,6 +225,7 @@
 		840647671FA6A6E4009B21C4 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				84CF70D920112AE6000C6AE1 /* SwiftShare */,
 				847C139C1FD2B86000B32BB7 /* LibBPush */,
 				847C13961FD2B40300B32BB7 /* AlipaySDK.bundle */,
 				847C13971FD2B40300B32BB7 /* AlipaySDK.framework */,
@@ -390,6 +401,18 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		84CF70D920112AE6000C6AE1 /* SwiftShare */ = {
+			isa = PBXGroup;
+			children = (
+				84CF70DA20112AE6000C6AE1 /* ShareItem.swift */,
+				84CF70DB20112AE6000C6AE1 /* IFMShareImage.bundle */,
+				84CF70DC20112AE6000C6AE1 /* ShareView.swift */,
+				84CF70DD20112AE6000C6AE1 /* SharePlatform.swift */,
+				84CF70DE20112AE6000C6AE1 /* ShareItemCell.swift */,
+			);
+			path = SwiftShare;
+			sourceTree = "<group>";
+		};
 		EC151AECA94F348487FE9444 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,7 +460,7 @@
 				TargetAttributes = {
 					84C983EA1FA611A60058FA7B = {
 						CreatedOnToolsVersion = 9.0.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -473,6 +496,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8406477B1FA759A4009B21C4 /* Login.storyboard in Resources */,
+				84CF70E020112AE7000C6AE1 /* IFMShareImage.bundle in Resources */,
 				843C3EB41FA8A6EC0076EB8C /* Home.storyboard in Resources */,
 				847C13A31FD2B86100B32BB7 /* test.caf in Resources */,
 				8461E5611FE38F7C0096D041 /* MyDateTableViewCell.xib in Resources */,
@@ -608,11 +632,13 @@
 				841A27071FAD850800D1A807 /* Date_main.swift in Sources */,
 				8495136D1FE4FE5100C9E261 /* EvaluateViewController.swift in Sources */,
 				843C3EB71FA8A7860076EB8C /* Home_DoctorDetail.swift in Sources */,
+				84CF70DF20112AE7000C6AE1 /* ShareItem.swift in Sources */,
 				847DD0D51FAEE2B50077F78A /* Publish_add.swift in Sources */,
 				846D885A1FAC067C00DE6308 /* BaseTableView.swift in Sources */,
 				84C983F11FA611A60058FA7B /* ViewController.swift in Sources */,
 				840647741FA6A6E4009B21C4 /* XLSlideSegmentedItem.m in Sources */,
 				84736BA11FAC564A001E9AA5 /* Mine_pocket.swift in Sources */,
+				84CF70E220112AE7000C6AE1 /* SharePlatform.swift in Sources */,
 				849BAA5C1FAD534100871EA8 /* Date_page.swift in Sources */,
 				843A958C1FAEA81D00434254 /* Publish_page.swift in Sources */,
 				840647361FA62D03009B21C4 /* Util.swift in Sources */,
@@ -624,6 +650,7 @@
 				849513691FE4156100C9E261 /* SetDateCollectionViewCell.swift in Sources */,
 				8461E55A1FE273600096D041 /* ResetViewController.swift in Sources */,
 				843C3EB81FA8A7860076EB8C /* Home_main.swift in Sources */,
+				84CF70E120112AE7000C6AE1 /* ShareView.swift in Sources */,
 				841A27031FAD5AE500D1A807 /* MyDoctorTableViewCell.swift in Sources */,
 				84C984061FA618060058FA7B /* BaseViewController.swift in Sources */,
 				84736B9E1FAC5592001E9AA5 /* MinePocketCollectionViewCell.swift in Sources */,
@@ -638,6 +665,7 @@
 				840647751FA6A6E4009B21C4 /* XLSlideSwitch.m in Sources */,
 				84C983EF1FA611A60058FA7B /* AppDelegate.swift in Sources */,
 				29446849200A1DEE00908009 /* EvaluateTableViewCell.swift in Sources */,
+				84CF70E320112AE7000C6AE1 /* ShareItemCell.swift in Sources */,
 				84DDACDF1FE0C96F004199FF /* EditViewController.swift in Sources */,
 				840B1EA41FEA511400A6A94E /* Mine_info_photo.swift in Sources */,
 				846D88621FAC26EC00DE6308 /* Mine_order.swift in Sources */,
@@ -791,7 +819,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "速递医疗 病人端/速递医疗 病人端.entitlements";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 4RH4DUFC64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -809,6 +837,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.victor.PatientClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "21b4ce1d-b156-4c40-9ee8-5c442fadcf0c";
+				PROVISIONING_PROFILE_SPECIFIER = PatientDevelop;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/速递医疗 病人端/Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -821,7 +851,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "速递医疗 病人端/速递医疗 病人端.entitlements";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 4RH4DUFC64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -839,6 +870,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.victor.PatientClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c39a3265-d3b6-4f21-89fe-bbf82b84a76d";
+				PROVISIONING_PROFILE_SPECIFIER = PatientProduct;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/速递医疗 病人端/Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

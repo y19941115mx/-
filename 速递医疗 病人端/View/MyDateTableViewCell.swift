@@ -28,8 +28,6 @@ class MyDateTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        stateLabel.isHidden = true
-        stateDescLabel.isHidden = true
         self.selectionStyle = .none
         button.addTarget(self, action: #selector(self.delAction(_:)), for: .touchUpInside)
         
@@ -43,6 +41,7 @@ class MyDateTableViewCell: UITableViewCell {
         priceLabel.text = "\(data.userorderprice!)"
         hospitalLabel.text = data.docaddresslocation!
         timeLabel.text = data.userorderappointment!
+        stateDescLabel.text = data.docname!
         // 动态添加按钮
         if flag == 1 {
             let confirmButton = UIButton()
@@ -80,8 +79,7 @@ class MyDateTableViewCell: UITableViewCell {
                 self.button.isHidden = true
                 self.hosTypeLabel.text = "住院地点："
                 self.hospitalLabel.text = data.inhospname
-                stateLabel.isHidden = false
-                stateDescLabel.isHidden = false
+                stateLabel.text = "当前状态"
                 stateDescLabel.text = data.userorderstatename
             }
             if data.userorderstateid! == 5 {
@@ -139,11 +137,24 @@ class MyDateTableViewCell: UITableViewCell {
     @objc func confirmHospAction(_ sender: UIButton) {
         AlertUtil.popAlert(vc: self.vc!, msg: "确认支付订单 需要支付\(priceLabel.text ?? "0" )元") {
             let id = self.data?.userorderid
-            NetWorkUtil.init(method: API.payhospital(id!)).newRequest(successhandler: { (bean, json) in
-                    let str = json["data"].stringValue
-                    let alipayManager = AliPayManager.sharedManager(context: self.vc!)
-                    alipayManager.pay(sign:str)
-                
+            var type = 1
+            AlertUtil.popMenu(vc: self.vc!, title:
+                "选择支付方式", msg: "", btns: ["支付宝","微信"], handler: { (str) in
+                    if str == "微信" {
+                        type = 2
+                    }
+                    NetWorkUtil.init(method: API.confirmorder(id!,  type)).newRequest(successhandler: { (bean, json) in
+                        if type == 1 {
+                            let str = json["data"].stringValue
+                            let alipayUtils  = AliPayManager.sharedManager(context: self.vc!)
+                            alipayUtils.pay(sign:str)
+                        }else{
+                            let data = json["data"]
+                            let payManager = WeChatPayManager.sharedManager(context: self.vc!)
+                            payManager.pay(ResJson: data)
+                        }
+                    })
+                    
             })
         }
         

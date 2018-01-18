@@ -18,6 +18,7 @@ let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
 let APPLICATION = UIApplication.shared.delegate as! AppDelegate
 let ERRORMSG = "获取服务器数据失败"
 let CATCHMSG = "解析服务器数据失败"
+let APPVERSION = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
 
 struct StaticClass {
     static let RootIP = "http://118.89.172.204:6221"
@@ -522,7 +523,7 @@ public class AliPayManager: NSObject {
             returnMsg = "支付成功"
             dPrint(message: JSON.init(parseJSON: (result["result"] as! String))["alipay_trade_app_pay_response"]["sub_msg"].stringValue)
             Toast(returnMsg)
-            self.context?.refreshData()
+            self.context?.refreshBtn()
         default:
             Toast("支付失败")
         }
@@ -580,7 +581,7 @@ public class WeChatPayManager: NSObject, WXApiDelegate {
                 let returnMsg = "支付成功"
                 showToast((self.context?.view)!, returnMsg)
 //                Toast(returnMsg)
-                self.context?.refreshData()
+                self.context?.refreshBtn()
             default:
 //                Toast(response.errStr)
                 showToast((self.context?.view)!, "支付失败")

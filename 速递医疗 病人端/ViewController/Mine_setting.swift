@@ -9,9 +9,29 @@
 import UIKit
 
 class Mine_setting: BaseViewController, UITableViewDataSource, UITableViewDelegate{
+    
+    lazy var shareArray: [Any] = {
+        var shareArray = [Any]()
+        ///使用预制默认图片、title和分享事件
+        shareArray.append(PlatformNameSms)
+        shareArray.append(PlatformNameEmail)
+        shareArray.append(PlatformNameSina)
+        shareArray.append(PlatformNameWechat)
+        
+        ///自定义图片和title,使用预制默认分享事件
+        shareArray.append(ShareItem(image: UIImage(named: "IFMShareImage.bundle/share_qq")!, title: "QQ", actionName: PlatformHandleQQ))
+        
+        ///自定义图片、title和事件
+//        shareArray.append(ShareItem(image: UIImage(named: "IFMShareImage.bundle/share_alipay")!, title: "支付宝", callBack: {(_ item: ShareItem) -> Void in
+//            ShareView.alertMsg("提示", "点击了支付宝", self)
+//        }))
+        return shareArray
+    }()
+    
+    
     @IBOutlet weak var tableView: BaseTableView!
-    let tableTitle = ["意见反馈", "退出登录"]
-    var tableInfo = ["让我们做的更好" , "点击回到登录界面"]
+    let tableTitle = ["应用分享", "退出登录"]
+    var tableInfo = ["当前版本号：\(APPVERSION)" , "点击回到登录界面"]
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableTitle.count
@@ -31,7 +51,8 @@ class Mine_setting: BaseViewController, UITableViewDataSource, UITableViewDelega
         case 1:
             user_default.logout("")
         default:
-            Toast("功能完善中")
+//            应用分享
+            showSquaredStyle()
         }
     }
 
@@ -39,6 +60,21 @@ class Mine_setting: BaseViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         setUpNavTitle(title: "我的设置")
         // Do any additional setup after loading the view.
+    }
+    
+    func showSquaredStyle() {
+        var shareView = ShareView(items: shareArray, countEveryRow: 4)
+        shareView.itemImageSize = CGSize(width: 45, height: 45)
+        shareView = addShareContent(shareView)
+        //    shareView.itemSpace = 10;
+        shareView.show(fromControlle: self)
+    }
+    
+    func addShareContent(_ shareView: ShareView) -> ShareView {
+        shareView.addText("分享测试")
+        shareView.addUrl(URL(string: "http://www.baidu.com"))
+        shareView.addImage(UIImage(named: "function_collection"))
+        return shareView
     }
 
     

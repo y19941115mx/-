@@ -107,6 +107,7 @@ class OrderListBean:BaseAPIBean {
 }
 
 class OrderBean: Mappable {
+    var docname:String?
     var inhospname:String?
     var userorderstateid:Int?
     var docloginpix:String?
@@ -133,6 +134,7 @@ class OrderBean: Mappable {
     }
     
     func mapping(map: Map) {
+        docname <- map["docname"]
         inhospname <- map["inhospname"]
         userorderstateid <- map["userorderstateid"]
         userorderetime <- map["userorderetime"]
@@ -312,6 +314,8 @@ class MineCalendarBean:Mappable {
     var doccalendarday:String?
     var doccalendaraffair:String?
     var doccalendartime:String?
+    var doccalendartimeinterval:String?
+    var doccalendarprice = 0
     
     required init?(map: Map) {
         
@@ -324,6 +328,8 @@ class MineCalendarBean:Mappable {
         doccalendarday <- map["doccalendarday"]
         doccalendaraffair <- map["doccalendaraffair"]
         doccalendartime <- map["doccalendartime"]
+        doccalendartimeinterval <- map["doccalendartimeinterval"]
+        doccalendarprice <- map["doccalendarprice"]
     }
 }
 //doccommenttime": "2017-12-30 15:57:32",

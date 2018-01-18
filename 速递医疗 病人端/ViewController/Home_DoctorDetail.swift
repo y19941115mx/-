@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     
     @IBOutlet weak var height: NSLayoutConstraint!
     @IBOutlet weak var opt_btn: UIButton!
@@ -29,7 +29,7 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
     @IBOutlet weak var expertLabel: UILabel!
     @IBOutlet weak var deptLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dates.count
     }
@@ -88,7 +88,41 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: SCREEN_WIDTH - 50, height: 100)
+        let bean = dates[indexPath.row]
+        let str = bean.doccalendaraffair ?? ""
+        var inset:CGFloat = 0
+        if str != "" {
+            inset = str.getTextRectSize(font: UIFont.systemFont(ofSize: 14), size: CGSize.init(width: SCREEN_WIDTH - 100, height: 600)).height
+        }
+        
+        return CGSize(width: SCREEN_WIDTH - 50, height: 50 + inset)
+        
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let bean = dates[indexPath.row]
+        AlertUtil.popAlert(vc: self, msg: "确定选择该日程 需要支付\(bean.doccalendarprice)元") {
+            AlertUtil.popMenu(vc: self, title: "选择支付方式", msg: "", btns: ["支付宝","微信"], handler: { (str) in
+                var type = 1
+                if str == "微信" {
+                    type = 2
+                }
+                NetWorkUtil.init(method: API.createquickorder(self.doctorId, bean.doccalendarid, type)).newRequest(successhandler: { (bean, json) in
+                    let paystr = json["data"].stringValue
+                    NavigationUtil<Date_main>.setTabBarSonController(index: 3, handler: { (vc) in
+                        let sonvc = vc.vcs[2]
+                        vc.slideSwitch.selectedIndex = 2
+                        if type == 1 {
+                            let manager = AliPayManager.sharedManager(context: sonvc)
+                            manager.pay(sign:paystr)
+                        }else {
+                            let manager = WeChatPayManager.sharedManager(context: sonvc)
+                            manager.pay(ResJson: json["data"])
+                        }
+                    
+                    })
+                })
+            })
+        }
     }
     
     // 获取评价

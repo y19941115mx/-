@@ -240,7 +240,7 @@ extension API: TargetType {
         case .confirmorder(let orderId, let type):
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "userorderid":orderId, "type":type], encoding: URLEncoding.default)
         case .createquickorder(let docId, let calenderId, let paytype):
-            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "docloginid":docId, "type":paytype], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "docloginid":docId, "paytype":paytype, "doccalendarid":calenderId], encoding: URLEncoding.default)
         case .getinfo:
             return .requestParameters(parameters: ["userloginid":Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
         case .editinfo(let name, let card, let datas, let male, let age, let address):
