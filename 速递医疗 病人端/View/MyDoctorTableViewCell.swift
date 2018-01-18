@@ -59,7 +59,7 @@ class MyDoctorTableViewCell: UITableViewCell {
                         let date = data["doccalendarday"].stringValue
                         let time = data["doccalendartime"].stringValue
                         let price = data["doccalendarprice"].doubleValue
-                        stringArray.append("\(date) \(time) \(price)")
+                        stringArray.append("\(date) \(time) 价格:\(price)元")
                         let id = data["doccalendarid"].intValue
                         calenderIds.append(id)
                     }
@@ -68,7 +68,11 @@ class MyDoctorTableViewCell: UITableViewCell {
                         let calenderId = calenderIds[index!]
                         NetWorkUtil<BaseAPIBean>.init(method: .createorder(id!, calenderId)).newRequest(successhandler: { (bean, json) in
                             Toast(bean.msg!)
-                            self.vc?.refreshData()
+                            NavigationUtil<Date_main>.setTabBarSonController(index: 3, handler: { (vc) in
+                                let sonvc = vc.vcs[0]
+                                vc.slideSwitch.selectedIndex = 0
+                                sonvc.refreshBtn()
+                            })
                         })
                     })
                 }

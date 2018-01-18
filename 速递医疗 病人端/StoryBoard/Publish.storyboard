@@ -14,7 +14,7 @@
         <!--Publish main-->
         <scene sceneID="gjE-sX-9vM">
             <objects>
-                <viewController id="Xu5-bC-0Kp" customClass="Publish_main" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Xu5-bC-0Kp" customClass="Publish_main" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="exz-Og-1TO"/>
                         <viewControllerLayoutGuide type="bottom" id="6zb-UX-l4x"/>
@@ -33,13 +33,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mc6-JA-jmT">
-                                        <rect key="frame" x="277" y="27" width="33" height="32"/>
+                                        <rect key="frame" x="277" y="26.5" width="33" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <state key="normal" title="添加">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="Q7A-iQ-YXh" kind="presentation" animates="NO" modalPresentationStyle="fullScreen" modalTransitionStyle="partialCurl" id="dld-pJ-bqo"/>
+                                            <action selector="addSickAction:" destination="Xu5-bC-0Kp" eventType="touchUpInside" id="pXc-q1-fil"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -71,7 +71,7 @@
         <!--Publish add-->
         <scene sceneID="8wp-6S-0k6">
             <objects>
-                <viewController id="Q7A-iQ-YXh" customClass="Publish_add" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addSick" id="Q7A-iQ-YXh" customClass="Publish_add" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Chj-mk-7ys"/>
                         <viewControllerLayoutGuide type="bottom" id="KSo-2U-CXN"/>
@@ -90,7 +90,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H0L-JK-3aT">
-                                        <rect key="frame" x="277" y="26.5" width="33" height="32"/>
+                                        <rect key="frame" x="277" y="27" width="33" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <state key="normal" title="添加">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -100,7 +100,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ES7-Rr-eeE">
-                                        <rect key="frame" x="8" y="31" width="47" height="22"/>
+                                        <rect key="frame" x="8" y="30.5" width="47" height="22"/>
                                         <state key="normal" title="返回" image="back"/>
                                         <connections>
                                             <segue destination="Jd2-GK-zjk" kind="unwind" unwindAction="unwindToPublishWithSegue:" id="Fqk-6n-hTX"/>
@@ -268,7 +268,7 @@
         <!--Edit View Controller-->
         <scene sceneID="gyy-rK-K6B">
             <objects>
-                <viewController storyboardIdentifier="EditSick" id="dOK-1G-a1Q" customClass="EditViewController" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditSick" id="dOK-1G-a1Q" customClass="EditViewController" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Caw-y7-ueq"/>
                         <viewControllerLayoutGuide type="bottom" id="dbm-tM-WM8"/>
@@ -287,7 +287,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQt-UE-3YU">
-                                        <rect key="frame" x="277" y="26.5" width="33" height="32"/>
+                                        <rect key="frame" x="277" y="27" width="33" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <state key="normal" title="保存">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -297,7 +297,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y4c-Yg-jch">
-                                        <rect key="frame" x="8" y="31" width="47" height="22"/>
+                                        <rect key="frame" x="8" y="30.5" width="47" height="22"/>
                                         <state key="normal" title="返回" image="button:y4c-Yg-jch:image"/>
                                         <connections>
                                             <action selector="Back_acion:" destination="dOK-1G-a1Q" eventType="touchUpInside" id="Csx-fD-4PP"/>
@@ -346,7 +346,7 @@
         <!--Publish page-->
         <scene sceneID="Nmc-PQ-IT4">
             <objects>
-                <viewController storyboardIdentifier="tianjia2" id="67z-2X-ECo" customClass="Publish_page" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tianjia2" id="67z-2X-ECo" customClass="Publish_page" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3nr-hC-WMo"/>
                         <viewControllerLayoutGuide type="bottom" id="muQ-Mh-pbo"/>
@@ -365,7 +365,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="fzX-qQ-wQc" customClass="PublishCell2" customModule="速递医疗_病人端" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="fzX-qQ-wQc" customClass="PublishCell2" customModule="PatientClient" customModuleProvider="target">
                                         <rect key="frame" x="-16.5" y="0.0" width="333" height="250"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -533,7 +533,7 @@
         <!--Publish page-->
         <scene sceneID="3dp-eq-hi4">
             <objects>
-                <viewController storyboardIdentifier="tianjia" id="uDa-gX-ntq" customClass="Publish_page" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tianjia" id="uDa-gX-ntq" customClass="Publish_page" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Jjy-af-acD"/>
                         <viewControllerLayoutGuide type="bottom" id="2JD-JE-vhr"/>
@@ -553,7 +553,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="QOK-sa-xAK" customClass="PublishCell" customModule="速递医疗_病人端" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="QOK-sa-xAK" customClass="PublishCell" customModule="PatientClient" customModuleProvider="target">
                                         <rect key="frame" x="-16.5" y="0.0" width="333" height="250"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">

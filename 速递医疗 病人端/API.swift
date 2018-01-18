@@ -34,6 +34,7 @@ public enum API {
     case editsick(Int, String) // 编辑病情
     case optdoctor(Int) // 预选医生
     case createorder(Int, Int) // 生成订单
+    case createquickorder(Int, Int, Int) // 快速生成订单
     case getinfo // 获取个人信息
     case editinfo(String, String, [Data], String, Int, String) // 保存个人信息
     case exit // 退出登录
@@ -47,7 +48,7 @@ public enum API {
     case listtraderecord(Int) // 获取交易记录
     case listreceivenotification(Int) // 获取消息记录
     case reviewinfo // 提交审核
-    case confirmorder(Int) // 病人确认订单
+    case confirmorder(Int, Int) // 病人确认订单
     case getcalendar(Int) // 获取医生日程
     case getevaluation(Int, Int) // 获取医生评价
     case evaluate(Int, Int, Int, Int, String) // 提交评价
@@ -153,6 +154,8 @@ extension API: TargetType {
             return "/updatenotificationtoread"
         case .updateallnotificationtoread:
             return "/updateallnotificationtoread"
+        case .createquickorder:
+            return "/createquickorder"
         }
     }
     public var method: Moya.Method {
@@ -234,8 +237,10 @@ extension API: TargetType {
             return .requestParameters(parameters: ["docloginid":doctorId], encoding: URLEncoding.default)
         case .cancelorder(let orderId):
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "userorderid":orderId], encoding: URLEncoding.default)
-        case .confirmorder(let orderId):
-            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "userorderid":orderId, "type":1], encoding: URLEncoding.default)
+        case .confirmorder(let orderId, let type):
+            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "userorderid":orderId, "type":type], encoding: URLEncoding.default)
+        case .createquickorder(let docId, let calenderId, let paytype):
+            return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!, "docloginid":docId, "type":paytype], encoding: URLEncoding.default)
         case .getinfo:
             return .requestParameters(parameters: ["userloginid":Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
         case .editinfo(let name, let card, let datas, let male, let age, let address):

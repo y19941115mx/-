@@ -9,6 +9,7 @@
 import UIKit
 
 class Publish_main: SegmentedSlideViewController {
+    public var vcs: [Publish_page]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +18,7 @@ class Publish_main: SegmentedSlideViewController {
         vc1.type = 1
         let vc2 = UIStoryboard.init(name: "Publish", bundle: nil).instantiateViewController(withIdentifier: "tianjia2") as!Publish_page
         vc2.type = 2
-        let vcs = [vc1, vc2]
+        vcs = [vc1, vc2]
         setUpSlideSwitch(titles: titles, vcs: vcs)
     
     }
@@ -28,7 +29,12 @@ class Publish_main: SegmentedSlideViewController {
     }
 
    
-
+    @IBAction func addSickAction(_ sender: UIButton) {
+        let vc = UIStoryboard.init(name: "Publish", bundle: nil).instantiateViewController(withIdentifier: "addSick") as! Publish_add
+        vc.parentVc = self
+        self.present(vc, animated: false, completion: nil)
+    }
+    
     
 
 }

@@ -21,6 +21,8 @@ class Publish_add: BasePickImgViewController, UITextViewDelegate, UICollectionVi
     @IBOutlet weak var placeHolderLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var departTextField: UITextField!
+    
+    var parentVc: Publish_main!
     // 病情描述
     @IBOutlet weak var textView: UITextView!
     var deptPicker = UIPickerView()
@@ -247,6 +249,8 @@ class Publish_add: BasePickImgViewController, UITextViewDelegate, UICollectionVi
             }
             NetWorkUtil<BaseAPIBean>.init(method: .addsick(datas, textView.text, oneDepart, twoDepart, family)).newRequest(successhandler: { (bean, json) in
                     self.dismiss(animated: false, completion: nil)
+                
+                self.parentVc.vcs[0].refreshBtn()
             }, failhandler:{ (bean, json) in
                 showToast(self.view, bean.msg!)
             })

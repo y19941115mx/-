@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
     var lon:String = "0"
     var lat:String = "0"
     var departData = [String:[String]]()
+    var tabBarController: UITabBarController?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -109,11 +110,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
             AlipaySDK.defaultService().processOrder(withPaymentResult: url as URL!, standbyCallback: {
                 (resultDic) -> Void in
                 //调起支付结果处理
-                AliSdkManager.aliSdkManager.showResult(result: resultDic! as NSDictionary);
+                AliPayManager.aliSdkManager.showResult(result: resultDic! as NSDictionary);
             })
         }
         // 微信支付
-        WXApi.handleOpen(url, delegate: nil)
+        WXApi.handleOpen(url, delegate: WeChatPayManager.wechatPayManager)
         return true
     }
     
@@ -136,14 +137,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
                     application.registerForRemoteNotifications()
                 }
             })
-        }else if (UIDevice.current.systemVersion as NSString).floatValue >= 8.0 {
-            let userSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound],
-                                                          categories: nil)
-            UIApplication.shared.registerUserNotificationSettings(userSettings)
-        }else {
-            
         }
-        
         BPush.registerChannel([:], apiKey:StaticClass.TuisongAPIKey , pushMode: BPushMode.development, withFirstAction: "打开", withSecondAction: "关闭", withCategory: "test", useBehaviorTextInput: true, isDebug: true)
         //        关闭地理推送
         BPush.disableLbs()

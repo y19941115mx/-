@@ -499,14 +499,14 @@ class StringUTil {
     
 }
 
-public class AliSdkManager: NSObject {
-    public static var aliSdkManager:AliSdkManager!
+public class AliPayManager: NSObject {
+    public static var aliSdkManager:AliPayManager!
     var context:BaseRefreshController<OrderBean>?
     
-    static func sharedManager (context:BaseRefreshController<OrderBean>) -> AliSdkManager{
-        AliSdkManager.aliSdkManager = AliSdkManager.init()
-        AliSdkManager.aliSdkManager.context = context
-        return AliSdkManager.aliSdkManager
+    static func sharedManager (context:BaseRefreshController<OrderBean>) -> AliPayManager{
+        AliPayManager.aliSdkManager = AliPayManager.init()
+        AliPayManager.aliSdkManager.context = context
+        return AliPayManager.aliSdkManager
     }
     internal func showResult(result:NSDictionary){
         //        9000    订单支付成功
@@ -527,19 +527,6 @@ public class AliSdkManager: NSObject {
             Toast("支付失败")
         }
     }
-}
-
-
-public class AliPayUtils: NSObject {
-    var context:UIViewController
-    
-    public init(context:UIViewController) {
-        self.context = context
-        let vc = context as! BaseRefreshController<OrderBean>
-        //初始化支付管理类
-        AliSdkManager.sharedManager(context: vc)
-    }
-    
     public func pay(sign:String){
         let decodedData = sign.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))!
         let decodedString:String = (NSString(data: decodedData, encoding: String.Encoding.utf8.rawValue))! as String
@@ -551,36 +538,60 @@ public class AliPayUtils: NSObject {
     }
 }
 
+public class WeChatPayManager: NSObject, WXApiDelegate {
+    public static var wechatPayManager:WeChatPayManager!
+    var context:BaseRefreshController<OrderBean>?
+    
+    static func sharedManager (context:BaseRefreshController<OrderBean>) -> WeChatPayManager{
+        WeChatPayManager.wechatPayManager = WeChatPayManager.init()
+        WeChatPayManager.wechatPayManager.context = context
+        return WeChatPayManager.wechatPayManager
+    }
+    
+//    "nonce_str": "beuAtMP1LAfOzB6A",
+//    "appid": "wxd97a67a007393b4e",
+//    "sign": "5E2AC74CD5FBFAB1B7957F9D018DBA5E",
+//    "trade_type": "APP",
+//    "return_msg": "OK",
+//    "result_code": "SUCCESS",
+//    "mch_id": "1497265642",
+//    "return_code": "SUCCESS",
+//    "prepay_id": "wx20180118233520fdc49dd3c50003802882",
+//    "timestamp": "1516289719"
+    
+    public func pay(ResJson:JSON){
+        let req = PayReq.init()
+        dPrint(message:ResJson["appid"].stringValue )
+        req.openID = ResJson["appid"].stringValue
+        req.partnerId = ResJson["mch_id"].stringValue
+        req.prepayId = ResJson["prepay_id"].stringValue
+        req.nonceStr = ResJson["nonce_str"].stringValue
+        req.sign = ResJson["sign"].stringValue
+        req.timeStamp = UInt32(ResJson["timestamp"].stringValue)!
+        req.package = "Sign=WXPay";
+        WXApi.send(req)
+    }
+    // 支付结果回调
+    public func onResp(_ resp: BaseResp!) {
+        if resp is PayResp {
+            let response = resp as! PayResp
+            switch response.errCode {
+            case WXSuccess.rawValue:
+                let returnMsg = "支付成功"
+                showToast((self.context?.view)!, returnMsg)
+//                Toast(returnMsg)
+                self.context?.refreshData()
+            default:
+//                Toast(response.errStr)
+                showToast((self.context?.view)!, "支付失败")
+                dPrint(message: response.errStr)
+            }
+        }
+    }
+}
 
-//public class AliSdkManager: NSObject {
-//    public static var aliSdkManager:AliSdkManager!
-//    var context:BaseRefreshController<OrderBean>?
-//    
-//    static func sharedManager (context:BaseRefreshController<OrderBean>) -> AliSdkManager{
-//        AliSdkManager.aliSdkManager = AliSdkManager.init()
-//        AliSdkManager.aliSdkManager.context = context
-//        return AliSdkManager.aliSdkManager
-//    }
-//    internal func showResult(result:NSDictionary){
-//        //        9000    订单支付成功
-//        //        8000    正在处理中
-//        //        4000    订单支付失败
-//        //        6001    用户中途取消
-//        //        6002    网络连接出错
-//        let returnCode:String = result["resultStatus"] as! String
-//        var returnMsg:String = result["memo"] as! String
-//        dPrint(message: "returnMsg: \(result)")
-//        switch  returnCode{
-//        case "9000":
-//            returnMsg = "支付成功"
-//            dPrint(message: JSON.init(parseJSON: (result["result"] as! String))["alipay_trade_app_pay_response"]["sub_msg"].stringValue)
-//            Toast(returnMsg)
-//            self.context?.refreshData()
-//        default:
-//            Toast("支付失败")
-//        }
-//    }
-//}
+
+
 
 
 
@@ -607,6 +618,22 @@ public class DBHelper:NSObject {
                 
                 print("Realm 数据库配置失败：\(error.localizedDescription)")
             }
+        }
+    }
+}
+
+public class NavigationUtil<T>:NSObject{
+    class public func setTabBarSonController(index:Int, handler:((T)->Void)?){
+        var vc = APPLICATION.tabBarController?.viewControllers![index]
+        if vc is UINavigationController {
+            let nvc = vc as! UINavigationController
+            vc = nvc.viewControllers[0]
+        }
+        if let vc = vc as? T{
+            if let handler = handler {
+                handler(vc)
+            }
+            APPLICATION.tabBarController?.selectedIndex = index
         }
     }
 }

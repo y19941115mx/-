@@ -101,28 +101,25 @@ class BaseTextViewController:BaseViewController, UITextFieldDelegate {
 
 
 class SegmentedSlideViewController: BaseViewController {
+    var slideSwitch:XLSegmentedSlideSwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     // 初始化分栏
     func setUpSlideSwitch(titles:[String], vcs:[UIViewController])
     {
-        let slideSwitch = XLSegmentedSlideSwitch(frame: CGRect(x: 0,  y: 64, width: self.view.bounds.size.width, height: self.view.bounds.size.height - 64), titles: titles, viewControllers: vcs)
+       self.slideSwitch = XLSegmentedSlideSwitch(frame: CGRect(x: 0,  y: 64, width: self.view.bounds.size.width, height: self.view.bounds.size.height - 64), titles: titles, viewControllers: vcs)
         slideSwitch?.tintColor = UIColor.APPColor
         slideSwitch?.show(in: self)
+        
     }
     
     func setUpSlideSwitchNoNavigation(titles:[String], vcs:[UIViewController])
     {
-        let slideSwitch = XLSegmentedSlideSwitch(frame: CGRect(x: 0,  y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height - 64), titles: titles, viewControllers: vcs)
+        self.slideSwitch = XLSegmentedSlideSwitch(frame: CGRect(x: 0,  y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height - 64), titles: titles, viewControllers: vcs)
         slideSwitch?.tintColor = UIColor.APPColor
         slideSwitch?.show(in: self)
     }

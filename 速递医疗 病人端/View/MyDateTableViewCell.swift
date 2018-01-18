@@ -141,8 +141,8 @@ class MyDateTableViewCell: UITableViewCell {
             let id = self.data?.userorderid
             NetWorkUtil.init(method: API.payhospital(id!)).newRequest(successhandler: { (bean, json) in
                     let str = json["data"].stringValue
-                    let alipayUtils = AliPayUtils.init(context: self.vc!);
-                    alipayUtils.pay(sign:str)
+                    let alipayManager = AliPayManager.sharedManager(context: self.vc!)
+                    alipayManager.pay(sign:str)
                 
             })
         }
@@ -164,10 +164,24 @@ class MyDateTableViewCell: UITableViewCell {
     @objc func confirmAction(_ sender: UIButton) {
         AlertUtil.popAlert(vc: self.vc!, msg: "确认支付订单 需要支付\(priceLabel.text ?? "0" )元") {
             let id = self.data?.userorderid
-            NetWorkUtil.init(method: API.confirmorder(id!)).newRequest(successhandler: { (bean, json) in
-                    let str = json["data"].stringValue
-                    let alipayUtils = AliPayUtils.init(context: self.vc!);
-                    alipayUtils.pay(sign:str)
+            var type = 1
+            AlertUtil.popMenu(vc: self.vc!, title:
+                "选择支付方式", msg: "", btns: ["支付宝","微信"], handler: { (str) in
+                    if str == "微信" {
+                        type = 2
+                    }
+                    NetWorkUtil.init(method: API.confirmorder(id!,  type)).newRequest(successhandler: { (bean, json) in
+                        if type == 1 {
+                            let str = json["data"].stringValue
+                            let alipayUtils  = AliPayManager.sharedManager(context: self.vc!)
+                            alipayUtils.pay(sign:str)
+                        }else{
+                            let data = json["data"]
+                            let payManager = WeChatPayManager.sharedManager(context: self.vc!)
+                            payManager.pay(ResJson: data)
+                        }
+                    })
+                    
             })
         }
         

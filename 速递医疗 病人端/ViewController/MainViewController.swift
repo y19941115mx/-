@@ -10,6 +10,7 @@ class MainViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTabBar()
+        APPLICATION.tabBarController = self
     }
 
     // MARK: - Private Method
@@ -27,6 +28,7 @@ class MainViewController: UITabBarController {
         let vc_publish = UIStoryboard.init(name: "Publish", bundle: nil).instantiateInitialViewController()!
         vc_publish.tabBarItem = UITabBarItem.init(title: "病情", image: #imageLiteral(resourceName: "index_wdys_"), tag: 4)
         self.viewControllers = [vc_home,vc_publish,vc_doctor,vc_data, vc_mine]
+        
     }
 
 }

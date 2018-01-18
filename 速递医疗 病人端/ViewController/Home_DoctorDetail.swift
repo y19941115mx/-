@@ -112,7 +112,10 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
     
     @IBAction func click_opt(_ sender: UIButton) {
         NetWorkUtil<BaseAPIBean>.init(method: API.optdoctor(doctorId)).newRequest(successhandler: { bean,json in
-            showToast(self.view, bean.msg!)
+            NavigationUtil<MyDoctor_main>.setTabBarSonController(index: 2, handler: { (vc) in
+                vc.refreshBtn()
+            })
+        
         })
     }
     
