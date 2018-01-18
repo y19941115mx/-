@@ -24,7 +24,7 @@ public enum API {
     case addfamily(String, String, Int) // 添加亲属
     case deletefamily(Int) // 删除亲属
     case findfamily // 查询亲属
-    case getredoctor // 获取我的医生
+    case getredoctor(Int) // 获取我的医生
     case updateinfo(Data) // 上传头像
     case getsick(Int) // 获取病情
     case addsick([Data]?, String,String,String, Int) // 增加病情
@@ -198,8 +198,8 @@ extension API: TargetType {
             default:
                 return .requestParameters(parameters: ["page": page, "userloginid": id, "type":type], encoding: URLEncoding.default)
             }
-        case .getredoctor:
-            return .requestParameters(parameters: ["userloginid":Int(user_default.userId.getStringValue()!)!], encoding: URLEncoding.default)
+        case .getredoctor(let page):
+            return .requestParameters(parameters: ["userloginid":Int(user_default.userId.getStringValue()!)!,"page":page], encoding: URLEncoding.default)
             
         case .updateinfo(let data):
             return .uploadCompositeMultipart([MultipartFormData.init(provider: .data(data), name: "pictureFile", fileName: "photo.jpg", mimeType:"image/png")], urlParameters: ["userloginid": Int(user_default.userId.getStringValue()!)!])

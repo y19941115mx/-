@@ -9,13 +9,12 @@
 import UIKit
 import EaseUILite
 
-class ChatViewController: EaseMessageViewController, EaseMessageViewControllerDelegate, EaseMessageViewControllerDataSource {
+class ChatViewController: EaseMessageViewController, EaseMessageViewControllerDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.delegate = self
-        self.dataSource = self
         // Do any additional setup after loading the view.
+        self.dataSource = self
         self.showRefreshHeader = true
         self.tableViewDidTriggerHeaderRefresh()
     }

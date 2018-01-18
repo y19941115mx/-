@@ -23,8 +23,8 @@ class MyDoctor_main: BaseRefreshController<DoctorBean>, UITableViewDataSource, U
         super.viewDidLoad()
         setUpNavTitle(title: "我的医生")
         // 添加上拉刷新
-        initRefresh(scrollView: infoTableView, ApiMethod: .getredoctor, refreshHandler: {}, getMoreHandler: {
-            self.getMoreMethod = API.getredoctor
+        initRefresh(scrollView: infoTableView, ApiMethod: .getredoctor(self.selectedPage), refreshHandler: {}, getMoreHandler: {
+            self.getMoreMethod = API.getredoctor(self.selectedPage)
         })
         //刷新数据
         self.header?.beginRefreshing()

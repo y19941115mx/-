@@ -37,6 +37,7 @@ class PublishCell: UICollectionViewCell, UICollectionViewDataSource, UICollectio
         super.awakeFromNib()
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
+        self.collectionView.showsVerticalScrollIndicator = true
     }
     
     func updataView(sickBean:SickBean, vc:BaseRefreshController<SickBean>) {
@@ -82,28 +83,9 @@ class PublishCell: UICollectionViewCell, UICollectionViewDataSource, UICollectio
     
     @objc func PublishAction(button:UIButton) {
         AlertUtil.popAlert(vc: vc, msg: "确认发布病情", okhandler: {
-            let Provider = MoyaProvider<API>()
-            SVProgressHUD.show()
-            Provider.request(API.publishsick((self.data?.usersickid)!)) { result in
-                switch result {
-                case let .success(response):
-                    do {
-                        SVProgressHUD.dismiss()
-                        let bean = Mapper<BaseAPIBean>().map(JSONObject: try response.mapJSON())
-                        if bean?.code == 100 {
-                            self.vc.refreshBtn()
-                        }
-                        速递医疗_病人端.showToast((self.vc.view)!, bean!.msg!)
-                    }catch {
-                        SVProgressHUD.dismiss()
-                        速递医疗_病人端.showToast((self.vc.view)!, CATCHMSG)
-                    }
-                case let .failure(error):
-                    SVProgressHUD.dismiss()
-                    dPrint(message: "error:\(error)")
-                    速递医疗_病人端.showToast((self.vc.view)!, ERRORMSG)
-                }
-            }
+        NetWorkUtil.init(method: .publishsick((self.data?.usersickid)!)).newRequest(successhandler: { (bean, json) in
+                self.vc.refreshData()
+            })
         })
     }
     

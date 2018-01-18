@@ -1093,10 +1093,10 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="rfY-wV-KnG">
-                                        <rect key="frame" x="10" y="0.0" width="394" height="200"/>
+                                        <rect key="frame" x="-359" y="0.0" width="1132" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="394" height="200"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1132" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </view>
                                     </collectionViewCell>
@@ -1107,6 +1107,10 @@
                                         <integer key="value" value="200"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BDt-xG-pz5" id="efH-7s-Mps"/>
+                                    <outlet property="delegate" destination="BDt-xG-pz5" id="tVE-de-lNI"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -165,7 +165,7 @@
 		849BAA5A1FAD534100871EA8 /* Date_page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date_page.swift; sourceTree = "<group>"; };
 		849BAA5B1FAD534100871EA8 /* MyDoctor_main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDoctor_main.swift; sourceTree = "<group>"; };
 		84AB2F451FAEA21F00E4B3EC /* Publish.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Publish.storyboard; sourceTree = "<group>"; };
-		84C983EB1FA611A60058FA7B /* 速递医疗 病人端.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "速递医疗 病人端.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84C983EB1FA611A60058FA7B /* PatientClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PatientClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84C983EE1FA611A60058FA7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84C983F01FA611A60058FA7B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		84C983F31FA611A60058FA7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -292,7 +292,7 @@
 		84C983EC1FA611A60058FA7B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				84C983EB1FA611A60058FA7B /* 速递医疗 病人端.app */,
+				84C983EB1FA611A60058FA7B /* PatientClient.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -398,9 +398,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		84C983EA1FA611A60058FA7B /* 速递医疗 病人端 */ = {
+		84C983EA1FA611A60058FA7B /* PatientClient */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84C983FD1FA611A60058FA7B /* Build configuration list for PBXNativeTarget "速递医疗 病人端" */;
+			buildConfigurationList = 84C983FD1FA611A60058FA7B /* Build configuration list for PBXNativeTarget "PatientClient" */;
 			buildPhases = (
 				26DA3BB4EE36ABBA1E75EDB0 /* [CP] Check Pods Manifest.lock */,
 				84C983E71FA611A60058FA7B /* Sources */,
@@ -414,9 +414,9 @@
 			);
 			dependencies = (
 			);
-			name = "速递医疗 病人端";
+			name = PatientClient;
 			productName = "速递医疗 病人端";
-			productReference = 84C983EB1FA611A60058FA7B /* 速递医疗 病人端.app */;
+			productReference = 84C983EB1FA611A60058FA7B /* PatientClient.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -456,7 +456,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				84C983EA1FA611A60058FA7B /* 速递医疗 病人端 */,
+				84C983EA1FA611A60058FA7B /* PatientClient */,
 			);
 		};
 /* End PBXProject section */
@@ -851,7 +851,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84C983FD1FA611A60058FA7B /* Build configuration list for PBXNativeTarget "速递医疗 病人端" */ = {
+		84C983FD1FA611A60058FA7B /* Build configuration list for PBXNativeTarget "PatientClient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84C983FE1FA611A60058FA7B /* Debug */,

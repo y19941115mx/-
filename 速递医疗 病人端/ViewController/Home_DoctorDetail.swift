@@ -48,6 +48,7 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavTitle(title: "医生详情")
+        collectionView.showsVerticalScrollIndicator = true
         let buttonItem = UIBarButtonItem.init(title: "评价", style: .plain, target: self, action: #selector(getEvaluate(_:)))
         self.navigationItem.rightBarButtonItem = buttonItem
         NetWorkUtil<BaseListBean<MineCalendarBean>>.init(method: .getcalendar(doctorId))
