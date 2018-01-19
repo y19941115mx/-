@@ -315,7 +315,7 @@ class MineCalendarBean:Mappable {
     var doccalendaraffair:String?
     var doccalendartime:String?
     var doccalendartimeinterval:String?
-    var doccalendarprice = 0
+    var doccalendarprice:Double = 0.0
     
     required init?(map: Map) {
         

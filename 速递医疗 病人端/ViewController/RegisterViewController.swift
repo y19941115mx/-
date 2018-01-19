@@ -12,9 +12,10 @@ import Moya
 import ObjectMapper
 import SwiftHash
 
-let MsgSeconds = 120 // 设置验证码发送间隔时间
+let MsgSeconds = 90 // 设置验证码发送间隔时间
 class RegisterViewController: BaseTextViewController{
     //Mark:property
+    var LoginVc:LoginViewController!
     
     @IBOutlet weak var photoTextField: UITextField!
     
@@ -127,5 +128,10 @@ class RegisterViewController: BaseTextViewController{
         // when start counting，remainingSeconds value Decrease per second
         remainingSeconds -= 1
     }
+    
+    @IBAction func backAction(_ sender: Any) {
+        NavigationUtil.setRootViewController(vc: self.LoginVc)
+    }
+    
 }
 

@@ -14,7 +14,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="login" id="BYZ-38-t0r" customClass="LoginViewController" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="login" id="BYZ-38-t0r" customClass="LoginViewController" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -37,7 +37,7 @@
                                     <color key="titleColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="aKt-gl-CCF" kind="presentation" animates="NO" modalPresentationStyle="fullScreen" modalTransitionStyle="partialCurl" id="Wfv-lr-z3k"/>
+                                    <action selector="resetAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TfW-VR-qbC"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofW-sR-w1p">
@@ -96,7 +96,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="新注册用户"/>
                                 <connections>
-                                    <segue destination="jUi-eu-hOJ" kind="presentation" animates="NO" id="sox-Wq-Uj4"/>
+                                    <action selector="registerAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qli-Om-7Lb"/>
                                 </connections>
                             </button>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="bYX-rv-cXL">
@@ -127,6 +127,7 @@
                             <constraint firstItem="bYX-rv-cXL" firstAttribute="centerX" secondItem="MED-n8-Mi9" secondAttribute="centerX" id="ryy-cR-dBv"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="ZWl-Fo-pjG"/>
                     <connections>
                         <outlet property="btn_login" destination="ofW-sR-w1p" id="2wF-I1-7EF"/>
                         <outlet property="tv_phone" destination="woc-JB-uqY" id="Hv8-Fl-yWJ"/>
@@ -135,12 +136,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-273" y="158"/>
+            <point key="canvasLocation" x="64.799999999999997" y="157.87106446776613"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="xGo-d8-FzS">
             <objects>
-                <viewController id="jUi-eu-hOJ" customClass="RegisterViewController" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="register" id="jUi-eu-hOJ" customClass="RegisterViewController" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Zv0-fl-sfa"/>
                         <viewControllerLayoutGuide type="bottom" id="trC-um-gPo"/>
@@ -222,7 +223,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="返回登录"/>
                                 <connections>
-                                    <segue destination="KC6-y2-xeW" kind="unwind" unwindAction="unwindToLoginWithSegue:" id="KZc-Ee-fGo"/>
+                                    <action selector="backAction:" destination="jUi-eu-hOJ" eventType="touchUpInside" id="lOd-nB-rIQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dGG-7V-Ovb">
@@ -280,14 +281,13 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0wp-0U-QPX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="KC6-y2-xeW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="993" y="158"/>
+            <point key="canvasLocation" x="932" y="157.87106446776613"/>
         </scene>
         <!--Reset View Controller-->
         <scene sceneID="CZ2-Wh-Pun">
             <objects>
-                <viewController id="aKt-gl-CCF" customClass="ResetViewController" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="reset" id="aKt-gl-CCF" customClass="ResetViewController" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1qJ-kk-bJU"/>
                         <viewControllerLayoutGuide type="bottom" id="Ok2-uz-aGN"/>
@@ -322,7 +322,7 @@
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ef-US-fEh">
-                                        <rect key="frame" x="157" y="44" width="158" height="32"/>
+                                        <rect key="frame" x="157" y="43.5" width="158" height="32"/>
                                         <color key="backgroundColor" red="0.49944639210000003" green="0.84990459679999997" blue="0.98690015080000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="jPj-68-xHf"/>
@@ -360,7 +360,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="返回登录"/>
                                 <connections>
-                                    <segue destination="2MQ-Cr-Il3" kind="unwind" unwindAction="unwindToLoginWithSegue:" id="gCN-RR-ALI"/>
+                                    <action selector="backAction:" destination="aKt-gl-CCF" eventType="touchUpInside" id="0iu-ks-BCx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IEL-vW-vP8">
@@ -417,9 +417,8 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lyw-En-cfB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="2MQ-Cr-Il3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-274" y="889"/>
+            <point key="canvasLocation" x="65" y="962"/>
         </scene>
     </scenes>
     <resources>

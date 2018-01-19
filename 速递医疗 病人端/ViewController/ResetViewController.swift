@@ -10,7 +10,8 @@ import UIKit
 import SwiftHash
 // 重置密码
 class ResetViewController: BaseTextViewController {
-    let MsgSeconds = 120 // 设置验证码发送间隔时间
+    var LoginVc:LoginViewController!
+    let MsgSeconds = 90 // 设置验证码发送间隔时间
     @IBOutlet weak var photoTextField: UITextField!
     
     @IBOutlet weak var msgCodeTextField: UITextField!
@@ -126,6 +127,10 @@ class ResetViewController: BaseTextViewController {
     @objc private func updateTime(timer: Timer) {
         // when start counting，remainingSeconds value Decrease per second
         remainingSeconds -= 1
+    }
+    
+    @IBAction func backAction(_ sender: Any) {
+        NavigationUtil.setRootViewController(vc: self.LoginVc)
     }
     
 }

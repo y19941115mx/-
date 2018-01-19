@@ -564,9 +564,9 @@ public class WeChatPayManager: NSObject, WXApiDelegate {
         let req = PayReq.init()
         dPrint(message:ResJson["appid"].stringValue )
         req.openID = ResJson["appid"].stringValue
-        req.partnerId = ResJson["mch_id"].stringValue
-        req.prepayId = ResJson["prepay_id"].stringValue
-        req.nonceStr = ResJson["nonce_str"].stringValue
+        req.partnerId = ResJson["partnerid"].stringValue
+        req.prepayId = ResJson["prepayid"].stringValue
+        req.nonceStr = ResJson["noncestr"].stringValue
         req.sign = ResJson["sign"].stringValue
         req.timeStamp = UInt32(ResJson["timestamp"].stringValue)!
         req.package = "Sign=WXPay";
@@ -623,12 +623,12 @@ public class DBHelper:NSObject {
     }
 }
 
-public class NavigationUtil<T>:NSObject{
-    class public func setTabBarSonController(index:Int, handler:((T)->Void)?){
+public class NavigationUtil<T:UIViewController>:NSObject{
+    class public func setTabBarSonController(index:Int, handler:((T)->Void)?,nvcIndex:Int = 0){
         var vc = APPLICATION.tabBarController?.viewControllers![index]
         if vc is UINavigationController {
             let nvc = vc as! UINavigationController
-            vc = nvc.viewControllers[0]
+            vc = nvc.viewControllers[nvcIndex]
         }
         if let vc = vc as? T{
             if let handler = handler {
@@ -636,6 +636,9 @@ public class NavigationUtil<T>:NSObject{
             }
             APPLICATION.tabBarController?.selectedIndex = index
         }
+    }
+    class public func setRootViewController(vc:UIViewController) {
+        APPLICATION.window?.rootViewController = vc
     }
 }
 

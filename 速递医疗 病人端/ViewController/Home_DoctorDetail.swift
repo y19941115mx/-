@@ -92,7 +92,7 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
         let str = bean.doccalendaraffair ?? ""
         var inset:CGFloat = 0
         if str != "" {
-            inset = str.getTextRectSize(font: UIFont.systemFont(ofSize: 14), size: CGSize.init(width: SCREEN_WIDTH - 100, height: 600)).height
+            inset = str.getTextRectSize(font: UIFont.systemFont(ofSize: 14), size: CGSize.init(width: SCREEN_WIDTH - 10, height: 600)).height
         }
         
         return CGSize(width: SCREEN_WIDTH - 50, height: 50 + inset)
