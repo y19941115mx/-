@@ -75,8 +75,8 @@ class MyDateTableViewCell: UITableViewCell {
             }
             evaluateButton.addTarget(self, action: #selector(self.evaluateAction(_:)), for: .touchUpInside)
         }else if flag == 2 {
+            self.button.isHidden = true
             if data.userorderstateid! > 4 {
-                self.button.isHidden = true
                 self.hosTypeLabel.text = "住院地点："
                 self.hospitalLabel.text = data.inhospname
                 stateLabel.text = "当前状态"
