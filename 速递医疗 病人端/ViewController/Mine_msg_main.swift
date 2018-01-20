@@ -136,13 +136,9 @@ class infoVc:UITableViewController {
         for item in data {
             item.notificationread = true
         }
-        tableView.reloadData()
+        self.vc.tableView.reloadData()
         NetWorkUtil.init(method: .updateallnotificationtoread).newRequestWithOutHUD(successhandler: { (bean, json) in
-            if bean.code == 100 {
                 UIApplication.shared.applicationIconBadgeNumber = 0
-            }else {
-                ToastError(bean.msg!)
-            }
         })
     }
     

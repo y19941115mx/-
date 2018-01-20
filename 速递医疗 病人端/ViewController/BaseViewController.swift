@@ -125,7 +125,6 @@ class SegmentedSlideViewController: BaseViewController {
     }
 }
 
-// 下拉刷新
 class BaseRefreshController<T:Mappable>:BaseViewController {
     var header:MJRefreshStateHeader?
     var footer:MJRefreshFooter?
@@ -206,7 +205,7 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
     func getData() {
         //刷新数据
         self.selectedPage = 1
-        let Provider = MoyaProvider<API>()
+        let Provider = NetWorkUtil.setRequestTimeout()
         if self.refreshHandler != nil {
             self.refreshHandler!()
         }
@@ -234,7 +233,7 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
                         }
                         
                     }else {
-                        showToast(self.view, (bean?.msg!)!)
+                        ToastError((bean?.msg!)!)
                     }
                     
                 }catch {
@@ -242,7 +241,7 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
                     if self.data.count == 0{
                         self.showRefreshBtn()
                     }
-                    showToast(self.view,CATCHMSG)
+                    ToastError(CATCHMSG)
                 }
             case let .failure(error):
                 self.header?.endRefreshing()
@@ -250,7 +249,7 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
                     self.showRefreshBtn()
                 }
                 dPrint(message: "error:\(error)")
-                showToast(self.view, ERRORMSG)
+                ToastError(ERRORMSG)
             }
         }
     }
@@ -270,7 +269,7 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
         self.selectedPage += 1
         //获取更多数据
         getMoreHandler()
-        let Provider = MoyaProvider<API>()
+        let Provider = NetWorkUtil.setRequestTimeout()
         Provider.request(self.getMoreMethod!) { result in
             switch result {
             case let .success(response):
@@ -293,16 +292,16 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
                         }
                         
                     }else {
-                        showToast(self.view, (bean?.msg!)!)
+                        ToastError((bean?.msg!)!)
                     }
                 }catch {
                     self.footer?.endRefreshing()
-                    showToast(self.view, CATCHMSG)
+                    ToastError(CATCHMSG)
                 }
             case let .failure(error):
                 self.footer?.endRefreshing()
                 dPrint(message: "error:\(error)")
-                showToast(self.view, ERRORMSG)
+                ToastError(ERRORMSG)
             }
         }
         

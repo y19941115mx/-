@@ -84,7 +84,7 @@ class PublishCell: UICollectionViewCell, UICollectionViewDataSource, UICollectio
     @objc func PublishAction(button:UIButton) {
         AlertUtil.popAlert(vc: vc, msg: "确认发布病情", okhandler: {
         NetWorkUtil.init(method: .publishsick((self.data?.usersickid)!)).newRequest(successhandler: { (bean, json) in
-                self.vc.refreshData()
+                self.vc.refreshBtn()
             })
         })
     }

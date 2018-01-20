@@ -129,7 +129,7 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
     override func getData() {
         //刷新数据
         self.selectedPage = 1
-        let Provider = MoyaProvider<API>()
+        let Provider = NetWorkUtil.setRequestTimeout()
         if self.refreshHandler != nil {
             self.refreshHandler!()
         }
@@ -163,7 +163,7 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
                         }
                         
                     }else {
-                        showToast(self.view, (bean?.msg!)!)
+                        ToastError((bean?.msg!)!)
                     }
                     
                 }catch {
@@ -171,15 +171,14 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
                     if self.data.count == 0{
                         self.showRefreshBtn()
                     }
-                    showToast(self.view,CATCHMSG)
+                    ToastError(CATCHMSG)
                 }
             case let .failure(error):
                 self.header?.endRefreshing()
                 if self.data.count == 0{
                     self.showRefreshBtn()
                 }
-                dPrint(message: "error:\(error)")
-                showToast(self.view, ERRORMSG)
+                ToastError(ERRORMSG)
             }
         }
     }
@@ -189,7 +188,7 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
         
         //获取更多数据
         getMoreHandler()
-        let Provider = MoyaProvider<API>()
+        let Provider = NetWorkUtil.setRequestTimeout()
         Provider.request(self.getMoreMethod!) { result in
             switch result {
             case let .success(response):
@@ -217,16 +216,16 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
                         }
                         
                     }else {
-                        showToast(self.view, (bean?.msg!)!)
+                        ToastError((bean?.msg!)!)
                     }
                 }catch {
                     self.footer?.endRefreshing()
-                    showToast(self.view, CATCHMSG)
+                    ToastError(CATCHMSG)
                 }
             case let .failure(error):
                 self.footer?.endRefreshing()
                 dPrint(message: "error:\(error)")
-                showToast(self.view, ERRORMSG)
+                ToastError(ERRORMSG)
             }
         }
     }

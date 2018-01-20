@@ -71,27 +71,6 @@
                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yas-ap-I8R">
-                        <rect key="frame" x="260" y="109.5" width="40" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="40" id="hY8-MK-cgo"/>
-                            <constraint firstAttribute="height" constant="30" id="kTb-PQ-SEf"/>
-                        </constraints>
-                        <state key="normal" title="取消">
-                            <color key="titleColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
-                        </state>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                <color key="value" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="5"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                <real key="value" value="1"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7o-TZ-OEl">
                         <rect key="frame" x="254.5" y="45" width="27" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -141,10 +120,8 @@
                     <constraint firstItem="hlC-rj-a6S" firstAttribute="leading" secondItem="cHg-C8-w4z" secondAttribute="trailing" id="gUd-2Q-2EV"/>
                     <constraint firstItem="cHg-C8-w4z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="27" id="hTz-zT-XHs"/>
                     <constraint firstAttribute="trailing" secondItem="oWh-H7-5XD" secondAttribute="trailing" constant="20" id="lXT-YL-Cdi"/>
-                    <constraint firstAttribute="trailing" secondItem="Yas-ap-I8R" secondAttribute="trailing" constant="20" id="m7K-xp-0m3"/>
                     <constraint firstItem="3Se-zN-tzS" firstAttribute="height" secondItem="oWh-H7-5XD" secondAttribute="height" id="mUg-AL-wCf"/>
                     <constraint firstItem="LFI-hh-vt5" firstAttribute="leading" secondItem="oyg-uB-R0j" secondAttribute="trailing" id="mww-Hg-heo"/>
-                    <constraint firstAttribute="bottom" secondItem="Yas-ap-I8R" secondAttribute="bottom" constant="10" id="nx2-vZ-exT"/>
                     <constraint firstItem="LFI-hh-vt5" firstAttribute="baseline" secondItem="oyg-uB-R0j" secondAttribute="baseline" id="p7E-IS-gp0"/>
                     <constraint firstItem="oWh-H7-5XD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="qqp-wv-tRs"/>
                     <constraint firstItem="x3N-38-fNz" firstAttribute="leading" secondItem="V24-LY-XvY" secondAttribute="trailing" id="r9s-tE-q3S"/>
@@ -154,7 +131,6 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="button" destination="Yas-ap-I8R" id="dNj-yJ-P6C"/>
                 <outlet property="descLabel" destination="oWh-H7-5XD" id="dLU-0z-1nv"/>
                 <outlet property="hosTypeLabel" destination="V24-LY-XvY" id="tJl-41-AeA"/>
                 <outlet property="hospitalLabel" destination="x3N-38-fNz" id="jHa-pn-BMQ"/>

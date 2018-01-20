@@ -12,7 +12,6 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var tableView: BaseTableView!
     var textField = UITextField()
     var image = [UIImage]()
-    var imageString = [String]()
     var flag = 0
     
     @IBOutlet weak var confirmBtn: UIButton!
@@ -29,7 +28,7 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
     
     override func viewDidAppear(_ animated: Bool) {
         let msg = user_default.typename.getStringValue()
-        if msg == "审核中" || msg == "已审核" {
+        if msg == "已审核" || msg == "等待审核"{
             confirmBtn.isEnabled = false
             confirmBtn.setTitle(msg, for: .normal)
             self.tableView.allowsSelection = false
@@ -49,9 +48,9 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
             }
             
             if data["usercardphoto"].string != nil && data["usercardphoto"].string != "" {
-                self.imageString = StringUTil.splitImage(str: data["usercardphoto"].string!)
+                var imageString = StringUTil.splitImage(str: data["usercardphoto"].string!)
                 // 添加图片
-                for str in self.imageString {
+                for str in imageString {
                     self.image.append(ImageUtil.URLToImg(url: URL.init(string: str)!))
                 }
                 
@@ -82,6 +81,7 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
             NetWorkUtil.init(method: .editinfo(tableInfo[0][0], tableInfo[0][1], datas, tableInfo[0][3], Int(tableInfo[0][4])!, tableInfo[0][5])).newRequestWithOutHUD(successhandler: { (bean, json) in
                 NetWorkUtil.init(method: .reviewinfo).newRequestWithOutHUD(successhandler: { (bean, sjon) in
                     self.dismiss(animated: false, completion: nil)
+                    Toast(bean.msg!)
                 },failhandler:{ (bean, sjon) in
                     showToast(self.view, bean.msg!)
                 })
@@ -119,13 +119,10 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
             })
         case 2:
             // 跳转上传图片页面 传入 addPhoto
+            let imagesData = image
             let vc = UIStoryboard.init(name: "Mine", bundle: nil).instantiateViewController(withIdentifier: "addPhoto") as! Mine_info_photo
-            if self.imageString.count != 0 {
-                for str in self.imageString {
-                    self.image.append(ImageUtil.URLToImg(url: URL.init(string: str)!))
-                }
-                vc.imgResource = image
-            }
+                vc.imgResource = imagesData
+            image = [UIImage]()
             self.present(vc, animated: false, completion: nil)
         case 3:
             AlertUtil.popOptional(optional: ["男", "女"], handler: { (str) in

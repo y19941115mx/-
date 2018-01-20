@@ -80,10 +80,9 @@ class ResetViewController: BaseTextViewController {
             //1.发送重置密码请求
             NetWorkUtil<BaseAPIBean>.init(method: API.editpassword(phoneText, MD5(passwordText), msgCode)).newRequest(successhandler: {bean,json  in
                 // 重置成功，返回登录界面
-                let vc = self.presentingViewController as! LoginViewController
-                vc.tv_phone.text = phoneText
-                self.dismiss(animated: false, completion: nil)
-                showToast(vc.view, "重置密码成功！")
+                NavigationUtil.setRootViewController(vc: self.LoginVc)
+                self.LoginVc.tv_phone.text = phoneText
+                showToast(self.LoginVc.view, bean.msg!)
             })
             
         }
@@ -105,7 +104,7 @@ class ResetViewController: BaseTextViewController {
             if bean.code == 200 {
                 // 发送手机验证码
                 NetWorkUtil<BaseAPIBean>.init(method: API.getcode(phoneNum)).newRequest(successhandler: {bean, json in
-                        showToast(self.view, "发送验证码成功")
+                    showToast(self.view, "发送验证码成功")
                 })
             }else {
                 showToast(self.view, bean.msg!)

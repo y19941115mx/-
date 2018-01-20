@@ -42,10 +42,10 @@ class Mine_main: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         NetWorkUtil.init(method: .getalipayaccount).newRequestWithOutHUD(successhandler:  { (bean, json) in
             let data = json["data"]
             let str = data["alipayaccount"].stringValue
-            if str == "" {
-                self.flags[3] = true
-                self.infoTable.reloadData()
-            }
+            
+            self.flags[3] = ( str == "" )
+            
+            self.infoTable.reloadData()
         })
         
     }
@@ -107,7 +107,7 @@ class Mine_main: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         // 显示选中的图片
         img_photo.image = selectedImage
         // 上传图片
-        let Provider = MoyaProvider<API>()
+        let Provider = NetWorkUtil.setRequestTimeout()
         SVProgressHUD.show()
         Provider.request(API.updateinfo(ImageUtil.image2Data(image: selectedImage))) { result in
             switch result {

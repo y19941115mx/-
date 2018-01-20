@@ -79,28 +79,13 @@ class Publish_add: BasePickImgViewController, UITextViewDelegate, UICollectionVi
         // 关联 UIPicker 和 textField
         setInputView(mPicker:deptPicker, mTextField:departTextField)
         // 获取亲属信息
-        let Provider = MoyaProvider<API>()
-        Provider.request(API.findfamily) { result in
-            switch result {
-            case let .success(response):
-                do {
-                    let bean = Mapper<familyListBean>().map(JSONObject: try response.mapJSON())
-                    if bean?.code == 100 {
-                        if bean?.familyDataList == nil {
-                            bean?.familyDataList = [familyBean]()
-                        }
-                        self.familyData = (bean?.familyDataList)!
-                    }else{
-                        showToast(self.view, bean!.msg!)
-                    }
-                    
-                }catch {
-                    showToast(self.view, CATCHMSG)
-                }
-            case .failure:
-                showToast(self.view,ERRORMSG)
+        
+        NetWorkUtil<familyListBean>.init(method: .findfamily).newRequestWithOutHUD(successhandler: { (bean, json) in
+            if bean.familyDataList == nil {
+                bean.familyDataList = [familyBean]()
             }
-        }
+            self.familyData = (bean.familyDataList)!
+        })
         
     }
     
@@ -248,7 +233,7 @@ class Publish_add: BasePickImgViewController, UITextViewDelegate, UICollectionVi
                 }
             }
             NetWorkUtil<BaseAPIBean>.init(method: .addsick(datas, textView.text, oneDepart, twoDepart, family)).newRequest(successhandler: { (bean, json) in
-                    self.dismiss(animated: false, completion: nil)
+                self.dismiss(animated: false, completion: nil)
                 
                 self.parentVc.vcs[0].refreshBtn()
             }, failhandler:{ (bean, json) in
@@ -277,7 +262,7 @@ class Publish_add: BasePickImgViewController, UITextViewDelegate, UICollectionVi
             self.patientFlag = true
             self.family = self.familyData[index].familyid
             sender.setTitle(result, for: .normal)
-
+            
         }
     }
     

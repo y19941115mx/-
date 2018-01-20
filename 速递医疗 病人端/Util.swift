@@ -92,8 +92,21 @@ class NetWorkUtil<T:BaseAPIBean> {
         }
     }
     
+    class func setRequestTimeout() -> MoyaProvider<API> {
+        let requestClosure = { (endpoint: Endpoint<API>, done: @escaping MoyaProvider<API>.RequestResultClosure) in
+            do {
+                var request = try endpoint.urlRequest()
+                request.timeoutInterval = 5   //设置请求超时时间
+                done(.success(request))
+            }catch {
+                ToastError(ERRORMSG)
+            }
+        }
+        return  MoyaProvider<API>(requestClosure: requestClosure)
+    }
+    
     func newRequest(successhandler:((_ bean:T, _ JSONObj:JSON) -> Void)?,failhandler:((_ bean:T, _ JSONObj:JSON) -> Void)? = nil ) {
-        let Provider = MoyaProvider<API>()
+        let Provider = NetWorkUtil.setRequestTimeout()
         SVProgressHUD.show()
         Provider.request(method!) { result in
             switch result {
@@ -129,7 +142,7 @@ class NetWorkUtil<T:BaseAPIBean> {
     }
     
     func newRequestWithOutHUD(successhandler:((_ bean:T, _ JSONObj:JSON) -> Void)? ,failhandler:((_ bean:T, _ JSONObj:JSON) -> Void)? = nil) {
-        let Provider = MoyaProvider<API>()
+        let Provider = NetWorkUtil.setRequestTimeout()
         Provider.request(method!) { result in
             switch result {
             case let .success(response):
@@ -146,7 +159,7 @@ class NetWorkUtil<T:BaseAPIBean> {
                             if failhandler != nil {
                                 failhandler!(bean, json)
                             }else {
-                                ToastError(bean.msg!)
+//                                ToastError(bean.msg!)
                             }
                         }
                     }
@@ -154,11 +167,11 @@ class NetWorkUtil<T:BaseAPIBean> {
                     
                 }catch {
                     dPrint(message: "response:\(response)")
-                    ToastError(CATCHMSG)
+//                    ToastError(CATCHMSG)
                 }
             case let .failure(error):
                 dPrint(message: "error:\(error)")
-                ToastError(ERRORMSG)
+//                ToastError(ERRORMSG)
             }
         }
     }
@@ -187,6 +200,7 @@ enum user_default:String {
     
     //UserDefaults 清空数据
     static func clearUserDefaultValue(){
+        UIApplication.shared.applicationIconBadgeNumber = 0
         UserDefaults.standard.removeObject(forKey: "typename")
         UserDefaults.standard.removeObject(forKey: "pix")
         UserDefaults.standard.removeObject(forKey: "token")
@@ -205,9 +219,9 @@ enum user_default:String {
                 EMClient.shared().logout(false, completion: { (error)
                     in
                     if error == nil {
-                        Toast("\(msg)账号退出成功")
+                        Toast("\(msg) 账号退出成功")
                     }else {
-                        Toast("\(msg)账号退出失败")
+                        Toast("\(msg) 账号退出失败")
                     }
                 })
         })
@@ -234,7 +248,7 @@ class AlertUtil: NSObject {
                 handler(array![0].title)
             })
         }
-        LEEAlert.alert().config.leeTitle("测试")!.leeItemInsets(UIEdgeInsets.init(top: 20, left: 0, bottom: 20, right: 0))!.leeCustomView(view)!.leeItemInsets(UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0))!.leeHeaderInsets(UIEdgeInsets.init(top: 10, left: 0, bottom: 0, right: 0))!.leeClickBackgroundClose(true)!.leeShow()
+        LEEAlert.alert().config.leeTitle("请选择")!.leeItemInsets(UIEdgeInsets.init(top: 20, left: 0, bottom: 20, right: 0))!.leeCustomView(view)!.leeItemInsets(UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0))!.leeHeaderInsets(UIEdgeInsets.init(top: 10, left: 0, bottom: 0, right: 0))!.leeClickBackgroundClose(true)!.leeShow()
     }
     
     /**

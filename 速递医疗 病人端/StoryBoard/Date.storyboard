@@ -14,7 +14,7 @@
         <!--Date main-->
         <scene sceneID="vCM-01-vUc">
             <objects>
-                <viewController storyboardIdentifier="Detail" id="Agl-3K-5aW" customClass="Date_main" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Detail" id="Agl-3K-5aW" customClass="Date_main" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Yzv-vI-3SY"/>
                         <viewControllerLayoutGuide type="bottom" id="dmC-hR-qVs"/>
@@ -52,7 +52,7 @@
         <!--Date page-->
         <scene sceneID="Wbi-gx-Jlv">
             <objects>
-                <viewController storyboardIdentifier="order" id="ruX-vb-aq8" customClass="Date_page" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="order" id="ruX-vb-aq8" customClass="Date_page" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MLy-dI-RaO"/>
                         <viewControllerLayoutGuide type="bottom" id="qja-a7-ifu"/>
@@ -61,7 +61,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CL7-Bo-Axw" customClass="BaseTableView" customModule="速递医疗_病人端" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CL7-Bo-Axw" customClass="BaseTableView" customModule="PatientClient" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -90,7 +90,7 @@
         <!--Evaluate View Controller-->
         <scene sceneID="i2h-js-MP2">
             <objects>
-                <viewController id="Pgx-LF-clH" customClass="EvaluateViewController" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Pgx-LF-clH" customClass="EvaluateViewController" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2SD-4P-5Dd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,7 +113,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fsR-Yu-WRy" customClass="RatingController" customModule="速递医疗_病人端" customModuleProvider="target">
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fsR-Yu-WRy" customClass="RatingController" customModule="PatientClient" customModuleProvider="target">
                                 <rect key="frame" x="10" y="416" width="150" height="30"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="size" keyPath="starSize">
@@ -124,7 +124,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcv-PH-QMQ" customClass="RatingController" customModule="速递医疗_病人端" customModuleProvider="target">
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcv-PH-QMQ" customClass="RatingController" customModule="PatientClient" customModuleProvider="target">
                                 <rect key="frame" x="10" y="485" width="150" height="30"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="size" keyPath="starSize">
@@ -180,7 +180,7 @@
                                     <constraint firstAttribute="bottom" secondItem="dPs-o5-4lg" secondAttribute="bottom" id="jLC-lM-5j2"/>
                                 </constraints>
                             </scrollView>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I1c-ho-Jek" customClass="RatingController" customModule="速递医疗_病人端" customModuleProvider="target">
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I1c-ho-Jek" customClass="RatingController" customModule="PatientClient" customModuleProvider="target">
                                 <rect key="frame" x="10" y="347" width="150" height="30"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="size" keyPath="starSize">
@@ -260,7 +260,7 @@
         <!--Order Detail-->
         <scene sceneID="Qli-x3-vcy">
             <objects>
-                <viewController storyboardIdentifier="OrderDetail" id="YZu-fx-Ue9" customClass="Order_Detail" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OrderDetail" id="YZu-fx-Ue9" customClass="Order_Detail" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Q6D-oc-zkj"/>
                         <viewControllerLayoutGuide type="bottom" id="NEf-kI-vJm"/>

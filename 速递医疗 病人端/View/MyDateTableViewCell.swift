@@ -20,7 +20,7 @@ class MyDateTableViewCell: UITableViewCell {
     @IBOutlet weak var hospitalLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
-    @IBOutlet weak var button: UIButton!
+    var button = UIButton()
     
     var vc:BaseRefreshController<OrderBean>?
     var data:OrderBean?
@@ -29,11 +29,22 @@ class MyDateTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
+        button.layer.cornerRadius = 5
+        button.layer.borderColor = UIColor.orange.cgColor
+        button.layer.borderWidth = 1
+        button.setTitle("取消", for: .normal)
+        button.setTitleColor(.orange, for: .normal)
+        self.contentView.addSubview(button)
+        button.snp.makeConstraints { (make) in
+            make.height.equalTo(30)
+            make.width.equalTo(50)
+            make.bottom.equalTo(-10)
+            make.right.equalTo(-20)
+        }
         button.addTarget(self, action: #selector(self.delAction(_:)), for: .touchUpInside)
-        
     }
     
-    func updateViews(vc:BaseRefreshController<OrderBean>, data:OrderBean) {
+    public func updateViews(vc:BaseRefreshController<OrderBean>, data:OrderBean) {
         self.vc = vc
         self.data = data
         nameLabel.text = data.familyname!
@@ -118,12 +129,6 @@ class MyDateTableViewCell: UITableViewCell {
             
         }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
-    
     @objc func delAction(_ sender: UIButton) {
         
         AlertUtil.popAlert(vc: self.vc!, msg: "确认取消订单 该操作不可撤销") {
@@ -134,7 +139,7 @@ class MyDateTableViewCell: UITableViewCell {
         }
     }
     // 支付医院押金
-    @objc func confirmHospAction(_ sender: UIButton) {
+      @objc  func confirmHospAction(_ sender: UIButton) {
         AlertUtil.popAlert(vc: self.vc!, msg: "确认支付订单 需要支付\(priceLabel.text ?? "0" )元") {
             let id = self.data?.userorderid
             var type = 1
@@ -162,7 +167,7 @@ class MyDateTableViewCell: UITableViewCell {
     
     
     // 取消住院
-    @objc func delHospAction(_ sender: UIButton) {
+      @objc  func delHospAction(_ sender: UIButton) {
         
         AlertUtil.popAlert(vc: self.vc!, msg: "确认取消住院 该操作不可撤销") {
             let id = self.data?.userorderid
@@ -198,7 +203,7 @@ class MyDateTableViewCell: UITableViewCell {
         
     }
     // 跳转到评价页面
-    @objc func evaluateAction(_ sender: UIButton) {
+        @objc func evaluateAction(_ sender: UIButton) {
         let vc = UIStoryboard.init(name: "Date", bundle: nil).instantiateViewController(withIdentifier: "evaluate") as! UINavigationController
         let vc2 = vc.viewControllers[0] as! EvaluateViewController
         vc2.OdrderId = data?.userorderid

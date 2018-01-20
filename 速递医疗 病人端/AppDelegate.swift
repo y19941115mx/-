@@ -30,7 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
         
 //        Hud设置
         SVProgressHUD.setDefaultStyle(.custom)
-//        SVProgressHUD.setBackgroundColor(UIColor.)
         SVProgressHUD.setDefaultMaskType(.black)
         SVProgressHUD.setDefaultAnimationType(.native)
         //        获取基本数据
