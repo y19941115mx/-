@@ -272,12 +272,13 @@ class Publish_add: BasePickImgViewController, UITextViewDelegate, UICollectionVi
         for bean in familyData {
             titles.append(bean.familyname!)
         }
-        AlertUtil.popMenu(vc: self, title: "添加就诊人", msg: "", btns: titles, handler: {result in
+        AlertUtil.popOptional(optional: titles) { (result) in
             let index = titles.index(of: result)!
             self.patientFlag = true
             self.family = self.familyData[index].familyid
             sender.setTitle(result, for: .normal)
-        })
+
+        }
     }
     
     

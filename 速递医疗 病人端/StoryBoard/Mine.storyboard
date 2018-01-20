@@ -677,10 +677,10 @@
             </objects>
             <point key="canvasLocation" x="-2416" y="-4066"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Info Vc-->
         <scene sceneID="AuS-Ov-3mw">
             <objects>
-                <tableViewController id="G7u-lI-biz" sceneMemberID="viewController">
+                <tableViewController id="G7u-lI-biz" customClass="infoVc" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Fj-hp-P7v">
                         <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

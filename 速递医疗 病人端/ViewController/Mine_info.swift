@@ -128,9 +128,10 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
             }
             self.present(vc, animated: false, completion: nil)
         case 3:
-            AlertUtil.popMenu(vc: self, title: "选择性别", msg: "", btns: ["男", "女"], handler: { (str) in
+            AlertUtil.popOptional(optional: ["男", "女"], handler: { (str) in
                 self.tableInfo[0][3] = str
                 self.tableView.reloadRows(at: [index_path], with: .none)
+
             })
         case 4:
             self.textField.placeholder = "请输入年龄"

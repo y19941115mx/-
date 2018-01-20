@@ -81,6 +81,53 @@ class Mine_msg_main: BaseRefreshController<NotificationBean>,UITableViewDataSour
         // Do any additional setup after loading the view.
     }
     
+
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // 隐藏navigation
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    @IBAction func BackAction(_ sender: Any) {
+        self.dismiss(animated: false, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let popoverViewController = segue.destination as? infoVc {
+            popoverViewController.popoverPresentationController!.delegate = self
+            popoverViewController.vc = self
+            popoverViewController.data = self.data
+        }
+    }
+}
+
+extension Mine_msg_main: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+}
+
+
+class infoVc:UITableViewController {
+    
+    var vc:Mine_msg_main!
+    var data:[NotificationBean]!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            self.readAllMsgAction()
+        }else if indexPath.row == 1{
+            self.cleanMsgAction()
+        }
+    }
+    
+    
     private func readAllMsgAction() {
         for item in data {
             item.notificationread = true
@@ -100,42 +147,12 @@ class Mine_msg_main: BaseRefreshController<NotificationBean>,UITableViewDataSour
             NetWorkUtil.init(method: .deleteallreceivenotification).newRequest(successhandler: { (bean, json) in
                 showToast(self.view, bean.msg!)
                 UIApplication.shared.applicationIconBadgeNumber = 0
-                self.refreshData()
+                self.vc.refreshBtn()
             })
         })
     }
     
-    @IBAction func ListAction(_ sender: Any) {
-        AlertUtil.popMenu(vc: self, title: "操作", msg: "", btns: ["全部已读", "全部删除"]) { (str) in
-            if str == "全部已读" {
-                self.readAllMsgAction()
-            }else {
-                self.cleanMsgAction()
-            }
-        }
-        
-    }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        // 隐藏navigation
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    
-    @IBAction func BackAction(_ sender: Any) {
-        self.dismiss(animated: false, completion: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let popoverViewController = segue.destination
-        popoverViewController.popoverPresentationController!.delegate = self
-    }
-}
-
-extension Mine_msg_main: UIPopoverPresentationControllerDelegate {
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.none
-    }
 }
 
 

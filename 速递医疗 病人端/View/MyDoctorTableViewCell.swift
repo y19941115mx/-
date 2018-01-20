@@ -63,7 +63,7 @@ class MyDoctorTableViewCell: UITableViewCell {
                         let id = data["doccalendarid"].intValue
                         calenderIds.append(id)
                     }
-                    AlertUtil.popMenu(vc: self.vc!, title: "选择医生日程", msg: "", btns: stringArray, handler: { (str) in
+                    AlertUtil.popOptional(optional: stringArray, handler: { (str) in
                         let index = stringArray.index(of: str)
                         let calenderId = calenderIds[index!]
                         NetWorkUtil<BaseAPIBean>.init(method: .createorder(id!, calenderId)).newRequest(successhandler: { (bean, json) in
@@ -73,6 +73,7 @@ class MyDoctorTableViewCell: UITableViewCell {
                                 sonvc.refreshBtn()
                             })
                         })
+
                     })
                 }
             })
