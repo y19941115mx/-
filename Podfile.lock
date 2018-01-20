@@ -13,6 +13,7 @@ PODS:
     - SDWebImage (!= 3.7.2, ~> 3.7)
   - HyphenateLite (3.3.7)
   - Kingfisher (4.6.1)
+  - LEEAlert (1.1.5)
   - MBProgressHUD (0.9.2)
   - MJRefresh (3.1.15.1)
   - Moya (10.0.1):
@@ -48,6 +49,7 @@ DEPENDENCIES:
   - HJPhotoBrowser
   - HyphenateLite
   - Kingfisher
+  - LEEAlert
   - MJRefresh
   - Moya
   - ObjectMapper
@@ -83,6 +85,7 @@ SPEC CHECKSUMS:
   HJPhotoBrowser: 2397c07ba4de8d8883c3d26f56ee5bb4c7757d63
   HyphenateLite: c11b72fd7cd28a0bdc76e46094909f899369e5be
   Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
+  LEEAlert: e5db9c781a14dbb8d701cfe0f58a56f7a78f35cf
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJRefresh: 5f8552bc25ca8751c010f621c1098dbdaacbccd6
   Moya: 9e621707ff754eeb51ff3ec51a3d54e517c0733a
@@ -99,6 +102,6 @@ SPEC CHECKSUMS:
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
   WechatOpenSDK: 491d965d79335070328571d3e79f714549e79a5e
 
-PODFILE CHECKSUM: 081c812c997a2aa1097574c0b2afb98f8e3df325
+PODFILE CHECKSUM: c8a309d9e88f04d0223b16b76a32277a6e870553
 
 COCOAPODS: 1.3.1

@@ -125,5 +125,18 @@ class Mine_msg_main: BaseRefreshController<NotificationBean>,UITableViewDataSour
     @IBAction func BackAction(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let popoverViewController = segue.destination
+        popoverViewController.popoverPresentationController!.delegate = self
+    }
 }
+
+extension Mine_msg_main: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+}
+
+
 

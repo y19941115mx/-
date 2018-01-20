@@ -12,6 +12,7 @@ import ObjectMapper
 import SwiftyJSON
 import SwiftHash
 import RealmSwift
+import LEEAlert
 
 let SCREEN_WIDTH = UIScreen.main.bounds.size.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
@@ -51,18 +52,14 @@ public func showToast(_ view:UIView, _ message:String) {
 }
 
 public func ToastError(_ message:String) {
-    var style = ToastStyle()
-    style.backgroundColor = UIColor.red
-    let view = APPLICATION.window?.rootViewController?.view
-    view?.makeToast(message, duration: 2.0, position: .bottom, style:style)
+    //时间
+    SVProgressHUD.setMinimumDismissTimeInterval(1)
+    SVProgressHUD.showError(withStatus: message)
 }
 
 public func Toast(_ message:String) {
-    var style = ToastStyle()
-    style.backgroundColor = UIColor.APPColor
-    let vc = APPLICATION.window?.rootViewController
-    
-    vc!.view!.makeToast(message, duration: 2.0, position: .bottom, style:style)
+    SVProgressHUD.setMinimumDismissTimeInterval(1)
+    SVProgressHUD.showSuccess(withStatus: message)
 }
 
 public func customBtn(str:String) -> UIButton {
@@ -120,12 +117,12 @@ class NetWorkUtil<T:BaseAPIBean> {
                     }
                 }catch {
                     dPrint(message: "response:\(response)")
-                    Toast(CATCHMSG)
+                    ToastError(CATCHMSG)
                 }
             case let .failure(error):
                 SVProgressHUD.dismiss()
                 dPrint(message: "error:\(error)")
-                Toast(ERRORMSG)
+                ToastError(ERRORMSG)
             }
         }
     }
@@ -156,11 +153,11 @@ class NetWorkUtil<T:BaseAPIBean> {
                     
                 }catch {
                     dPrint(message: "response:\(response)")
-                    Toast(CATCHMSG)
+                    ToastError(CATCHMSG)
                 }
             case let .failure(error):
                 dPrint(message: "error:\(error)")
-                Toast(ERRORMSG)
+                ToastError(ERRORMSG)
             }
         }
     }
@@ -220,6 +217,24 @@ enum user_default:String {
 
 // Alert 相关
 class AlertUtil: NSObject {
+    
+    
+    class func popOptional(optional:[String], handler:@escaping (_ value: String)->()) {
+        let view = SelectedListView.init(frame: CGRect.init(x: 0, y: 0, width: 280, height: 0), style: .plain)
+        view.isSingle = true
+        
+        var arr = [SelectedListModel]()
+        for (index, item) in optional.enumerated() {
+            arr.append(SelectedListModel.init(sid: index, title: item))
+        }
+        view.array = arr
+        view.selectedBlock = { array in
+            LEEAlert.close(completionBlock: {
+                handler(array![0].title)
+            })
+        }
+        LEEAlert.alert().config.leeTitle("测试")!.leeItemInsets(UIEdgeInsets.init(top: 20, left: 0, bottom: 20, right: 0))!.leeCustomView(view)!.leeItemInsets(UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0))!.leeHeaderInsets(UIEdgeInsets.init(top: 10, left: 0, bottom: 0, right: 0))!.leeClickBackgroundClose(true)!.leeShow()
+    }
     
     /**
      选择弹出框

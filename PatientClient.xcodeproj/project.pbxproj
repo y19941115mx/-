@@ -26,6 +26,8 @@
 		841A27031FAD5AE500D1A807 /* MyDoctorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A27021FAD5AE500D1A807 /* MyDoctorTableViewCell.swift */; };
 		841A27071FAD850800D1A807 /* Date_main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A27061FAD850800D1A807 /* Date_main.swift */; };
 		841A27091FAD86D900D1A807 /* Date.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 841A27081FAD86D900D1A807 /* Date.storyboard */; };
+		8430442620133B2B00C243FD /* SelectedListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8430442220133B2B00C243FD /* SelectedListModel.m */; };
+		8430442720133B2B00C243FD /* SelectedListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8430442320133B2B00C243FD /* SelectedListView.m */; };
 		843A958A1FAEA66B00434254 /* Publish_main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843A95891FAEA66B00434254 /* Publish_main.swift */; };
 		843A958C1FAEA81D00434254 /* Publish_page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843A958B1FAEA81D00434254 /* Publish_page.swift */; };
 		843C3EB41FA8A6EC0076EB8C /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843C3EB31FA8A6EC0076EB8C /* Home.storyboard */; };
@@ -123,6 +125,10 @@
 		841A27021FAD5AE500D1A807 /* MyDoctorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDoctorTableViewCell.swift; sourceTree = "<group>"; };
 		841A27061FAD850800D1A807 /* Date_main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date_main.swift; sourceTree = "<group>"; };
 		841A27081FAD86D900D1A807 /* Date.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Date.storyboard; sourceTree = "<group>"; };
+		8430442220133B2B00C243FD /* SelectedListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedListModel.m; sourceTree = "<group>"; };
+		8430442320133B2B00C243FD /* SelectedListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedListView.m; sourceTree = "<group>"; };
+		8430442420133B2B00C243FD /* SelectedListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedListModel.h; sourceTree = "<group>"; };
+		8430442520133B2B00C243FD /* SelectedListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedListView.h; sourceTree = "<group>"; };
 		843A95891FAEA66B00434254 /* Publish_main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Publish_main.swift; sourceTree = "<group>"; };
 		843A958B1FAEA81D00434254 /* Publish_page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Publish_page.swift; sourceTree = "<group>"; };
 		843C3EB31FA8A6EC0076EB8C /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -225,6 +231,7 @@
 		840647671FA6A6E4009B21C4 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				8430442120133B2B00C243FD /* SelectedListView */,
 				84CF70D920112AE6000C6AE1 /* SwiftShare */,
 				847C139C1FD2B86000B32BB7 /* LibBPush */,
 				847C13961FD2B40300B32BB7 /* AlipaySDK.bundle */,
@@ -261,6 +268,17 @@
 				841A27081FAD86D900D1A807 /* Date.storyboard */,
 			);
 			path = StoryBoard;
+			sourceTree = "<group>";
+		};
+		8430442120133B2B00C243FD /* SelectedListView */ = {
+			isa = PBXGroup;
+			children = (
+				8430442220133B2B00C243FD /* SelectedListModel.m */,
+				8430442320133B2B00C243FD /* SelectedListView.m */,
+				8430442420133B2B00C243FD /* SelectedListModel.h */,
+				8430442520133B2B00C243FD /* SelectedListView.h */,
+			);
+			path = SelectedListView;
 			sourceTree = "<group>";
 		};
 		845899C2F3C2D1E167E529FC /* Frameworks */ = {
@@ -533,6 +551,7 @@
 				"${BUILT_PRODUCTS_DIR}/HJPhotoBrowser/HJPhotoBrowser.framework",
 				"${PODS_ROOT}/HyphenateLite/ios_IM_HyphenateLite_sdk_3.3.7/HyphenateSDK/HyphenateLite.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/LEEAlert/LEEAlert.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/MWPhotoBrowser/MWPhotoBrowser.framework",
@@ -556,6 +575,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HJPhotoBrowser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HyphenateLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LEEAlert.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MWPhotoBrowser.framework",
@@ -638,6 +658,7 @@
 				84C983F11FA611A60058FA7B /* ViewController.swift in Sources */,
 				840647741FA6A6E4009B21C4 /* XLSlideSegmentedItem.m in Sources */,
 				84736BA11FAC564A001E9AA5 /* Mine_pocket.swift in Sources */,
+				8430442720133B2B00C243FD /* SelectedListView.m in Sources */,
 				84CF70E220112AE7000C6AE1 /* SharePlatform.swift in Sources */,
 				849BAA5C1FAD534100871EA8 /* Date_page.swift in Sources */,
 				843A958C1FAEA81D00434254 /* Publish_page.swift in Sources */,
@@ -668,6 +689,7 @@
 				84CF70E320112AE7000C6AE1 /* ShareItemCell.swift in Sources */,
 				84DDACDF1FE0C96F004199FF /* EditViewController.swift in Sources */,
 				840B1EA41FEA511400A6A94E /* Mine_info_photo.swift in Sources */,
+				8430442620133B2B00C243FD /* SelectedListModel.m in Sources */,
 				846D88621FAC26EC00DE6308 /* Mine_order.swift in Sources */,
 				840647321FA62C1B009B21C4 /* CustomButton.swift in Sources */,
 				8406477E1FA770D8009B21C4 /* RegisterViewController.swift in Sources */,
