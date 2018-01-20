@@ -64,9 +64,7 @@ class LoginViewController: BaseTextViewController {
             let username = data["username"].stringValue
             let title = data["title"].stringValue
             // 上传chanelid
-            NetWorkUtil<BaseAPIBean>.init(method: API.updatechannelid(userId, user_default.channel_id.getStringValue()!)).newRequestWithOutHUD(successhandler: { (bean, json) in
-                Toast(bean.msg!)
-            })
+            NetWorkUtil<BaseAPIBean>.init(method: API.updatechannelid(userId, user_default.channel_id.getStringValue()!)).newRequestWithOutHUD(successhandler: nil)
             // 储存数据
             
             user_default.setUserDefault(key: .userId, value: String(userId))

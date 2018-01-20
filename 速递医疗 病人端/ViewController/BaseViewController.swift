@@ -139,16 +139,21 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
     var isTableView:Bool = true
     var button:UIButton = {
         let button = UIButton()
-        button.layer.cornerRadius = 5
-        button.layer.borderColor = UIColor.green.cgColor
-        button.layer.borderWidth = 1
         button.setTitle("数据为空，点击重新加载", for: .normal)
         button.setTitleColor(UIColor.lightGray, for: .normal)
         button.addTarget(self, action: #selector(BaseRefreshController.refreshBtn), for: .touchUpInside)
         return button
     }()
     
-    lazy var imageView = UIImageView.init(image: #imageLiteral(resourceName: "empty"))
+    lazy var imageView:UIImageView = {
+        let imageView = UIImageView.init(image: #imageLiteral(resourceName: "empty"))
+        let gesture = UITapGestureRecognizer.init(target: self, action: #selector(BaseRefreshController.refreshBtn))
+        imageView.addGestureRecognizer(gesture)
+        imageView.isUserInteractionEnabled = true
+        return imageView
+    }()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -163,13 +168,9 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
         // 下拉刷新
         self.header = MJRefreshNormalHeader(refreshingBlock: self.refreshData)
         header?.lastUpdatedTimeLabel.isHidden = true
-//        header?.stateLabel.isHidden = true
         self.scrollView?.mj_header = self.header
         // 上拉加载
-//        self.footer = MJRefreshAutoNormalFooter(refreshingBlock: self.getMoreData)
         self.footer = MJRefreshBackNormalFooter.init(refreshingBlock: self.getMoreData)
-//        self.footer?.isRefreshingTitleHidden = true
-//        self.footer?.setTitle("", for: MJRefreshState.idle)
         self.scrollView?.mj_footer = self.footer
     }
     
@@ -177,9 +178,9 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
         self.isTableView = isTableView
         self.ApiMethod = ApiMethod
         self.scrollView = scrollView
+        // 下拉刷新
         self.header = MJRefreshNormalHeader(refreshingBlock: self.refreshData)
         header?.lastUpdatedTimeLabel.isHidden = true
-        header?.stateLabel.isHidden = true;
         self.scrollView?.mj_header = self.header
     }
     
@@ -267,7 +268,6 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
     
     func getMoreData(){
         self.selectedPage += 1
-    
         //获取更多数据
         getMoreHandler()
         let Provider = MoyaProvider<API>()

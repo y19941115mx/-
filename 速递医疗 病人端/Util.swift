@@ -35,6 +35,7 @@ struct StaticClass {
     static let AliPayScheme = "com.dingling.medical.o2o"
     static let BuglyAPPID = "e0392726ce"
     static let weixinAPPID = "wxd97a67a007393b4e"
+    static let UmengAPPID = "5a630b9e8f4a9d2b7e0000e0"
 }
 
 
@@ -263,17 +264,19 @@ class AlertUtil: NSObject {
         vc.present(alertController, animated: true, completion: nil)
     }
     
-    class func popAlert(vc:UIViewController, msg:String, okhandler: @escaping ()->())
+    class func popAlert(vc:UIViewController, msg:String,hasCancel:Bool = true,okhandler: @escaping ()->())
     {
         // 弹出提示框
         let alertController = UIAlertController(title: "提示",
                                                 message: msg, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        if hasCancel {
+            let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+        }
         let okAction = UIAlertAction(title: "确认", style: .default, handler: {
             action in
             okhandler()
         })
-        alertController.addAction(cancelAction)
         alertController.addAction(okAction)
         vc.present(alertController, animated: true, completion: nil)
     }

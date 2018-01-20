@@ -9,6 +9,17 @@
 import UIKit
 
 class Mine_setting: BaseViewController, UITableViewDataSource, UITableViewDelegate{
+    lazy var messageObject:UMSocialMessageObject = {
+        let shareObject = UMShareWebpageObject.shareObject(withTitle: "速递医疗", descr: "互联网+医疗", thumImage: #imageLiteral(resourceName: "logo_blue"))
+        //设置网页地址
+        shareObject?.webpageUrl = "http://www.dsdoc120.com/"
+        
+        //创建分享消息对象
+        let messageObject = UMSocialMessageObject()
+        //分享消息对象设置分享内容对象
+        messageObject.shareObject = shareObject
+        return messageObject
+    }()
     
     lazy var shareArray: [Any] = {
         var shareArray = [Any]()
@@ -16,15 +27,21 @@ class Mine_setting: BaseViewController, UITableViewDataSource, UITableViewDelega
         shareArray.append(PlatformNameSms)
         shareArray.append(PlatformNameEmail)
         shareArray.append(PlatformNameSina)
-        shareArray.append(PlatformNameWechat)
+        shareArray.append(PlatformNameQQ)
         
         ///自定义图片和title,使用预制默认分享事件
-        shareArray.append(ShareItem(image: UIImage(named: "IFMShareImage.bundle/share_qq")!, title: "QQ", actionName: PlatformHandleQQ))
+        shareArray.append(ShareItem(image: UIImage(named: "IFMShareImage.bundle/share_weixin")!, title: "微信", callBack: {(_ item: ShareItem) -> Void in
+            // 调用Umeng
+            UMSocialManager.default().share(to: UMSocialPlatformType.wechatSession, messageObject: self.messageObject, currentViewController: self, completion: { (data, error) in
+                if error != nil {
+                    ToastError("分享失败")
+                }
+            })
+        }))
         
-        ///自定义图片、title和事件
-//        shareArray.append(ShareItem(image: UIImage(named: "IFMShareImage.bundle/share_alipay")!, title: "支付宝", callBack: {(_ item: ShareItem) -> Void in
-//            ShareView.alertMsg("提示", "点击了支付宝", self)
-//        }))
+        shareArray.append(ShareItem(image: UIImage(named: "IFMShareImage.bundle/share_qq")!, title: "QQ", callBack: {(_ item: ShareItem) -> Void in
+            ShareView.alertMsg("提示", "功能完善中", self)
+        }))
         return shareArray
     }()
     
@@ -52,7 +69,7 @@ class Mine_setting: BaseViewController, UITableViewDataSource, UITableViewDelega
             user_default.logout("")
         default:
 //            应用分享
-            showSquaredStyle()
+            umengShare()
         }
     }
 
@@ -75,6 +92,16 @@ class Mine_setting: BaseViewController, UITableViewDataSource, UITableViewDelega
         shareView.addUrl(URL(string: "http://www.baidu.com"))
         shareView.addImage(UIImage(named: "function_collection"))
         return shareView
+    }
+    
+    func umengShare() {
+        UMSocialUIManager.showShareMenuViewInWindow { (type, userinfo) in
+            UMSocialManager.default().share(to: type, messageObject: self.messageObject, currentViewController: self, completion: { (data, error) in
+                if error != nil {
+                    ToastError("分享失败")
+                }
+            })
+        }
     }
 
     

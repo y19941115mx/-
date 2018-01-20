@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
     var lat:String = "0"
     var departData = [String:[String]]()
     var tabBarController: UITabBarController?
+    var homeMainVc:Home_main?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -29,8 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
         
 //        Hud设置
         SVProgressHUD.setDefaultStyle(.custom)
-//        SVProgressHUD.setBackgroundColor(UIColor.clear)
-        SVProgressHUD.setDefaultMaskType(.clear)
+//        SVProgressHUD.setBackgroundColor(UIColor.)
+        SVProgressHUD.setDefaultMaskType(.black)
         SVProgressHUD.setDefaultAnimationType(.native)
         //        获取基本数据
         self.initData()
@@ -44,7 +45,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
         DBHelper.setUpDB()
 //        微信支付
         WXApi.registerApp(StaticClass.weixinAPPID)
-        
+//        友盟社交化分享
+        self.setUpUmeng()
         return true
     }
 
@@ -58,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         EMClient.shared().applicationWillEnterForeground(application)
+        APPLICATION.homeMainVc?.updateView()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -115,6 +118,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
         }
         // 微信支付
         WXApi.handleOpen(url, delegate: WeChatPayManager.wechatPayManager)
+        // 友盟分享
+        UMSocialManager.default().handleOpen(url)
+//        [[UMSocialManager defaultManager] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
         return true
     }
     
@@ -190,6 +196,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
             }
         }, failture:{ error in dPrint(message: error)
         })
+    }
+    
+    private func setUpUmeng() {
+        UMSocialManager.default().umSocialAppkey = StaticClass.UmengAPPID
+        
+        /* 微信聊天 */
+        UMSocialManager.default().setPlaform(UMSocialPlatformType.wechatSession, appKey: "wxd97a67a007393b4e", appSecret: "q7uv1349nx0da2pto9cmo8gku3zs6nx9", redirectURL: "http://mobile.umeng.com/social")
+//        qq
+        UMSocialManager.default().setPlaform(UMSocialPlatformType.QQ, appKey: "1106152098v", appSecret: "KexLaOiU6VVzxgQb", redirectURL: "http://mobile.umeng.com/social")
+//        微博
+        UMSocialManager.default().setPlaform(UMSocialPlatformType.sina, appKey: "1234957746", appSecret: "b3564b393bfcb42672d8e84f084ea550", redirectURL: "https://sns.whalecloud.com/sina2/callback")
+        
     }
     
 

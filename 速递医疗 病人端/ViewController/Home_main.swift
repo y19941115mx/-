@@ -55,6 +55,7 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        APPLICATION.homeMainVc = self
         //添加按钮事件
         initView()
         // 初始化navigationBar
@@ -197,7 +198,7 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
                     let bean = Mapper<BaseListBean<DoctorBean>>().map(JSONObject: try response.mapJSON())
                     if bean?.code == 100 {
                         if bean?.dataList?.count == 0 || bean?.dataList == nil{
-                            showToast(self.view, "已经到底了")
+                            self.footer!.endRefreshingWithNoMoreData()
                             return
                         } else {
                             // 保存数据库
@@ -241,12 +242,10 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
         let pass = user_default.password.getStringValue()
         
         EMClient.shared().login(withUsername: account!, password: pass, completion: { (name, error) in
-            if error == nil {
-                Toast("环信登录成功")
-                self.updateView()
-            }else {
-                dPrint(message:"环信错误码:\(error?.code.rawValue)")
-                Toast("环信登录失败")
+            if error != nil {
+                // 弹出提示
+                AlertUtil.popAlert(vc: self, msg: "环信服务绑定失败", hasCancel:false, okhandler: {
+                })
             }
         })
         
