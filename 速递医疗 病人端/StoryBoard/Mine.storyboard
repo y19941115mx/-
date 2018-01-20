@@ -569,7 +569,6 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title=". . ."/>
                                         <connections>
-                                            <action selector="ListAction:" destination="bHh-qo-qiX" eventType="touchUpInside" id="i7z-N8-eOg"/>
                                             <segue destination="G7u-lI-biz" kind="popoverPresentation" popoverAnchorView="w33-ZH-I9r" id="HLX-U4-PEp">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
@@ -682,7 +681,7 @@
             <objects>
                 <tableViewController id="G7u-lI-biz" customClass="infoVc" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Fj-hp-P7v">
-                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
@@ -722,23 +721,6 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="7bS-fh-Nt6" style="IBUITableViewCellStyleDefault" id="5kC-Mz-gfi">
-                                        <rect key="frame" x="0.0" y="88" width="150" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5kC-Mz-gfi" id="6tp-a4-UdW">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="43.666666666666664"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="取消" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7bS-fh-Nt6">
-                                                    <rect key="frame" x="16" y="0.0" width="118" height="43.666666666666664"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -747,8 +729,8 @@
                             <outlet property="delegate" destination="G7u-lI-biz" id="4mY-j7-1fA"/>
                         </connections>
                     </tableView>
-                    <value key="contentSizeForViewInPopover" type="size" width="150" height="150"/>
-                    <size key="freeformSize" width="150" height="150"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="150" height="100"/>
+                    <size key="freeformSize" width="150" height="100"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K1H-dC-M0u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

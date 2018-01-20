@@ -389,8 +389,7 @@ class MapUtil {
                 failHandler()
                 if error.code == AMapLocationErrorCode.locateFailed.rawValue {
                     //定位错误：此时location和regeocode没有返回值，不进行annotation的添加
-                    let msg = "定位错误:{\(error.code) - \(error.localizedDescription)};"
-                    Toast(msg)
+//                    let msg = "定位错误:{\(error.code) - \(error.localizedDescription)};"
                     return
                 }
                 else if error.code == AMapLocationErrorCode.reGeocodeFailed.rawValue
@@ -402,7 +401,7 @@ class MapUtil {
                     
                     //逆地理错误：在带逆地理的单次定位中，逆地理过程可能发生错误，此时location有返回值，regeocode无返回值，进行annotation的添加
                     let msg = "获取地理位置失败，请检查GPS设置;"
-                    Toast(msg)
+//                    Toast(msg)
                 }
             }else {
                 if let location = location  {

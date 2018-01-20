@@ -9,12 +9,13 @@
 import UIKit
 import SwiftyJSON
 
-class Mine_msg_main: BaseRefreshController<NotificationBean>,UITableViewDataSource, UITableViewDelegate {
+class Mine_msg_main: BaseRefreshController<NotificationBean>,UITableViewDataSource, UITableViewDelegate, UIPopoverPresentationControllerDelegate{
     
     @IBOutlet weak var tableView: BaseTableView!
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
@@ -100,13 +101,15 @@ class Mine_msg_main: BaseRefreshController<NotificationBean>,UITableViewDataSour
             popoverViewController.data = self.data
         }
     }
-}
-
-extension Mine_msg_main: UIPopoverPresentationControllerDelegate {
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
     }
+    
+    
+    
 }
+
 
 
 class infoVc:UITableViewController {
@@ -114,9 +117,10 @@ class infoVc:UITableViewController {
     var vc:Mine_msg_main!
     var data:[NotificationBean]!
     
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.separatorStyle = .none
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -127,8 +131,8 @@ class infoVc:UITableViewController {
         }
     }
     
-    
     private func readAllMsgAction() {
+        self.dismiss(animated: false, completion: nil)
         for item in data {
             item.notificationread = true
         }
@@ -137,12 +141,13 @@ class infoVc:UITableViewController {
             if bean.code == 100 {
                 UIApplication.shared.applicationIconBadgeNumber = 0
             }else {
-                showToast(self.view, bean.msg!)
+                ToastError(bean.msg!)
             }
         })
     }
     
     private func cleanMsgAction() {
+        self.dismiss(animated: false, completion: nil)
         AlertUtil.popAlert(vc: self, msg: "确认删除所有通知", okhandler: {
             NetWorkUtil.init(method: .deleteallreceivenotification).newRequest(successhandler: { (bean, json) in
                 showToast(self.view, bean.msg!)
