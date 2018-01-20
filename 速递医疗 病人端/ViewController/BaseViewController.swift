@@ -128,7 +128,7 @@ class SegmentedSlideViewController: BaseViewController {
 // 下拉刷新
 class BaseRefreshController<T:Mappable>:BaseViewController {
     var header:MJRefreshStateHeader?
-    var footer:MJRefreshAutoStateFooter?
+    var footer:MJRefreshFooter?
     var data = [T]()
     var scrollView:UIScrollView?
     var selectedPage = 1
@@ -137,16 +137,22 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
     var ApiMethod:API?
     var getMoreMethod:API?
     var isTableView:Bool = true
-    var button = UIButton()
+    var button:UIButton = {
+        let button = UIButton()
+        button.layer.cornerRadius = 5
+        button.layer.borderColor = UIColor.green.cgColor
+        button.layer.borderWidth = 1
+        button.setTitle("数据为空，点击重新加载", for: .normal)
+        button.setTitleColor(UIColor.lightGray, for: .normal)
+        button.addTarget(self, action: #selector(BaseRefreshController.refreshBtn), for: .touchUpInside)
+        return button
+    }()
+    
     lazy var imageView = UIImageView.init(image: #imageLiteral(resourceName: "empty"))
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        self.refresh()
-//    }
     
     func initRefresh(scrollView:UIScrollView, ApiMethod:API,refreshHandler:(()->Void)?,getMoreHandler:@escaping ()->Void, isTableView:Bool = true) {
         self.ApiMethod = ApiMethod
@@ -154,13 +160,16 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
         self.refreshHandler = refreshHandler
         self.getMoreHandler = getMoreHandler
         self.scrollView = scrollView
+        // 下拉刷新
         self.header = MJRefreshNormalHeader(refreshingBlock: self.refreshData)
         header?.lastUpdatedTimeLabel.isHidden = true
-        header?.stateLabel.isHidden = true;
+//        header?.stateLabel.isHidden = true
         self.scrollView?.mj_header = self.header
-        self.footer = MJRefreshAutoNormalFooter(refreshingBlock: self.getMoreData)
-        self.footer?.isRefreshingTitleHidden = true
-        self.footer?.setTitle("", for: MJRefreshState.idle)
+        // 上拉加载
+//        self.footer = MJRefreshAutoNormalFooter(refreshingBlock: self.getMoreData)
+        self.footer = MJRefreshBackNormalFooter.init(refreshingBlock: self.getMoreData)
+//        self.footer?.isRefreshingTitleHidden = true
+//        self.footer?.setTitle("", for: MJRefreshState.idle)
         self.scrollView?.mj_footer = self.footer
     }
     
@@ -178,10 +187,6 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
         self.scrollView?.isHidden = true
         self.button.isHidden = false
         self.imageView.isHidden = false
-        //label
-        button.setTitle("数据为空，点击重新加载", for: .normal)
-        button.setTitleColor(UIColor.lightGray, for: .normal)
-        button.addTarget(self, action: #selector(self.refreshBtn), for: .touchUpInside)
         self.view.addSubview(button)
         self.view.addSubview(imageView)
         imageView.snp.makeConstraints { make in
@@ -274,7 +279,7 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
                     let bean = Mapper<BaseListBean<T>>().map(JSONObject: try response.mapJSON())
                     if bean?.code == 100 {
                         if bean?.dataList?.count == 0 || bean?.dataList == nil{
-                            showToast(self.view, "已经到底了")
+                            self.footer!.endRefreshingWithNoMoreData()
                             return
                         }
                         self.data += (bean?.dataList)!

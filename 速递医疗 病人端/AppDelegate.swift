@@ -26,10 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 //        bugly 配置
         Bugly.start(withAppId: StaticClass.BuglyAPPID)
-//        进度条设置
+        
+//        Hud设置
         SVProgressHUD.setDefaultStyle(.custom)
-        SVProgressHUD.setForegroundColor(UIColor.APPColor)
-        SVProgressHUD.setBackgroundColor(UIColor.clear)
+//        SVProgressHUD.setBackgroundColor(UIColor.clear)
         SVProgressHUD.setDefaultMaskType(.clear)
         SVProgressHUD.setDefaultAnimationType(.native)
         //        获取基本数据

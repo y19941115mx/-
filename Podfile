@@ -34,5 +34,6 @@ target 'PatientClient' do
     pod 'RealmSwift'
     # 微信支付
     pod 'WechatOpenSDK'
+    
 
 end
