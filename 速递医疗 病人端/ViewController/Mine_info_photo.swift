@@ -13,10 +13,9 @@ class Mine_info_photo: BasePickImgViewController,UICollectionViewDataSource, UIC
 
     @IBOutlet weak var collectionView2: UICollectionView!
     var imgResource = [UIImage]()
+    var imgString = [String]()
     
     @IBOutlet weak var label: UILabel!
-    
-    
     
     @IBAction func addPicture(_ sender: UIButton) {
         self.updatePicture()
@@ -50,8 +49,15 @@ class Mine_info_photo: BasePickImgViewController,UICollectionViewDataSource, UIC
             // 显示选中的图片
             self.collectionView2.reloadData()
         }
+        // 加载图片
+        for str in self.imgString {
+            if str != "" {
+                let image = ImageUtil.URLToImg(url: URL.init(string: str)!)
+                self.imgResource.append(image)
+            }
+        }
     }
-
+    
    
     @IBAction func buttonAction(_ sender: UIButton) {
         if sender.tag == 0 {
@@ -62,7 +68,6 @@ class Mine_info_photo: BasePickImgViewController,UICollectionViewDataSource, UIC
             if count > 0 {
                 self.dismiss(animated: false, completion: nil)
                 let vc = self.presentingViewController as! Mine_info
-                vc.image = self.imgResource
                 vc.flag = 1
             }else {
                 showToast(self.view, "照片为空")

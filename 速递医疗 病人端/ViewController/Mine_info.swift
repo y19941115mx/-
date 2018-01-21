@@ -11,7 +11,7 @@ import UIKit
 class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var tableView: BaseTableView!
     var textField = UITextField()
-    var image = [UIImage]()
+    var imageString = [String]()
     var flag = 0
     
     @IBOutlet weak var confirmBtn: UIButton!
@@ -48,12 +48,8 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
             }
             
             if data["usercardphoto"].string != nil && data["usercardphoto"].string != "" {
-                var imageString = StringUTil.splitImage(str: data["usercardphoto"].string!)
+                self.imageString = StringUTil.splitImage(str: data["usercardphoto"].string!)
                 // 添加图片
-                for str in imageString {
-                    self.image.append(ImageUtil.URLToImg(url: URL.init(string: str)!))
-                }
-                
                 self.tableInfo[0][2] = "已上传"
             }
             let usermale = data["usermale"].string ?? self.tableInfo[0][3]
@@ -72,11 +68,13 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
                 return
             }
         }
-        let count = image.count
-        if count > 0 {
+        if imageString.count > 0 {
             var datas = [Data]()
-            for i in 0..<count{
-                datas.append(ImageUtil.image2Data(image:image[i]))
+            for str in imageString{
+                if str != "" {
+                    let image = ImageUtil.URLToImg(url: URL.init(string: str)!)
+                    datas.append(ImageUtil.image2Data(image:image))
+                }
             }
             NetWorkUtil.init(method: .editinfo(tableInfo[0][0], tableInfo[0][1], datas, tableInfo[0][3], Int(tableInfo[0][4])!, tableInfo[0][5])).newRequestWithOutHUD(successhandler: { (bean, json) in
                 NetWorkUtil.init(method: .reviewinfo).newRequestWithOutHUD(successhandler: { (bean, sjon) in
@@ -119,10 +117,8 @@ class Mine_info: BaseTableInfoViewController, UIImagePickerControllerDelegate, U
             })
         case 2:
             // 跳转上传图片页面 传入 addPhoto
-            let imagesData = image
             let vc = UIStoryboard.init(name: "Mine", bundle: nil).instantiateViewController(withIdentifier: "addPhoto") as! Mine_info_photo
-                vc.imgResource = imagesData
-            image = [UIImage]()
+                vc.imgString = self.imageString
             self.present(vc, animated: false, completion: nil)
         case 3:
             AlertUtil.popOptional(optional: ["男", "女"], handler: { (str) in

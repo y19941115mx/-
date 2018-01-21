@@ -61,6 +61,8 @@ class EvaluateTableViewController:BaseRefreshController<EvaluateBean>, UITableVi
     var tableView:UITableView!
     var docId:Int!
     
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }

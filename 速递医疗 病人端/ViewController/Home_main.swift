@@ -52,6 +52,8 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
     
     var sortType:HomeType = HomeType.sortByPatient
     
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()

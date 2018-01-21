@@ -20,4 +20,6 @@ class BaseTableView: UITableView {
         super.init(frame: frame, style: style)
         self.tableFooterView = UIView()
     }
+    
+    
 }

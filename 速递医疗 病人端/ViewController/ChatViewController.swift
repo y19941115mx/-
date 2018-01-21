@@ -10,6 +10,7 @@ import UIKit
 import EaseUILite
 
 class ChatViewController: EaseMessageViewController, EaseMessageViewControllerDataSource {
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -30,6 +30,8 @@ class Order_Detail: BasicCollectionViewBrowserController,UICollectionViewDataSou
     @IBOutlet weak var locLabel: UILabel!
     var userorderId:Int?
     
+
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return picArray.count
     }
