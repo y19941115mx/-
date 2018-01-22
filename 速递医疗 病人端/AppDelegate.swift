@@ -29,8 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
         Bugly.start(withAppId: StaticClass.BuglyAPPID)
         
 //        Hud设置
-        SVProgressHUD.setDefaultStyle(.custom)
-        SVProgressHUD.setDefaultMaskType(.black)
+        SVProgressHUD.setDefaultStyle(.dark)
+        SVProgressHUD.setDefaultMaskType(.clear)
         SVProgressHUD.setDefaultAnimationType(.native)
         //        获取基本数据
         self.initData()
@@ -203,7 +203,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
         /* 微信聊天 */
         UMSocialManager.default().setPlaform(UMSocialPlatformType.wechatSession, appKey: "wxd97a67a007393b4e", appSecret: "q7uv1349nx0da2pto9cmo8gku3zs6nx9", redirectURL: "http://mobile.umeng.com/social")
 //        qq
-        UMSocialManager.default().setPlaform(UMSocialPlatformType.QQ, appKey: "1106152098v", appSecret: "KexLaOiU6VVzxgQb", redirectURL: "http://mobile.umeng.com/social")
+        UMSocialManager.default().setPlaform(UMSocialPlatformType.QQ, appKey: "1106692942", appSecret: "H0E2H0OFWbxMaGVG", redirectURL: "http://mobile.umeng.com/social")
 //        微博
         UMSocialManager.default().setPlaform(UMSocialPlatformType.sina, appKey: "1234957746", appSecret: "b3564b393bfcb42672d8e84f084ea550", redirectURL: "https://sns.whalecloud.com/sina2/callback")
         

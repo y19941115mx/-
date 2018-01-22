@@ -10,10 +10,9 @@ import UIKit
 
 class Mine_setting: BaseViewController, UITableViewDataSource, UITableViewDelegate{
     lazy var messageObject:UMSocialMessageObject = {
-        let shareObject = UMShareWebpageObject.shareObject(withTitle: "速递医疗", descr: "互联网+医疗", thumImage: #imageLiteral(resourceName: "logo_blue"))
+        let shareObject = UMShareWebpageObject.shareObject(withTitle: "速递医运", descr: "让我们更容易找到专家，不再为挂号苦恼。", thumImage: #imageLiteral(resourceName: "logo_blue"))
         //设置网页地址
         shareObject?.webpageUrl = "http://www.dsdoc120.com/"
-        
         //创建分享消息对象
         let messageObject = UMSocialMessageObject()
         //分享消息对象设置分享内容对象

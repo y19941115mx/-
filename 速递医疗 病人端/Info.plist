@@ -11,7 +11,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>速递医疗</string>
+	<string>速递医运</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -45,7 +45,7 @@
 			<string>qq</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>tencent100424468</string>
+				<string>tencent1106692942</string>
 			</array>
 		</dict>
 		<dict>
@@ -55,7 +55,7 @@
 			<string>qqzone</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>QQ0918d3f7</string>
+				<string>QQ41f6cb4e</string>
 			</array>
 		</dict>
 		<dict>

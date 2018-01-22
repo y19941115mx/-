@@ -97,7 +97,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1A6FE386D3244A2B5232BE91 /* Pods_________.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_________.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A6FE386D3244A2B5232BE91 /* Pods_________.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_________.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29446847200A1DEE00908009 /* EvaluateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateTableViewCell.swift; sourceTree = "<group>"; };
 		29446848200A1DEE00908009 /* EvaluateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EvaluateTableViewCell.xib; sourceTree = "<group>"; };
 		33379C54A1D1A3E8014F9467 /* Pods-PatientClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PatientClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PatientClient/Pods-PatientClient.debug.xcconfig"; sourceTree = "<group>"; };

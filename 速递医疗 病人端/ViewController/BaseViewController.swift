@@ -258,11 +258,7 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
     func refreshData(){
         //刷新数据
         self.selectedPage = 1
-        MapUtil.singleLocation(successHandler: { (loc, code) in
-            self.getData()
-        }, failHandler: {
-            self.getData()
-        })
+        getData()
     }
     
     func getMoreData(){

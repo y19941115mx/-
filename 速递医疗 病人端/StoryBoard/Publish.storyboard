@@ -33,7 +33,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mc6-JA-jmT">
-                                        <rect key="frame" x="277" y="26.5" width="33" height="32"/>
+                                        <rect key="frame" x="277" y="27" width="33" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <state key="normal" title="添加">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -190,6 +190,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lTv-No-19S">
                                 <rect key="frame" x="0.0" y="336.5" width="320" height="182.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="J3n-3G-XYi">
                                     <size key="itemSize" width="60" height="60"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -287,7 +288,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQt-UE-3YU">
-                                        <rect key="frame" x="277" y="27" width="33" height="32"/>
+                                        <rect key="frame" x="277" y="26.5" width="33" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <state key="normal" title="保存">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -297,7 +298,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y4c-Yg-jch">
-                                        <rect key="frame" x="8" y="30.5" width="47" height="22"/>
+                                        <rect key="frame" x="8" y="31" width="47" height="22"/>
                                         <state key="normal" title="返回" image="button:y4c-Yg-jch:image"/>
                                         <connections>
                                             <action selector="Back_acion:" destination="dOK-1G-a1Q" eventType="touchUpInside" id="Csx-fD-4PP"/>
@@ -465,6 +466,7 @@
                                                 </label>
                                             </subviews>
                                         </view>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="rs9-Gd-vht" firstAttribute="leading" secondItem="ef1-zv-7oe" secondAttribute="trailing" constant="10" id="1dE-mo-4d6"/>
                                             <constraint firstItem="Uv6-is-ftG" firstAttribute="top" secondItem="1RU-6P-wPK" secondAttribute="bottom" constant="2" id="5cy-6x-fT7"/>
@@ -515,18 +517,23 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="d74-DT-kMk" secondAttribute="trailing" constant="10" id="2oT-Es-b1I"/>
                             <constraint firstItem="d74-DT-kMk" firstAttribute="top" secondItem="3nr-hC-WMo" secondAttribute="bottom" constant="10" id="B6X-V2-1tm"/>
                             <constraint firstItem="muQ-Mh-pbo" firstAttribute="top" secondItem="d74-DT-kMk" secondAttribute="bottom" constant="10" id="Eam-gU-679"/>
                             <constraint firstItem="d74-DT-kMk" firstAttribute="leading" secondItem="6uy-di-f6X" secondAttribute="leading" constant="10" id="mPL-JB-9lh"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Sky-pG-eWa" appends="YES" id="G05-9V-8VL"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="infoCollectionView" destination="d74-DT-kMk" id="fyN-mH-Vfl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lby-dv-blx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Sky-pG-eWa"/>
             </objects>
             <point key="canvasLocation" x="1428" y="1961"/>
         </scene>
@@ -714,6 +721,7 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="9Id-hi-Ec9" firstAttribute="top" secondItem="Jjy-af-acD" secondAttribute="bottom" constant="10" id="84g-0V-ddd"/>
                             <constraint firstItem="9Id-hi-Ec9" firstAttribute="leading" secondItem="974-v9-zeg" secondAttribute="leading" constant="10" id="PiR-oA-ZYZ"/>
