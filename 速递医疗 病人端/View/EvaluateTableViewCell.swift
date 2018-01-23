@@ -33,9 +33,6 @@ class EvaluateTableViewCell: UITableViewCell {
         priceLevel.rating = data.doccommentpricelevel!
         serviceLevel.rating = data.doccommentservicelevel!
         commentLabel.text = data.doccommentwords
-        let res = StringUTil.getTextRectSize(text: data.doccommentwords! as NSString, font: commentLabel.font, size: CGSize.init(width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
-        dPrint(message: res.height)
-        height.constant = res.height
     }
     
 }

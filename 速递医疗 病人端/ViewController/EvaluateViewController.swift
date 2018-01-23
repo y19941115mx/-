@@ -80,8 +80,8 @@ class EvaluateTableViewController:BaseRefreshController<EvaluateBean>, UITableVi
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let mdata = data[indexPath.row]
         
-        let res = StringUTil.getTextRectSize(text: mdata.doccommentwords! as NSString, font: UIFont.systemFont(ofSize: 14), size: CGSize.init(width: SCREEN_WIDTH, height: 600))
-        return 93 + res.height 
+        let res = StringUTil.getTextRectSize(text: mdata.doccommentwords! as NSString, font: UIFont.systemFont(ofSize: 14), size: CGSize.init(width: SCREEN_WIDTH - 40, height: 600))
+        return 95 + res.height 
     }
     
     

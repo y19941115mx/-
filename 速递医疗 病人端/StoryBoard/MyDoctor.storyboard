@@ -35,7 +35,7 @@
         <!--My Doctor main-->
         <scene sceneID="1bZ-CY-aRc">
             <objects>
-                <viewController storyboardIdentifier="tableView" id="N36-Kf-7yQ" customClass="MyDoctor_main" customModule="速递医疗_病人端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tableView" id="N36-Kf-7yQ" customClass="MyDoctor_main" customModule="PatientClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Tac-kn-JK6"/>
                         <viewControllerLayoutGuide type="bottom" id="RfE-P3-AUK"/>
@@ -44,11 +44,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="s4O-2M-JmZ" customClass="BaseTableView" customModule="速递医疗_病人端" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="s4O-2M-JmZ" customClass="BaseTableView" customModule="PatientClient" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="10" width="375" height="544"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="reuseIdentifier" rowHeight="90" id="49W-X0-drh" customClass="MyDoctorTableViewCell" customModule="速递医疗_病人端" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="reuseIdentifier" rowHeight="90" id="49W-X0-drh" customClass="MyDoctorTableViewCell" customModule="PatientClient" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="49W-X0-drh" id="fBU-e7-Hgw">
@@ -68,28 +68,13 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="张三" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18D-YF-OpR">
-                                                    <rect key="frame" x="100" y="10" width="275" height="21"/>
+                                                    <rect key="frame" x="100" y="10" width="35" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="安医二附院" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftO-Y4-l1o">
-                                                    <rect key="frame" x="100" y="36" width="275" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医生类型" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQo-4H-W3Z">
-                                                    <rect key="frame" x="100" y="62" width="69.5" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLz-ee-8Yp">
-                                                    <rect key="frame" x="305" y="29" width="50" height="33"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="a1O-1u-s97"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="310" y="46" width="35" height="33"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <state key="normal" title="选择"/>
                                                     <userDefinedRuntimeAttributes>
@@ -104,28 +89,41 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="价格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JwU-K0-F6F">
+                                                    <rect key="frame" x="310" y="10.5" width="35" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="安医二附院" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftO-Y4-l1o">
+                                                    <rect key="frame" x="100" y="41" width="87" height="20.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="150" id="0sv-W4-tYI"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="hQo-4H-W3Z" firstAttribute="leading" secondItem="U2W-x3-eCr" secondAttribute="trailing" constant="20" id="3sp-uf-EKB"/>
-                                                <constraint firstItem="ftO-Y4-l1o" firstAttribute="leading" secondItem="U2W-x3-eCr" secondAttribute="trailing" constant="20" id="ILi-tz-eec"/>
+                                                <constraint firstItem="ftO-Y4-l1o" firstAttribute="leading" secondItem="U2W-x3-eCr" secondAttribute="trailing" constant="20" id="0ow-qu-UJE"/>
+                                                <constraint firstItem="ftO-Y4-l1o" firstAttribute="top" secondItem="18D-YF-OpR" secondAttribute="bottom" constant="10" id="73O-j4-zea"/>
+                                                <constraint firstAttribute="trailing" secondItem="JwU-K0-F6F" secondAttribute="trailing" constant="30" id="BLs-FI-XLF"/>
                                                 <constraint firstItem="U2W-x3-eCr" firstAttribute="top" secondItem="fBU-e7-Hgw" secondAttribute="top" constant="10" id="M1U-q6-sYH"/>
-                                                <constraint firstAttribute="trailing" secondItem="TLz-ee-8Yp" secondAttribute="trailing" constant="20" id="MHP-p4-kr9"/>
-                                                <constraint firstAttribute="trailing" secondItem="ftO-Y4-l1o" secondAttribute="trailing" id="NTA-dh-uQv"/>
                                                 <constraint firstItem="U2W-x3-eCr" firstAttribute="leading" secondItem="fBU-e7-Hgw" secondAttribute="leading" constant="10" id="Rbg-xy-CV1"/>
-                                                <constraint firstAttribute="trailing" secondItem="18D-YF-OpR" secondAttribute="trailing" id="b6t-5h-ItF"/>
                                                 <constraint firstItem="18D-YF-OpR" firstAttribute="top" secondItem="fBU-e7-Hgw" secondAttribute="top" constant="10" id="c6Z-BZ-f7i"/>
-                                                <constraint firstItem="TLz-ee-8Yp" firstAttribute="centerY" secondItem="fBU-e7-Hgw" secondAttribute="centerY" id="dgd-eM-bEE"/>
-                                                <constraint firstItem="ftO-Y4-l1o" firstAttribute="top" secondItem="18D-YF-OpR" secondAttribute="bottom" constant="5" id="f97-oc-070"/>
+                                                <constraint firstAttribute="trailing" secondItem="TLz-ee-8Yp" secondAttribute="trailing" constant="30" id="cOu-hJ-Rp7"/>
+                                                <constraint firstItem="JwU-K0-F6F" firstAttribute="baseline" secondItem="18D-YF-OpR" secondAttribute="baseline" id="ey8-0s-IaO"/>
+                                                <constraint firstItem="TLz-ee-8Yp" firstAttribute="top" secondItem="JwU-K0-F6F" secondAttribute="bottom" constant="15" id="jnS-ol-T6Z"/>
                                                 <constraint firstItem="18D-YF-OpR" firstAttribute="leading" secondItem="U2W-x3-eCr" secondAttribute="trailing" constant="20" id="kvP-bd-QDQ"/>
-                                                <constraint firstItem="hQo-4H-W3Z" firstAttribute="top" secondItem="ftO-Y4-l1o" secondAttribute="bottom" constant="5" id="zmX-ZW-HZZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="avator" destination="U2W-x3-eCr" id="IA0-zx-pxG"/>
                                             <outlet property="checkBtn" destination="TLz-ee-8Yp" id="BgT-qg-jha"/>
                                             <outlet property="hospitalLabel" destination="ftO-Y4-l1o" id="i7j-TO-T92"/>
-                                            <outlet property="label_docType" destination="hQo-4H-W3Z" id="l6H-8T-blX"/>
                                             <outlet property="nameLabel" destination="18D-YF-OpR" id="J4s-s0-QYI"/>
+                                            <outlet property="priceLabel" destination="JwU-K0-F6F" id="aJF-UE-JlV"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -150,7 +148,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UVL-ot-MZm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="834" y="-154"/>
+            <point key="canvasLocation" x="832.79999999999995" y="-154.27286356821591"/>
         </scene>
     </scenes>
 </document>

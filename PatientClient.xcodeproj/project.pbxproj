@@ -26,6 +26,7 @@
 		841A27031FAD5AE500D1A807 /* MyDoctorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A27021FAD5AE500D1A807 /* MyDoctorTableViewCell.swift */; };
 		841A27071FAD850800D1A807 /* Date_main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A27061FAD850800D1A807 /* Date_main.swift */; };
 		841A27091FAD86D900D1A807 /* Date.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 841A27081FAD86D900D1A807 /* Date.storyboard */; };
+		842C6B7420170DC500F52158 /* TriLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842C6B7320170DC500F52158 /* TriLabelView.swift */; };
 		8430442620133B2B00C243FD /* SelectedListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8430442220133B2B00C243FD /* SelectedListModel.m */; };
 		8430442720133B2B00C243FD /* SelectedListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8430442320133B2B00C243FD /* SelectedListView.m */; };
 		843A958A1FAEA66B00434254 /* Publish_main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843A95891FAEA66B00434254 /* Publish_main.swift */; };
@@ -125,6 +126,7 @@
 		841A27021FAD5AE500D1A807 /* MyDoctorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDoctorTableViewCell.swift; sourceTree = "<group>"; };
 		841A27061FAD850800D1A807 /* Date_main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date_main.swift; sourceTree = "<group>"; };
 		841A27081FAD86D900D1A807 /* Date.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Date.storyboard; sourceTree = "<group>"; };
+		842C6B7320170DC500F52158 /* TriLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriLabelView.swift; sourceTree = "<group>"; };
 		8430442220133B2B00C243FD /* SelectedListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedListModel.m; sourceTree = "<group>"; };
 		8430442320133B2B00C243FD /* SelectedListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedListView.m; sourceTree = "<group>"; };
 		8430442420133B2B00C243FD /* SelectedListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedListModel.h; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 		84C984081FA6180D0058FA7B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				842C6B7320170DC500F52158 /* TriLabelView.swift */,
 				8495136A1FE4F85F00C9E261 /* RatingController.swift */,
 				84DDACDA1FE0C914004199FF /* InfoTableViewCell.swift */,
 				84DDACDB1FE0C915004199FF /* InfoTableViewCell.xib */,
@@ -668,6 +671,7 @@
 				843A958C1FAEA81D00434254 /* Publish_page.swift in Sources */,
 				840647361FA62D03009B21C4 /* Util.swift in Sources */,
 				8495136B1FE4F86000C9E261 /* RatingController.swift in Sources */,
+				842C6B7420170DC500F52158 /* TriLabelView.swift in Sources */,
 				84DDACDC1FE0C915004199FF /* InfoTableViewCell.swift in Sources */,
 				8461E5621FE38F7C0096D041 /* MyDateTableViewCell.swift in Sources */,
 				8406477F1FA770D8009B21C4 /* LoginViewController.swift in Sources */,
@@ -867,7 +871,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = PatientDevelop;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/速递医疗 病人端/Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -900,7 +904,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = PatientProduct;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/速递医疗 病人端/Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

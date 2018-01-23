@@ -72,6 +72,8 @@ class DoctorBean:Mappable {
     var preordertypename:String?
     var account:String?
     var docabs:String? // 简介
+    var preordertype = 0
+    var preorderprice = 0.0
     
     required init?(map: Map) {
     }
@@ -91,6 +93,8 @@ class DoctorBean:Mappable {
         docexpert <- map["docexpert"]
         preordertypename <- map["preordertypename"]
         account <- map["dochuanxinaccount"]
+        preordertype <- map["preordertype"]
+        preorderprice <- map["preorderprice"]
     }
 }
 

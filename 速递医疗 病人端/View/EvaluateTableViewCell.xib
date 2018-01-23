@@ -32,10 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医院拒绝" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQ2-wG-OiQ">
-                        <rect key="frame" x="20" y="90.5" width="280" height="50"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="50" id="FTV-9y-ofv"/>
-                        </constraints>
+                        <rect key="frame" x="20" y="90.5" width="280" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -117,7 +114,6 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="commentLabel" destination="PQ2-wG-OiQ" id="iWz-c4-bDz"/>
-                <outlet property="height" destination="FTV-9y-ofv" id="enq-dR-3tq"/>
                 <outlet property="nameLabel" destination="051-s9-XQB" id="O4P-Ip-WSJ"/>
                 <outlet property="priceLevel" destination="ZsX-uK-vFD" id="exR-lw-E83"/>
                 <outlet property="professionLevel" destination="glI-6U-aSd" id="eEQ-GR-8ks"/>

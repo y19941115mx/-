@@ -9,10 +9,11 @@
 import UIKit
 import SnapKit
 
-class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
+class Home_DoctorDetail: BaseViewController,UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var height: NSLayoutConstraint!
     @IBOutlet weak var opt_btn: UIButton!
+    
     var doctorId:Int!
     var account:String?
     var docName:String?
@@ -24,21 +25,34 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
     @IBOutlet weak var label_hospital: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var absLabel: UILabel!
     @IBOutlet weak var expertLabel: UILabel!
     @IBOutlet weak var deptLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dates.count
     }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! SetDateCollectionViewCell
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let bean = dates[indexPath.row]
-        cell.updateView(data: bean)
+        
+        let timeLabel = cell.viewWithTag(1) as! UILabel
+        let locLabel = cell.viewWithTag(2) as! UILabel
+        let priceLabel = cell.viewWithTag(3) as! UILabel
+        let msgLabel = cell.viewWithTag(4) as! UILabel
+        timeLabel.text = "\(bean.doccalendartime!) \(bean.doccalendartimeinterval!)"
+        locLabel.text = "\(bean.docaddresslocation!)"
+        priceLabel.text = "\(bean.doccalendarprice)元"
+        msgLabel.text = "\(bean.doccalendaraffair!)"
+        cell.selectionStyle = .gray
         return cell
     }
+    
+   
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder)
@@ -48,19 +62,19 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavTitle(title: "医生详情")
-        collectionView.showsVerticalScrollIndicator = true
+        self.view.backgroundColor = UIColor.APPGrey
         let buttonItem = UIBarButtonItem.init(title: "评价", style: .plain, target: self, action: #selector(getEvaluate(_:)))
         self.navigationItem.rightBarButtonItem = buttonItem
         NetWorkUtil<BaseListBean<MineCalendarBean>>.init(method: .getcalendar(doctorId))
             .newRequest(successhandler: { (bean, json) in
                 if bean.dataList != nil {
                     self.dates = bean.dataList!
-                    self.collectionView.reloadData()
+                    self.tableView.reloadData()
                 }
                 // 更新top constrains
                 if self.dates.count == 0 {
-                    self.collectionView.isHidden = true
-                    self.height.constant -= 220
+                    self.tableView.isHidden = true
+                    self.height.constant -= 180
                 }
             })
         NetWorkUtil.init(method: API.doctorinfo((doctorId)!)).newRequestWithOutHUD(successhandler: { (bean, json) in
@@ -82,23 +96,18 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
                 self.label_hospital.text = data["dochosp"].stringValue
                 
                 self.expertLabel.text = "擅长： \(data["docexpert"].stringValue)"
+                
+                let expertHeight = data["docexpert"].stringValue.getTextRectHeight(font: self.expertLabel.font, width: self.expertLabel.frame.width)
+                let absHeight = "简介：\(abs)".getTextRectHeight(font: self.absLabel.font, width: self.absLabel.frame.width)
+                
+                self.height.constant = self.height.constant - 34 + expertHeight + absHeight
+                                
                 ImageUtil.setAvator(path: data["docloginpix"].stringValue, imageView: self.avator)
             }
         }) 
     }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let bean = dates[indexPath.row]
-        let str = bean.doccalendaraffair ?? ""
-        var inset:CGFloat = 0
-        if str != "" {
-            inset = str.getTextRectSize(font: UIFont.systemFont(ofSize: 14), size: CGSize.init(width: SCREEN_WIDTH - 10, height: 600)).height
-        }
-        
-        return CGSize(width: SCREEN_WIDTH - 40, height: 50 + inset)
-        
-    }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let bean = dates[indexPath.row]
         AlertUtil.popAlert(vc: self, msg: "确定选择该日程 需要支付\(bean.doccalendarprice)元") {
             AlertUtil.popMenu(vc: self, title: "选择支付方式", msg: "", btns: ["支付宝","微信"], handler: { (str) in
@@ -118,7 +127,7 @@ class Home_DoctorDetail: BaseViewController,UICollectionViewDataSource, UICollec
                             let manager = WeChatPayManager.sharedManager(context: sonvc)
                             manager.pay(ResJson: json["data"])
                         }
-                    
+                        
                     })
                 })
             })

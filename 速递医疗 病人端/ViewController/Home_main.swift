@@ -163,6 +163,7 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
                             let collectionView = self.scrollView as! UICollectionView
                             collectionView.reloadData()
                         }
+                        self.footer?.resetNoMoreData()
                         
                     }else {
                         ToastError((bean?.msg!)!)

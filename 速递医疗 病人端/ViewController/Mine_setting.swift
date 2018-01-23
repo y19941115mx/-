@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class Mine_setting: BaseViewController, UITableViewDataSource, UITableViewDelegate{
     lazy var messageObject:UMSocialMessageObject = {
@@ -20,34 +21,9 @@ class Mine_setting: BaseViewController, UITableViewDataSource, UITableViewDelega
         return messageObject
     }()
     
-    lazy var shareArray: [Any] = {
-        var shareArray = [Any]()
-        ///使用预制默认图片、title和分享事件
-        shareArray.append(PlatformNameSms)
-        shareArray.append(PlatformNameEmail)
-        shareArray.append(PlatformNameSina)
-        shareArray.append(PlatformNameQQ)
-        
-        ///自定义图片和title,使用预制默认分享事件
-        shareArray.append(ShareItem(image: UIImage(named: "IFMShareImage.bundle/share_weixin")!, title: "微信", callBack: {(_ item: ShareItem) -> Void in
-            // 调用Umeng
-            UMSocialManager.default().share(to: UMSocialPlatformType.wechatSession, messageObject: self.messageObject, currentViewController: self, completion: { (data, error) in
-                if error != nil {
-                    ToastError("分享失败")
-                }
-            })
-        }))
-        
-        shareArray.append(ShareItem(image: UIImage(named: "IFMShareImage.bundle/share_qq")!, title: "QQ", callBack: {(_ item: ShareItem) -> Void in
-            ShareView.alertMsg("提示", "功能完善中", self)
-        }))
-        return shareArray
-    }()
-    
-    
     @IBOutlet weak var tableView: BaseTableView!
-    let tableTitle = ["应用分享", "退出登录"]
-    var tableInfo = ["当前版本号：\(APPVERSION)" , "点击回到登录界面"]
+    let tableTitle = ["应用分享","意见反馈", "退出登录"]
+    var tableInfo = ["当前版本号：\(APPVERSION)" ,"让我们做的更好", "点击回到登录界面"]
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableTitle.count
@@ -64,11 +40,13 @@ class Mine_setting: BaseViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
-        case 1:
-            user_default.logout("")
-        default:
-//            应用分享
+        case 0:
             umengShare()
+        case 1:
+            let vc = FeedBackViewController()
+            self.navigationController?.pushViewController(vc, animated: false)
+        default:
+            user_default.logout("")
         }
     }
 
@@ -78,20 +56,16 @@ class Mine_setting: BaseViewController, UITableViewDataSource, UITableViewDelega
         // Do any additional setup after loading the view.
     }
     
-    func showSquaredStyle() {
-        var shareView = ShareView(items: shareArray, countEveryRow: 4)
-        shareView.itemImageSize = CGSize(width: 45, height: 45)
-        shareView = addShareContent(shareView)
-        //    shareView.itemSpace = 10;
-        shareView.show(fromControlle: self)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
-    func addShareContent(_ shareView: ShareView) -> ShareView {
-        shareView.addText("分享测试")
-        shareView.addUrl(URL(string: "http://www.baidu.com"))
-        shareView.addImage(UIImage(named: "function_collection"))
-        return shareView
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
+    
     
     func umengShare() {
         UMSocialUIManager.showShareMenuViewInWindow { (type, userinfo) in
@@ -102,8 +76,57 @@ class Mine_setting: BaseViewController, UITableViewDataSource, UITableViewDelega
             })
         }
     }
+}
 
+class FeedBackViewController:BaseViewController {
+    let textView = UITextView()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpNavTitle(title: "意见反馈")
+        setupView()
+    }
     
-   
-
+    private func setupView() {
+        self.view.backgroundColor = UIColor.APPGrey
+        self.view.addSubview(textView)
+        let myToolBar = UIToolbar.init(frame: CGRect.init(x: 0, y: 0, width: SCREEN_WIDTH, height: 40))
+        let finishBtn = UIBarButtonItem(title: "完成", style: .done, target:self, action: #selector(FeedBackViewController.clickBtn(button:)))
+        finishBtn.tag = 10000
+        myToolBar.setItems([finishBtn], animated: false)
+        textView.inputAccessoryView = myToolBar
+        textView.snp.makeConstraints { (make) in
+            make.top.equalTo(10)
+            make.left.equalTo(0)
+            make.right.equalTo(0)
+            make.height.equalTo(self.view).multipliedBy(0.4)
+        }
+        let submitButton = UIButton()
+        submitButton.setTitleColor(UIColor.white, for: .normal)
+        submitButton.setTitle("提交", for: .normal)
+        submitButton.backgroundColor = UIColor.APPColor
+        submitButton.addTarget(self, action: #selector(FeedBackViewController.clickBtn(button:)), for: .touchUpInside)
+        self.view.addSubview(submitButton)
+        submitButton.snp.makeConstraints { (make) in
+            make.top.equalTo(textView.snp.bottom).offset(10)
+            make.left.equalTo(self.view).offset(20)
+            make.right.equalTo(self.view).offset(-20)
+            make.height.equalTo(40)
+        }
+    }
+    
+    @objc func clickBtn(button:UIButton) {
+        if button.tag == 10000 {
+            self.textView.endEditing(true)
+        }else {
+            if StringUTil.trimmingCharactersWithWhiteSpaces(self.textView.text) != "" {
+                NetWorkUtil.init(method: .addfeedback(self.textView.text)).newRequest(successhandler: { (bean, json) in
+                    self.navigationController?.popViewController(animated: false)
+                    Toast("提交成功")
+                })
+            }else {
+                showToast(self.view, "信息为空")
+            }
+        }
+    }
+    
 }

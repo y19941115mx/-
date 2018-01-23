@@ -10,15 +10,38 @@ import UIKit
 import Moya
 import ObjectMapper
 import SVProgressHUD
+import SnapKit
 
 class Mine_main: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
+    @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var img_photo: UIImageView!
     @IBOutlet weak var infoTable: UITableView!
     @IBOutlet weak var label_name: UILabel!
     @IBOutlet weak var label_id: UILabel!
     
-    @IBOutlet weak var label_type: UILabel!
+    var msg:String = ""
+    
+    // 审核状态label
+    lazy var stateLabelView:TriLabelView = {
+        let triLabelView = TriLabelView()
+        triLabelView.position = .BottomRight
+        triLabelView.labelText = "审核中"
+        triLabelView.viewColor = UIColor.orange
+        triLabelView.textColor = UIColor.white
+        triLabelView.labelFont = UIFont.systemFont(ofSize: 12)
+        triLabelView.isUserInteractionEnabled = true
+        let gesture = UITapGestureRecognizer.init(target: self, action: #selector(Mine_main.click_state_label))
+        triLabelView.addGestureRecognizer(gesture)
+        titleView.addSubview(triLabelView)
+        triLabelView.snp.makeConstraints { (make) in
+            make.bottom.equalTo(0)
+            make.right.equalTo(0)
+            make.height.equalTo(120)
+            make.width.equalTo(120)
+        }
+        return triLabelView
+    }()
     
     private let tableCell:[String] = ["个人信息", "亲属信息", "历史订单", "我的钱包", "我的消息","我的设置"]
     private var flags = [false,false,false,false,false,false]
@@ -34,9 +57,16 @@ class Mine_main: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         // 更新账号审核状态
         NetWorkUtil.init(method: .getreviewinfo).newRequestWithOutHUD(successhandler: { (bean, json) in
             let data = json["data"]
-            let msg = data["typename"].stringValue
-            user_default.setUserDefault(key: .typename, value: msg)
-            self.label_type.text = "\(msg)"
+            let name = data["typename"].stringValue
+
+
+            let type = data["type"].intValue
+            if type == 4 {
+                self.stateLabelView.labelText = "审核失败"
+                self.msg = data["msg"].stringValue
+            }else {
+                self.stateLabelView.labelText = name
+            }
         })
         
         NetWorkUtil.init(method: .getalipayaccount).newRequestWithOutHUD(successhandler:  { (bean, json) in
@@ -137,12 +167,17 @@ class Mine_main: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         self.label_id.text = user_default.userId.getStringValue()
         self.label_name.text = user_default.username.getStringValue()
         ImageUtil.setAvator(path: user_default.pix.getStringValue()!, imageView: self.img_photo)
-        label_type.text = user_default.typename.getStringValue()
     }
     
     @IBAction func unwindToMine(sender: UIStoryboardSegue) {
         
         
+    }
+    
+    @objc func click_state_label() {
+        if msg != "" {
+            AlertUtil.popAlert(vc: self, msg: msg, hasCancel: false,okhandler: {})
+        }
     }
     
     
