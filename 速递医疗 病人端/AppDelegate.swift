@@ -9,7 +9,7 @@
 import UIKit
 import SVProgressHUD
 import SwiftyJSON
-import Bugly
+
 
 
 @UIApplicationMain
@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 //        bugly 配置
-        Bugly.start(withAppId: StaticClass.BuglyAPPID)
+//        Bugly.start(withAppId: StaticClass.BuglyAPPID)
         
 //        Hud设置
         SVProgressHUD.setDefaultStyle(.dark)
