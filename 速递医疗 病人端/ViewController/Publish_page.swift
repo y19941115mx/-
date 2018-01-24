@@ -61,10 +61,14 @@ class Publish_page: BaseRefreshController<SickBean>, UICollectionViewDataSource,
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let sickBean = data[indexPath.row]
+        var height = sickBean.usersickdesc?.getTextRectHeight(font: UIFont.systemFont(ofSize: 17), width: SCREEN_WIDTH-60)
+        if height == nil {
+            height = 0
+        }
         if sickBean.usersickpic == nil {
-            return CGSize(width: SCREEN_WIDTH - 20, height: 150)
+            return CGSize(width: SCREEN_WIDTH - 20, height: 100 + height!)
         }else{
-            return CGSize(width: SCREEN_WIDTH - 20, height: 250)
+            return CGSize(width: SCREEN_WIDTH - 20, height: 200 + height!)
         }
     }
     

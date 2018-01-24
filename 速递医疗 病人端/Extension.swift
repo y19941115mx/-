@@ -14,7 +14,7 @@ extension UIColor {
 
 @IBDesignable
 extension UIView{
-     @IBInspectable var cornerRadius:CGFloat{
+    @IBInspectable var cornerRadius:CGFloat{
         get{
             return layer.cornerRadius
         }set{
@@ -23,7 +23,7 @@ extension UIView{
         }
         
     }
-     @IBInspectable var borderColor:UIColor{
+    @IBInspectable var borderColor:UIColor{
         get{
             return UIColor.init(cgColor: layer.borderColor!)
         }
@@ -31,7 +31,7 @@ extension UIView{
             layer.borderColor = newValue.cgColor
         }
     }
-     @IBInspectable var borderWidth: CGFloat{
+    @IBInspectable var borderWidth: CGFloat{
         get{
             return layer.borderWidth
         }set{
@@ -81,13 +81,12 @@ extension UIView{
         super.init(coder: aDecoder)
         redPoint.layer.cornerRadius = 3
         redPoint.backgroundColor = UIColor.red
-//        let ract = self.text!.getTextRectHeight(font: self.font, width: self.frame.size.width)
         self.addSubview(redPoint)
         redPoint.snp.makeConstraints { (make) in
             make.height.equalTo(6)
             make.width.equalTo(6)
-            make.right.equalTo(0)
-            make.top.equalTo(0)
+            make.right.equalTo(self)
+            make.top.equalTo(self)
         }
     }
     
@@ -111,7 +110,6 @@ extension String {
         let rect:CGRect = self.boundingRect(with: textMaxSize, options: option, attributes: attributes, context: nil)
         return rect.height
     }
-    
 }
 
 

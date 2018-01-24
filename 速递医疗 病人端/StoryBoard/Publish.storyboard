@@ -33,7 +33,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mc6-JA-jmT">
-                                        <rect key="frame" x="277" y="27" width="33" height="32"/>
+                                        <rect key="frame" x="277" y="26.5" width="33" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <state key="normal" title="添加">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -90,7 +90,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H0L-JK-3aT">
-                                        <rect key="frame" x="277" y="27" width="33" height="32"/>
+                                        <rect key="frame" x="277" y="26.5" width="33" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <state key="normal" title="添加">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -100,7 +100,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ES7-Rr-eeE">
-                                        <rect key="frame" x="8" y="30.5" width="47" height="22"/>
+                                        <rect key="frame" x="8" y="31" width="47" height="22"/>
                                         <state key="normal" title="返回" image="back"/>
                                         <connections>
                                             <segue destination="Jd2-GK-zjk" kind="unwind" unwindAction="unwindToPublishWithSegue:" id="Fqk-6n-hTX"/>
@@ -288,7 +288,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQt-UE-3YU">
-                                        <rect key="frame" x="277" y="26.5" width="33" height="32"/>
+                                        <rect key="frame" x="277" y="27" width="33" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <state key="normal" title="保存">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -298,7 +298,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y4c-Yg-jch">
-                                        <rect key="frame" x="8" y="31" width="47" height="22"/>
+                                        <rect key="frame" x="8" y="30.5" width="47" height="22"/>
                                         <state key="normal" title="返回" image="button:y4c-Yg-jch:image"/>
                                         <connections>
                                             <action selector="Back_acion:" destination="dOK-1G-a1Q" eventType="touchUpInside" id="Csx-fD-4PP"/>
@@ -376,7 +376,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="就诊人:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RU-6P-wPK">
                                                     <rect key="frame" x="20" y="20" width="57" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="王二" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ef1-zv-7oe">
@@ -392,10 +392,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你好时代峻峰了数据烦死了地方监考老师的俯拾地芥 " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="stc-Jj-NFs">
-                                                    <rect key="frame" x="20" y="55.5" width="293" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="t2s-sv-AGH"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="20" y="60.5" width="293" height="41"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -407,7 +404,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="5" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JpA-BP-LWn">
-                                                    <rect key="frame" x="20" y="115.5" width="293" height="80"/>
+                                                    <rect key="frame" x="20" y="111.5" width="293" height="80"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="80" id="CP2-EQ-MM6"/>
@@ -471,7 +468,7 @@
                                             <constraint firstItem="rs9-Gd-vht" firstAttribute="leading" secondItem="ef1-zv-7oe" secondAttribute="trailing" constant="10" id="1dE-mo-4d6"/>
                                             <constraint firstItem="Uv6-is-ftG" firstAttribute="top" secondItem="1RU-6P-wPK" secondAttribute="bottom" constant="2" id="5cy-6x-fT7"/>
                                             <constraint firstItem="VFq-Bq-Giy" firstAttribute="leading" secondItem="rs9-Gd-vht" secondAttribute="trailing" constant="10" id="5w9-Gk-thr"/>
-                                            <constraint firstItem="stc-Jj-NFs" firstAttribute="top" secondItem="ef1-zv-7oe" secondAttribute="bottom" constant="15" id="7aJ-Of-RQK"/>
+                                            <constraint firstItem="stc-Jj-NFs" firstAttribute="top" secondItem="ef1-zv-7oe" secondAttribute="bottom" constant="20" id="7aJ-Of-RQK"/>
                                             <constraint firstItem="VFq-Bq-Giy" firstAttribute="top" secondItem="fzX-qQ-wQc" secondAttribute="top" constant="20" id="B0S-TP-rzg"/>
                                             <constraint firstItem="stc-Jj-NFs" firstAttribute="leading" secondItem="fzX-qQ-wQc" secondAttribute="leading" constant="20" id="PWS-n2-1QG"/>
                                             <constraint firstItem="DdO-AS-Odx" firstAttribute="centerX" secondItem="fzX-qQ-wQc" secondAttribute="centerX" id="Vn9-k3-TPc"/>
@@ -501,12 +498,12 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="btn_del" destination="L6U-t6-ST5" id="qhq-wT-P38"/>
-                                            <outlet property="collectionView" destination="JpA-BP-LWn" id="GKP-85-XSr"/>
+                                            <outlet property="collectionView" destination="JpA-BP-LWn" id="GGV-Gc-6Xz"/>
                                             <outlet property="label_age" destination="VFq-Bq-Giy" id="5wP-V5-8v8"/>
                                             <outlet property="label_desc" destination="stc-Jj-NFs" id="dy8-RC-dq8"/>
                                             <outlet property="label_name" destination="ef1-zv-7oe" id="UPE-6b-ysc"/>
                                             <outlet property="label_sex" destination="rs9-Gd-vht" id="IGE-tf-jtC"/>
-                                            <outlet property="time_label" destination="JpA-BP-LWn" id="q4Z-T0-QFW"/>
+                                            <outlet property="label_time" destination="Uv6-is-ftG" id="cFp-bw-gXa"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -554,23 +551,23 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="EWq-Ts-nlG">
-                                    <size key="itemSize" width="333" height="250"/>
+                                    <size key="itemSize" width="316.5" height="201"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="QOK-sa-xAK" customClass="PublishCell" customModule="PatientClient" customModuleProvider="target">
-                                        <rect key="frame" x="-16.5" y="0.0" width="333" height="250"/>
+                                        <rect key="frame" x="-8.5" y="0.0" width="316.5" height="201"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="333" height="250"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="316.5" height="201"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="就诊人:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eU3-dT-OFK">
                                                     <rect key="frame" x="20" y="20" width="57" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="王二" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GUC-Ah-v2x">
@@ -585,11 +582,8 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你好时代峻峰了数据烦死了地方监考老师的俯拾地芥 " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAs-y8-d22">
-                                                    <rect key="frame" x="20" y="55.5" width="293" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="8an-ZJ-kuy"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAs-y8-d22">
+                                                    <rect key="frame" x="20" y="60.5" width="276.5" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -601,7 +595,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="5" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LPt-Az-Nic">
-                                                    <rect key="frame" x="20" y="115.5" width="293" height="80"/>
+                                                    <rect key="frame" x="20" y="70.5" width="276.5" height="80"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="80" id="GRk-C6-s58"/>
@@ -631,7 +625,7 @@
                                                     </cells>
                                                 </collectionView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="BJ8-Pj-cBF">
-                                                    <rect key="frame" x="92" y="210" width="150" height="30"/>
+                                                    <rect key="frame" x="83.5" y="161" width="150" height="30"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCN-td-jSB">
                                                             <rect key="frame" x="0.0" y="0.0" width="150" height="30"/>
@@ -683,7 +677,7 @@
                                             <constraint firstItem="4Nt-tZ-tIb" firstAttribute="top" secondItem="eU3-dT-OFK" secondAttribute="bottom" constant="2" id="Ru2-wp-yrl"/>
                                             <constraint firstItem="GUC-Ah-v2x" firstAttribute="leading" secondItem="eU3-dT-OFK" secondAttribute="trailing" constant="10" id="VSI-a0-tIP"/>
                                             <constraint firstItem="LPt-Az-Nic" firstAttribute="top" secondItem="LAs-y8-d22" secondAttribute="bottom" constant="10" id="ZEZ-D5-ORd"/>
-                                            <constraint firstItem="LAs-y8-d22" firstAttribute="top" secondItem="GUC-Ah-v2x" secondAttribute="bottom" constant="15" id="bPv-O5-tWV"/>
+                                            <constraint firstItem="LAs-y8-d22" firstAttribute="top" secondItem="GUC-Ah-v2x" secondAttribute="bottom" constant="20" id="bPv-O5-tWV"/>
                                             <constraint firstItem="eU3-dT-OFK" firstAttribute="top" secondItem="QOK-sa-xAK" secondAttribute="top" constant="20" id="euO-yG-jHL"/>
                                             <constraint firstAttribute="trailing" secondItem="LPt-Az-Nic" secondAttribute="trailing" constant="20" id="fSN-ib-fgg"/>
                                             <constraint firstItem="3ny-hO-bVr" firstAttribute="leading" secondItem="GUC-Ah-v2x" secondAttribute="trailing" constant="10" id="rfG-bQ-5wE"/>
@@ -740,7 +734,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1428" y="1269"/>
+            <point key="canvasLocation" x="1426.875" y="1268.661971830986"/>
         </scene>
     </scenes>
     <resources>
