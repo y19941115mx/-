@@ -867,7 +867,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.victor.PatientClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "21b4ce1d-b156-4c40-9ee8-5c442fadcf0c";
+				PROVISIONING_PROFILE = "4b0375b6-8acc-4f13-937f-d2be82038e67";
 				PROVISIONING_PROFILE_SPECIFIER = PatientDevelop;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/速递医疗 病人端/Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
