@@ -21,6 +21,8 @@ let ERRORMSG = "获取服务器数据失败"
 let CATCHMSG = "解析服务器数据失败"
 let APPVERSION = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
 
+let MAXTIMEOUT = 30
+
 struct StaticClass {
     static let RootIP = "http://www.dsdoc120.com:6221"
     
@@ -97,7 +99,7 @@ class NetWorkUtil<T:BaseAPIBean> {
         let requestClosure = { (endpoint: Endpoint<API>, done: @escaping MoyaProvider<API>.RequestResultClosure) in
             do {
                 var request = try endpoint.urlRequest()
-                request.timeoutInterval = 5   //设置请求超时时间
+                request.timeoutInterval = TimeInterval(MAXTIMEOUT)   //设置请求超时时间
                 done(.success(request))
             }catch {
                 ToastError(ERRORMSG)
