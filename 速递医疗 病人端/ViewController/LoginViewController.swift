@@ -63,10 +63,12 @@ class LoginViewController: BaseTextViewController {
             let token = data["token"].stringValue
             let username = data["username"].stringValue
             let title = data["title"].stringValue
-            // 上传chanelid
-            NetWorkUtil<BaseAPIBean>.init(method: API.updatechannelid(userId, user_default.channel_id.getStringValue()!)).newRequestWithOutHUD(successhandler: nil)
-            // 储存数据
             
+            if user_default.channel_id.getStringValue() != nil {
+                // 上传chanelid
+                NetWorkUtil<BaseAPIBean>.init(method: API.updatechannelid(userId, user_default.channel_id.getStringValue()!)).newRequestWithOutHUD(successhandler: nil)
+            }
+            // 储存数据
             user_default.setUserDefault(key: .userId, value: String(userId))
             user_default.setUserDefault(key: .typename, value: typename)
             user_default.setUserDefault(key: .pix, value: pix)
