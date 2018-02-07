@@ -26,13 +26,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 //        bugly 配置
-//        Bugly.start(withAppId: StaticClass.BuglyAPPID)
-        
+        Bugly.start(withAppId: StaticClass.BuglyAPPID)
 //        Hud设置
         SVProgressHUD.setDefaultStyle(.dark)
         SVProgressHUD.setDefaultMaskType(.clear)
         SVProgressHUD.setDefaultAnimationType(.native)
-        //        获取基本数据
+        
+        
+//        获取基本数据
         self.initData()
 //        百度推送
         self.setUpBaiDuPush(application, didFinishLaunchingWithOptions: launchOptions)

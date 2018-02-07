@@ -44,6 +44,7 @@ target 'PatientClient' do
     pod 'UMengUShare/Social/ReducedQQ'
     # 集成新浪微博(精简版1M)
     pod 'UMengUShare/Social/ReducedSina'
-    
+    # bugly
+    pod 'Bugly'
 
 end
