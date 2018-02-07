@@ -165,7 +165,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMClientDelegate {
         
         MapUtil.singleLocation(successHandler: {location, reGeocode in
             if reGeocode != nil {
-                showToast((APPLICATION.window?.rootViewController?.view)!, "定位成功")
                 if user_default.username.getStringValue() != nil {
                     if let province = reGeocode?.province,let city = reGeocode?.city, let district = reGeocode?.district {
                         NetWorkUtil.init(method: API.updatelocation(APPLICATION.lon, APPLICATION.lat, province, city,district)).newRequestWithOutHUD(successhandler: nil)
