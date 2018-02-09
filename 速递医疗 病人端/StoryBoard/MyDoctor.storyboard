@@ -123,7 +123,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="avator" destination="U2W-x3-eCr" id="IA0-zx-pxG"/>
-                                            <outlet property="checkBtn" destination="TLz-ee-8Yp" id="BgT-qg-jha"/>
+                                            <outlet property="checkBtn" destination="TLz-ee-8Yp" id="G7c-zU-wZ9"/>
                                             <outlet property="hospitalLabel" destination="ftO-Y4-l1o" id="i7j-TO-T92"/>
                                             <outlet property="nameLabel" destination="18D-YF-OpR" id="J4s-s0-QYI"/>
                                             <outlet property="priceLabel" destination="JwU-K0-F6F" id="aJF-UE-JlV"/>

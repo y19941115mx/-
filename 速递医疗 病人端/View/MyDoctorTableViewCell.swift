@@ -11,11 +11,14 @@ import UIKit
 enum DoctorType:Int {
     case 推荐医生 = 1
     case 抢单医生 = 2
+    case 预选医生 = 4
     
     func getColor() -> UIColor{
         switch self {
         case .抢单医生:
             return UIColor.red
+        case .预选医生:
+            return UIColor.green
         default:
             return UIColor.brown
         }
@@ -24,6 +27,8 @@ enum DoctorType:Int {
         switch self {
         case .抢单医生:
             return "抢单"
+        case .预选医生:
+            return "预选"
         default:
             return "推荐"
         }
@@ -50,6 +55,7 @@ class MyDoctorTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         triLabel = TriLabelView(frame: bounds)
+        triLabel.isUserInteractionEnabled = false
         addSubview(triLabel)
     }
     
@@ -84,6 +90,7 @@ class MyDoctorTableViewCell: UITableViewCell {
         ImageUtil.setImage(path: mData.pix!, imageView: avator)
         
     }
+    
     
     @objc func checkedBtn(button:UIButton) {
         AlertUtil.popAlert(vc: self.vc!, msg: "确定选择该医生", okhandler: {

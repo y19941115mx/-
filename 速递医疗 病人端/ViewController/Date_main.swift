@@ -25,14 +25,18 @@ class Date_main: SegmentedSlideViewController {
         return vcs
     }()
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+//        dPrint(message: "init by coder")
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // 设置navigation
         setUpNavTitle(title: "我的日程")
-        
         setUpSlideSwitchNoNavigation(titles: types, vcs: vcs)
-        
     }
     
 }
