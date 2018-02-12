@@ -119,7 +119,9 @@ class Home_DoctorDetail: BaseViewController,UITableViewDataSource, UITableViewDe
                     let paystr = json["data"].stringValue
                     NavigationUtil<Date_main>.setTabBarSonController(index: 3, handler: { (vc) in
                         let sonvc = vc.vcs[2]
-                        vc.slideSwitch.selectedIndex = 2
+                        if let slide = vc.slideSwitch {
+                         slide.selectedIndex = 2
+                        }
                         if type == 1 {
                             let manager = AliPayManager.sharedManager(context: sonvc)
                             manager.pay(sign:paystr)

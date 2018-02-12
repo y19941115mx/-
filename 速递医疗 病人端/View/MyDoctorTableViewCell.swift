@@ -72,7 +72,7 @@ class MyDoctorTableViewCell: UITableViewCell {
         self.data = mData
         priceLabel.text = "\(mData.preorderprice)元"
         nameLabel.text = mData.name
-        hospitalLabel.text = mData.hospital
+        hospitalLabel.text = mData.docLevel
         triLabel.lengthPercentage = 50
         triLabel.textColor = UIColor.white
         triLabel.labelFont = UIFont(name: "HelveticaNeue-Bold", size: 19)!
@@ -117,8 +117,10 @@ class MyDoctorTableViewCell: UITableViewCell {
                         NetWorkUtil<BaseAPIBean>.init(method: .createorder(id!, calenderId)).newRequest(successhandler: { (bean, json) in
                             NavigationUtil<Date_main>.setTabBarSonController(index: 3, handler: { (vc) in
                                 let sonvc = vc.vcs[0]
-                                vc.slideSwitch.selectedIndex = 0
-                                sonvc.refreshBtn()
+                                if let slide = vc.slideSwitch {
+                                    slide.selectedIndex = 0
+                                    sonvc.refreshBtn()
+                                }
                             })
                         })
 

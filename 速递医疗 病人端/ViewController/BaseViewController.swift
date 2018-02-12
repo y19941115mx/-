@@ -101,7 +101,7 @@ class BaseTextViewController:BaseViewController, UITextFieldDelegate {
 
 
 class SegmentedSlideViewController: BaseViewController {
-    var slideSwitch:XLSegmentedSlideSwitch!
+    var slideSwitch:XLSegmentedSlideSwitch?
     
     override func viewDidLoad() {
         super.viewDidLoad()

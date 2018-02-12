@@ -35,7 +35,7 @@ class HomeMainTableViewCell: UITableViewCell {
         label_desc.text = modelBean.docexpert
         label_name.text = modelBean.name
         label_distance.text = StringUTil.transformDistance(modelBean.distance)
-        label_hospital.text = modelBean.hospital
+        label_hospital.text = modelBean.docLevel
         ImageUtil.setAvator(path: modelBean.pix!, imageView: pic)
         
     }
