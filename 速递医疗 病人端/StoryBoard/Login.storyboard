@@ -106,10 +106,20 @@
                                     <constraint firstAttribute="width" constant="80" id="soG-dT-akH"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="©合肥顶岭医疗" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRZ-8E-gVG">
+                                <rect key="frame" x="145" y="644" width="85" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="C0p-Dp-TZi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="MED-n8-Mi9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="3S4-Dw-aTC"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kRZ-8E-gVG" secondAttribute="bottom" constant="8" id="4cP-Vy-nMK"/>
                             <constraint firstItem="mYg-yR-07e" firstAttribute="top" secondItem="l5Y-d5-E2R" secondAttribute="bottom" constant="10" id="6zf-8U-jEo"/>
                             <constraint firstItem="jRK-FZ-KED" firstAttribute="top" secondItem="ofW-sR-w1p" secondAttribute="bottom" constant="8" id="8rX-t9-aAo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="l5Y-d5-E2R" secondAttribute="trailing" constant="15" id="Bf7-gH-cdT"/>
@@ -121,6 +131,7 @@
                             <constraint firstItem="MED-n8-Mi9" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.5" id="PVc-uU-r2i"/>
                             <constraint firstItem="l5Y-d5-E2R" firstAttribute="top" secondItem="bYX-rv-cXL" secondAttribute="bottom" constant="60" id="SVn-9V-Q7H"/>
                             <constraint firstItem="MED-n8-Mi9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Sj1-0F-gFc"/>
+                            <constraint firstItem="kRZ-8E-gVG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VPF-OP-Bnt"/>
                             <constraint firstItem="bYX-rv-cXL" firstAttribute="centerY" secondItem="MED-n8-Mi9" secondAttribute="centerY" id="dnD-jy-ug8"/>
                             <constraint firstItem="jRK-FZ-KED" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jQM-b7-jSN"/>
                             <constraint firstAttribute="trailing" secondItem="MED-n8-Mi9" secondAttribute="trailing" id="juY-SV-dGV"/>
@@ -251,6 +262,15 @@
                                     <constraint firstAttribute="height" constant="80" id="dec-dY-0ZI"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="©合肥顶岭医疗" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWS-av-QL8">
+                                <rect key="frame" x="145" y="644" width="85" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="1Hk-vs-c74"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -262,6 +282,8 @@
                             <constraint firstItem="cOR-s6-MdT" firstAttribute="top" secondItem="4O0-TT-Trp" secondAttribute="top" id="9k4-SY-W4P"/>
                             <constraint firstItem="TbY-hu-jx2" firstAttribute="centerY" secondItem="cOR-s6-MdT" secondAttribute="centerY" id="ADR-Qt-O6T"/>
                             <constraint firstAttribute="trailing" secondItem="Kcu-eg-lr1" secondAttribute="trailing" constant="30" id="L9B-Em-bY2"/>
+                            <constraint firstItem="trC-um-gPo" firstAttribute="top" secondItem="CWS-av-QL8" secondAttribute="bottom" constant="8" id="Ptz-5P-4zY"/>
+                            <constraint firstItem="CWS-av-QL8" firstAttribute="centerX" secondItem="4O0-TT-Trp" secondAttribute="centerX" id="SSf-RK-7Vw"/>
                             <constraint firstAttribute="trailing" secondItem="cOR-s6-MdT" secondAttribute="trailing" id="Z9x-dS-ctv"/>
                             <constraint firstItem="cOR-s6-MdT" firstAttribute="leading" secondItem="4O0-TT-Trp" secondAttribute="leading" id="d47-Tr-0pU"/>
                             <constraint firstItem="cOR-s6-MdT" firstAttribute="height" secondItem="4O0-TT-Trp" secondAttribute="height" multiplier="0.5" id="jCG-ji-BGj"/>
@@ -388,6 +410,15 @@
                                     <constraint firstAttribute="height" constant="80" id="xvM-48-FGX"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="©合肥顶岭医疗" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wP1-ye-MJq">
+                                <rect key="frame" x="145" y="644" width="85" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="WSj-7E-E8g"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -401,10 +432,12 @@
                             <constraint firstItem="1Yo-8b-5Dc" firstAttribute="centerY" secondItem="6Qf-Wp-OoS" secondAttribute="centerY" id="LHE-sO-bV2"/>
                             <constraint firstItem="IEL-vW-vP8" firstAttribute="top" secondItem="KjF-Yf-Tv4" secondAttribute="bottom" constant="10" id="MnH-cc-dmR"/>
                             <constraint firstItem="Rcj-tg-B1u" firstAttribute="top" secondItem="IEL-vW-vP8" secondAttribute="bottom" id="Snx-xj-RZO"/>
+                            <constraint firstItem="Ok2-uz-aGN" firstAttribute="top" secondItem="wP1-ye-MJq" secondAttribute="bottom" constant="8" id="UFg-6E-VwT"/>
                             <constraint firstItem="6Qf-Wp-OoS" firstAttribute="leading" secondItem="XHw-ai-YW3" secondAttribute="leading" id="a5f-0C-zgY"/>
                             <constraint firstItem="KjF-Yf-Tv4" firstAttribute="top" secondItem="1Yo-8b-5Dc" secondAttribute="bottom" constant="60" id="bIW-4e-oRt"/>
                             <constraint firstAttribute="trailing" secondItem="IEL-vW-vP8" secondAttribute="trailing" constant="30" id="bSx-hT-YMN"/>
                             <constraint firstItem="IEL-vW-vP8" firstAttribute="leading" secondItem="XHw-ai-YW3" secondAttribute="leading" constant="30" id="d6q-IT-toc"/>
+                            <constraint firstItem="wP1-ye-MJq" firstAttribute="centerX" secondItem="XHw-ai-YW3" secondAttribute="centerX" id="goc-IB-6lQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jl9-J8-Kw6"/>

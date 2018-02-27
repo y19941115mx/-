@@ -58,7 +58,9 @@ public enum API {
     case updatenotificationtoread(Int) // 更新已读状态
     case updateallnotificationtoread // 全部消息更新为已读
     
-     case addfeedback(String) // 提交反馈
+    case addfeedback(String) // 提交反馈
+    case uploadId([Data]) // 上传身份证
+    
 }
 // 配置请求
 extension API: TargetType {
@@ -126,7 +128,7 @@ extension API: TargetType {
             return "/editpassword"
         case .getinfo:
             return "/getinfo"
-        case .editinfo:
+        case .editinfo, .uploadId:
             return "/editinfo"
         case .gethistoryorder:
             return "/gethistoryorder"
@@ -144,7 +146,7 @@ extension API: TargetType {
             return "/reviewinfo"
         case .doctorinfo:
             return "/doctorinfo"
-
+            
         case .updatealipayaccount:
             return "/updatealipayaccount"
         case .getalipayaccount:
@@ -300,6 +302,13 @@ extension API: TargetType {
             return .requestParameters(parameters: ["userloginid":user_default.userId.getStringValue()!], encoding: URLEncoding.default)
         case .addfeedback(let str):
             return .requestParameters(parameters: ["type":3, "feedbackidea":str], encoding: URLEncoding.default)
+        case .uploadId(let datas):
+            var formDatas = [MultipartFormData]()
+            for (i, data) in datas.enumerated() {
+                let formData = MultipartFormData.init(provider: .data(data), name: "usercardphoto", fileName: "picture\(i).jpg", mimeType: "image/png")
+                formDatas.append(formData)
+            }
+            return .uploadCompositeMultipart(formDatas, urlParameters: ["userloginid": Int(user_default.userId.getStringValue()!)!])
         }
         
     }

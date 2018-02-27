@@ -66,6 +66,8 @@ class Mine_info_photo: BasePickImgViewController,UICollectionViewDataSource, UIC
             // 保存
             let count = imgResource.count
             if count > 0 {
+                // 上传图片
+                
                 self.dismiss(animated: false, completion: nil)
                 let vc = self.presentingViewController as! Mine_info
                 vc.flag = 1
