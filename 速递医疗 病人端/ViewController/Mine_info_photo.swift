@@ -67,10 +67,18 @@ class Mine_info_photo: BasePickImgViewController,UICollectionViewDataSource, UIC
             let count = imgResource.count
             if count > 0 {
                 // 上传图片
-                
-                self.dismiss(animated: false, completion: nil)
-                let vc = self.presentingViewController as! Mine_info
-                vc.flag = 1
+                var datas = [Data]()
+                for item in imgResource {
+                    datas.append(ImageUtil.image2Data(image:item))
+                }
+                NetWorkUtil.init(method: .uploadId(datas)).newRequest(successhandler: { (bean, json) in
+                    self.dismiss(animated: false, completion: nil)
+                    let vc = self.presentingViewController as! Mine_info
+                    vc.flag = 1
+                }, failhandler: { (bean, json) in
+                    showToast(self.view, bean.msg!)
+                })
+
             }else {
                 showToast(self.view, "照片为空")
             }
