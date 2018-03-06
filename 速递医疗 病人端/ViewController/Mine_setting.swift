@@ -22,8 +22,8 @@ class Mine_setting: BaseViewController, UITableViewDataSource, UITableViewDelega
     }()
     
     @IBOutlet weak var tableView: BaseTableView!
-    let tableTitle = ["应用分享","意见反馈", "退出登录"]
-    var tableInfo = ["当前版本号：\(APPVERSION)" ,"让我们做的更好", "点击回到登录界面"]
+    let tableTitle = ["版本信息","应用分享","意见反馈", "退出登录"]
+    var tableInfo = ["软件版权所有", "当前版本号：\(APPVERSION)", "让我们做的更好", "点击回到登录界面"]
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableTitle.count
@@ -41,8 +41,11 @@ class Mine_setting: BaseViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            umengShare()
+            let vc = editionViewController()
+            self.navigationController?.pushViewController(vc, animated: false)
         case 1:
+            umengShare()
+        case 2:
             let vc = FeedBackViewController()
             self.navigationController?.pushViewController(vc, animated: false)
         default:
@@ -129,4 +132,76 @@ class FeedBackViewController:BaseViewController {
         }
     }
     
+}
+
+// 版本相关 视图控制器
+class editionViewController:BaseViewController, UITableViewDataSource {
+    let data = ["应用名", "版本号", "版权所有"]
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let id = "cell"
+        var cell = tableView.dequeueReusableCell(withIdentifier: id)
+        
+        if cell == nil {
+            cell = UITableViewCell.init(style: .value2, reuseIdentifier: id)
+        }
+        
+        cell?.textLabel?.text = data[indexPath.row]
+        switch indexPath.row {
+        case 0:
+            cell?.detailTextLabel?.text = "速递医疗_病人端"
+        case 1:
+            cell?.detailTextLabel?.text = APPVERSION
+        case 2:
+            cell?.detailTextLabel?.text = "合肥顶岭医疗科技开发有限公司"
+        default:
+            cell?.detailTextLabel?.text = ""
+        }
+        
+        return cell!
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpNavTitle(title: "软件版本")
+        setUpView()
+    }
+    
+    private func setUpView() {
+        // 添加 titleView
+        let titleView = UIView()
+        titleView.backgroundColor = UIColor.APPColor
+        let logoView = UIImageView.init(image: #imageLiteral(resourceName: "logo_blue"))
+        //        logoView.cornerRadius = 40
+        
+        self.view.addSubview(titleView)
+        titleView.addSubview(logoView)
+        
+        titleView.snp.makeConstraints { (make) in
+            make.left.equalTo(0)
+            make.right.equalTo(0)
+            make.top.equalTo(0)
+            make.height.equalTo(self.view).multipliedBy(0.4)
+        }
+        logoView.snp.makeConstraints { (make) in
+            make.center.equalTo(titleView)
+            make.height.width.equalTo(100)
+        }
+        // 添加 tableView
+        let tableView = BaseTableView()
+        self.view.addSubview(tableView)
+        tableView.snp.makeConstraints { (make) in
+            make.height.equalToSuperview().multipliedBy(0.6)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.top.equalTo(titleView.snp.bottom)
+        }
+        tableView.dataSource = self
+        
+    }
 }
