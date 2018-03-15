@@ -60,6 +60,7 @@ public enum API {
     
     case addfeedback(String) // 提交反馈
     case uploadId([Data]) // 上传身份证
+    case mapdoctors(String, String) // 获取医生地图模式
     
 }
 // 配置请求
@@ -169,6 +170,8 @@ extension API: TargetType {
             return "/createquickorder"
         case .addfeedback:
             return "/addfeedback"
+        case .mapdoctors:
+            return "/mapdoctors"
         }
     }
     public var method: Moya.Method {
@@ -309,6 +312,8 @@ extension API: TargetType {
                 formDatas.append(formData)
             }
             return .uploadCompositeMultipart(formDatas, urlParameters: ["userloginid": Int(user_default.userId.getStringValue()!)!])
+        case .mapdoctors(let lon, let lat):
+            return .requestParameters(parameters: ["userloginlon":lon, "userloginlat":lat], encoding: URLEncoding.default)
         }
         
     }

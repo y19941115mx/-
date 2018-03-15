@@ -64,6 +64,8 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
         setUpNavTitle(title: "首页")
         // 初始化消息按钮
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "message"), style: .plain, target: self, action: #selector(self.showContantList))
+        // 添加地图按钮
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "mapicon"), style: .plain, target: self, action: #selector(self.showMap))
         initRefresh(scrollView: infoTableView, ApiMethod: API.getdoctorlist(selectedPage, APPLICATION.lon, APPLICATION.lat), refreshHandler: {
             switch self.sortType {
             case .sortByPatient:
@@ -344,6 +346,14 @@ class Home_main:BaseRefreshController<DoctorBean>, UITableViewDataSource, UITabl
     @objc private func showContantList() {
         let viewController = ConversationListViewController()
         viewController.setUpNavTitle(title: "会话列表")
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: false)
+    }
+    
+    // 显示地图
+    @objc private func showMap() {
+        let viewController = MapViewController()
+        viewController.setUpNavTitle(title: "附近医生")
         viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: false)
     }

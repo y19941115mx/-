@@ -58,6 +58,9 @@ class DoctorListBean:BaseAPIBean {
 }
 /// 医生实体类
 class DoctorBean:Mappable {
+    var docname:String?
+    var dochosplat:String?
+    var dochosplon:String?
     var dept:String?
     var hospital:String?
     var allday: Bool = false
@@ -79,6 +82,9 @@ class DoctorBean:Mappable {
     }
     
     func mapping(map: Map) {
+        docname <- map["docname"]
+        dochosplat <- map["dochosplat"]
+        dochosplon <- map["dochosplon"]
         docabs <- map["docabs"]
         dept <- map["docseconddept"]
         hospital <- map["dochosp"]

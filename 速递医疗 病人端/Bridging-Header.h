@@ -9,8 +9,11 @@
 
 # import "XLSlideSwitch.h"
 # import "XLSegmentedSlideSwitch.h"
+// 地图
 # import <AMapFoundationKit/AMapFoundationKit.h>
 # import <AMapLocationKit/AMapLocationKit.h>
+# import <MAMapKit/MAMapKit.h>
+
 # import "BPush.h"
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>

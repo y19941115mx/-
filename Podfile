@@ -23,6 +23,8 @@ target 'PatientClient' do
     pod 'MJRefresh'
     # 高德定位
     pod 'AMapLocation-NO-IDFA'
+    # 高德地图
+    pod 'AMap2DMap-NO-IDFA'
     # 环信
     pod 'HyphenateLite'
     # 环信UI
