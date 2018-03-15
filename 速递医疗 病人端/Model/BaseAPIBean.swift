@@ -78,11 +78,14 @@ class DoctorBean:Mappable {
     var docabs:String? // 简介
     var preordertype = 0
     var preorderprice = 0.0
-    
+    var docprimarydept:String?
+    var docseconddept:String?
     required init?(map: Map) {
     }
     
     func mapping(map: Map) {
+        docprimarydept <- map["docprimarydept"]
+        docseconddept <- map["docseconddept"]
         docloginpix <- map["docloginpix"]
         docname <- map["docname"]
         dochosplat <- map["dochosplat"]
