@@ -9,6 +9,7 @@
 
 # import "XLSlideSwitch.h"
 # import "XLSegmentedSlideSwitch.h"
+#import "CustomAnnotationView.h"
 // 地图
 # import <AMapFoundationKit/AMapFoundationKit.h>
 # import <AMapLocationKit/AMapLocationKit.h>

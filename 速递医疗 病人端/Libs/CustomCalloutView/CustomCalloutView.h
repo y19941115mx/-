@@ -16,6 +16,12 @@
 @property (nonatomic, strong) UILabel *subtitleLabel;
 @property (nonatomic, strong) UILabel *titleLabel;
 
+-(void)setTitle:(NSString *)title;
+
+-(void)setSubtitle:(NSString *)subtitle;
+
+-(void)setImage:(UIImage *)image;
+
 
 @end
 #endif /* CustomCalloutView_h */

@@ -33,6 +33,8 @@
 /**
  * 初始化方法
  */
+
+
 -(instancetype)initWithFrame:(CGRect)frame Titles:(NSArray <NSString *>*)titles viewControllers:(NSArray <UIViewController *>*)viewControllers;
 /**
  * 标题显示在ViewController中

@@ -10,11 +10,12 @@
 #define CustomAnnotationView_h
 
 #import "CustomCalloutView.h"
-#import <MAMapKit/MAPointAnnotation.h>
+#import <MAMapKit/MAPinAnnotationView.h>
 
-@interface CustomAnnotationView : MAPointAnnotation
+@interface CustomAnnotationView : MAPinAnnotationView
 
 @property (nonatomic, readonly) CustomCalloutView *calloutView;
+@property (nonatomic, strong) UIImage *pix;
 
 @end
 #endif /* CustomAnnotationView_h */

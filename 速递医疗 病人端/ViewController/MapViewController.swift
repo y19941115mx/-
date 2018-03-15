@@ -76,10 +76,10 @@ class MapViewController: BaseViewController,MAMapViewDelegate {
         
         if annotation.isKind(of: MAPointAnnotation.self) {
             let pointReuseIndetifier = "pointReuseIndetifier"
-            var annotationView: MAPinAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: pointReuseIndetifier) as! MAPinAnnotationView?
+            var annotationView: CustomAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: pointReuseIndetifier) as! CustomAnnotationView?
             
             if annotationView == nil {
-                annotationView = MAPinAnnotationView(annotation: annotation, reuseIdentifier: pointReuseIndetifier)
+                annotationView = CustomAnnotationView(annotation: annotation, reuseIdentifier: pointReuseIndetifier)
             }
             
             //            annotationView!.canShowCallout = true
@@ -88,6 +88,9 @@ class MapViewController: BaseViewController,MAMapViewDelegate {
             //            annotationView!.rightCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure)
             //            annotationView!.pinColor = MAPinAnnotationColor.red
             let idx = annotations.index(of: annotation as! MAPointAnnotation)
+            annotationView?.pix = imgs[idx!]
+            // 设置为NO，用以调用自定义的calloutView
+            annotationView?.canShowCallout = false
             annotationView!.image = imgs[idx!]
             //设置中心点偏移，使得标注底部中间点成为经纬度对应点
             annotationView!.centerOffset = CGPoint.init(x: 0, y: -18)
