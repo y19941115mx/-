@@ -68,6 +68,7 @@ class DoctorBean:Mappable {
     var distance:Int = 0
     var primary:String?
     var pix:String?
+    var docloginpix:String?
     var name:String?
     var hospitalLevel:String?
     var docLevel:String?
@@ -82,6 +83,7 @@ class DoctorBean:Mappable {
     }
     
     func mapping(map: Map) {
+        docloginpix <- map["docloginpix"]
         docname <- map["docname"]
         dochosplat <- map["dochosplat"]
         dochosplon <- map["dochosplon"]

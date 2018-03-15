@@ -11,6 +11,8 @@ import SnapKit
 
 class MapViewController: BaseViewController,MAMapViewDelegate {
     var mapView:MAMapView!
+    var annotations:[MAPointAnnotation]!
+    var imgs:[UIImage]!
     override func viewDidLoad() {
         super.viewDidLoad()
         // 添加默认样式
@@ -48,15 +50,21 @@ class MapViewController: BaseViewController,MAMapViewDelegate {
     private func addDoctorPoint(data:[DoctorBean]?) {
         if let doctorList=data {
             for doc in doctorList {
+                // 维护医生头像数组
+                if let imgString = doc.docloginpix {
+                    self.imgs.append(ImageUtil.URLToImg(url: URL.init(string: imgString)!))
+                    
+                }
                 if let lon=doc.dochosplon, let lat=doc.dochosplat {
                     let pointAnnotation = MAPointAnnotation()
                     if lon != "" && lat != "" {
                         pointAnnotation.coordinate = CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(lon)!)
                         pointAnnotation.title = doc.docname
                         //                    pointAnnotation.subtitle = "阜通东大街6号"
+                        self.annotations.append(pointAnnotation)
                         mapView.addAnnotation(pointAnnotation)
                     }
-                   
+                    
                 }
             }
             
@@ -74,12 +82,15 @@ class MapViewController: BaseViewController,MAMapViewDelegate {
                 annotationView = MAPinAnnotationView(annotation: annotation, reuseIdentifier: pointReuseIndetifier)
             }
             
-            annotationView!.canShowCallout = true
-            annotationView!.animatesDrop = true
-            annotationView!.isDraggable = true
-            annotationView!.rightCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure)
-            annotationView!.pinColor = MAPinAnnotationColor.red
-            
+            //            annotationView!.canShowCallout = true
+            //            annotationView!.animatesDrop = true
+            //            annotationView!.isDraggable = true
+            //            annotationView!.rightCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure)
+            //            annotationView!.pinColor = MAPinAnnotationColor.red
+            let idx = annotations.index(of: annotation as! MAPointAnnotation)
+            annotationView!.image = imgs[idx!]
+            //设置中心点偏移，使得标注底部中间点成为经纬度对应点
+            annotationView!.centerOffset = CGPoint.init(x: 0, y: -18)
             return annotationView!
         }
         
