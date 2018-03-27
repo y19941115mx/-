@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (4.6.0)
+  - AMap2DMap-NO-IDFA (5.6.0):
+    - AMapFoundation-NO-IDFA (~> 1.4)
   - AMapFoundation-NO-IDFA (1.4.3)
   - AMapLocation-NO-IDFA (2.6.0):
     - AMapFoundation-NO-IDFA (~> 1.4)
@@ -54,6 +56,7 @@ PODS:
   - WechatOpenSDK (1.8.1)
 
 DEPENDENCIES:
+  - AMap2DMap-NO-IDFA
   - AMapLocation-NO-IDFA
   - Bugly
   - EaseUILite (from `https://github.com/easemob/easeui-ios-hyphenate-cocoapods.git`)
@@ -92,6 +95,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  AMap2DMap-NO-IDFA: 277965383679f1a4676df7e1a0439a1e14d0599a
   AMapFoundation-NO-IDFA: b6cbefab250ae8ab2e31aa9bb3dbbb98137cd76f
   AMapLocation-NO-IDFA: a75b762ae9a90840ce683de12504ac843a9f3b6c
   Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
@@ -118,6 +122,6 @@ SPEC CHECKSUMS:
   UMengUShare: 9e2d22f32aeaf09702ca833ec530895aab995c4f
   WechatOpenSDK: 491d965d79335070328571d3e79f714549e79a5e
 
-PODFILE CHECKSUM: f7d07390c35df44a0210f9d600b68ed5b9de08cd
+PODFILE CHECKSUM: 4d18032bb8965607c4e98c0fcf605a38202a8a7a
 
 COCOAPODS: 1.3.1

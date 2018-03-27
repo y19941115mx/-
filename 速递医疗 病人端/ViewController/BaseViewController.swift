@@ -136,7 +136,7 @@ class BaseRefreshController<T:Mappable>:BaseViewController {
     var ApiMethod:API?
     var getMoreMethod:API?
     var isTableView:Bool = true
-    var button:UIButton = {
+    lazy var button:UIButton = {
         let button = UIButton()
         button.setTitle("数据为空，点击重新加载", for: .normal)
         button.setTitleColor(UIColor.lightGray, for: .normal)

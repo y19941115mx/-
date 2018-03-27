@@ -25,9 +25,6 @@ let MAXTIMEOUT = 30
 
 struct StaticClass {
     static let RootIP = "http://www.dsdoc120.com:6221"
-    
-    //    static let RootIP = "http://1842719ny8.iok.la:14086"
-    //    static let RootIP = "http://120.77.32.15:8080"
     static let BaseCommonAPI = RootIP + "/internetmedical/common"
     static let BaseApi = RootIP + "/internetmedical/user"
     static let PictureIP = RootIP + "/picture/"

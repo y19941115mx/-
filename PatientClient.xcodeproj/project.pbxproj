@@ -10,6 +10,7 @@
 		03ADE3B5CC94C58F75791619 /* Pods_PatientClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8577330D1452F3A49D48A25 /* Pods_PatientClient.framework */; };
 		29446849200A1DEE00908009 /* EvaluateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29446847200A1DEE00908009 /* EvaluateTableViewCell.swift */; };
 		2944684A200A1DEE00908009 /* EvaluateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29446848200A1DEE00908009 /* EvaluateTableViewCell.xib */; };
+		57FD1A53205A12BF00848088 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FD1A52205A12BF00848088 /* MapViewController.swift */; };
 		84031D171FCD52EB0058D437 /* PublishCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84031D161FCD52EB0058D437 /* PublishCell.swift */; };
 		840647321FA62C1B009B21C4 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840647311FA62C1B009B21C4 /* CustomButton.swift */; };
 		840647351FA62D03009B21C4 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840647331FA62D03009B21C4 /* Extension.swift */; };
@@ -103,6 +104,7 @@
 		29446848200A1DEE00908009 /* EvaluateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EvaluateTableViewCell.xib; sourceTree = "<group>"; };
 		33379C54A1D1A3E8014F9467 /* Pods-PatientClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PatientClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PatientClient/Pods-PatientClient.debug.xcconfig"; sourceTree = "<group>"; };
 		34CAB850216A56570E87C8D2 /* Pods-速递医疗 病人端.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-速递医疗 病人端.debug.xcconfig"; path = "Pods/Target Support Files/Pods-速递医疗 病人端/Pods-速递医疗 病人端.debug.xcconfig"; sourceTree = "<group>"; };
+		57FD1A52205A12BF00848088 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		81E3FAD1384C81ED22A37060 /* Pods-PatientClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PatientClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-PatientClient/Pods-PatientClient.release.xcconfig"; sourceTree = "<group>"; };
 		84031D161FCD52EB0058D437 /* PublishCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishCell.swift; sourceTree = "<group>"; };
 		840647311FA62C1B009B21C4 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 		84C984031FA618060058FA7B /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				57FD1A52205A12BF00848088 /* MapViewController.swift */,
 				84F4DF871FF0D33F000855B0 /* Order_Detail.swift */,
 				8461E55D1FE36C290096D041 /* Mine_msg_main.swift */,
 				8461E55B1FE366630096D041 /* ChatViewController.swift */,
@@ -624,6 +627,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PatientClient/Pods-PatientClient-resources.sh",
+				"${PODS_ROOT}/AMap2DMap-NO-IDFA/MAMapKit.framework/AMap.bundle",
 				"${PODS_ROOT}/UMengUShare/UShareSDK/UMSocialSDK/UMSocialSDKPromptResources.bundle",
 				"${PODS_ROOT}/UMengUShare/UShareSDK/UMSocialUI/UMSocialSDKResources.bundle",
 			);
@@ -711,6 +715,7 @@
 				84C984071FA618060058FA7B /* MainViewController.swift in Sources */,
 				84939BC81FAC8F050062062C /* Mine_info.swift in Sources */,
 				840647351FA62D03009B21C4 /* Extension.swift in Sources */,
+				57FD1A53205A12BF00848088 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -866,6 +871,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/速递医疗\\ 病人端/Libs/LibBPush",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.victor.PatientClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4b0375b6-8acc-4f13-937f-d2be82038e67";
